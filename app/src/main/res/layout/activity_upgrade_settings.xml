@@ -1,0 +1,19 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="检测升级"
+        android:onClick="checkUpgrade"/>
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/s_auto_check_upgrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自动检测升级"/>
+
+</LinearLayout>

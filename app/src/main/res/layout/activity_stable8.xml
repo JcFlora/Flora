@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/behavior_demo_coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_toolbar_height"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|snap" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="16dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="16dp"
+        android:src="@android:drawable/ic_dialog_email"
+        app:layout_behavior="com.jc.flora.apps.stable.delegate.FabStableBehavior" />
+
+    <LinearLayout
+        android:id="@+id/layout_captain_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bottom_bar_height"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        app:layout_behavior="com.jc.flora.apps.stable.delegate.CaptainStableBehavior">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#bebebe" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F7F8F8"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_tab_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="0dp"
+                android:drawableTop="@drawable/captain_home_focus"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="#d12147"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/btn_tab_category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="0dp"
+                android:drawableTop="@drawable/captain_category_normal"
+                android:gravity="center"
+                android:text="分类"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/btn_tab_discovery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="0dp"
+                android:drawableTop="@drawable/captain_discovery_normal"
+                android:gravity="center"
+                android:text="发现"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/btn_tab_cart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="0dp"
+                android:drawableTop="@drawable/captain_cart_normal"
+                android:gravity="center"
+                android:text="购物车"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/btn_tab_kaola"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="0dp"
+                android:drawableTop="@drawable/captain_kaola_normal"
+                android:gravity="center"
+                android:text="我的考拉"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

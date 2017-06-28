@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_banner1"
+        android:layout_width="1080px"
+        android:layout_height="400px">
+
+        <com.jc.flora.apps.ui.banner.projects.BannerViewPager
+            android:id="@+id/vp_banner1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_banner2"
+        android:layout_width="1080px"
+        android:layout_height="400px">
+
+        <com.jc.flora.apps.ui.banner.projects.BannerViewPager
+            android:id="@+id/vp_banner2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

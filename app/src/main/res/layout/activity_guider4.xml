@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDFDFE">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_guider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/app_bottom_bar_height"
+        android:alpha="0.12"
+        android:background="@android:color/white" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bottom_bar_height"
+        android:layout_alignParentBottom="true"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_skip"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:contentDescription=""
+            android:text="SKIP"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@id/layout_guider_indicators"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_finish"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:contentDescription=""
+            android:text="FINISH"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:contentDescription=""
+            android:padding="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_chevron_right_white_24dp"
+            android:tint="@android:color/white" />
+
+    </FrameLayout>
+
+</RelativeLayout>

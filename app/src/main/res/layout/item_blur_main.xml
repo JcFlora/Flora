@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layout"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:background="#fff">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300px"
+        android:layout_height="200px"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="300px"
+        android:layout_height="100px"
+        android:layout_below="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="啊啊啊啊啊啊啊啊啊啊"/>
+
+    <ImageView
+        android:id="@+id/v2"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:scaleType="fitXY"/>
+
+</RelativeLayout>

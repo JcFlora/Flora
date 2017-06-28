@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.jc.flora.apps.scene.splash.projects.FullScreenVideoView
+        android:id="@+id/vv_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/tv_tick"
+        android:layout_width="300px"
+        android:layout_height="100px"
+        android:layout_alignParentEnd="true"
+        android:background="#99333333"
+        android:gravity="center"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/btn_skip"
+        android:layout_width="300px"
+        android:layout_height="100px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="#99333333"
+        android:gravity="center"
+        android:text="skip"
+        android:textColor="@android:color/white"/>
+
+</RelativeLayout>

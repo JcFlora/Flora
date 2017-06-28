@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="1080px"
+        android:layout_height="720px">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50px">
+
+            <ImageView
+                android:id="@+id/iv_indicator0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dot_selected"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="20px"
+                android:layout_height="1px" />
+
+            <ImageView
+                android:id="@+id/iv_indicator1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dot_unselected"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="20px"
+                android:layout_height="1px" />
+
+            <ImageView
+                android:id="@+id/iv_indicator2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dot_unselected"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="20px"
+                android:layout_height="1px" />
+
+            <ImageView
+                android:id="@+id/iv_indicator3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dot_unselected"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

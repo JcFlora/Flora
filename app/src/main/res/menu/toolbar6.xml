@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_more"
+        android:icon="@mipmap/ic_toolbar_overflow"
+        android:title="更多"
+        app:actionProviderClass="com.jc.flora.apps.md.toolbar.projects.Toolbar6ActionProvider"
+        app:showAsAction="always"/>
+</menu>

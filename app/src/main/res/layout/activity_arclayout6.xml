@@ -1,0 +1,103 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ogaclejapan.arclayout.ArcLayout
+        android:id="@+id/arc_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:arc_axisRadius="144dp"
+        app:arc_color="@android:color/transparent"
+        app:arc_freeAngle="true"
+        app:arc_origin="left"
+        app:arc_radius="192dp">
+
+        <Button
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/light_blue_oval_selector"
+            android:text="主页"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            app:arc_angle="30"/>
+
+        <Button
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/light_blue_oval_selector"
+            android:text="游戏"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            app:arc_angle="70"/>
+
+        <Button
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/light_blue_oval_selector"
+            android:text="运动"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            app:arc_angle="110"/>
+
+        <Button
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/light_blue_oval_selector"
+            android:text="用户"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            app:arc_angle="150"/>
+
+    </com.ogaclejapan.arclayout.ArcLayout>
+
+    <View
+        android:id="@+id/v_arrow"
+        android:layout_width="50dp"
+        android:layout_marginStart="-25dp"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/arrow_up2"/>
+
+    <Button
+        android:id="@+id/btn_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="上一个"
+        android:onClick="onPreClick"/>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/btn_pre"
+        android:text="下一个"
+        android:onClick="onNextClick"/>
+
+    <Button
+        android:id="@+id/btn_random"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="随机"
+        android:layout_toEndOf="@id/btn_next"
+        android:onClick="onRandomClick"/>
+
+    <Button
+        android:id="@+id/btn_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_pre"
+        android:text="锁定"
+        android:onClick="onLockClick"/>
+
+    <Button
+        android:id="@+id/btn_unlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_pre"
+        android:layout_toEndOf="@id/btn_lock"
+        android:text="解锁"
+        android:onClick="onUnlockClick"/>
+
+</RelativeLayout>

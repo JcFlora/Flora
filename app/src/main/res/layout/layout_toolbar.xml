@@ -1,0 +1,7 @@
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tb_title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_toolbar_height"
+    android:background="@android:color/holo_blue_light"
+    android:elevation="8dp"/>

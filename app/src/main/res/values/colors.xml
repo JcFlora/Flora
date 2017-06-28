@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 主题色 -->
+    <color name="colorPrimary">@android:color/holo_blue_light</color>
+    <!-- 辅助色 -->
+    <color name="colorPrimaryDark">@android:color/holo_blue_dark</color>
+    <!-- 强调色 -->
+    <color name="colorAccent">#ff4081</color>
+
+    <!-- 文字色：强调（焦点） -->
+    <color name="app_color_text_primary">@color/colorPrimary</color>
+    <!-- 文字色：强调（标题） -->
+    <color name="app_color_text_black">#333333</color>
+    <!-- 文字色：主色（辅助、默认） -->
+    <color name="app_color_text_gray">#666666</color>
+    <!-- 文字色：提示 -->
+    <color name="app_color_text_hint">#999999</color>
+    <!-- 文字色：不可用 -->
+    <color name="app_color_text_unable">#cccccc</color>
+    <!-- 文字色：白色 -->
+    <color name="app_color_text_white">#ffffff</color>
+    <!-- 文字色：橙红色（价格专用色） -->
+    <color name="app_color_text_price">#f13030</color>
+
+    <!-- 背景色：主题色 -->
+    <color name="app_color_bg_primary">@color/colorPrimary</color>
+    <!-- 背景色：内容页 -->
+    <color name="app_color_bg_content">#f0f0f0</color>
+    <!-- 背景色：工具栏、标签栏 -->
+    <color name="app_color_bg_bar">#f8f8f8</color>
+    <!-- 背景色：列表项 -->
+    <color name="app_color_bg_item">#ffffff</color>
+
+    <!-- 分隔线颜色：内容页 -->
+    <color name="app_color_divider_content">#dadada</color>
+    <!-- 分隔线颜色：列表项 -->
+    <color name="app_color_divider_item">#f0f0f0</color>
+
+    <!-- 标记色：红色 -->
+    <color name="app_color_tag_red">#ff4343</color>
+    <!-- 标记色：玫红 -->
+    <color name="app_color_tag_pink_dark">#de1e7c</color>
+    <!-- 标记色：橙色 -->
+    <color name="app_color_tag_orange">#fb7e00</color>
+    <!-- 标记色：绿色 -->
+    <color name="app_color_tag_green">#5ed125</color>
+    <!-- 标记色：蓝色 -->
+    <color name="app_color_tag_blue_bright">#00aaff</color>
+    <!-- 标记色：紫色 -->
+    <color name="app_color_tag_purple">#aa66cc</color>
+</resources>

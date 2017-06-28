@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_color_bg_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tv_text_size_12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="固定字体大小：12dp"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_12dp" />
+
+            <TextView
+                android:id="@+id/tv_text_size_14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="固定字体大小：14dp"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_14dp" />
+
+            <TextView
+                android:id="@+id/tv_text_size_16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="固定字体大小：16dp"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_16dp" />
+
+            <TextView
+                android:id="@+id/tv_text_size_18dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="固定字体大小：18dp"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_18dp" />
+
+            <TextView
+                android:id="@+id/tv_text_size_20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:text="固定字体大小：20dp"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_20dp" />
+
+            <TextView
+                android:id="@+id/tv_text_size_24px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="适配字体大小：24px"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_24px" />
+
+            <TextView
+                android:id="@+id/tv_text_size_28px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="适配字体大小：28px"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_28px" />
+
+            <TextView
+                android:id="@+id/tv_text_size_32px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="适配字体大小：32px"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_32px" />
+
+            <TextView
+                android:id="@+id/tv_text_size_36px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="适配字体大小：36px"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_36px" />
+
+            <TextView
+                android:id="@+id/tv_text_size_40px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="适配字体大小：40px"
+                android:textColor="@color/app_color_text_black"
+                android:textSize="@dimen/app_text_size_40px" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

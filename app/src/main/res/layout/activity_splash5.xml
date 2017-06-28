@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/splash_bg">
+
+    <TextView
+        android:id="@+id/tv_tick"
+        android:layout_width="300px"
+        android:layout_height="100px"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:background="#99333333"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/btn_skip"
+        android:layout_width="300px"
+        android:layout_height="100px"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#99333333"
+        android:textColor="@android:color/white"
+        android:text="skip"/>
+
+</RelativeLayout>
