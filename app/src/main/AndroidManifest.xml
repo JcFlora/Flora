@@ -523,6 +523,12 @@
             android:name=".apps.component.render.projects.RenderTextActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.component.render.projects.RenderDimen1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.component.render.projects.RenderDimen2Activity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.app.grace.GraceActivity"
             android:screenOrientation="portrait"/>
         <activity

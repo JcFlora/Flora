@@ -96,6 +96,7 @@ public class Banner12Activity extends AppCompatActivity {
         mIndicatorDelegate.addToActivity(this, "indicator");
     }
 
+    //todo 粗暴方案，有bug
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if(mAutoScrollDelegate == null){

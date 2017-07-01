@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_color_bg_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/app_page_padding"
+                android:paddingStart="@dimen/app_page_padding"
+                android:text="列表：大头像+主题+描述\n高度88dp，头像72dp，标题黑色18dp，描述深灰14dp"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_list_item_height3"
+                android:background="@color/app_color_bg_item"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/app_item_padding_horizontal"
+                android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/app_list_item_big_header_width"
+                    android:layout_height="@dimen/app_list_item_big_header_width"
+                    android:src="@mipmap/ic_login" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="@dimen/app_divider_item_space_size"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0px"
+                        android:layout_weight="3" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小倩"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_18dp" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0px"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="心有猛虎，细嗅蔷薇"
+                        android:textColor="@color/app_color_text_gray"
+                        android:textSize="@dimen/app_text_size_14dp" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0px"
+                        android:layout_weight="3" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/app_page_padding"
+                android:paddingStart="@dimen/app_page_padding"
+                android:text="列表：小头像+标题\n高度64dp，头像48dp，标题黑色18dp"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_color_bg_item"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height2"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_small_header_width"
+                        android:layout_height="@dimen/app_list_item_small_header_width"
+                        android:src="@mipmap/ic_login" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="小倩"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_divider_line_size"
+                    android:layout_marginStart="64dp"
+                    android:background="@color/app_color_divider_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height2"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_small_header_width"
+                        android:layout_height="@dimen/app_list_item_small_header_width"
+                        android:src="@mipmap/ic_login" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="小倩"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_18dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/app_page_padding"
+                android:paddingStart="@dimen/app_page_padding"
+                android:text="图标+单行标题+开关/短描述+箭头\n高度48dp，图标24dp，标题黑色16dp，描述深灰14dp，箭头12dp"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_color_bg_item"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_jk" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="健康统计"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_arrow_width"
+                        android:layout_height="@dimen/app_list_item_arrow_width"
+                        android:src="@mipmap/ic_render_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_divider_line_size"
+                    android:layout_marginStart="48dp"
+                    android:background="@color/app_color_divider_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_shop" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="我的购物"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_arrow_width"
+                        android:layout_height="@dimen/app_list_item_arrow_width"
+                        android:src="@mipmap/ic_render_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_divider_line_size"
+                    android:layout_marginStart="48dp"
+                    android:background="@color/app_color_divider_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_jp" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="精品推荐"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_arrow_width"
+                        android:layout_height="@dimen/app_list_item_arrow_width"
+                        android:src="@mipmap/ic_render_arrow" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_color_bg_item"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_rj" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="心情日记"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/app_color_text_hint"
+                        android:textSize="@dimen/app_text_size_14dp" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_arrow_width"
+                        android:layout_height="@dimen/app_list_item_arrow_width"
+                        android:src="@mipmap/ic_render_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_divider_line_size"
+                    android:layout_marginStart="48dp"
+                    android:background="@color/app_color_divider_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_zd" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="我的账单"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收入0.0元"
+                        android:textColor="@color/app_color_text_hint"
+                        android:textSize="@dimen/app_text_size_14dp" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_arrow_width"
+                        android:layout_height="@dimen/app_list_item_arrow_width"
+                        android:src="@mipmap/ic_render_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_divider_line_size"
+                    android:layout_marginStart="48dp"
+                    android:background="@color/app_color_divider_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_tx" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="活动提醒"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_color_bg_item"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_xz" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="星座运势"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="巨蟹座:不佳"
+                        android:textColor="@color/app_color_text_hint"
+                        android:textSize="@dimen/app_text_size_14dp" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_arrow_width"
+                        android:layout_height="@dimen/app_list_item_arrow_width"
+                        android:src="@mipmap/ic_render_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_divider_line_size"
+                    android:layout_marginStart="48dp"
+                    android:background="@color/app_color_divider_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_list_item_height1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/app_item_padding_horizontal"
+                    android:paddingStart="@dimen/app_item_padding_horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_icon_width"
+                        android:layout_height="@dimen/app_list_item_icon_width"
+                        android:src="@mipmap/ic_render_tq" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="今日天气"
+                        android:textColor="@color/app_color_text_black"
+                        android:textSize="@dimen/app_text_size_16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="南京:中雨"
+                        android:textColor="@color/app_color_text_hint"
+                        android:textSize="@dimen/app_text_size_14dp" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="@dimen/app_divider_item_space_size"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/app_list_item_arrow_width"
+                        android:layout_height="@dimen/app_list_item_arrow_width"
+                        android:src="@mipmap/ic_render_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_divider_line_size"
+                    android:layout_marginStart="48dp"
+                    android:background="@color/app_color_divider_item" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/app_page_padding"
+                android:paddingStart="@dimen/app_page_padding"
+                android:text="重要操作按钮\n高度48dp，圆角2dp"
+                android:textSize="12sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_accent_button_height"
+                android:layout_marginEnd="@dimen/app_page_padding"
+                android:layout_marginStart="@dimen/app_page_padding"
+                android:background="@drawable/bg_btn_render_accent"
+                android:text="退出当前账号"
+                android:textColor="@color/app_color_text_white"
+                android:textSize="@dimen/app_text_size_20dp" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_line_size"
+        android:background="@color/app_color_divider_content" />
+
+    <LinearLayout
+        android:id="@+id/layout_captain_indicators"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bottom_bar_height"
+        android:background="@color/app_color_bg_bar"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_tab_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/launcher_scene_focus"
+            android:gravity="center"
+            android:text="场景"
+            android:textColor="@color/app_color_text_primary"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/btn_tab_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/launcher_ui_normal"
+            android:gravity="center"
+            android:text="UI"
+            android:textColor="@color/app_color_text_hint"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/btn_tab_discovery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/launcher_md_normal"
+            android:gravity="center"
+            android:text="MD"
+            android:textColor="@color/app_color_text_hint"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/btn_tab_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/launcher_component_normal"
+            android:gravity="center"
+            android:text="组件"
+            android:textColor="@color/app_color_text_hint"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/btn_tab_kaola"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/launcher_app_normal"
+            android:gravity="center"
+            android:text="应用"
+            android:textColor="@color/app_color_text_hint"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

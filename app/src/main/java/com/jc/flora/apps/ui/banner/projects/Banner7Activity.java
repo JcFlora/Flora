@@ -115,6 +115,7 @@ public class Banner7Activity extends AppCompatActivity {
         mIvIndicators[position].setImageResource(R.drawable.dot_selected);
     }
 
+    //todo 粗暴方案，有bug
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if(mDelegate == null){

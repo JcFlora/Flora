@@ -72,6 +72,7 @@ public class Banner4Activity extends AppCompatActivity {
         mDelegate.addToActivity(this, "autoScroll");
     }
 
+    //todo 粗暴方案，有bug
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if(mDelegate == null){

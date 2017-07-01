@@ -11,17 +11,36 @@
     <dimen name="app_top_bar_height">50dp</dimen>
     <!-- 统一页面内间距 -->
     <dimen name="app_page_padding">10dp</dimen>
+    <!-- 统一item内横向间距 -->
+    <dimen name="app_item_padding_horizontal">16dp</dimen>
+    <!-- 统一item内纵向间距 -->
+    <dimen name="app_item_padding_vertical">12dp</dimen>
     <!-- 统一分隔线尺寸 -->
-    <dimen name="app_divider_line_size">1dp</dimen>
-    <!-- 统一分隔块尺寸 -->
-    <dimen name="app_divider_space_size">15dp</dimen>
+    <dimen name="app_divider_line_size">1px</dimen>
+    <!-- 统一页面内分隔块尺寸 -->
+    <dimen name="app_divider_page_space_size">16dp</dimen>
+    <!-- 统一item内分隔块尺寸 -->
+    <dimen name="app_divider_item_space_size">12dp</dimen>
     <!-- 统一列表高度尺寸（图标+单行标题+开关/短描述+箭头） -->
-    <dimen name="app_list_item_height1">50dp</dimen>
+    <dimen name="app_list_item_height1">48dp</dimen>
     <!-- 统一列表高度尺寸（小头像+标题）  -->
-    <dimen name="app_list_item_height2">55dp</dimen>
+    <dimen name="app_list_item_height2">64dp</dimen>
     <!-- 统一列表高度尺寸（大头像+标题+描述）  -->
-    <dimen name="app_list_item_height3">80dp</dimen>
-    <!-- 统一圆角半径 -->
+    <dimen name="app_list_item_height3">88dp</dimen>
+    <!-- 统一列表图标尺寸  -->
+    <dimen name="app_list_item_icon_width">24dp</dimen>
+    <!-- 统一列表箭头尺寸  -->
+    <dimen name="app_list_item_arrow_width">12dp</dimen>
+    <!-- 统一列表小头像尺寸  -->
+    <dimen name="app_list_item_small_header_width">48dp</dimen>
+    <!-- 统一列表大头像尺寸  -->
+    <dimen name="app_list_item_big_header_width">72dp</dimen>
+    <!-- 统一按钮圆角半径 -->
+    <dimen name="app_btn_corner_radius">2dp</dimen>
+    <!-- 统一卡片圆角半径 -->
+    <dimen name="app_card_corner_radius">4dp</dimen>
+    <!-- 重要操作按钮高度 -->
+    <dimen name="app_accent_button_height">48dp</dimen>
 
     <!-- 统一宫格导航 -->
     <!-- 统一默认图 -->
