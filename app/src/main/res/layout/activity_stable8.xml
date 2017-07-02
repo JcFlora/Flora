@@ -40,7 +40,7 @@
         android:layout_marginBottom="72dp"
         android:layout_marginEnd="16dp"
         android:src="@android:drawable/ic_dialog_email"
-        app:layout_behavior="com.jc.flora.apps.stable.delegate.FabStableBehavior" />
+        app:layout_behavior="com.jc.flora.apps.ui.stable.delegate.FabStableBehavior" />
 
     <LinearLayout
         android:id="@+id/layout_captain_bar"
@@ -48,7 +48,7 @@
         android:layout_height="@dimen/app_bottom_bar_height"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        app:layout_behavior="com.jc.flora.apps.stable.delegate.CaptainStableBehavior">
+        app:layout_behavior="com.jc.flora.apps.ui.stable.delegate.CaptainStableBehavior">
 
         <View
             android:layout_width="match_parent"

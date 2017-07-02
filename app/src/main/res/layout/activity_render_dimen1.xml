@@ -608,7 +608,7 @@
                 android:layout_height="@dimen/app_accent_button_height"
                 android:layout_marginEnd="@dimen/app_page_padding"
                 android:layout_marginStart="@dimen/app_page_padding"
-                android:background="@drawable/bg_btn_render_accent"
+                android:background="@drawable/app_bg_btn_accent"
                 android:text="退出当前账号"
                 android:textColor="@color/app_color_text_white"
                 android:textSize="@dimen/app_text_size_20dp" />

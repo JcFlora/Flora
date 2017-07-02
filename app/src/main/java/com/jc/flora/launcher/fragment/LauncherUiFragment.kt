@@ -66,7 +66,8 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("各种形状", R.mipmap.ic_shape, NotFoundActivity::class.java),
                     LauncherApp("模糊效果", R.mipmap.ic_blur, BlurActivity::class.java),
                     LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
-                    LauncherApp("跑马灯", R.mipmap.ic_marquee, MarqueeActivity::class.java)
+                    LauncherApp("跑马灯", R.mipmap.ic_marquee, MarqueeActivity::class.java),
+                    LauncherApp("悬浮窗口", R.mipmap.ic_buoy, NotFoundActivity::class.java)
             )
         }
 

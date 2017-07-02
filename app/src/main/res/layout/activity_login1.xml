@@ -117,7 +117,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginStart="40dp"
-        android:background="@drawable/bg_confirm_button"
+        android:background="@drawable/app_bg_btn_accent"
         android:gravity="center"
         android:padding="10dp"
         android:text="登录"

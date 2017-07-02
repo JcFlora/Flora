@@ -20,18 +20,18 @@ import com.jc.flora.launcher.fragment.LauncherUiFragment;
  */
 public class LauncherCaptainDelegate {
 
-    private static final String[] TITLES = {"场景", "UI", "MD", "组件", "应用"};
+    private static final String[] TITLES = {"组件", "UI", "MD", "场景", "应用"};
     private static final int COUNT = 5;
     private static final int START_INDEX = 0;
     private static final float TEXT_SIZE = 11;
     private static final int COLOR_UNCHECKED = Color.parseColor("#999999");
     private static final int COLOR_CHECKED = Color.parseColor("#00ADED");
-    private static final int[] ICON_RES_NORMAL = {R.drawable.launcher_scene_normal,
+    private static final int[] ICON_RES_NORMAL = {R.drawable.launcher_component_normal,
             R.drawable.launcher_ui_normal, R.drawable.launcher_md_normal,
-            R.drawable.launcher_component_normal, R.drawable.launcher_app_normal};
-    private static final int[] ICON_RES_FOCUS = {R.drawable.launcher_scene_focus,
+            R.drawable.launcher_scene_normal, R.drawable.launcher_app_normal};
+    private static final int[] ICON_RES_FOCUS = {R.drawable.launcher_component_focus,
             R.drawable.launcher_ui_focus, R.drawable.launcher_md_focus,
-            R.drawable.launcher_component_focus, R.drawable.launcher_app_focus};
+            R.drawable.launcher_scene_focus, R.drawable.launcher_app_focus};
 
     private AppCompatActivity mActivity;
 
@@ -60,10 +60,10 @@ public class LauncherCaptainDelegate {
 
     private void initFragments(){
         CaptainFragment[] fragmentList = new CaptainFragment[COUNT];
-        fragmentList[0] = new LauncherSceneFragment();
+        fragmentList[0] = new LauncherComponentFragment();
         fragmentList[1] = new LauncherUiFragment();
         fragmentList[2] = new LauncherMdFragment();
-        fragmentList[3] = new LauncherComponentFragment();
+        fragmentList[3] = new LauncherSceneFragment();
         fragmentList[4] = new LauncherAppFragment();
         mFragmentDelegate = new FragmentDelegate18();
         mFragmentDelegate.setVpContainer(mVpContainer);
