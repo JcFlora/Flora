@@ -14,10 +14,14 @@ import com.jc.flora.R;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
+
 /**
- * Created by Samurai on 2017/7/2.
+ * Created by Samurai on 2017/7/4.
  */
-public class TelephoneDelegate {
+public class TelephoneDelegate2 {
 
     /** 当前界面 */
     private Activity mActivity;
@@ -25,10 +29,8 @@ public class TelephoneDelegate {
     private View mBtnTelephone;
     /** 电话号码字样 */
     private TextView mTvTelephone;
-    /** 电话号码 */
-    private String mPhoneNumber;
 
-    public TelephoneDelegate(Activity activity, View btnTelephone, TextView tvTelephone) {
+    public TelephoneDelegate2(Activity activity, View btnTelephone, TextView tvTelephone) {
         mActivity = activity;
         mBtnTelephone = btnTelephone;
         mTvTelephone = tvTelephone;
@@ -39,64 +41,53 @@ public class TelephoneDelegate {
      * @param phoneNumber 电话号码
      */
     public void setTelephoneInfo(String phoneNumber) {
-        mPhoneNumber = phoneNumber;
         clear();
-        // 展示或隐藏电话号码，并检查号码是否可以直拨（无分机）
-        if (checkExist() && checkPhoneNumberCanDirectDial()) {
-            // 如果电话号码存在，并且该号码可以直拨（无分机），设置按钮的直拨功能
-            setDirectDialEnable();
-        }
+        Observable.just(phoneNumber).filter(new Func1<String, Boolean>() {
+            @Override
+            public Boolean call(String s) {
+                return !TextUtils.isEmpty(s);
+            }
+        }).doOnNext(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                mBtnTelephone.setVisibility(View.VISIBLE);
+                mTvTelephone.setText(s);
+            }
+        }).filter(new Func1<String, Boolean>() {
+            @Override
+            public Boolean call(String s) {
+                return isMobilePhoneNumber(s) || isLandlineTelephoneNumber(s);
+            }
+        }).subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                setTelephoneInfo(R.drawable.telephone_logo, 0xffffda33);
+                setDirectDialEnable(s);
+            }
+        });
     }
 
     public void clear(){
         mBtnTelephone.setVisibility(View.GONE);
         mBtnTelephone.setOnClickListener(null);
-    }
-
-    /**
-     * 展示电话号码并检查其是否存在
-     * @return
-     */
-    private boolean checkExist() {
-        if (TextUtils.isEmpty(mPhoneNumber)) {
-            mBtnTelephone.setVisibility(View.GONE);
-            return false;
-        }else{
-            mBtnTelephone.setVisibility(View.VISIBLE);
-            mTvTelephone.setText(mPhoneNumber);
-            return true;
-        }
-    }
-
-    /**
-     * 检查号码是否可以直拨（无分机）
-     * @return
-     */
-    private boolean checkPhoneNumberCanDirectDial() {
-        if (isMobilePhoneNumber() || isLandlineTelephoneNumber()) {
-            setTelephoneInfo(R.drawable.telephone_logo, 0xffffda33);
-            return true;
-        }else{
-            setTelephoneInfo(R.drawable.telephone_logo_gray, 0xff909090);
-            return false;
-        }
+        setTelephoneInfo(R.drawable.telephone_logo_gray, 0xff909090);
     }
 
     /**
      * 检查号码是否是手机号码（11位纯数字，以1开头）
      * @return
      */
-    private boolean isMobilePhoneNumber() {
-        return !TextUtils.isEmpty(mPhoneNumber) && mPhoneNumber.length() == 11
-                && mPhoneNumber.startsWith("1") && isNumber(mPhoneNumber);
+    private boolean isMobilePhoneNumber(String phoneNumber) {
+        return !TextUtils.isEmpty(phoneNumber) && phoneNumber.length() == 11
+                && phoneNumber.startsWith("1") && isNumber(phoneNumber);
     }
 
     /**
      * 检查号码是否是固定电话号码（区号验证+主机号验证）
      * @return
      */
-    private boolean isLandlineTelephoneNumber() {
-        String[] str = mPhoneNumber.split("-");
+    private boolean isLandlineTelephoneNumber(String phoneNumber) {
+        String[] str = phoneNumber.split("-");
         return str.length == 2 && checkZone(str[0]) && checkPhone(str[1]);
     }
 
@@ -149,12 +140,12 @@ public class TelephoneDelegate {
     /**
      * 设置电话按钮的直拨功能
      */
-    private void setDirectDialEnable() {
+    private void setDirectDialEnable(final String phoneNumber) {
         mBtnTelephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 显示去打电话的对话框
-                showDialTelephoneDialog();
+                showDialTelephoneDialog(phoneNumber);
             }
         });
     }
@@ -162,16 +153,16 @@ public class TelephoneDelegate {
     /**
      * 显示去打电话的对话框
      */
-    private void showDialTelephoneDialog(){
+    private void showDialTelephoneDialog(final String phoneNumber){
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setTitle("拨打电话");
-        builder.setMessage(mPhoneNumber);
+        builder.setMessage(phoneNumber);
         builder.setPositiveButton("拨打", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 // 去打电话
-                go2DialTelephone();
+                go2DialTelephone(phoneNumber);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -187,10 +178,10 @@ public class TelephoneDelegate {
     /**
      * 去打电话
      */
-    private void go2DialTelephone() {
+    private void go2DialTelephone(String phoneNumber) {
         try {
             Intent phoneIntent = new Intent("android.intent.action.CALL",
-                    Uri.parse("tel:" + mPhoneNumber));
+                    Uri.parse("tel:" + phoneNumber));
             mActivity.startActivity(phoneIntent);
         } catch (Exception e) {
         }

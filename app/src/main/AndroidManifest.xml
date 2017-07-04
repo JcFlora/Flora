@@ -546,6 +546,9 @@
         <activity
             android:name=".apps.scene.telephone.projects.Telephone1Activity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.scene.telephone.projects.Telephone2Activity"
+            android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
     </application>
 
