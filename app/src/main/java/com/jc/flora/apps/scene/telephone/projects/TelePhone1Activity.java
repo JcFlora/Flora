@@ -46,7 +46,6 @@ public class Telephone1Activity extends AppCompatActivity{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                mDelegate.clear();
                 mDelegate.setTelephoneInfo(ITEMS[which]);
             }
         });
