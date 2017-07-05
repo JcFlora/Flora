@@ -1,0 +1,13 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/buoy_bg">
+
+    <ImageView
+        android:id="@+id/iv_buoy"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:clickable="true"
+        android:contentDescription=""
+        android:src="@mipmap/ic_buoy" />
+</RelativeLayout>

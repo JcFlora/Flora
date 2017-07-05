@@ -13,6 +13,7 @@ import com.jc.flora.apps.ui.badge.BadgeActivity
 import com.jc.flora.apps.ui.banner.BannerActivity
 import com.jc.flora.apps.ui.bgchange.BgChangeActivity
 import com.jc.flora.apps.ui.blur.BlurActivity
+import com.jc.flora.apps.ui.buoy.BuoyActivity
 import com.jc.flora.apps.ui.captain.CaptainActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.apps.ui.dialog.DialogActivity
@@ -67,7 +68,8 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("模糊效果", R.mipmap.ic_blur, BlurActivity::class.java),
                     LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
                     LauncherApp("跑马灯", R.mipmap.ic_marquee, MarqueeActivity::class.java),
-                    LauncherApp("悬浮窗口", R.mipmap.ic_buoy, NotFoundActivity::class.java)
+                    LauncherApp("各种列表", R.mipmap.ic_list, NotFoundActivity::class.java),
+                    LauncherApp("悬浮窗口", R.mipmap.ic_buoy, BuoyActivity::class.java)
             )
         }
 
