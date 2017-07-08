@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.ui.dialog.delegate.CustomDialogDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.CustomListDialogDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.MultiChoiceDialogDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.SingleChoiceDialogDelegate;
@@ -20,6 +21,7 @@ public class AlertDialogActivity extends AppCompatActivity {
     private SingleChoiceDialogDelegate mSingleChoiceDialogDelegate;
     private MultiChoiceDialogDelegate mMultiChoiceDialogDelegate;
     private CustomListDialogDelegate mCustomListDialogDelegate;
+    private CustomDialogDelegate mCustomDialogDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class AlertDialogActivity extends AppCompatActivity {
         mSingleChoiceDialogDelegate = new SingleChoiceDialogDelegate(this);
         mMultiChoiceDialogDelegate = new MultiChoiceDialogDelegate(this);
         mCustomListDialogDelegate = new CustomListDialogDelegate(this);
+        mCustomDialogDelegate = new CustomDialogDelegate(this);
     }
 
     public void showToastDialog(View v){
@@ -60,18 +63,7 @@ public class AlertDialogActivity extends AppCompatActivity {
     }
 
     public void showCustomDialog(View v){
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("提示");
-//        builder.setMessage("有最新版本可以下载了");
-//        builder.setView(new ProgressBar(this));
-//        builder.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
-//        builder.setCancelable(true);
-//        builder.show();
+        mCustomDialogDelegate.show();
     }
 
     private void showToastDialog() {
