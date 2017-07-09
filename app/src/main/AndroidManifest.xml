@@ -558,6 +558,12 @@
         <activity
             android:name=".apps.ui.buoy.projects.Buoy2Activity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.shape.ShapeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.shape.projects.ShapeCornerActivity"
+            android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
     </application>
 

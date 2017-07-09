@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/app_page_padding">
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:background="@drawable/shape_bg_corner1"
+        android:text="圆角实心背景(xml实现)"
+        android:textColor="@color/app_color_text_white"
+        android:textSize="@dimen/app_text_size_18dp" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_corner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:text="圆角实心背景(代码实现)"
+        android:textColor="@color/app_color_text_white"
+        android:textSize="@dimen/app_text_size_18dp" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:background="@drawable/shape_bg_corner2"
+        android:hint="圆角线框背景(xml实现)"
+        android:textColorHint="@color/app_color_text_hint"
+        android:textColor="@color/app_color_text_black"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:paddingStart="@dimen/app_page_padding"
+        android:paddingEnd="@dimen/app_page_padding"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_corner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:hint="圆角线框背景(代码实现)"
+        android:textColorHint="@color/app_color_text_hint"
+        android:textColor="@color/app_color_text_black"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:paddingStart="@dimen/app_page_padding"
+        android:paddingEnd="@dimen/app_page_padding"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+</LinearLayout>
