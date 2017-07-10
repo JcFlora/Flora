@@ -55,6 +55,9 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("蓝牙开发", R.mipmap.ic_bluetooth, BluetoothActivity::class.java),
                     LauncherApp("电话", R.mipmap.ic_telephone, TelephoneActivity::class.java),
                     LauncherApp("分享", R.mipmap.ic_share, NotFoundActivity::class.java),
+                    LauncherApp("城市切换", R.mipmap.ic_city, NotFoundActivity::class.java),
+                    LauncherApp("定位", R.mipmap.ic_location, NotFoundActivity::class.java),
+                    LauncherApp("地图", R.mipmap.ic_map, NotFoundActivity::class.java),
                     LauncherApp("购物车", R.mipmap.ic_cart, NotFoundActivity::class.java)
             )
         }

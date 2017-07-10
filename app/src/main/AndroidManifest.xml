@@ -564,6 +564,13 @@
         <activity
             android:name=".apps.ui.shape.projects.ShapeCornerActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.shape.projects.ShapeGradientActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.shape.projects.ShapeDashActivity"
+            android:screenOrientation="portrait"
+            android:hardwareAccelerated="false" />
         <service android:name=".apps.ui.dialog.projects.TestService"/>
     </application>
 

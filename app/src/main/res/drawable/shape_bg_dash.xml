@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+    <!-- 描边（虚线）-->
+    <stroke
+        android:width="1px"
+        android:color="@color/colorAccent"
+        android:dashGap="2dp"
+        android:dashWidth="8dp" />
+    <size android:height="2px"/>
+</shape>

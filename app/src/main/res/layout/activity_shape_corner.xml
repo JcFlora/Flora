@@ -59,4 +59,34 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:background="@drawable/shape_bg_corner3"
+        android:hint="圆角虚线线框背景(xml实现)"
+        android:textColorHint="@color/app_color_text_hint"
+        android:textColor="@color/app_color_text_black"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:paddingStart="@dimen/app_page_padding"
+        android:paddingEnd="@dimen/app_page_padding"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_corner_dash"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:hint="圆角虚线线框背景(代码实现)"
+        android:textColorHint="@color/app_color_text_hint"
+        android:textColor="@color/app_color_text_black"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:paddingStart="@dimen/app_page_padding"
+        android:paddingEnd="@dimen/app_page_padding"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
 </LinearLayout>

@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jc.flora.R
-import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.apps.component.exit.ExitActivity
 import com.jc.flora.apps.component.hybrid.HybridActivity
 import com.jc.flora.apps.component.image.ImageLoadActivity
@@ -18,6 +17,7 @@ import com.jc.flora.apps.component.router.RouterActivity
 import com.jc.flora.apps.component.statistics.StatisticsActivity
 import com.jc.flora.apps.component.upgrade.UpgradeActivity
 import com.jc.flora.apps.component.vi.ViActivity
+import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.launcher.LauncherApp
 import com.jc.flora.launcher.LauncherAppsAdapter
 import com.jc.flora.launcher.NotFoundActivity
@@ -59,6 +59,8 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("图片加载", R.mipmap.ic_image, ImageLoadActivity::class.java),
                     LauncherApp("设备信息", R.mipmap.ic_device, NotFoundActivity::class.java),
                     LauncherApp("页面路由", R.mipmap.ic_router, RouterActivity::class.java),
+                    LauncherApp("本地缓存", R.mipmap.ic_cache, NotFoundActivity::class.java),
+                    LauncherApp("数据库", R.mipmap.ic_db, NotFoundActivity::class.java),
                     LauncherApp("权限控制", R.mipmap.ic_security, NotFoundActivity::class.java)
             )
         }

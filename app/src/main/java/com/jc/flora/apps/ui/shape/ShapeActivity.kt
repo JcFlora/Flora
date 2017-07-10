@@ -8,7 +8,8 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.shape.projects.ShapeCornerActivity
-import com.jc.flora.launcher.NotFoundActivity
+import com.jc.flora.apps.ui.shape.projects.ShapeDashActivity
+import com.jc.flora.apps.ui.shape.projects.ShapeGradientActivity
 import java.util.*
 
 /**
@@ -31,7 +32,7 @@ class ShapeActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2)
+            return arrayListOf(project1, project2, project3)
         }
 
     private val project1: Project
@@ -45,19 +46,19 @@ class ShapeActivity : AppCompatActivity() {
     private val project2: Project
         get() {
             val project = Project()
-            project.projectName = "圆型"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "渐变背景"
+            project.targetActivity = ShapeGradientActivity::class.java
             return project
         }
 
-//    private val project3: Project
-//        get() {
-//            val project = Project()
-//            project.projectName = "系统对话框"
-//            project.targetActivity = NotFoundActivity::class.java
-//            return project
-//        }
-//
+    private val project3: Project
+        get() {
+            val project = Project()
+            project.projectName = "虚线"
+            project.targetActivity = ShapeDashActivity::class.java
+            return project
+        }
+
 //    private val project4: Project
 //        get() {
 //            val project = Project()
