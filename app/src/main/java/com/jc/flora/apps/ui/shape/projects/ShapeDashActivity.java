@@ -29,7 +29,7 @@ public class ShapeDashActivity extends AppCompatActivity {
 
     private void initViews() {
 //        mVDash.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        mVDash.setBackground(ShapeDelegate.getDashLineDrawable(0xffff4081, 20, 5));
+        mVDash.setBackground(ShapeDelegate.getDashLineDrawable(0xffdadada, 20, 5));
     }
 
 }

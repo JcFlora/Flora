@@ -13,6 +13,6 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:padding="14dp"
-        android:background="@android:color/holo_purple"/>
+        android:background="@drawable/shape_bg_gradient"/>
 
 </LinearLayout>
