@@ -34,7 +34,7 @@ class RenderActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5)
+            return arrayListOf(project1, project2, project3, project4, project5, project6)
         }
 
     private val project1: Project
@@ -70,6 +70,14 @@ class RenderActivity : AppCompatActivity() {
         }
 
     private val project5: Project
+        get() {
+            val project = Project()
+            project.projectName = "反馈规范"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project6: Project
         get() {
             val project = Project()
             project.projectName = "状态规范"

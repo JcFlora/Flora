@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_toolbar_height"
         android:background="@color/app_color_bg_bar"
-        toolbar:titleTextColor="@color/app_color_text_black"/>
+        toolbar:titleTextColor="@color/app_color_text_black"
+        android:elevation="8dp"/>
 
     <View
         android:layout_width="match_parent"
