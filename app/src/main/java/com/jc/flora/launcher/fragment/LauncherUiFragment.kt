@@ -71,6 +71,7 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("转场动画", R.mipmap.ic_transition, TransitionActivity::class.java),
                     LauncherApp("背景切换", R.mipmap.ic_bg, BgChangeActivity::class.java),
                     LauncherApp("模糊效果", R.mipmap.ic_blur, BlurActivity::class.java),
+                    LauncherApp("图像处理", R.mipmap.ic_ps, BlurActivity::class.java),
                     LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
                     LauncherApp("分步完成", R.mipmap.ic_steps, NotFoundActivity::class.java)
             )

@@ -24,7 +24,7 @@ import java.util.*
  */
 class LauncherSceneFragment : CaptainFragment() {
 
-    private var rvApps : RecyclerView? = null
+    private var rvApps: RecyclerView? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.layout_launcher_fragment, container, false)
@@ -49,16 +49,40 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("引导界面", R.mipmap.ic_guider, GuiderActivity::class.java),
                     LauncherApp("登录界面", R.mipmap.ic_login, LoginActivity::class.java),
                     LauncherApp("账户体系", R.mipmap.ic_account, NotFoundActivity::class.java),
+
                     LauncherApp("图片选择", R.mipmap.ic_photo, NotFoundActivity::class.java),
                     LauncherApp("浏览大图", R.mipmap.ic_album, NotFoundActivity::class.java),
+                    LauncherApp("内容分享", R.mipmap.ic_share, NotFoundActivity::class.java),
+                    LauncherApp("扫二维码", R.mipmap.ic_qrcode, NotFoundActivity::class.java),
+
+                    LauncherApp("电商首页", R.mipmap.ic_home, NotFoundActivity::class.java),
+                    LauncherApp("商品分类", R.mipmap.ic_category, NotFoundActivity::class.java),
+                    LauncherApp("购物车", R.mipmap.ic_cart, NotFoundActivity::class.java),
+                    LauncherApp("个人中心", R.mipmap.ic_my, NotFoundActivity::class.java),
+
+                    LauncherApp("热门推荐", R.mipmap.ic_hot, NotFoundActivity::class.java),
+                    LauncherApp("搜索商品", R.mipmap.ic_search, NotFoundActivity::class.java),
+                    LauncherApp("商品详情", R.mipmap.ic_product, NotFoundActivity::class.java),
+                    LauncherApp("订单管理", R.mipmap.ic_order, NotFoundActivity::class.java),
+
+                    LauncherApp("在线支付", R.mipmap.ic_payment, NotFoundActivity::class.java),
+                    LauncherApp("城市切换", R.mipmap.ic_city, NotFoundActivity::class.java),
+                    LauncherApp("地理定位", R.mipmap.ic_location, NotFoundActivity::class.java),
+                    LauncherApp("地图开发", R.mipmap.ic_map, NotFoundActivity::class.java),
+
+                    LauncherApp("消息推送", R.mipmap.ic_push, NotFoundActivity::class.java),
+                    LauncherApp("即时通讯", R.mipmap.ic_chat, NotFoundActivity::class.java),
+                    LauncherApp("语音识别", R.mipmap.ic_voice, NotFoundActivity::class.java),
+                    LauncherApp("拨打电话", R.mipmap.ic_telephone, TelephoneActivity::class.java),
+
                     LauncherApp("WIFI开发", R.mipmap.ic_wifi, NotFoundActivity::class.java),
                     LauncherApp("蓝牙开发", R.mipmap.ic_bluetooth, BluetoothActivity::class.java),
-                    LauncherApp("电话", R.mipmap.ic_telephone, TelephoneActivity::class.java),
-                    LauncherApp("分享", R.mipmap.ic_share, NotFoundActivity::class.java),
-                    LauncherApp("城市切换", R.mipmap.ic_city, NotFoundActivity::class.java),
-                    LauncherApp("定位", R.mipmap.ic_location, NotFoundActivity::class.java),
-                    LauncherApp("地图", R.mipmap.ic_map, NotFoundActivity::class.java),
-                    LauncherApp("购物车", R.mipmap.ic_cart, NotFoundActivity::class.java)
+                    LauncherApp("直播技术", R.mipmap.ic_live, NotFoundActivity::class.java),
+                    LauncherApp("有声电台", R.mipmap.ic_fm, NotFoundActivity::class.java),
+
+                    LauncherApp("会员互动", R.mipmap.ic_member, NotFoundActivity::class.java),
+                    LauncherApp("设置界面", R.mipmap.ic_settings, NotFoundActivity::class.java),
+                    LauncherApp("摇一摇", R.mipmap.ic_shake, NotFoundActivity::class.java)
             )
         }
 

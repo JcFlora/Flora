@@ -32,7 +32,7 @@ class ToolbarActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8)
+                    project6, project7, project8, project9, project10, project11)
         }
 
     private val project1: Project
@@ -102,12 +102,20 @@ class ToolbarActivity : AppCompatActivity() {
     private val project9: Project
         get() {
             val project = Project()
-            project.projectName = "实现搜索栏"
+            project.projectName = "仿QQToolbar"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project10: Project
+        get() {
+            val project = Project()
+            project.projectName = "实现搜索栏"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project11: Project
         get() {
             val project = Project()
             project.projectName = "实现搜索栏动态切换"

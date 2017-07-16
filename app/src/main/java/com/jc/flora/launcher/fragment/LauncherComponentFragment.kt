@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jc.flora.R
+import com.jc.flora.apps.component.audio.AudioActivity
 import com.jc.flora.apps.component.exit.ExitActivity
 import com.jc.flora.apps.component.hybrid.HybridActivity
 import com.jc.flora.apps.component.image.ImageLoadActivity
@@ -67,7 +68,12 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("本地缓存", R.mipmap.ic_cache, NotFoundActivity::class.java),
                     LauncherApp("数据库", R.mipmap.ic_db, NotFoundActivity::class.java),
                     LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java),
-                    LauncherApp("数据统计", R.mipmap.ic_statistics, StatisticsActivity::class.java)
+                    LauncherApp("数据统计", R.mipmap.ic_statistics, StatisticsActivity::class.java),
+
+                    LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),
+                    LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
+                    LauncherApp("组件通信", R.mipmap.ic_signal, NotFoundActivity::class.java),
+                    LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java)
             )
         }
 
