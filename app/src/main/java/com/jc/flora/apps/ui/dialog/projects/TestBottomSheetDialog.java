@@ -1,6 +1,5 @@
 package com.jc.flora.apps.ui.dialog.projects;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,15 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.deviceinfo.DeviceUtil;
 
 /**
  * Created by shijincheng on 2017/3/1.
  */
 public class TestBottomSheetDialog extends BottomSheetDialog{
 
-    private BottomSheetBehavior mBottomSheetBehavior;
-    private Activity mActivity;
+    private static final boolean HIDE_WHEN_SWIPED_DOWN = false;
+
+//    private BottomSheetBehavior mBottomSheetBehavior;
+//    private Activity mActivity;
 
     public TestBottomSheetDialog(@NonNull Context context) {
         super(context);
@@ -29,32 +29,29 @@ public class TestBottomSheetDialog extends BottomSheetDialog{
         super(context, theme);
     }
 
-    protected TestBottomSheetDialog(@NonNull Context context, boolean cancelable, OnCancelListener cancelListener) {
+    public TestBottomSheetDialog(@NonNull Context context, boolean cancelable, OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View contentView = getLayoutInflater().inflate(R.layout.activity_alert_dialog, null);
-        setContentView(contentView);
-        init(contentView);
+        init();
     }
 
-    @Override
-    public void show() {
-        super.show();
-        if(mBottomSheetBehavior != null)
-            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-    }
-
-    protected void init(View contentView){
-        int dialogHeight = DeviceUtil.getHeightExcludeStatusBar(getContext());
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, dialogHeight);
-        mBottomSheetBehavior = BottomSheetBehavior.from((View) contentView.getParent());
-        mBottomSheetBehavior.setPeekHeight(0);
-        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        mBottomSheetBehavior.setBottomSheetCallback(mBottomSheetCallback);
+    private void init(){
+        // 加载布局
+        setContentView(R.layout.dialog_bottom_sheet);
+        // 设置对话框的宽度
+        getWindow().getAttributes().width = ViewGroup.LayoutParams.MATCH_PARENT;
+//        // 设置对话框的宽度和高度
+//        int dialogHeight = DeviceUtil.getHeightExcludeStatusBar(getContext());
+//        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, dialogHeight);
+        // 设置是否支持滑动退出
+        View bottomSheet = findViewById(android.support.design.R.id.design_bottom_sheet);
+        if(bottomSheet != null){
+            BottomSheetBehavior.from(bottomSheet).setHideable(HIDE_WHEN_SWIPED_DOWN);
+        }
     }
 
 //    private Activity getActivity(){
@@ -72,19 +69,38 @@ public class TestBottomSheetDialog extends BottomSheetDialog{
 //        return mActivity;
 //    }
 
-    private BottomSheetBehavior.BottomSheetCallback mBottomSheetCallback
-            = new BottomSheetBehavior.BottomSheetCallback() {
-        @Override
-        public void onStateChanged(@NonNull View bottomSheet,
-                                   @BottomSheetBehavior.State int newState) {
-            if (newState >= BottomSheetBehavior.STATE_COLLAPSED) {
-                dismiss();
-            }
-        }
+//    //下面这段代码是处理老版本的bug，25版本已修复，如果加上去会有新的bug
+//    private void init(View bottomSheet){
+//        // 设置默认初始高度
+//        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+//        mBottomSheetBehavior.setPeekHeight(100);
+//        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+//        mBottomSheetBehavior.setBottomSheetCallback(mBottomSheetCallback);
+//    }
 
-        @Override
-        public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-        }
-    };
+//    //下面这段代码是处理老版本的bug，25版本已修复，如果加上去会有新的bug
+//    @Override
+//    public void show() {
+//        super.show();
+//        if(mBottomSheetBehavior != null){
+//            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+//        }
+//    }
+
+//    //下面这段代码是处理老版本的bug，25版本已修复，如果加上去会有新的bug
+//    private BottomSheetBehavior.BottomSheetCallback mBottomSheetCallback
+//            = new BottomSheetBehavior.BottomSheetCallback() {
+//        @Override
+//        public void onStateChanged(@NonNull View bottomSheet,
+//                                   @BottomSheetBehavior.State int newState) {
+//            if (newState >= BottomSheetBehavior.STATE_COLLAPSED) {
+//                dismiss();
+//            }
+//        }
+//
+//        @Override
+//        public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+//        }
+//    };
 
 }
