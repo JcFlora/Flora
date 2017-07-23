@@ -40,7 +40,7 @@
         android:layout_marginBottom="72dp"
         android:layout_marginEnd="16dp"
         android:src="@android:drawable/ic_dialog_email"
-        app:layout_behavior="com.jc.flora.apps.ui.stable.delegate.FabStableBehavior" />
+        app:layout_behavior="com.jc.flora.apps.ui.stable.delegate.ScaleDownShowBehavior" />
 
     <LinearLayout
         android:id="@+id/layout_captain_bar"

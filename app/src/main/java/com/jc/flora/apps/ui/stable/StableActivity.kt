@@ -31,7 +31,7 @@ class StableActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6,project7, project8)
+                    project6,project7, project8, project9)
         }
 
     private val project1: Project
@@ -93,8 +93,16 @@ class StableActivity : AppCompatActivity() {
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = "浮动标题、导航、FAB"
+            project.projectName = "浮动标题、导航、FAB（平移动画）"
             project.targetActivity = Stable8Activity::class.java
+            return project
+        }
+
+    private val project9: Project
+        get() {
+            val project = Project()
+            project.projectName = "浮动标题、导航、FAB（缩放动画）"
+            project.targetActivity = Stable9Activity::class.java
             return project
         }
 

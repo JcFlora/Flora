@@ -21,6 +21,7 @@ import com.jc.flora.apps.ui.marquee.MarqueeActivity
 import com.jc.flora.apps.ui.reload.ReloadActivity
 import com.jc.flora.apps.ui.shape.ShapeActivity
 import com.jc.flora.apps.ui.stable.StableActivity
+import com.jc.flora.apps.ui.steps.StepsActivity
 import com.jc.flora.apps.ui.transition.TransitionActivity
 import com.jc.flora.launcher.LauncherApp
 import com.jc.flora.launcher.LauncherAppsAdapter
@@ -72,8 +73,9 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("背景切换", R.mipmap.ic_bg, BgChangeActivity::class.java),
                     LauncherApp("模糊效果", R.mipmap.ic_blur, BlurActivity::class.java),
                     LauncherApp("图像处理", R.mipmap.ic_ps, BlurActivity::class.java),
+
                     LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
-                    LauncherApp("分步完成", R.mipmap.ic_steps, NotFoundActivity::class.java)
+                    LauncherApp("分步完成", R.mipmap.ic_steps, StepsActivity::class.java)
             )
         }
 

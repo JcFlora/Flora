@@ -238,6 +238,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/FloraTheme"/>
         <activity
+            android:name=".apps.ui.stable.projects.Stable9Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FloraTheme"/>
+        <activity
             android:name=".apps.component.image.ImageLoadActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -472,6 +476,9 @@
             android:name=".apps.component.vi.projects.ViWeight2Activity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.component.vi.projects.ViWeight3Activity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.component.vi.projects.ViPercentActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -576,6 +583,12 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".apps.component.audio.projects.Audio1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.steps.StepsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.steps.projects.Steps1Activity"
             android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
     </application>

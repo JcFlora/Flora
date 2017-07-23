@@ -17,9 +17,9 @@ import com.jc.flora.launcher.NotFoundActivity;
 import java.util.ArrayList;
 
 /**
- * Created by shijincheng on 2017/6/10.
+ * Created by shijincheng on 2017/7/21.
  */
-public class Stable8Activity extends AppCompatActivity {
+public class Stable9Activity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView mRvContent;
@@ -29,7 +29,7 @@ public class Stable8Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stable8);
+        setContentView(R.layout.activity_stable9);
         findViews();
         initViews();
         initReload();
@@ -42,7 +42,7 @@ public class Stable8Activity extends AppCompatActivity {
     }
 
     private void initViews() {
-        mToolbar.setTitle("浮动标题、导航、FAB（平移动画）");
+        mToolbar.setTitle("浮动标题、导航、FAB（缩放动画）");
         mToolbar.setTitleTextColor(Color.WHITE);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRvContent.setLayoutManager(layoutManager);
@@ -84,7 +84,7 @@ public class Stable8Activity extends AppCompatActivity {
             public void run() {
                 // 关闭下拉刷新的加载动画，防止接口超时时加载动画一直进行
                 mSrlContent.setRefreshing(false);
-                ToastDelegate.show(Stable8Activity.this,"刷新数据");
+                ToastDelegate.show(Stable9Activity.this,"刷新数据");
             }
         },1500);
     }

@@ -30,7 +30,7 @@ class ViActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5)
+            return arrayListOf(project1, project2, project3, project4, project5, project6)
         }
 
     private val project1: Project
@@ -52,12 +52,20 @@ class ViActivity : AppCompatActivity() {
     private val project3: Project
         get() {
             val project = Project()
+            project.projectName = "使用Weight适配间距2"
+            project.targetActivity = ViWeight3Activity::class.java
+            return project
+        }
+
+    private val project4: Project
+        get() {
+            val project = Project()
             project.projectName = "使用百分比布局适配"
             project.targetActivity = ViPercentActivity::class.java
             return project
         }
 
-    private val project4: Project
+    private val project5: Project
         get() {
             val project = Project()
             project.projectName = "使用代码计算适配"
@@ -65,7 +73,7 @@ class ViActivity : AppCompatActivity() {
             return project
         }
 
-    private val project5: Project
+    private val project6: Project
         get() {
             val project = Project()
             project.projectName = "使用Fidelity组件适配"

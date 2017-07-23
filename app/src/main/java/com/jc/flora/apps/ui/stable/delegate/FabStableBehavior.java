@@ -18,38 +18,39 @@ public class FabStableBehavior extends CoordinatorLayout.Behavior<View> {
 
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
-    //控件距离coordinatorLayout底部距离
+    // 控件距离coordinatorLayout底部距离
     private float mViewY;
-    //动画是否在进行
+    // 动画是否在进行
     private boolean mIsAnimate;
 
     public FabStableBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    //在嵌套滑动开始前回调
+    // 在嵌套滑动开始前回调
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
         if (child.getVisibility() == View.VISIBLE && mViewY == 0) {
-            //获取控件距离父布局（coordinatorLayout）底部距离
+            // 获取控件距离父布局（coordinatorLayout）底部距离
             mViewY = coordinatorLayout.getHeight() - child.getY();
         }
-        //判断是否竖直滚动
+        // 判断是否竖直滚动
         return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
     }
 
     //在嵌套滑动进行时，对象消费滚动距离前回调
     @Override
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
-        //dy大于0是向上滚动 小于0是向下滚动
-        if (dy > 1 && !mIsAnimate && child.getVisibility() == View.VISIBLE) {
+        // support25版本的bug，不能使用View.GONE来隐藏child，否则就不会继续触发两个回调方法
+        // dy大于0是向上滚动 小于0是向下滚动
+        if (dy >= 0 && !mIsAnimate && child.getVisibility() == View.VISIBLE) {
             hide(child);
-        } else if (dy < -1 && !mIsAnimate && child.getVisibility() == View.GONE) {
+        } else if (dy < 0 && !mIsAnimate && child.getVisibility() == View.INVISIBLE) {
             show(child);
         }
     }
 
-    //隐藏时的动画
+    // 隐藏时的动画
     private void hide(final View view) {
         ViewPropertyAnimator animator = view.animate().translationY(mViewY).setInterpolator(INTERPOLATOR).setDuration(600);
         animator.setListener(new AnimatorListenerAdapter() {
@@ -59,7 +60,7 @@ public class FabStableBehavior extends CoordinatorLayout.Behavior<View> {
             }
             @Override
             public void onAnimationEnd(Animator animator) {
-                view.setVisibility(View.GONE);
+                view.setVisibility(View.INVISIBLE);
                 mIsAnimate = false;
             }
             @Override
@@ -70,7 +71,7 @@ public class FabStableBehavior extends CoordinatorLayout.Behavior<View> {
         animator.start();
     }
 
-    //显示时的动画
+    // 显示时的动画
     private void show(final View view) {
         ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(600);
         animator.setListener(new AnimatorListenerAdapter() {
