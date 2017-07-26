@@ -1,7 +1,15 @@
 package com.jc.flora.apps.ui.shape.delegate;
 
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Nullable;
+import android.view.View;
+
+import com.jc.flora.apps.component.deviceinfo.DeviceUtil;
 
 /**
  * Created by Samurai on 2017/7/8.
@@ -66,6 +74,33 @@ public class ShapeDelegate {
         gd.setShape(GradientDrawable.LINE);
         gd.setStroke(1, strokeColor, dashWidth, dashGap);
         return gd;
+    }
+
+    public static ColorStateList getColorStateList(int normalColor, int pressedColor){
+        int[] colors = {pressedColor, normalColor};
+        int[][] states = new int[2][];
+        states[0] = new int[]{android.R.attr.state_pressed};
+        states[1] = new int[]{};
+        return new ColorStateList(states, colors);
+    }
+
+    public static StateListDrawable getPressedSelectorDrawable
+            (Drawable drawable, Drawable pressedDrawable) {
+        StateListDrawable sd = new StateListDrawable();
+        sd.addState(new int[]{android.R.attr.state_pressed}, pressedDrawable);
+        sd.addState(new int[]{}, drawable);
+        return sd;
+    }
+
+    public static boolean setRippleDrawable(View v, @ColorInt int color, @Nullable Drawable content) {
+        if (v == null) {
+            return true;
+        }
+        if (DeviceUtil.isSystemVersionAfterLollipop()) {
+            v.setBackground(new RippleDrawable(ColorStateList.valueOf(color), content, null));
+            return true;
+        }
+        return false;
     }
 
 }

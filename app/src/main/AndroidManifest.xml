@@ -579,6 +579,12 @@
             android:screenOrientation="portrait"
             android:hardwareAccelerated="false" />
         <activity
+            android:name=".apps.ui.shape.projects.ShapeSelectorActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.shape.projects.ShapeRippleActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.component.audio.AudioActivity"
             android:screenOrientation="portrait"/>
         <activity
