@@ -64,5 +64,4 @@ public class NovelActivity extends AppCompatActivity{
         }
     };
 
-
 }

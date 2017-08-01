@@ -5,64 +5,56 @@
     android:orientation="vertical"
     android:padding="@dimen/app_page_padding">
 
-    <TextView
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_clip1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="虚线(xml实现)"
-        android:textSize="18sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="@drawable/shape_bg_dash" />
+        android:src="@drawable/progress_clip"
+        android:background="@drawable/clip_bg"
+        android:contentDescription=""/>
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="虚线(代码实现)"
-        android:textSize="18sp" />
-
-    <View
-        android:id="@+id/v_dash"
-        android:layout_width="match_parent"
-        android:layout_height="2px" />
+        android:text="手动加载进度(xml实现的)"
+        android:onClick="showClipImage"/>
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
-    <TextView
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_clip2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="自带间距虚线(xml实现)"
-        android:textSize="18sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="@drawable/shape_bg_dash2" />
+        android:contentDescription=""/>
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="自带间距虚线(代码实现)"
-        android:textSize="18sp" />
+        android:text="自动加载进度(代码实现的)"
+        android:onClick="startClipImage"/>
 
-    <View
-        android:id="@+id/v_dash2"
+    <android.support.v4.widget.Space
         android:layout_width="match_parent"
-        android:layout_height="2px" />
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="停止加载进度(代码实现的)"
+        android:onClick="stopClipImage"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
 
 </LinearLayout>

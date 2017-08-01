@@ -3,6 +3,7 @@ package com.jc.flora.apps.ui.shape.delegate;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.ColorInt;
@@ -36,6 +37,13 @@ public class ShapeDelegate {
             (int radius, int width, @ColorInt int strokeColor,
              @ColorInt int solidColor) {
         GradientDrawable gd = getStrokeCornerDrawable(radius, width, strokeColor);
+        gd.setColor(solidColor);
+        return gd;
+    }
+
+    public static GradientDrawable getOvalDrawable(@ColorInt int solidColor) {
+        GradientDrawable gd = new GradientDrawable();
+        gd.setShape(GradientDrawable.OVAL);
         gd.setColor(solidColor);
         return gd;
     }
@@ -74,6 +82,13 @@ public class ShapeDelegate {
         gd.setShape(GradientDrawable.LINE);
         gd.setStroke(1, strokeColor, dashWidth, dashGap);
         return gd;
+    }
+
+    public static InsetDrawable getDashLineDrawable
+            (@ColorInt int strokeColor, float dashWidth, float dashGap,
+             int insetLeft, int insetTop, int insetRight, int insetBottom) {
+        return new InsetDrawable(getDashLineDrawable(strokeColor, dashWidth, dashGap),
+                insetLeft, insetTop, insetRight, insetBottom);
     }
 
     public static ColorStateList getColorStateList(int normalColor, int pressedColor){

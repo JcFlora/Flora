@@ -8,7 +8,6 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.shape.projects.*
-import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -31,7 +30,8 @@ class ShapeActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5, project6)
+            return arrayListOf(project1, project2, project3, project4, project5,
+                    project6, project7)
         }
 
     private val project1: Project
@@ -46,7 +46,7 @@ class ShapeActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "椭圆/圆形背景"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = ShapeOvalActivity::class.java
             return project
         }
 
@@ -81,28 +81,20 @@ class ShapeActivity : AppCompatActivity() {
             project.targetActivity = ShapeRippleActivity::class.java
             return project
         }
-//
-//    private val project5: Project
+
+    private val project7: Project
+        get() {
+            val project = Project()
+            project.projectName = "圆角容器"
+            project.targetActivity = ShapePackCornerActivity::class.java
+            return project
+        }
+
+//    private val project8: Project
 //        get() {
 //            val project = Project()
-//            project.projectName = "SnackBar"
-//            project.targetActivity = NotFoundActivity::class.java
-//            return project
-//        }
-//
-//    private val project6: Project
-//        get() {
-//            val project = Project()
-//            project.projectName = "BottomSheetDialog"
-//            project.targetActivity = NotFoundActivity::class.java
-//            return project
-//        }
-//
-//    private val project7: Project
-//        get() {
-//            val project = Project()
-//            project.projectName = "Spinner"
-//            project.targetActivity = NotFoundActivity::class.java
+//            project.projectName = "椭圆/圆形容器"
+//            project.targetActivity = ShapePackOvalActivity::class.java
 //            return project
 //        }
 

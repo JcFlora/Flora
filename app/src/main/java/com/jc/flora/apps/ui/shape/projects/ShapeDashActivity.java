@@ -13,7 +13,7 @@ import com.jc.flora.apps.ui.shape.delegate.ShapeDelegate;
  */
 public class ShapeDashActivity extends AppCompatActivity {
 
-    private View mVDash;
+    private View mVDash,mVDash2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +26,13 @@ public class ShapeDashActivity extends AppCompatActivity {
 
     private void findViews() {
         mVDash = findViewById(R.id.v_dash);
+        mVDash2 = findViewById(R.id.v_dash2);
     }
 
     private void initViews() {
 //        mVDash.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         mVDash.setBackground(ShapeDelegate.getDashLineDrawable(0xffdadada, 20, 5));
+        mVDash2.setBackground(ShapeDelegate.getDashLineDrawable(0xffdadada, 20, 5, 100, 0, 100, 0));
     }
 
 }

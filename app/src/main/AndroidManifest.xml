@@ -572,6 +572,9 @@
             android:name=".apps.ui.shape.projects.ShapeCornerActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.ui.shape.projects.ShapeOvalActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.ui.shape.projects.ShapeGradientActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -585,6 +588,9 @@
             android:name=".apps.ui.shape.projects.ShapeRippleActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.ui.shape.projects.ShapePackCornerActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.component.audio.AudioActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -595,6 +601,12 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".apps.ui.steps.projects.Steps1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.progress.ProgressActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.progress.projects.Progress1Activity"
             android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
     </application>
