@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -16,21 +14,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="使用CardView实现圆角容器"
+            android:text="使用自定义View实现椭圆容器"
             android:textSize="18sp" />
 
-        <android.support.v7.widget.CardView
+        <com.jc.flora.apps.ui.shape.widget.PackOvalLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="10dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            tools:targetApi="lollipop">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="200dp"
                 android:background="#a95f97">
 
@@ -52,7 +44,7 @@
                     android:textSize="26dp" />
 
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
@@ -62,11 +54,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="使用自定义View实现圆角容器"
+            android:text="使用自定义View实现椭圆容器(带边框)"
             android:textSize="18sp" />
 
-        <com.jc.flora.apps.ui.shape.widget.PackCornerLayout
-            android:id="@+id/layout_pack_corner"
+        <com.jc.flora.apps.ui.shape.widget.PackOvalLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="300dp"
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription=""
+                    android:src="@drawable/shape_pack_map2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#91de1e7c"
+                    android:gravity="center"
+                    android:text="抢 单"
+                    android:textColor="@color/app_color_text_white"
+                    android:textSize="28dp" />
+
+                <!-- 在前景上覆盖一个椭圆线框 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_bg_pack_oval" />
+
+            </RelativeLayout>
+        </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_divider_page_space_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="使用自定义View实现圆形容器"
+            android:textSize="18sp" />
+
+        <com.jc.flora.apps.ui.shape.widget.PackOvalLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -86,14 +121,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
                     android:background="#19000000"
                     android:gravity="center"
                     android:text="游戏中心"
                     android:textColor="@color/app_color_text_white"
-                    android:textSize="26dp" />
+                    android:textSize="22dp" />
 
             </RelativeLayout>
-        </com.jc.flora.apps.ui.shape.widget.PackCornerLayout>
+        </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
@@ -103,72 +139,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="使用CardView实现圆角容器(带边框)"
+            android:text="使用自定义View实现圆形容器(带边框)"
             android:textSize="18sp" />
 
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="15dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            tools:targetApi="lollipop">
-
-            <RelativeLayout
-                android:layout_width="250dp"
-                android:layout_height="250dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:contentDescription=""
-                    android:src="@drawable/shape_pack_map" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#91de1e7c"
-                    android:gravity="center"
-                    android:text="抢 单"
-                    android:textColor="@color/app_color_text_white"
-                    android:textSize="28dp" />
-
-                <!-- 在前景上覆盖一个圆角线框，注意这个背景的圆角半径必须要比CardView的略小 -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_bg_pack_corner" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/app_divider_page_space_size" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="使用自定义View实现圆角容器(带边框)"
-            android:textSize="18sp" />
-
-        <com.jc.flora.apps.ui.shape.widget.PackCornerLayout
-            android:id="@+id/layout_pack_corner2"
+        <com.jc.flora.apps.ui.shape.widget.PackOvalLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:layout_width="250dp"
-                android:layout_height="250dp">
+                android:layout_width="200dp"
+                android:layout_height="200dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
                     android:contentDescription=""
                     android:src="@drawable/shape_pack_map" />
 
@@ -176,19 +160,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
                     android:background="#91de1e7c"
                     android:gravity="center"
                     android:text="抢 单"
                     android:textColor="@color/app_color_text_white"
                     android:textSize="28dp" />
 
-                <!-- 在前景上覆盖一个圆角线框，注意这个背景的圆角半径必须要比PackCornerLayout的略小 -->
+                <!-- 在前景上覆盖一个圆形线框 -->
                 <View
-                    android:id="@+id/v_pack_corner_border"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_bg_pack_oval" />
 
             </RelativeLayout>
-        </com.jc.flora.apps.ui.shape.widget.PackCornerLayout>
+        </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
+
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
