@@ -36,10 +36,12 @@ public class AudioDelegate1 {
 
     public void recreate(){
         if(mMediaPlayer == null){
-            // 在振动的同时播放背景音
+            // 播放声音
             mMediaPlayer = MediaPlayer.create(mContext, AUDIO_ID);
-            // 不循环
-            mMediaPlayer.setLooping(false);
+            if(mMediaPlayer != null){
+                // 不循环
+                mMediaPlayer.setLooping(false);
+            }
         }
     }
 

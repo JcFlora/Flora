@@ -594,6 +594,15 @@
             android:name=".apps.ui.shape.projects.ShapePackOvalActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.ui.shape.projects.ShapePackImage1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.shape.projects.ShapePackImage2Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.shape.projects.ShapeCircleImageActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.component.audio.AudioActivity"
             android:screenOrientation="portrait"/>
         <activity

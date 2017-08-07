@@ -2,6 +2,7 @@ package com.jc.flora.apps.ui.shape.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -12,28 +13,39 @@ import com.jc.flora.apps.ui.shape.delegate.PackOvalDelegate;
  */
 public class PackOvalLayout extends FrameLayout {
 
-    private PackOvalDelegate mPackCornerDelegate = new PackOvalDelegate();
+    private PackOvalDelegate mPackOvalDelegate = new PackOvalDelegate();
 
     public PackOvalLayout(Context context) {
         super(context);
-        mPackCornerDelegate.initPaint();
+        mPackOvalDelegate.initPaint();
     }
 
     public PackOvalLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mPackCornerDelegate.initPaint();
+        mPackOvalDelegate.initPaint();
     }
 
     public PackOvalLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mPackCornerDelegate.initPaint();
+        mPackOvalDelegate.initPaint();
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mPackOvalDelegate.onSizeChanged();
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        mPackCornerDelegate.beforeDispatchDraw(canvas);
+        mPackOvalDelegate.beforeDispatchDraw(canvas);
         super.dispatchDraw(canvas);
-        mPackCornerDelegate.afterDispatchDraw(canvas);
+        mPackOvalDelegate.afterDispatchDraw(canvas);
+    }
+
+    public void setBorder(@ColorInt int color, float width){
+        mPackOvalDelegate.setBorder(color, width);
+        invalidate();
     }
 
 }

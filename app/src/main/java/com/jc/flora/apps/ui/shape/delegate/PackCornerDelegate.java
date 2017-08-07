@@ -1,52 +1,15 @@
 package com.jc.flora.apps.ui.shape.delegate;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 
 /**
  * Created by Samurai on 2017/8/1.
  */
-public class PackCornerDelegate {
+public class PackCornerDelegate extends PackDelegate{
 
-    private Paint mContentPaint;
-    private Paint mCornerPaint;
-    private float mRadius = 30;
-    private Path mPathTopLeft, mPathTopRight, mPathBottomLeft, mPathBottomRight;
-
-    public void initPaint() {
-        mContentPaint = new Paint();
-        mContentPaint.setXfermode(null);
-        mCornerPaint = new Paint();
-        mCornerPaint.setColor(Color.WHITE);
-        mCornerPaint.setAntiAlias(true);
-        mCornerPaint.setStyle(Paint.Style.FILL);
-        mCornerPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-    }
-
-    public void beforeDispatchDraw(Canvas canvas){
-        canvas.saveLayer(new RectF(0, 0, canvas.getWidth(), canvas.getHeight()), mContentPaint, Canvas.ALL_SAVE_FLAG);
-    }
-
-    public void afterDispatchDraw(Canvas canvas) {
-        drawTopLeft(canvas);
-        drawTopRight(canvas);
-        drawBottomLeft(canvas);
-        drawBottomRight(canvas);
-        canvas.restore();
-    }
-
-//    public void afterDispatchDraw(Canvas canvas, int width, int height) {
-//        drawTopLeft(canvas);
-//        drawTopRight(canvas, width);
-//        drawBottomLeft(canvas, height);
-//        drawBottomRight(canvas, width, height);
-//        canvas.restore();
-//    }
+    private float mRadius = 0;
 
     public void setRadius(float radius) {
         mRadius = radius;
@@ -56,47 +19,22 @@ public class PackCornerDelegate {
         mPathBottomRight = null;
     }
 
-    private void drawTopLeft(Canvas canvas) {
-        if(mRadius <= 0){
-            return;
-        }
-        if (mPathTopLeft == null) {
-            initTopLeftPath();
-        }
-        canvas.drawPath(mPathTopLeft, mCornerPaint);
+    protected boolean isAllowedClip(){
+        return mRadius > 0;
     }
 
-    private void drawTopRight(Canvas canvas) {
-        if (mRadius <= 0) {
-            return;
+    @Override
+    protected void drawShape(Canvas canvas, float offset) {
+        float r = mRadius - offset;
+        if (r > 0) {
+            canvas.drawRoundRect(mRectFBorder, r, r, mBorderPaint);
+        } else {
+            canvas.drawRect(mRectFBorder, mBorderPaint);
         }
-        if (mPathTopRight == null) {
-            initTopRightPath(canvas.getWidth());
-        }
-        canvas.drawPath(mPathTopRight, mCornerPaint);
     }
 
-    private void drawBottomLeft(Canvas canvas) {
-        if (mRadius <= 0) {
-            return;
-        }
-        if (mPathBottomLeft == null) {
-            initBottomLeftPath(canvas.getHeight());
-        }
-        canvas.drawPath(mPathBottomLeft, mCornerPaint);
-    }
-
-    private void drawBottomRight(Canvas canvas) {
-        if (mRadius <= 0) {
-            return;
-        }
-        if (mPathBottomRight == null) {
-            initBottomRightPath(canvas.getWidth(), canvas.getHeight());
-        }
-        canvas.drawPath(mPathBottomRight, mCornerPaint);
-    }
-
-    private void initTopLeftPath() {
+    @Override
+    protected void initTopLeftPath(int width, int height) {
         mPathTopLeft = new Path();
         mPathTopLeft.moveTo(0, mRadius);
         mPathTopLeft.lineTo(0, 0);
@@ -105,7 +43,8 @@ public class PackCornerDelegate {
         mPathTopLeft.close();
     }
 
-    private void initTopRightPath(int width){
+    @Override
+    protected void initTopRightPath(int width, int height){
         mPathTopRight = new Path();
         mPathTopRight.moveTo(width - mRadius, 0);
         mPathTopRight.lineTo(width, 0);
@@ -114,7 +53,8 @@ public class PackCornerDelegate {
         mPathTopRight.close();
     }
 
-    private void initBottomLeftPath(int height){
+    @Override
+    protected void initBottomLeftPath(int width, int height){
         mPathBottomLeft = new Path();
         mPathBottomLeft.moveTo(0, height - mRadius);
         mPathBottomLeft.lineTo(0, height);
@@ -123,7 +63,8 @@ public class PackCornerDelegate {
         mPathBottomLeft.close();
     }
 
-    private void initBottomRightPath(int width, int height) {
+    @Override
+    protected void initBottomRightPath(int width, int height) {
         mPathBottomRight = new Path();
         mPathBottomRight.moveTo(width - mRadius, height);
         mPathBottomRight.lineTo(width, height);

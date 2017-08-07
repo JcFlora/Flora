@@ -2,6 +2,7 @@ package com.jc.flora.apps.ui.shape.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -30,15 +31,25 @@ public class PackCornerLayout extends FrameLayout {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mPackCornerDelegate.onSizeChanged();
+    }
+
+    @Override
     protected void dispatchDraw(Canvas canvas) {
         mPackCornerDelegate.beforeDispatchDraw(canvas);
         super.dispatchDraw(canvas);
         mPackCornerDelegate.afterDispatchDraw(canvas);
-//        mPackCornerDelegate.afterDispatchDraw(canvas, getWidth(), getHeight());
     }
 
     public void setRadius(float radius){
         mPackCornerDelegate.setRadius(radius);
+        invalidate();
+    }
+
+    public void setBorder(@ColorInt int color, float width){
+        mPackCornerDelegate.setBorder(color, width);
         invalidate();
     }
 

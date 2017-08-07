@@ -54,10 +54,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="使用自定义View实现椭圆容器(带边框)"
+            android:text="使用自定义View实现椭圆容器(带覆盖式边框)"
             android:textSize="18sp" />
 
         <com.jc.flora.apps.ui.shape.widget.PackOvalLayout
+            android:id="@+id/layout_pack_oval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -80,12 +81,6 @@
                     android:text="抢 单"
                     android:textColor="@color/app_color_text_white"
                     android:textSize="28dp" />
-
-                <!-- 在前景上覆盖一个椭圆线框 -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_bg_pack_oval" />
 
             </RelativeLayout>
         </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
@@ -139,10 +134,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="使用自定义View实现圆形容器(带边框)"
+            android:text="使用自定义View实现圆形容器(带覆盖式边框)"
             android:textSize="18sp" />
 
         <com.jc.flora.apps.ui.shape.widget.PackOvalLayout
+            android:id="@+id/layout_pack_oval2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -166,12 +162,6 @@
                     android:text="抢 单"
                     android:textColor="@color/app_color_text_white"
                     android:textSize="28dp" />
-
-                <!-- 在前景上覆盖一个圆形线框 -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_bg_pack_oval" />
 
             </RelativeLayout>
         </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
