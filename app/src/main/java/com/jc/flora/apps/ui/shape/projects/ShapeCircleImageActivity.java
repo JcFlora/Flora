@@ -12,11 +12,10 @@ import com.jc.flora.R;
  */
 public class ShapeCircleImageActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("圆角图片（使用开源CircleImageView）");
+        setTitle("圆形图片（使用开源CircleImageView）");
         setContentView(R.layout.activity_shape_circle_image);
     }
 

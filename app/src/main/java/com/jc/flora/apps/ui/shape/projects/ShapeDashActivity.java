@@ -8,7 +8,7 @@ import com.jc.flora.R;
 import com.jc.flora.apps.ui.shape.delegate.ShapeDelegate;
 
 /**
- * 注意要关硬件加速
+ * 虚线要关硬件加速
  * Created by Samurai on 2017/7/10.
  */
 public class ShapeDashActivity extends AppCompatActivity {

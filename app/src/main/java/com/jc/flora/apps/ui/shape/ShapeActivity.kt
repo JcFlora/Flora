@@ -32,7 +32,7 @@ class ShapeActivity : AppCompatActivity() {
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
-                    project12)
+                    project11, project12)
         }
 
     private val project1: Project
@@ -115,10 +115,18 @@ class ShapeActivity : AppCompatActivity() {
             return project
         }
 
+    private val project11: Project
+        get() {
+            val project = Project()
+            project.projectName = "图片容器（基于ClipPath）"
+            project.targetActivity = ShapePackImage3Activity::class.java
+            return project
+        }
+
     private val project12: Project
         get() {
             val project = Project()
-            project.projectName = "圆角图片（开源CircleImageView）"
+            project.projectName = "圆形图片（开源CircleImageView）"
             project.targetActivity = ShapeCircleImageActivity::class.java
             return project
         }

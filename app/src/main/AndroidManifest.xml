@@ -600,6 +600,9 @@
             android:name=".apps.ui.shape.projects.ShapePackImage2Activity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.ui.shape.projects.ShapePackImage3Activity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.ui.shape.projects.ShapeCircleImageActivity"
             android:screenOrientation="portrait"/>
         <activity
