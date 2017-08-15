@@ -47,6 +47,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.github.apl-devs:appintro:v4.2.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.mostafagazar:customshapeimageview:1.0.4'
 }
 repositories {
     mavenCentral()

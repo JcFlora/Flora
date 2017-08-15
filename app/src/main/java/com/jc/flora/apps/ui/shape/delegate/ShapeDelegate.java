@@ -76,6 +76,14 @@ public class ShapeDelegate {
         return gd;
     }
 
+    public static InsetDrawable getLineDrawable
+            (@ColorInt int strokeColor,int insetLeft, int insetTop, int insetRight, int insetBottom) {
+        GradientDrawable gd = new GradientDrawable();
+        gd.setShape(GradientDrawable.LINE);
+        gd.setStroke(1, strokeColor);
+        return new InsetDrawable(gd, insetLeft, insetTop, insetRight, insetBottom);
+    }
+
     public static GradientDrawable getDashLineDrawable
             (@ColorInt int strokeColor, float dashWidth, float dashGap) {
         GradientDrawable gd = new GradientDrawable();

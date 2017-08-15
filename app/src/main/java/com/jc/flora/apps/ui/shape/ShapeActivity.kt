@@ -32,7 +32,7 @@ class ShapeActivity : AppCompatActivity() {
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
-                    project11, project12)
+                    project11, project12, project13)
         }
 
     private val project1: Project
@@ -62,8 +62,8 @@ class ShapeActivity : AppCompatActivity() {
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "虚线"
-            project.targetActivity = ShapeDashActivity::class.java
+            project.projectName = "分隔线"
+            project.targetActivity = ShapeLineActivity::class.java
             return project
         }
 
@@ -131,4 +131,11 @@ class ShapeActivity : AppCompatActivity() {
             return project
         }
 
+    private val project13: Project
+        get() {
+            val project = Project()
+            project.projectName = "自定义形状图片（开源CustomShapeImageView）"
+            project.targetActivity = ShapeCustomImageActivity::class.java
+            return project
+        }
 }
