@@ -169,7 +169,7 @@ class BannerActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "轮播1.7：封装成BannerDelegate"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Banner17Activity::class.java
             return project
         }
 
