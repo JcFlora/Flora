@@ -25,7 +25,7 @@ public class Banner20Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("BannerView优化，改变Delegate方式");
+        setTitle("改变Delegate方式");
         setContentView(R.layout.activity_banner20);
         findViews();
         initBanner1();

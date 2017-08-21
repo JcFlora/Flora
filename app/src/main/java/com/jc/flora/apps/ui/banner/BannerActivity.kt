@@ -201,8 +201,8 @@ class BannerActivity : AppCompatActivity() {
     private val project21: Project
         get() {
             val project = Project()
-            project.projectName = "轮播2.1：京东平台上的运用"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "轮播2.1：BannerView优化，添加数据投放器，支持刷新"
+            project.targetActivity = Banner21Activity::class.java
             return project
         }
 

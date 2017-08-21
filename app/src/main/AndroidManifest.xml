@@ -311,6 +311,9 @@
             android:name=".apps.ui.banner.projects.Banner20Activity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.ui.banner.projects.Banner21Activity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.scene.bluetooth.BluetoothActivity"
             android:screenOrientation="portrait"/>
         <activity
