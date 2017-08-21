@@ -302,6 +302,15 @@
             android:name=".apps.ui.banner.projects.Banner17Activity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.ui.banner.projects.Banner18Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.banner.projects.Banner19Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.banner.projects.Banner20Activity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.scene.bluetooth.BluetoothActivity"
             android:screenOrientation="portrait"/>
         <activity

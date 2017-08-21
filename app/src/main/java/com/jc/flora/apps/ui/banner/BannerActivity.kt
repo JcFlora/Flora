@@ -34,7 +34,8 @@ class BannerActivity : AppCompatActivity() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
-                    project16, project17, project18, project19, project20)
+                    project16, project17, project18, project19, project20,
+                    project21, project22)
         }
 
     private val project1: Project
@@ -177,7 +178,7 @@ class BannerActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "轮播1.8：添加炫酷的切换动画"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Banner18Activity::class.java
             return project
         }
 
@@ -185,14 +186,30 @@ class BannerActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "轮播1.9：封装成BannerView"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Banner19Activity::class.java
             return project
         }
 
     private val project20: Project
         get() {
             val project = Project()
-            project.projectName = "轮播2.0：京东平台上的运用"
+            project.projectName = "轮播2.0：BannerView优化，改变Delegate方式"
+            project.targetActivity = Banner20Activity::class.java
+            return project
+        }
+
+    private val project21: Project
+        get() {
+            val project = Project()
+            project.projectName = "轮播2.1：京东平台上的运用"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project22: Project
+        get() {
+            val project = Project()
+            project.projectName = "轮播2.2：京东平台上的运用"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

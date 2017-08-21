@@ -1,27 +1,31 @@
-package com.jc.flora.apps.ui.banner.delegate;
+package com.jc.flora.apps.ui.banner.widget;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.jc.flora.apps.ui.banner.delegate.AutoScrollDelegate4;
+import com.jc.flora.apps.ui.banner.delegate.IndicatorDelegate16;
 import com.jc.flora.apps.ui.banner.projects.BannerLoopPagerAdapter;
-import com.jc.flora.apps.ui.banner.widget.BannerViewPager;
+import com.jc.flora.apps.ui.banner.transformer.BasePageTransformer;
+import com.jc.flora.apps.ui.banner.transformer.TransitionEffect;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by shijincheng on 2017/5/5.
+ * Created by Samurai on 2017/8/17.
  */
-public class BannerDelegate extends Fragment {
+public class BannerView19 extends RelativeLayout {
 
     private String[] mImageUris;
-    private RelativeLayout mLayoutBanner;
     private BannerViewPager mVpBanner;
     /** 是否自动切换 */
     private boolean mIsAutoPlay = false;
@@ -47,16 +51,25 @@ public class BannerDelegate extends Fragment {
     private IndicatorDelegate16 mIndicatorDelegate;
     private OnBannerItemClickListener mOnBannerItemClickListener;
 
+    public BannerView19(Context context) {
+        super(context);
+    }
+
+    public BannerView19(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public BannerView19(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public BannerView19(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
     public void setImageUris(String... imageUris) {
         mImageUris = imageUris;
-    }
-
-    public void setLayoutBanner(RelativeLayout layoutBanner) {
-        mLayoutBanner = layoutBanner;
-    }
-
-    public void setViewPager(BannerViewPager vpBanner) {
-        mVpBanner = vpBanner;
     }
 
     public void setIsAutoPlay(boolean isAutoPlay) {
@@ -108,20 +121,22 @@ public class BannerDelegate extends Fragment {
         mOnBannerItemClickListener = l;
     }
 
-    public void addToActivity(AppCompatActivity activity, String tag) {
-        if(activity != null){
-            mIdTag = tag;
-            activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
-        }
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void start() {
+        removeAllViews();
+        addViewPager();
         initData();
         setAdapter();
         initAutoScroll();
         initIndicators();
+    }
+
+    public void setPageTransformer(TransitionEffect effect){
+        BasePageTransformer.setPageTransformer(mVpBanner, effect);
+    }
+
+    private void addViewPager(){
+        mVpBanner = new BannerViewPager(getContext());
+        addView(mVpBanner);
     }
 
     private void initData() {
@@ -132,11 +147,11 @@ public class BannerDelegate extends Fragment {
         int falseLength = (mImageLength == 1 || mImageLength == 2) ? (mImageLength + 2) : mImageLength;
         mViews = new ArrayList<>(falseLength);
         for (int i = 0; i < falseLength; i++) {
-            ImageView iv = new ImageView(getActivity());
+            ImageView iv = new ImageView(getContext());
             iv.setScaleType(ImageView.ScaleType.FIT_XY);
             mViews.add(iv);
             // 注意这里面使用了dontAnimate()和dontTransform()，可以防止在ViewPager里出现闪烁
-            Glide.with(this).load(mImageUris[i % mImageLength]).dontAnimate().dontTransform().into(iv);
+            Glide.with(getContext()).load(mImageUris[i % mImageLength]).dontAnimate().dontTransform().into(iv);
             final int j = i % mImageLength;
             if(mOnBannerItemClickListener != null){
                 iv.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +183,7 @@ public class BannerDelegate extends Fragment {
         mAutoScrollDelegate.setIsAutoPlay(mIsAutoPlay);
         mAutoScrollDelegate.setAutoPlayDuration(mAutoPlayDuration);
         mAutoScrollDelegate.setAnimDuration(mSliderTransformDuration);
-        mAutoScrollDelegate.addToActivity((AppCompatActivity) getActivity(), mIdTag + ":autoScroll");
+        mAutoScrollDelegate.addToActivity((AppCompatActivity) getContext(), mIdTag + ":autoScroll");
     }
 
     private void initIndicators() {
@@ -177,7 +192,7 @@ public class BannerDelegate extends Fragment {
         }
         mIndicatorDelegate = new IndicatorDelegate16();
         mIndicatorDelegate.setViewPager(mVpBanner);
-        mIndicatorDelegate.setLayoutBanner(mLayoutBanner);
+        mIndicatorDelegate.setLayoutBanner(this);
         mIndicatorDelegate.setIndicatorPosition(mIndicatorPosition);
         mIndicatorDelegate.setIndicatorsLayoutXMargin(mIndicatorsLayoutXMargin);
         mIndicatorDelegate.setIndicatorsLayoutYMargin(mIndicatorsLayoutYMargin);
@@ -186,19 +201,43 @@ public class BannerDelegate extends Fragment {
         mIndicatorDelegate.setIndicatorResId(mUnselectedResId, mSelectedResId);
         mIndicatorDelegate.setIndicatorSpace(mIndicatorSpace);
         mIndicatorDelegate.initIndicators(mImageLength);
-        mIndicatorDelegate.addToActivity((AppCompatActivity) getActivity(), mIdTag + ":indicator");
+        mIndicatorDelegate.addToActivity((AppCompatActivity) getContext(), mIdTag + ":indicator");
     }
 
-    public void startAutoPlay() {
-        if(mAutoScrollDelegate != null){
-            mAutoScrollDelegate.startAutoPlay();
+    @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        if (mAutoScrollDelegate == null) {
+            return;
         }
-    }
-
-    public void stopAutoPlay() {
-        if(mAutoScrollDelegate != null){
+        if (visibility == VISIBLE) {
+            mAutoScrollDelegate.startAutoPlay();
+        } else {
             mAutoScrollDelegate.stopAutoPlay();
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (mAutoScrollDelegate == null) {
+            return super.dispatchTouchEvent(ev);
+        }
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mAutoScrollDelegate.stopAutoPlay();
+                break;
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                mAutoScrollDelegate.startAutoPlay();
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        //todo
     }
 
     public interface OnBannerItemClickListener {

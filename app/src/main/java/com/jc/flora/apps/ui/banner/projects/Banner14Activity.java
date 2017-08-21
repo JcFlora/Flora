@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.banner.delegate.AutoScrollDelegate4;
 import com.jc.flora.apps.ui.banner.delegate.CursorIndicatorDelegate14;
+import com.jc.flora.apps.ui.banner.widget.BannerViewPager;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 import java.util.ArrayList;

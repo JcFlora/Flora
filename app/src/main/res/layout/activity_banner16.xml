@@ -10,7 +10,7 @@
         android:layout_width="1080px"
         android:layout_height="400px">
 
-        <com.jc.flora.apps.ui.banner.projects.BannerViewPager
+        <com.jc.flora.apps.ui.banner.widget.BannerViewPager
             android:id="@+id/vp_banner1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -26,7 +26,7 @@
         android:layout_width="1080px"
         android:layout_height="400px">
 
-        <com.jc.flora.apps.ui.banner.projects.BannerViewPager
+        <com.jc.flora.apps.ui.banner.widget.BannerViewPager
             android:id="@+id/vp_banner2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

@@ -8,13 +8,15 @@ import android.widget.RelativeLayout;
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.banner.delegate.BannerDelegate;
 import com.jc.flora.apps.ui.banner.delegate.IndicatorDelegate16;
+import com.jc.flora.apps.ui.banner.transformer.BasePageTransformer;
+import com.jc.flora.apps.ui.banner.transformer.TransitionEffect;
 import com.jc.flora.apps.ui.banner.widget.BannerViewPager;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
- * Created by Samurai on 2017/8/16.
+ * Created by Samurai on 2017/8/17.
  */
-public class Banner17Activity extends AppCompatActivity {
+public class Banner18Activity extends AppCompatActivity {
 
     private static final String[] IMAGE_URIS =
             {"http://img.taodiantong.cn/v55183/infoimg/2013-07/130720115322ky.jpg",
@@ -30,11 +32,12 @@ public class Banner17Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("封装成BannerDelegate");
+        setTitle("添加炫酷的切换动画");
         setContentView(R.layout.activity_banner16);
         findViews();
         initDelegate1();
         initDelegate2();
+        initTransformer();
     }
 
     private void findViews() {
@@ -51,7 +54,7 @@ public class Banner17Activity extends AppCompatActivity {
         mDelegate1.setViewPager(mVpBanner1);
         mDelegate1.setIsAutoPlay(true);
         mDelegate1.setAutoPlayDuration(3000);
-        mDelegate1.setAnimDuration(1200);
+        mDelegate1.setAnimDuration(1800);
         mDelegate1.setIndicatorPosition(IndicatorDelegate16.Position.CENTER_BOTTOM);
         mDelegate1.setIndicatorsLayoutXMargin(25);
         mDelegate1.setIndicatorsLayoutYMargin(25);
@@ -62,7 +65,7 @@ public class Banner17Activity extends AppCompatActivity {
         mDelegate1.setOnBannerItemClickListener(new BannerDelegate.OnBannerItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ToastDelegate.show(Banner17Activity.this, "你点击了第" + (position + 1) + "个广告");
+                ToastDelegate.show(Banner18Activity.this, "你点击了第" + (position + 1) + "个广告");
             }
         });
         mDelegate1.addToActivity(this, "banner");
@@ -86,10 +89,15 @@ public class Banner17Activity extends AppCompatActivity {
         mDelegate2.setOnBannerItemClickListener(new BannerDelegate.OnBannerItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ToastDelegate.show(Banner17Activity.this, "你点击了第" + (position + 1) + "个广告");
+                ToastDelegate.show(Banner18Activity.this, "你点击了第" + (position + 1) + "个广告");
             }
         });
         mDelegate2.addToActivity(this, "banner2");
+    }
+
+    private void initTransformer(){
+        BasePageTransformer.setPageTransformer(mVpBanner1,TransitionEffect.Flip);
+        BasePageTransformer.setPageTransformer(mVpBanner2,TransitionEffect.Accordion);
     }
 
     //todo 粗暴方案，有bug
