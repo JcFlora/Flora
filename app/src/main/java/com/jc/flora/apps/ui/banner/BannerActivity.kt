@@ -8,7 +8,6 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.banner.projects.*
-import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -209,8 +208,8 @@ class BannerActivity : AppCompatActivity() {
     private val project22: Project
         get() {
             val project = Project()
-            project.projectName = "轮播2.2：京东平台上的运用"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "轮播2.2：电商平台上的应用"
+            project.targetActivity = Banner22Activity::class.java
             return project
         }
 

@@ -23,7 +23,6 @@ import java.util.List;
  */
 public class BannerView21 extends RelativeLayout {
 
-//    private String[] mImageUris;
     private BannerViewPager mVpBanner;
     /** 是否自动切换 */
     private boolean mIsAutoPlay = false;
@@ -42,7 +41,6 @@ public class BannerView21 extends RelativeLayout {
 
     private boolean mIsFloated;
 
-    private String mIdTag;
     private int mImageLength;
     private List<View> mViews;
     private AutoScrollDelegate20 mAutoScrollDelegate;
@@ -67,10 +65,6 @@ public class BannerView21 extends RelativeLayout {
     public BannerView21(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
-
-//    public void setImageUris(String... imageUris) {
-//        mImageUris = imageUris;
-//    }
 
     public void setIsAutoPlay(boolean isAutoPlay) {
         mIsAutoPlay = isAutoPlay;
@@ -255,7 +249,9 @@ public class BannerView21 extends RelativeLayout {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        mAutoScrollDelegate.destroy();
+        if (mAutoScrollDelegate != null) {
+            mAutoScrollDelegate.destroy();
+        }
     }
 
     public enum Position {

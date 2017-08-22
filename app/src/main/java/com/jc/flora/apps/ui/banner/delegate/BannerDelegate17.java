@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by shijincheng on 2017/5/5.
  */
-public class BannerDelegate extends Fragment {
+public class BannerDelegate17 extends Fragment {
 
     private String[] mImageUris;
     private RelativeLayout mLayoutBanner;

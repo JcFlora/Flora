@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.ui.banner.delegate.BannerDelegate;
+import com.jc.flora.apps.ui.banner.delegate.BannerDelegate17;
 import com.jc.flora.apps.ui.banner.delegate.IndicatorDelegate16;
 import com.jc.flora.apps.ui.banner.transformer.BasePageTransformer;
 import com.jc.flora.apps.ui.banner.transformer.TransitionEffect;
@@ -27,7 +27,7 @@ public class Banner18Activity extends AppCompatActivity {
 
     private RelativeLayout mLayoutBanner1, mLayoutBanner2;
     private BannerViewPager mVpBanner1, mVpBanner2;
-    private BannerDelegate mDelegate1, mDelegate2;
+    private BannerDelegate17 mDelegate1, mDelegate2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class Banner18Activity extends AppCompatActivity {
     }
 
     private void initDelegate1(){
-        mDelegate1 = new BannerDelegate();
+        mDelegate1 = new BannerDelegate17();
         mDelegate1.setImageUris(IMAGE_URIS);
         mDelegate1.setLayoutBanner(mLayoutBanner1);
         mDelegate1.setViewPager(mVpBanner1);
@@ -62,7 +62,7 @@ public class Banner18Activity extends AppCompatActivity {
         mDelegate1.setIndicatorFloated(false);
         mDelegate1.setIndicatorResId(R.drawable.dot_unselected, R.drawable.dot_selected);
         mDelegate1.setIndicatorSpace(20);
-        mDelegate1.setOnBannerItemClickListener(new BannerDelegate.OnBannerItemClickListener() {
+        mDelegate1.setOnBannerItemClickListener(new BannerDelegate17.OnBannerItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 ToastDelegate.show(Banner18Activity.this, "你点击了第" + (position + 1) + "个广告");
@@ -72,7 +72,7 @@ public class Banner18Activity extends AppCompatActivity {
     }
 
     private void initDelegate2(){
-        mDelegate2 = new BannerDelegate();
+        mDelegate2 = new BannerDelegate17();
         mDelegate2.setImageUris(IMAGE_URIS);
         mDelegate2.setLayoutBanner(mLayoutBanner2);
         mDelegate2.setViewPager(mVpBanner2);
@@ -86,7 +86,7 @@ public class Banner18Activity extends AppCompatActivity {
         mDelegate2.setIndicatorFloated(true);
         mDelegate2.setIndicatorResId(R.drawable.dot_unselected, R.drawable.dot_selected);
         mDelegate2.setIndicatorSpace(20);
-        mDelegate2.setOnBannerItemClickListener(new BannerDelegate.OnBannerItemClickListener() {
+        mDelegate2.setOnBannerItemClickListener(new BannerDelegate17.OnBannerItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 ToastDelegate.show(Banner18Activity.this, "你点击了第" + (position + 1) + "个广告");
