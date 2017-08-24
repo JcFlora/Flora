@@ -2,11 +2,11 @@ package com.jc.flora.apps.component.request.retrofit;
 
 import com.jc.flora.apps.component.request.NetResponse;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * 获取文章列表的Api

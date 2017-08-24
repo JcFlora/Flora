@@ -4,19 +4,21 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jc.flora.apps.component.request.retrofit.GzipRequestInterceptor;
 
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observer;
 
 /**
  * Api基类
- * compile "com.squareup.retrofit2:retrofit:2.1.0"
- * compile "com.squareup.retrofit2:converter-gson:2.1.0"
- * compile "com.squareup.retrofit2:adapter-rxjava:2.1.0"
- * compile 'io.reactivex:rxandroid:1.2.1'
- * compile 'io.reactivex:rxjava:1.1.6'
+ * compile "com.squareup.retrofit2:retrofit:2.3.0"
+ * compile "com.squareup.retrofit2:converter-gson:2.3.0"
+ * compile "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+ * compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+ * compile 'io.reactivex.rxjava2:rxjava:2.1.1'
  * Created by shijincheng on 2017/8/22.
  */
 public class BaseApi {
@@ -39,13 +41,18 @@ public class BaseApi {
                 .baseUrl(HOST)
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
     public static abstract class ObserverAdapter<T> implements Observer<T> {
-        public void onCompleted(){
+        @Override
+        public void onSubscribe(@NonNull Disposable d) {
         }
+        @Override
+        public void onComplete(){
+        }
+        @Override
         public void onError(Throwable e){
         }
     }

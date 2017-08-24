@@ -14,6 +14,7 @@ import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 import java.util.ArrayList;
 
+
 /**
  * Created by Samurai on 2017/8/22.
  */

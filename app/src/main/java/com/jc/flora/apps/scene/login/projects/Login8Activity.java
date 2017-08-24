@@ -5,19 +5,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.login.delegate.InputClearDelegate;
+import com.jc.flora.apps.scene.login.delegate.LoginEnabledDelegate;
 import com.jc.flora.apps.scene.login.delegate.PhoneNumberInputDelegate;
 import com.jc.flora.apps.scene.login.delegate.PwdInputDelegate;
 import com.jc.flora.apps.scene.login.delegate.PwdToggleDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
- * Created by shijincheng on 2017/8/23.
+ * Created by shijincheng on 2017/8/24.
  */
-public class Login6Activity extends AppCompatActivity {
+public class Login8Activity extends AppCompatActivity {
 
     public static final int LOGIN_SUCCESS_RESULT_CODE = 1;
     public static final int LOGIN_CANCEL_RESULT_CODE = 2;
@@ -32,6 +35,10 @@ public class Login6Activity extends AppCompatActivity {
     private TextView mBtnRegister;
     // 重置密码按钮
     private TextView mBtnResetPwd;
+    // 手机号输入清空按钮
+    private ImageView mBtnPhoneNumberClear;
+    // 密码输入清空按钮
+    private ImageView mBtnPwdClear;
     // 明密文切换按钮
     private AppCompatCheckBox mCbPwdToggle;
 
@@ -43,8 +50,8 @@ public class Login6Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("控制密码是否可见");
-        setContentView(R.layout.activity_login6);
+        setTitle("控制登录按钮是否可用（使用RxJava）");
+        setContentView(R.layout.activity_login7);
         findViews();
         initViews();
         initDelegate();
@@ -56,6 +63,8 @@ public class Login6Activity extends AppCompatActivity {
         mBtnLogin = (TextView) findViewById(R.id.btn_login);
         mBtnRegister = (TextView) findViewById(R.id.btn_register);
         mBtnResetPwd = (TextView) findViewById(R.id.btn_reset_pwd);
+        mBtnPhoneNumberClear = (ImageView) findViewById(R.id.btn_phone_number_clear);
+        mBtnPwdClear = (ImageView) findViewById(R.id.btn_pwd_clear);
         mCbPwdToggle = (AppCompatCheckBox) findViewById(R.id.cb_pwd_toggle);
     }
 
@@ -69,13 +78,13 @@ public class Login6Activity extends AppCompatActivity {
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login6Activity.this,"功能暂未实现");
+                ToastDelegate.show(Login8Activity.this,"功能暂未实现");
             }
         });
         mBtnResetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login6Activity.this,"功能暂未实现");
+                ToastDelegate.show(Login8Activity.this,"功能暂未实现");
             }
         });
     }
@@ -85,8 +94,13 @@ public class Login6Activity extends AppCompatActivity {
         mPhoneNumberInputDelegate.setEtPhoneNumber(mEtPhoneNumber);
         mPwdInputDelegate = new PwdInputDelegate(this);
         mPwdInputDelegate.setEtPwd(mEtPwd);
+        // 调用以下方法实现按钮点击清空输入内容
+        InputClearDelegate.init(mEtPhoneNumber, mBtnPhoneNumberClear);
+        InputClearDelegate.init(mEtPwd, mBtnPwdClear);
         // 调用这个方法实现按钮点击切换密码明密文
         PwdToggleDelegate.init(mEtPwd, mCbPwdToggle);
+        // 调用这个方法实现控制登录按钮是否可用
+        LoginEnabledDelegate.setLoginEnabled(mEtPhoneNumber, mEtPwd, mBtnLogin);
     }
 
     private void login() {
@@ -103,7 +117,7 @@ public class Login6Activity extends AppCompatActivity {
                     setResult(LOGIN_SUCCESS_RESULT_CODE);
                     finish();
                 }else{
-                    ToastDelegate.show(Login6Activity.this, response.msg);
+                    ToastDelegate.show(Login8Activity.this, response.msg);
                 }
             }
         }).sendRequest(phoneNumber, pwd);

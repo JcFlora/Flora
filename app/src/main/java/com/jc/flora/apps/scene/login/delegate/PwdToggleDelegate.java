@@ -7,7 +7,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 /**
- * 控制密码可见
+ * 控制密码是否可见
  * Created by Samurai on 2017/8/24.
  */
 public class PwdToggleDelegate {

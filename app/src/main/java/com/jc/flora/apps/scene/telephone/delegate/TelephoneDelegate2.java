@@ -14,9 +14,11 @@ import com.jc.flora.R;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import rx.Observable;
-import rx.functions.Action1;
-import rx.functions.Func1;
+import io.reactivex.Flowable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Predicate;
+
 
 /**
  * Created by Samurai on 2017/7/4.
@@ -42,25 +44,25 @@ public class TelephoneDelegate2 {
      */
     public void setTelephoneInfo(String phoneNumber) {
         clear();
-        Observable.just(phoneNumber).filter(new Func1<String, Boolean>() {
+        Flowable.just(phoneNumber).filter(new Predicate<String>() {
             @Override
-            public Boolean call(String s) {
+            public boolean test(@NonNull String s) throws Exception {
                 return !TextUtils.isEmpty(s);
             }
-        }).doOnNext(new Action1<String>() {
+        }).doOnNext(new Consumer<String>() {
             @Override
-            public void call(String s) {
+            public void accept(@NonNull String s) throws Exception {
                 mBtnTelephone.setVisibility(View.VISIBLE);
                 mTvTelephone.setText(s);
             }
-        }).filter(new Func1<String, Boolean>() {
+        }).filter(new Predicate<String>() {
             @Override
-            public Boolean call(String s) {
+            public boolean test(@NonNull String s) throws Exception {
                 return isMobilePhoneNumber(s) || isLandlineTelephoneNumber(s);
             }
-        }).subscribe(new Action1<String>() {
+        }).subscribe(new Consumer<String>() {
             @Override
-            public void call(String s) {
+            public void accept(@NonNull String s) throws Exception {
                 setTelephoneInfo(R.drawable.telephone_logo, 0xffffda33);
                 setDirectDialEnable(s);
             }

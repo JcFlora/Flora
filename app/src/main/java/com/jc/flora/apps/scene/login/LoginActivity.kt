@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "登录0.6：控制密码可见"
+            project.projectName = "登录0.6：控制密码是否可见"
             project.targetActivity = Login6Activity::class.java
             return project
         }
@@ -91,15 +91,15 @@ class LoginActivity : AppCompatActivity() {
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = "登录0.8：账号自动补全"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "登录0.8：控制登录按钮是否可用（使用RxJava）"
+            project.targetActivity = Login8Activity::class.java
             return project
         }
 
     private val project9: Project
         get() {
             val project = Project()
-            project.projectName = "登录0.9：微信第三方登录"
+            project.projectName = "登录0.9：历史账号自动补全"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -116,6 +116,14 @@ class LoginActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "登录1.1：仿哔哩哔哩登录"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project12: Project
+        get() {
+            val project = Project()
+            project.projectName = "登录1.2：微信第三方登录"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
