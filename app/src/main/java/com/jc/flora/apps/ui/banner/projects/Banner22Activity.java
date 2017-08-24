@@ -40,11 +40,11 @@ public class Banner22Activity extends AppCompatActivity {
         mBv = (BannerView21) findViewById(R.id.bv1);
     }
 
-    private void initBanner(){
+    private void initBanner() {
         mBannerDelegate = new BannerDelegate22(this, mBv);
     }
 
-    private void requestBannerInfo(){
+    private void requestBannerInfo() {
         new GetBannerListApi().getBannerList("").subscribe(new BaseApi.ObserverAdapter<ArrayList<BannerInfo>>() {
             @Override
             public void onNext(ArrayList<BannerInfo> bannerInfos) {
@@ -53,7 +53,7 @@ public class Banner22Activity extends AppCompatActivity {
         });
     }
 
-    private void initReload(){
+    private void initReload() {
         // 设置下拉刷新色调
         mSrlContent.setColorSchemeResources(
                 R.color.colorAccent,
@@ -70,7 +70,7 @@ public class Banner22Activity extends AppCompatActivity {
         });
     }
 
-    private void onReload(){
+    private void onReload() {
         // 模拟耗时
         mSrlContent.postDelayed(new Runnable() {
             @Override
