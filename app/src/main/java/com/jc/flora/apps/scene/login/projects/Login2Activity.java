@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.login.api.LoginMockApi;
+import com.jc.flora.apps.scene.login.api.LoginResponse;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**

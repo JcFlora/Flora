@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.login.api.LoginMockApi;
+import com.jc.flora.apps.scene.login.api.LoginResponse;
 import com.jc.flora.apps.scene.login.delegate.InputClearDelegate;
 import com.jc.flora.apps.scene.login.delegate.LoginEnabledDelegate;
 import com.jc.flora.apps.scene.login.delegate.PhoneNumberInputDelegate;
@@ -50,7 +52,7 @@ public class Login8Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("控制登录按钮是否可用（使用RxJava）");
+        setTitle("控制登录按钮是否可用(使用RxJava)");
         setContentView(R.layout.activity_login7);
         findViews();
         initViews();

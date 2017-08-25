@@ -1,4 +1,4 @@
-package com.jc.flora.apps.scene.login.projects;
+package com.jc.flora.apps.scene.login.api;
 
 import android.support.v7.app.AppCompatActivity;
 
@@ -7,36 +7,36 @@ import com.android.volley.VolleyError;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
- * Created by shijincheng on 2017/5/19.
+ * Created by shijincheng on 2017/8/25.
  */
-public class LoginMockApi implements Response.ErrorListener{
+public class CheckVerCodeMockApi implements Response.ErrorListener{
 
     /** 当前界面 */
     private AppCompatActivity mActivity;
     /** 返回成功的响应 */
-    private Response.Listener<LoginResponse> mListener;
+    private Response.Listener<CheckVerCodeResponse> mListener;
     /** 返回失败的响应 */
     private Response.ErrorListener mErrorListener;
 
-    public LoginMockApi(AppCompatActivity activity,Response.Listener<LoginResponse> l) {
+    public CheckVerCodeMockApi(AppCompatActivity activity, Response.Listener<CheckVerCodeResponse> l) {
         mActivity = activity;
         mListener = l;
     }
 
-    public LoginMockApi(AppCompatActivity activity, Response.Listener<LoginResponse> l, Response.ErrorListener el) {
+    public CheckVerCodeMockApi(AppCompatActivity activity, Response.Listener<CheckVerCodeResponse> l, Response.ErrorListener el) {
         mActivity = activity;
         mListener = l;
         mErrorListener = el;
     }
 
-    public void sendRequest(String phoneNumber, String pwd){
+    public void sendRequest(String phoneNumber, String verCode){
         //Mock
         boolean isPhoneOk = "13312345678".equals(phoneNumber);
-        boolean isPwdOk = "123456".equals(pwd);
-        if(isPhoneOk && isPwdOk){
-            mListener.onResponse(new LoginResponse(true,"登录成功"));
-        }else{
-            mListener.onResponse(new LoginResponse(false,"用户名或密码错误"));
+        boolean isVerCodeOk = "1234".equals(verCode);
+        if (isPhoneOk && isVerCodeOk) {
+            mListener.onResponse(new CheckVerCodeResponse(true, "验证成功"));
+        } else {
+            mListener.onResponse(new CheckVerCodeResponse(false, "验证码错误"));
         }
     }
 

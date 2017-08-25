@@ -10,18 +10,22 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.login.api.GetVerCodeResponse;
 import com.jc.flora.apps.scene.login.api.LoginMockApi;
 import com.jc.flora.apps.scene.login.api.LoginResponse;
+import com.jc.flora.apps.scene.login.delegate.CheckVerCodeDelegate;
+import com.jc.flora.apps.scene.login.delegate.GetVerCodeDelegate;
 import com.jc.flora.apps.scene.login.delegate.InputClearDelegate;
+import com.jc.flora.apps.scene.login.delegate.LoginEnabledDelegate;
 import com.jc.flora.apps.scene.login.delegate.PhoneNumberInputDelegate;
 import com.jc.flora.apps.scene.login.delegate.PwdInputDelegate;
 import com.jc.flora.apps.scene.login.delegate.PwdToggleDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
- * Created by shijincheng on 2017/8/24.
+ * Created by shijincheng on 2017/8/25.
  */
-public class Login7Activity extends AppCompatActivity {
+public class Login9Activity extends AppCompatActivity {
 
     public static final int LOGIN_SUCCESS_RESULT_CODE = 1;
     public static final int LOGIN_CANCEL_RESULT_CODE = 2;
@@ -30,6 +34,10 @@ public class Login7Activity extends AppCompatActivity {
     private EditText mEtPhoneNumber;
     // 密码输入控件
     private EditText mEtPwd;
+    /** 验证码输入控件 */
+    private EditText mEtVerCode;
+    /** 验证码按钮 */
+    private TextView mBtnVerCode;
     // 登录按钮
     private TextView mBtnLogin;
     // 注册按钮
@@ -40,6 +48,8 @@ public class Login7Activity extends AppCompatActivity {
     private ImageView mBtnPhoneNumberClear;
     // 密码输入清空按钮
     private ImageView mBtnPwdClear;
+    // 验证码输入清空按钮
+    private ImageView mBtnVerCodeClear;
     // 明密文切换按钮
     private AppCompatCheckBox mCbPwdToggle;
 
@@ -47,12 +57,16 @@ public class Login7Activity extends AppCompatActivity {
     private PhoneNumberInputDelegate mPhoneNumberInputDelegate;
     /** 密码填写业务管理 */
     private PwdInputDelegate mPwdInputDelegate;
+    /** 获取验证码业务管理 */
+    private GetVerCodeDelegate mGetVerCodeDelegate;
+    /** 验证验证码业务管理 */
+    private CheckVerCodeDelegate mCheckVerCodeDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("清空输入内容功能");
-        setContentView(R.layout.activity_login7);
+        setTitle("验证码1(基于CountDownTimer)");
+        setContentView(R.layout.activity_login9);
         findViews();
         initViews();
         initDelegate();
@@ -61,11 +75,14 @@ public class Login7Activity extends AppCompatActivity {
     private void findViews() {
         mEtPhoneNumber = (EditText) findViewById(R.id.et_phone_number);
         mEtPwd = (EditText) findViewById(R.id.et_pwd);
+        mEtVerCode = (EditText) findViewById(R.id.et_ver_code);
+        mBtnVerCode = (TextView) findViewById(R.id.btn_ver_code);
         mBtnLogin = (TextView) findViewById(R.id.btn_login);
         mBtnRegister = (TextView) findViewById(R.id.btn_register);
         mBtnResetPwd = (TextView) findViewById(R.id.btn_reset_pwd);
         mBtnPhoneNumberClear = (ImageView) findViewById(R.id.btn_phone_number_clear);
         mBtnPwdClear = (ImageView) findViewById(R.id.btn_pwd_clear);
+        mBtnVerCodeClear = (ImageView) findViewById(R.id.btn_ver_code_clear);
         mCbPwdToggle = (AppCompatCheckBox) findViewById(R.id.cb_pwd_toggle);
     }
 
@@ -73,19 +90,20 @@ public class Login7Activity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                // 验证版本号并登录
+                checkVerCodeAndLogin();
             }
         });
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login7Activity.this,"功能暂未实现");
+                ToastDelegate.show(Login9Activity.this,"功能暂未实现");
             }
         });
         mBtnResetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login7Activity.this,"功能暂未实现");
+                ToastDelegate.show(Login9Activity.this,"功能暂未实现");
             }
         });
     }
@@ -98,8 +116,45 @@ public class Login7Activity extends AppCompatActivity {
         // 调用以下方法实现按钮点击清空输入内容
         InputClearDelegate.init(mEtPhoneNumber, mBtnPhoneNumberClear);
         InputClearDelegate.init(mEtPwd, mBtnPwdClear);
+        InputClearDelegate.init(mEtVerCode, mBtnVerCodeClear);
         // 调用这个方法实现按钮点击切换密码明密文
         PwdToggleDelegate.init(mEtPwd, mCbPwdToggle);
+        // 调用这个方法实现控制登录按钮是否可用
+        LoginEnabledDelegate.setLoginEnabled(mEtPhoneNumber, mEtPwd, mEtVerCode, mBtnLogin);
+
+        // 创建获取验证码业务管理
+        mGetVerCodeDelegate = new GetVerCodeDelegate(this);
+        // 给该管理器配置验证码按钮
+        mGetVerCodeDelegate.setBtnVerCode(mBtnVerCode);
+        // 给该管理器配置手机号填写业务管理
+        mGetVerCodeDelegate.setPhoneNumberInputDelegate(mPhoneNumberInputDelegate);
+        // 设置获取验证码成功后的回调
+        mGetVerCodeDelegate.setGetVerCodeListener(new GetVerCodeDelegate.OnGetVerCodeSuccessListener() {
+            @Override
+            public void onGetVerCodeSuccess(GetVerCodeResponse response) {
+                ToastDelegate.show(Login9Activity.this, response.msg);
+            }
+        });
+        // 开始验证码业务的准备工作
+        mGetVerCodeDelegate.ready();
+
+        // 创建验证验证码业务管理
+        mCheckVerCodeDelegate = new CheckVerCodeDelegate(this);
+        // 给该管理器配置验证码输入控件
+        mCheckVerCodeDelegate.setEtVerCode(mEtVerCode);
+        // 给该管理器配置手机号填写业务管理
+        mCheckVerCodeDelegate.setPhoneNumberInputDelegate(mPhoneNumberInputDelegate);
+    }
+
+    /** 验证版本号并登录 */
+    private void checkVerCodeAndLogin(){
+        mCheckVerCodeDelegate.checkVerCode(new CheckVerCodeDelegate.OnCheckVerCodeSuccessListener() {
+            @Override
+            public void onCheckVerCodeSuccess() {
+                //登录
+                login();
+            }
+        });
     }
 
     private void login() {
@@ -116,7 +171,7 @@ public class Login7Activity extends AppCompatActivity {
                     setResult(LOGIN_SUCCESS_RESULT_CODE);
                     finish();
                 }else{
-                    ToastDelegate.show(Login7Activity.this, response.msg);
+                    ToastDelegate.show(Login9Activity.this, response.msg);
                 }
             }
         }).sendRequest(phoneNumber, pwd);
@@ -126,6 +181,15 @@ public class Login7Activity extends AppCompatActivity {
     public void onBackPressed() {
         setResult(LOGIN_CANCEL_RESULT_CODE);
         super.onBackPressed();
+        // 界面销毁时，取消掉验证码的倒计时任务
+        mGetVerCodeDelegate.stop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 界面销毁时，取消掉验证码的倒计时任务
+        mGetVerCodeDelegate.stop();
     }
 
 }

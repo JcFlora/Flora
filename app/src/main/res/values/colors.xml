@@ -31,6 +31,8 @@
     <color name="app_color_bg_bar">#f8f8f8</color>
     <!-- 背景色：列表项 -->
     <color name="app_color_bg_item">#ffffff</color>
+    <!-- 背景色：不可用 -->
+    <color name="app_color_bg_unable">#cccccc</color>
 
     <!-- 分隔线颜色：内容页 -->
     <color name="app_color_divider_content">#dadada</color>
