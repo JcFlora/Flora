@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "登录1.0：验证码2(使用RxJava)"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Login10Activity::class.java
             return project
         }
 

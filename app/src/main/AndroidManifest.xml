@@ -479,6 +479,9 @@
             android:name=".apps.scene.login.projects.Login9Activity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.scene.login.projects.Login10Activity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.scene.guider.GuiderActivity"
             android:screenOrientation="portrait"/>
         <activity
