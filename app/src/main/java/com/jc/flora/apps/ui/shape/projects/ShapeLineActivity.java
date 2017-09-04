@@ -32,9 +32,9 @@ public class ShapeLineActivity extends AppCompatActivity {
 
     private void initViews() {
 //        mVDash.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        mVLine.setBackground(ShapeDelegate.getLineDrawable(0xffdadada, 100, 0, 100, 0));
+        mVLine.setBackground(ShapeDelegate.getLineDrawable(0xffdadada, 100, 0, 0, 0));
         mVDash.setBackground(ShapeDelegate.getDashLineDrawable(0xffdadada, 20, 5));
-        mVDash2.setBackground(ShapeDelegate.getDashLineDrawable(0xffdadada, 20, 5, 100, 0, 100, 0));
+        mVDash2.setBackground(ShapeDelegate.getDashLineDrawable(0xffdadada, 20, 5, 100, 0, 0, 0));
     }
 
 }

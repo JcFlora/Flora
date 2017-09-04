@@ -482,6 +482,9 @@
             android:name=".apps.scene.login.projects.Login10Activity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".apps.scene.login.projects.Login12Activity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".apps.scene.guider.GuiderActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -658,6 +661,18 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".apps.ui.progress.projects.Progress1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.list.ListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.list.projects.ListSlip1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.list.projects.ListSlip2Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.list.projects.ListSlip3Activity"
             android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
     </application>

@@ -117,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
     private val project11: Project
         get() {
             val project = Project()
-            project.projectName = "登录1.1：历史账号自动补全"
+            project.projectName = "登录1.1：邮箱自动补全"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -126,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "登录1.2：使用官方TextInputLayout实现"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Login12Activity::class.java
             return project
         }
 

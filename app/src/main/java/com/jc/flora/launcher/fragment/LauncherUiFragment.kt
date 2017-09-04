@@ -17,6 +17,7 @@ import com.jc.flora.apps.ui.buoy.BuoyActivity
 import com.jc.flora.apps.ui.captain.CaptainActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.apps.ui.dialog.DialogActivity
+import com.jc.flora.apps.ui.list.ListActivity
 import com.jc.flora.apps.ui.marquee.MarqueeActivity
 import com.jc.flora.apps.ui.progress.ProgressActivity
 import com.jc.flora.apps.ui.reload.ReloadActivity
@@ -58,7 +59,7 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("沉浸模式", R.mipmap.ic_stable, StableActivity::class.java),
                     LauncherApp("各种弹窗", R.mipmap.ic_dialog, DialogActivity::class.java),
                     LauncherApp("各种形状", R.mipmap.ic_shape, ShapeActivity::class.java),
-                    LauncherApp("各种列表", R.mipmap.ic_list, NotFoundActivity::class.java),
+                    LauncherApp("各种列表", R.mipmap.ic_list, ListActivity::class.java),
 
                     LauncherApp("页面导航", R.mipmap.ic_captain, CaptainActivity::class.java),
                     LauncherApp("内容导航", R.mipmap.ic_sail, NotFoundActivity::class.java),
