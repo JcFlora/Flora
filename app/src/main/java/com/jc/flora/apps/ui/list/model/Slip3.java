@@ -1,7 +1,7 @@
 package com.jc.flora.apps.ui.list.model;
 
 /**
- * Created by Samurai on 2017/9/5.
+ * Created by Samurai on 2017/9/4.
  */
 public class Slip3 {
 

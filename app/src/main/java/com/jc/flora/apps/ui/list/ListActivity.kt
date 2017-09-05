@@ -10,6 +10,7 @@ import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.list.projects.ListSlip1Activity
 import com.jc.flora.apps.ui.list.projects.ListSlip2Activity
 import com.jc.flora.apps.ui.list.projects.ListSlip3Activity
+import com.jc.flora.apps.ui.list.projects.ListSlip4Activity
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
@@ -64,7 +65,7 @@ class ListActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "列表组0.4：添加单选模式"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = ListSlip4Activity::class.java
             return project
         }
 

@@ -674,6 +674,9 @@
         <activity
             android:name=".apps.ui.list.projects.ListSlip3Activity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.list.projects.ListSlip4Activity"
+            android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
     </application>
 
