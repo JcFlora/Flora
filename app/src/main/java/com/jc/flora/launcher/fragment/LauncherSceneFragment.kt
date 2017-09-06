@@ -11,6 +11,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.scene.bluetooth.BluetoothActivity
 import com.jc.flora.apps.scene.guider.GuiderActivity
 import com.jc.flora.apps.scene.login.LoginActivity
+import com.jc.flora.apps.scene.payment.PaymentActivity
 import com.jc.flora.apps.scene.splash.SplashActivity
 import com.jc.flora.apps.scene.telephone.TelephoneActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
@@ -65,7 +66,7 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("商品详情", R.mipmap.ic_product, NotFoundActivity::class.java),
                     LauncherApp("订单管理", R.mipmap.ic_order, NotFoundActivity::class.java),
 
-                    LauncherApp("在线支付", R.mipmap.ic_payment, NotFoundActivity::class.java),
+                    LauncherApp("在线支付", R.mipmap.ic_payment, PaymentActivity::class.java),
                     LauncherApp("城市切换", R.mipmap.ic_city, NotFoundActivity::class.java),
                     LauncherApp("地理定位", R.mipmap.ic_location, NotFoundActivity::class.java),
                     LauncherApp("地图开发", R.mipmap.ic_map, NotFoundActivity::class.java),

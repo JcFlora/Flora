@@ -10,6 +10,7 @@ import com.jc.flora.apps.scene.guider.parallaxpager.ParallaxContainer;
 import com.jc.flora.apps.ui.stable.delegate.StableDelegate;
 
 /**
+ * 不能继承AppCompatActivity
  * Created by Samurai on 2017/6/1.
  */
 public class GuiderXhsActivity extends Activity {

@@ -1,0 +1,19 @@
+package com.jc.flora.apps.scene.payment.alipay;
+
+/**
+ * Created by Samurai on 2017/9/5.
+ */
+public interface Alice {
+
+    /** 支付宝支付业务：入参app_id */
+    String APP_ID = "2016081900289067";
+
+    /** 商户私钥，pkcs8格式 */
+    /** RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行 */
+    /** 获取 RSA2_PRIVATE，建议使用支付宝提供的公私钥生成工具生成， */
+    /** 工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1 */
+    String RSA2_PRIVATE = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC2h+ijhD/HcCS7M25idX3IoLPf9evZ/I1phPxzwUNKnPwvjh4i6/G/unGZalWOTsC8nuK5eRVpviXROM6kIwTiQYwLhRPDZI7bCUJcwJYrE22ZPclkSlrrG61HgVlfNylTAAwiwA+INTpssCCrRRRkyt7LyimfywUN2WQtzzUboNKDSbtPoikp+neIra6xb2+MtaTl8ur2eozJQPLCrvTYPBcwGxoJfvqopYpVmyqAmhRjwuQy3PuPYa7NiltC53gs2qUWfGLQAtjXaiQk1LfUtwGJk9/aYytNdwlOT3i8fXX19DM2rlw12eTbJODBj48UJflHTzL5DNfAPcuLzdFlAgMBAAECggEALnqNEpYqZ2526/Q8t3WTgfLp2q2UUP2uRKBIaHFd4TH4RWO66MmL1XZ0Vsxs3L/Q9DbBJNlgSnzQxGXiuIjyRWrLbmOElMyWU9AXxeaEVpOr5MmG7rLAU/3IMd0OFODG9QueC3s8eUKUjfiLWRFOEBxYfywLTVU1BEHG8KNCsrXibZv5KbpoiqnVo5DGfyZVe1Jjv1OapB6v4usow2ZKubngbXuPX/lvLWqF84cZVUPtpXDlWo9+QUOlIlW7AK4YH2UBA5KHLCoWFuEAo7YgMCz6VII48Gu5bMzh4zg4Pjnwbylevb3QPfMmjtaVcTR6Z2+IZvR3y+h/PyleslQwQQKBgQDq0okOmVRiBRqmil3g/LMkRZ+QU3ZnTDgsHWPhKtIhV4fBdCe9W2ZeMCNj7eJzN0yX2HJWiQZy3FNaxl5pcyHWpfpzMrK1EWxodBFuzgGzLzCDz+ZBQTJexbExjQsfXscu7wHXRG9y3XQvMv4Hv6MXQSlAOqu8c0y55jySKbNG4wKBgQDG/he0O8WFSWjFQHvUVY0Y75Y3pQcJzjJcuDY7V1Mo6ulw3aNlF/5cjLtJiKgS5LY/SNI6hukNeVjYeh58Y+G44frxNLsIVYR8pUM9Pmve/ygUKSnasSw62aesTzmee594tokYVu5vq05Sti+eOfqGnRUGQ+lvJz/SoK8IXCsxFwKBgGoMLKNwMYCW54NAx8bcuJZv7vDCEJ3z+QZLO5krunweSIvgRjYo+eEdgk4V14fK+Ic20+Qqu8PRpr8/CNI8kZKboLC3u6c0OC4wBNNyq6fdbt6IXGcp53KPe0dyeAxxxCh4/e7W1DIeuuK596lOLXxKDDQaiwZvV744sTAdLv6bAoGAap41wSHNYO7GLfmw30G/Sb8E82d+b+iE31zr4buWGPRUg16db0r9xES7DFkmBIl6hEnWKfmi4M9FpSc5Mlip1k9uDtK762k2hTpe3m+ViHOZ28N6Y2xOUHHR/uar7pg6B4l1xw68ziQw4Owwc0yJSJrdau/0INQcxBPH9Gi9050CgYAywVfEPEDPE3fP1NxKDLvQ0WtH01fXJuikwKUrk1b4kuFaXMuZMsn/5hd17Nr239uq3P3i/Lq+oBQSA/hGVj6eW6GO8LTNgAlPbVxxSu9NoPQ2CiYZUid9OO8u91mg6TmKi3EJ3Uy8eLHOWw+VP1cbEigoP0dNue1uhuGMX1nzKQ==";
+
+    String PAY_SUCCESS = "9000";
+
+}

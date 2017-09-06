@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_color_bg_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/app_page_padding"
+                android:layout_marginStart="@dimen/app_page_padding"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="应付金额："
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.01"
+                    android:textSize="22sp"
+                    android:textColor="@color/app_color_text_price"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="元"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <com.jc.flora.apps.ui.list.widget.SlipsView
+                android:id="@+id/slips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_color_bg_item"
+                android:divider="@drawable/shape_bg_line"
+                android:orientation="vertical"
+                android:showDividers="middle" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_line_size"
+                android:background="@color/app_color_divider_content" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_divider_page_space_size" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_goto_pay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_accent_button_height"
+                android:layout_marginEnd="@dimen/app_page_padding"
+                android:layout_marginStart="@dimen/app_page_padding"
+                android:background="@drawable/shape_bg_ripple2"
+                android:text="去支付"
+                android:textColor="@color/app_color_text_white"
+                android:textSize="@dimen/app_text_size_20dp" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

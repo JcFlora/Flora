@@ -677,7 +677,43 @@
         <activity
             android:name=".apps.ui.list.projects.ListSlip4Activity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.scene.payment.PaymentActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.scene.payment.projects.Payment1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.scene.payment.projects.Payment2Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.scene.payment.projects.Payment3Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.scene.payment.projects.Payment4Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.scene.payment.projects.Payment5Activity"
+            android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
+        <!-- alipay sdk begin -->
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+        <!-- alipay sdk end -->
     </application>
 
 </manifest>
