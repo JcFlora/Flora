@@ -11,6 +11,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.ui.arclayout.ArcLayoutActivity
 import com.jc.flora.apps.ui.badge.BadgeActivity
 import com.jc.flora.apps.ui.banner.BannerActivity
+import com.jc.flora.apps.ui.bezier.BezierActivity
 import com.jc.flora.apps.ui.bgchange.BgChangeActivity
 import com.jc.flora.apps.ui.blur.BlurActivity
 import com.jc.flora.apps.ui.buoy.BuoyActivity
@@ -78,7 +79,8 @@ class LauncherUiFragment : CaptainFragment() {
 
                     LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
                     LauncherApp("分步完成", R.mipmap.ic_steps, StepsActivity::class.java),
-                    LauncherApp("进度条", R.mipmap.ic_progress, ProgressActivity::class.java)
+                    LauncherApp("进度条", R.mipmap.ic_progress, ProgressActivity::class.java),
+                    LauncherApp("贝塞尔曲线", R.mipmap.ic_bezier, BezierActivity::class.java)
             )
         }
 

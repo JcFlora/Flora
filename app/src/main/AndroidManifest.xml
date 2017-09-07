@@ -695,6 +695,12 @@
         <activity
             android:name=".apps.scene.payment.projects.Payment5Activity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.bezier.BezierActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.bezier.projects.Bezier1Activity"
+            android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
         <!-- alipay sdk begin -->
 

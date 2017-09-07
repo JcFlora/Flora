@@ -55,8 +55,8 @@ public class OrderInfoUtil2_0 {
 		// 商户生成签名字符串所使用的签名算法类型，推荐使用RSA2
 		keyValues.put("sign_type", "RSA2");
 
-		//todo 发送请求的时间，格式"yyyy-MM-dd HH:mm:ss"
-		keyValues.put("timestamp", "2016-07-29 16:55:53");
+		// 发送请求的时间，格式"yyyy-MM-dd HH:mm:ss"
+		keyValues.put("timestamp", getTimestamp());
 
 		// 调用的接口版本，固定为：1.0
 		keyValues.put("version", "1.0");
@@ -185,6 +185,11 @@ public class OrderInfoUtil2_0 {
 		}
 		return "sign=" + encodedSign;
 	}
+
+	private static String getTimestamp() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+		return format.format(new Date());
+	}
 	
 	/**
 	 * 要求外部订单号必须唯一。
@@ -192,13 +197,10 @@ public class OrderInfoUtil2_0 {
 	 */
 	private static String getOutTradeNo() {
 		SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss", Locale.getDefault());
-		Date date = new Date();
-		String key = format.format(date);
+		String key = format.format(new Date());
 
-		Random r = new Random();
-		key = key + r.nextInt();
-		key = key.substring(0, 15);
-		return key;
+		key += new Random().nextInt();
+		return key.substring(0, 15);
 	}
 
 }

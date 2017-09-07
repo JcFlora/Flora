@@ -23,8 +23,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class AliPayDelegate5 {
 
-    private static final int SDK_PAY_FLAG = 1;
-
     private AppCompatActivity mActivity;
 
     public AliPayDelegate5(AppCompatActivity activity) {
