@@ -62,8 +62,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/shape_bg_line" />
+        android:layout_height="2px"
+        android:background="@drawable/shape_bg_line2" />
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"

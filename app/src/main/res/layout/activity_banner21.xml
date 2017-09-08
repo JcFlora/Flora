@@ -11,7 +11,7 @@
 
         <com.jc.flora.apps.ui.banner.widget.BannerView21
             android:id="@+id/bv1"
-            android:layout_width="1080px"
+            android:layout_width="match_parent"
             android:layout_height="400px" />
 
         <android.support.v4.widget.Space
@@ -20,7 +20,7 @@
 
         <com.jc.flora.apps.ui.banner.widget.BannerView21
             android:id="@+id/bv2"
-            android:layout_width="1080px"
+            android:layout_width="match_parent"
             android:layout_height="400px" />
 
     </LinearLayout>

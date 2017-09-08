@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/layout_banner1"
-        android:layout_width="1080px"
+        android:layout_width="match_parent"
         android:layout_height="400px">
 
         <com.jc.flora.apps.ui.banner.widget.BannerViewPager
@@ -23,7 +23,7 @@
 
     <RelativeLayout
         android:id="@+id/layout_banner2"
-        android:layout_width="1080px"
+        android:layout_width="match_parent"
         android:layout_height="400px">
 
         <com.jc.flora.apps.ui.banner.widget.BannerViewPager

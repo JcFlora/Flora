@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<inset xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@color/app_color_divider_content"
-    android:insetLeft="50dp">
-</inset>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+    <!-- 描边（实线）-->
+    <stroke
+        android:width="1px"
+        android:color="@color/app_color_divider_content" />
+    <size android:height="2px"/>
+</shape>

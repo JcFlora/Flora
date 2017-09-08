@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/app_color_bg_item"
-                android:divider="@drawable/shape_bg_line"
+                android:divider="@drawable/shape_bg_line2"
                 android:orientation="vertical"
                 android:showDividers="middle" />
 

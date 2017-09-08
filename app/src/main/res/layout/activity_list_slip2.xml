@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/app_color_bg_item"
                 android:orientation="vertical"
-                android:divider="@drawable/shape_bg_line"
+                android:divider="@drawable/shape_bg_line2"
                 android:showDividers="middle"/>
 
             <View
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/app_color_bg_item"
                 android:orientation="vertical"
-                android:divider="@drawable/shape_bg_line"
+                android:divider="@drawable/shape_bg_line2"
                 android:showDividers="middle"/>
 
             <View
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/app_color_bg_item"
                 android:orientation="vertical"
-                android:divider="@drawable/shape_bg_line"
+                android:divider="@drawable/shape_bg_line2"
                 android:showDividers="middle"/>
 
             <View
