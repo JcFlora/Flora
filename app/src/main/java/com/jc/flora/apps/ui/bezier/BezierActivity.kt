@@ -8,6 +8,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.bezier.projects.Bezier1Activity
+import com.jc.flora.apps.ui.bezier.projects.Bezier2Activity
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
@@ -45,8 +46,8 @@ class BezierActivity : AppCompatActivity() {
     private val project2: Project
         get() {
             val project = Project()
-            project.projectName = ""
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "拐点跟随手指移动的2阶贝塞尔曲线"
+            project.targetActivity = Bezier2Activity::class.java
             return project
         }
 

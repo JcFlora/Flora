@@ -246,7 +246,10 @@
             android:name=".apps.component.image.ImageLoadActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".apps.component.image.projects.GifActivity"
+            android:name=".apps.component.image.projects.Gif1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.component.image.projects.Gif2Activity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".apps.ui.banner.BannerActivity"
@@ -701,6 +704,9 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".apps.ui.bezier.projects.Bezier1Activity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.bezier.projects.Bezier2Activity"
             android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
         <!-- alipay sdk begin -->

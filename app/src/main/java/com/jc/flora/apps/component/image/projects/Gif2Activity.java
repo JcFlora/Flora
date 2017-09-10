@@ -12,7 +12,7 @@ import com.jc.flora.R;
 /**
  * Created by shijincheng on 2017/4/17.
  */
-public class GifActivity extends AppCompatActivity {
+public class Gif2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +23,6 @@ public class GifActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         setContentView(iv, params);
-        Glide.with(this).load(R.drawable.image_gif).asGif().into(iv);
+        Glide.with(this).load(R.drawable.image_gif_logo).asGif().into(iv);
     }
 }

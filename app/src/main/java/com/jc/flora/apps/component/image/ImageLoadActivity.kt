@@ -4,19 +4,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.ui.dialog.projects.AlertDialogActivity
-import com.jc.flora.apps.ui.dialog.projects.BottomSheetDialogActivity
-import com.jc.flora.apps.ui.dialog.projects.ProgressDialogActivity
-import com.jc.flora.apps.ui.dialog.projects.SnackBarShowActivity
-import com.jc.flora.apps.ui.dialog.projects.SystemDialogActivity
-import com.jc.flora.apps.ui.dialog.projects.ToastActivity
-import com.jc.flora.apps.component.image.projects.GifActivity
-
-import java.util.ArrayList
+import com.jc.flora.apps.component.image.projects.Gif2Activity
+import com.jc.flora.apps.component.image.projects.Gif1Activity
+import java.util.*
 
 /**
  * Created by shijincheng on 2017/2/28.
@@ -38,14 +31,22 @@ class ImageLoadActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1)
+            return arrayListOf(project1, project2)
         }
 
     private val project1: Project
         get() {
             val project = Project()
             project.projectName = "加载Gif"
-            project.targetActivity = GifActivity::class.java
+            project.targetActivity = Gif1Activity::class.java
+            return project
+        }
+
+    private val project2: Project
+        get() {
+            val project = Project()
+            project.projectName = "使用Glide加载Gif"
+            project.targetActivity = Gif2Activity::class.java
             return project
         }
 
