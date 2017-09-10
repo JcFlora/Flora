@@ -1,10 +1,10 @@
 package com.jc.flora.apps.component.image.projects;
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.jc.flora.R;
@@ -19,34 +19,49 @@ import pl.droidsonroids.gif.GifDrawable;
  */
 public class Gif1Activity extends AppCompatActivity {
 
+    private ImageView mIv1, mIv2;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("加载Gif");
+        setTitle("使用GifDrawable加载Gif");
         setContentView(R.layout.activity_image_gif1);
+        findViews();
         initViews();
     }
 
+    private void findViews(){
+        mIv1 = (ImageView) findViewById(R.id.iv_gif1);
+        mIv2 = (ImageView) findViewById(R.id.iv_gif2);
+    }
+
     private void initViews(){
-        ImageView iv = (ImageView) findViewById(R.id.iv_gif1);
-        iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        setContentView(iv, params);
-        try {
-            final GifDrawable drawable = new GifDrawable(getResources(), R.drawable.image_gif_logo);
-            drawable.setLoopCount(1);
-            iv.setImageDrawable(drawable);
-            iv.setOnClickListener(new View.OnClickListener() {
+        // 循环播放的Gif图片
+        final GifDrawable drawable1 = getGifDrawable(R.drawable.image_gif_logo);
+        if(drawable1 != null){
+            mIv1.setImageDrawable(drawable1);
+        }
+        // 只播放一次的Gif图片
+        final GifDrawable drawable2 = getGifDrawable(R.drawable.image_gif_stroke);
+        if(drawable2 != null){
+            drawable2.setLoopCount(1);
+            mIv2.setImageDrawable(drawable2);
+            mIv2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!drawable.isRunning()){
-                        drawable.reset();
+                    if(!drawable2.isRunning()){
+                        drawable2.reset();
                     }
                 }
             });
+        }
+    }
+
+    private GifDrawable getGifDrawable(@DrawableRes int drawableId){
+        try {
+            return new GifDrawable(getResources(), drawableId);
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
     }
 

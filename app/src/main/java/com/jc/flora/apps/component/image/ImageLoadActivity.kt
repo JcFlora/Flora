@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.component.image.projects.Gif2Activity
 import com.jc.flora.apps.component.image.projects.Gif1Activity
+import com.jc.flora.apps.component.image.projects.Gif2Activity
 import java.util.*
 
 /**
@@ -37,7 +37,7 @@ class ImageLoadActivity : AppCompatActivity() {
     private val project1: Project
         get() {
             val project = Project()
-            project.projectName = "加载Gif"
+            project.projectName = "使用GifDrawable加载Gif"
             project.targetActivity = Gif1Activity::class.java
             return project
         }

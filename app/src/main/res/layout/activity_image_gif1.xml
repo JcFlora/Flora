@@ -4,14 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="循环播放的Gif图片"
+        android:textSize="18sp" />
+
     <ImageView
         android:id="@+id/iv_gif1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside" />
+
+    <View
+        android:id="@+id/v_color_divider_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="只播放一次的Gif图片"
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/iv_gif2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside" />
 
 </LinearLayout>
