@@ -26,6 +26,7 @@ import com.jc.flora.apps.ui.shape.ShapeActivity
 import com.jc.flora.apps.ui.stable.StableActivity
 import com.jc.flora.apps.ui.steps.StepsActivity
 import com.jc.flora.apps.ui.transition.TransitionActivity
+import com.jc.flora.apps.ui.typeface.TypefaceActivity
 import com.jc.flora.launcher.LauncherApp
 import com.jc.flora.launcher.LauncherAppsAdapter
 import com.jc.flora.launcher.NotFoundActivity
@@ -80,7 +81,9 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
                     LauncherApp("分步完成", R.mipmap.ic_steps, StepsActivity::class.java),
                     LauncherApp("进度条", R.mipmap.ic_progress, ProgressActivity::class.java),
-                    LauncherApp("贝塞尔曲线", R.mipmap.ic_bezier, BezierActivity::class.java)
+                    LauncherApp("贝塞尔曲线", R.mipmap.ic_bezier, BezierActivity::class.java),
+
+                    LauncherApp("特殊字库", R.mipmap.ic_typeface, TypefaceActivity::class.java)
             )
         }
 

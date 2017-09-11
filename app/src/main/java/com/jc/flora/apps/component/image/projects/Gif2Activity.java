@@ -46,6 +46,7 @@ public class Gif2Activity extends AppCompatActivity {
                 mGifDrawable = (GifDrawable) resource;
             }
         };
+        // fixme 已知bug：低版本运行或Gif图片帧率过高时，会播放两遍
         Glide.with(this).load(R.drawable.image_gif_stroke).into(target);
         mIv2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class Gif2Activity extends AppCompatActivity {
      * Glide加载Gif图片，会在onStart时自动重新播放Gif图片
      * 解决此bug的方案是在onStart后，判断当前Gif图片是否正在播放
      * 如果没有正在播放，就停止Gif的重新播放
-     * fixme 依然存在bug：黑屏后仍会重新播放
+     * fixme 依然存在bug：锁屏后唤醒屏幕仍会重新播放Gif图片
      */
     @Override
     protected void onStart() {
@@ -81,12 +82,4 @@ public class Gif2Activity extends AppCompatActivity {
         mIsFirstLoadGif = false;
     }
 
-    @Override
-    protected void onDestroy() {
-        if(mGifDrawable != null){
-            mGifDrawable.recycle();
-            mGifDrawable = null;
-        }
-        super.onDestroy();
-    }
 }

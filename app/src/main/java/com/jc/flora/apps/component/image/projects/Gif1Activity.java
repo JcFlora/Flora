@@ -42,6 +42,7 @@ public class Gif1Activity extends AppCompatActivity {
             mIv1.setImageDrawable(drawable1);
         }
         // 只播放一次的Gif图片
+        // fixme 已知bug：Gif图片帧率过高时，会播放两遍
         final GifDrawable drawable2 = getGifDrawable(R.drawable.image_gif_stroke);
         if(drawable2 != null){
             drawable2.setLoopCount(1);

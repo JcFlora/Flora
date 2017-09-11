@@ -709,8 +709,17 @@
             android:name=".apps.ui.bezier.projects.Bezier2Activity"
             android:screenOrientation="portrait"/>
         <service android:name=".apps.ui.dialog.projects.TestService"/>
-        <!-- alipay sdk begin -->
+        <activity
+            android:name=".apps.ui.typeface.TypefaceActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.typeface.projects.PhoneticIpaActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".apps.ui.typeface.projects.PhoneticPinyinActivity"
+            android:screenOrientation="portrait"/>
 
+        <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
@@ -725,8 +734,8 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
-
         <!-- alipay sdk end -->
+
     </application>
 
 </manifest>
