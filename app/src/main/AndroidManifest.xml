@@ -716,9 +716,11 @@
             android:name=".apps.ui.typeface.projects.PhoneticIpaActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".apps.ui.typeface.projects.PhoneticPinyinActivity"
+            android:name=".apps.ui.typeface.projects.PhoneticPinyin1Activity"
             android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".apps.ui.typeface.projects.PhoneticPinyin2Activity"
+            android:screenOrientation="portrait"/>
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

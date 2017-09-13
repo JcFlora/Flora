@@ -18,7 +18,7 @@ public class PhoneticIpaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("显示英文国际音标");
+        setTitle("显示英文国际音标（基于字库）");
         setContentView(R.layout.activity_phonetic_ipa);
         findViews();
         initViews();
