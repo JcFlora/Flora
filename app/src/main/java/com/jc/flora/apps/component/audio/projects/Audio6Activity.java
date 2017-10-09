@@ -16,6 +16,7 @@ import com.jc.flora.apps.component.audio.model.MP3;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Samurai on 2017/10/8.
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class Audio6Activity extends AppCompatActivity {
 
     //进度条下面的当前进度文字，将毫秒化为mm:ss格式
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss");
+    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
     // mp3列表
     private static final ArrayList<MP3> MP3_LIST = new ArrayList<MP3>() {

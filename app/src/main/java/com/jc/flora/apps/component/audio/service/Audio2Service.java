@@ -1,4 +1,4 @@
-package com.jc.flora.apps.component.audio.projects;
+package com.jc.flora.apps.component.audio.service;
 
 import android.app.Service;
 import android.content.Intent;

@@ -2,8 +2,6 @@ package com.jc.flora.apps.component.audio.projects;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +9,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioDelegate5;
+import com.jc.flora.apps.component.audio.delegate.AudioDelegate9;
+import com.jc.flora.apps.component.audio.delegate.AudioStatusListener;
 import com.jc.flora.apps.component.audio.model.MP3;
 
 import java.text.SimpleDateFormat;
@@ -19,9 +18,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Created by Samurai on 2017/10/7.
+ * Created by Samurai on 2017/10/9.
  */
-public class Audio5Activity extends AppCompatActivity {
+public class Audio9Activity extends AppCompatActivity {
 
     //进度条下面的当前进度文字，将毫秒化为mm:ss格式
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
@@ -35,7 +34,7 @@ public class Audio5Activity extends AppCompatActivity {
         }
     };
 
-    private AudioDelegate5 mDelegate;
+    private AudioDelegate9 mDelegate;
     // 当前mp3歌曲名称
     private TextView mTvName;
     // 播放进度条
@@ -48,8 +47,8 @@ public class Audio5Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("支持多个MP3切换播放");
-        setContentView(R.layout.activity_audio5);
+        setTitle("实现自动播放下一首");
+        setContentView(R.layout.activity_audio6);
         findViews();
         initViews();
         initDelegate();
@@ -83,35 +82,37 @@ public class Audio5Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        AudioDelegate5.bindAudioDelegate(this, new AudioDelegate5.DelegateBuilder() {
+        AudioDelegate9.bindAudioDelegate(this, new AudioDelegate9.DelegateBuilder() {
             @Override
-            public void onBind(AudioDelegate5 delegate) {
+            public void onBind(AudioDelegate9 delegate) {
                 mDelegate = delegate;
+                mDelegate.setAudioStatusListener(mAudioStatusListener);
                 mDelegate.setMp3List(MP3_LIST);
-                initProgress();
             }
         });
     }
 
-    private void initProgress() {
-        // 初始化播放最大进度值
-        mSbProgress.setMax(mDelegate.getMaxProgress());
-        // 初始化总时间
-        mMaxTime = FORMAT.format(mDelegate.getMaxProgress());
-        // 开始不停地刷新播放进度
-        mProgressRefreshHandler.sendEmptyMessage(0);
-    }
+    // 之前的界面刷新功能改成监听回调实现，实现控制反转，由播放状态本身进行控制
+    private AudioStatusListener mAudioStatusListener = new AudioStatusListener(){
 
-    // 用于刷新播放进度的Handler
-    private Handler mProgressRefreshHandler = new Handler(){
         @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            mSbProgress.setProgress(mDelegate.getCurrentPosition());
-            String currentTime = FORMAT.format(mDelegate.getCurrentPosition());
-            mTvTime.setText(currentTime + "/" + mMaxTime);
-            mProgressRefreshHandler.sendEmptyMessageDelayed(0, 1000);
+        public void onSelect(int index, int maxProgress) {
+            // 设置当前音频名称
+            mTvName.setText("当前歌曲："+MP3_LIST.get(mDelegate.getCurrentMp3Index()).name);
+            // 设置当前音频播放最大进度值
+            mSbProgress.setMax(maxProgress);
+            // 设置当前音频总时间
+            mMaxTime = FORMAT.format(maxProgress);
         }
+
+        @Override
+        public void onProgress(int progress) {
+            // 设置当前进度值
+            mSbProgress.setProgress(progress);
+            // 设置时间
+            mTvTime.setText(FORMAT.format(progress) + "/" + mMaxTime);
+        }
+
     };
 
     public void selectAudio(View v){
@@ -130,6 +131,14 @@ public class Audio5Activity extends AppCompatActivity {
         mDelegate.resetAudio();
     }
 
+    public void preAudio(View v){
+        mDelegate.preAudio();
+    }
+
+    public void nextAudio(View v){
+        mDelegate.nextAudio();
+    }
+
     private void showMp3ListDialog() {
         final String[] ITEMS = {"童话镇", "恋人心", "半壶纱"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -138,26 +147,19 @@ public class Audio5Activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                selectAudio(which);
+                mDelegate.selectAudio(which);
             }
         });
         builder.setCancelable(true);
         builder.show();
     }
 
-    private void selectAudio(int index){
-        mProgressRefreshHandler.removeCallbacksAndMessages(null);
-        mDelegate.selectAudio(index);
-        mTvName.setText("当前歌曲："+MP3_LIST.get(index).name);
-        initProgress();
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mDelegate.setAudioStatusListener(null);
         mDelegate.release();
         mDelegate.unbind(this);
-        mProgressRefreshHandler.removeCallbacksAndMessages(null);
     }
 
 }

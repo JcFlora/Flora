@@ -673,6 +673,15 @@
             android:name=".apps.component.audio.projects.Audio7Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.audio.projects.Audio8Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.Audio9Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.Audio10Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.steps.StepsActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -754,12 +763,15 @@
             android:windowSoftInputMode="adjustResize|stateHidden"/>
         <!-- alipay sdk end -->
 
-        <service android:name=".apps.component.audio.projects.Audio2Service" />
-        <service android:name=".apps.component.audio.projects.Audio3Service" />
-        <service android:name=".apps.component.audio.projects.Audio4Service" />
-        <service android:name=".apps.component.audio.projects.Audio5Service" />
-        <service android:name=".apps.component.audio.projects.Audio6Service" />
-        <service android:name=".apps.component.audio.projects.Audio7Service" />
+        <service android:name=".apps.component.audio.service.Audio2Service" />
+        <service android:name=".apps.component.audio.service.Audio3Service" />
+        <service android:name=".apps.component.audio.service.Audio4Service" />
+        <service android:name=".apps.component.audio.service.Audio5Service" />
+        <service android:name=".apps.component.audio.service.Audio6Service" />
+        <service android:name=".apps.component.audio.service.Audio7Service" />
+        <service android:name=".apps.component.audio.service.Audio8Service" />
+        <service android:name=".apps.component.audio.service.Audio9Service" />
+        <service android:name=".apps.component.audio.service.Audio10Service" />
         <service android:name=".apps.ui.dialog.projects.TestService" />
 
     </application>

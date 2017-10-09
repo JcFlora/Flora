@@ -12,6 +12,7 @@ import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioDelegate4;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * Created by Samurai on 2017/10/6.
@@ -19,7 +20,7 @@ import java.text.SimpleDateFormat;
 public class Audio4Activity extends AppCompatActivity {
 
     //进度条下面的当前进度文字，将毫秒化为mm:ss格式
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss");
+    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
     private AudioDelegate4 mDelegate;
     // 播放进度条

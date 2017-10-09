@@ -10,7 +10,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.projects.Audio5Service;
+import com.jc.flora.apps.component.audio.service.Audio5Service;
 
 import java.util.ArrayList;
 

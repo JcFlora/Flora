@@ -1,19 +1,19 @@
-package com.jc.flora.apps.component.audio.projects;
+package com.jc.flora.apps.component.audio.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.jc.flora.apps.component.audio.delegate.AudioDelegate4;
+import com.jc.flora.apps.component.audio.delegate.AudioDelegate8;
 
-public class Audio4Service extends Service {
+public class Audio8Service extends Service {
 
-    private AudioDelegate4 mDelegate;
+    private AudioDelegate8 mDelegate;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mDelegate = new AudioDelegate4(this);
+        mDelegate = new AudioDelegate8(this);
     }
 
     @Override

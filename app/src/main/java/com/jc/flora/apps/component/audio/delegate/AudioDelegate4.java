@@ -10,7 +10,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.projects.Audio4Service;
+import com.jc.flora.apps.component.audio.service.Audio4Service;
 
 /**
  * Created by Samurai on 2017/10/6.
