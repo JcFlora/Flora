@@ -58,8 +58,10 @@ public class AudioDelegate1 {
     /**
      * 播放音频
      */
-    public void start(){
-        mMediaPlayer.start();
+    public void start() {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.start();
+        }
     }
 
 }

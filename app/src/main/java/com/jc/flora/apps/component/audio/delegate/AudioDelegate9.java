@@ -201,7 +201,12 @@ public class AudioDelegate9 extends Binder {
      * 播放音频
      */
     public void start() {
-        mMediaPlayer.start();
+        if (mMediaPlayer != null) {
+            mMediaPlayer.start();
+            if (mAudioStatusListener != null) {
+                mAudioStatusListener.onPlay();
+            }
+        }
     }
 
     /**

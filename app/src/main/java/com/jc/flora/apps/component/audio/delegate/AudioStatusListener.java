@@ -12,7 +12,7 @@ public class AudioStatusListener {
     /** 选择或切换一个音频时的回调 */
     public void onSelect(int index, int maxProgress){}
 
-    /** 继续播放一个音频时的回调 */
+    /** 播放一个音频时的回调 */
     public void onPlay(){}
 
     /** 暂停一个音频时的回调 */

@@ -121,7 +121,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频1.1：经典控制播放按钮"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Audio11Activity::class.java
             return project
         }
 

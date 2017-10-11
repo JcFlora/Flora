@@ -682,6 +682,9 @@
             android:name=".apps.component.audio.projects.Audio10Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.audio.projects.Audio11Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.steps.StepsActivity"
             android:screenOrientation="portrait" />
         <activity

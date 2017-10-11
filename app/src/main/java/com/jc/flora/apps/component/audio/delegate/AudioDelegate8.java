@@ -75,7 +75,7 @@ public class AudioDelegate8 extends Binder {
     public void playAudio(){
         if (mMediaPlayer != null && !mMediaPlayer.isPlaying()) {
             mMediaPlayer.start();
-            // 添加继续播放的回调
+            // 添加播放的回调
             if(mAudioStatusListener != null){
                 mAudioStatusListener.onPlay();
             }
@@ -197,7 +197,13 @@ public class AudioDelegate8 extends Binder {
      * 播放音频
      */
     public void start() {
-        mMediaPlayer.start();
+        if (mMediaPlayer != null) {
+            mMediaPlayer.start();
+            // 添加播放的回调
+            if (mAudioStatusListener != null) {
+                mAudioStatusListener.onPlay();
+            }
+        }
     }
 
     /**

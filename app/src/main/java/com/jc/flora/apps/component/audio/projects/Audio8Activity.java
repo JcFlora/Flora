@@ -31,6 +31,8 @@ public class Audio8Activity extends AppCompatActivity {
             add(new MP3("童话镇", R.raw.audio_fairyland));
             add(new MP3("恋人心", R.raw.audio_lover_heart));
             add(new MP3("半壶纱", R.raw.audio_gauze));
+            add(new MP3("帝都", R.raw.audio_capital));
+            add(new MP3("萌二代", R.raw.audio_kawaii));
         }
     };
 
@@ -140,7 +142,7 @@ public class Audio8Activity extends AppCompatActivity {
     }
 
     private void showMp3ListDialog() {
-        final String[] ITEMS = {"童话镇", "恋人心", "半壶纱"};
+        final String[] ITEMS = {"童话镇", "恋人心", "半壶纱", "帝都", "萌二代"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("选择歌曲");
         builder.setItems(ITEMS, new DialogInterface.OnClickListener() {
