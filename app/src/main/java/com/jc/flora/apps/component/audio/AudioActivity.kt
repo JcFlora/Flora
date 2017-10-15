@@ -34,7 +34,7 @@ class AudioActivity : AppCompatActivity() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
-                    project16)
+                    project16, project17, project18, project19)
         }
 
     private val project1: Project
@@ -128,39 +128,63 @@ class AudioActivity : AppCompatActivity() {
     private val project12: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.2：实现通知栏显示和交互"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "音频1.2：封装AudioPlayerDelegate"
+            project.targetActivity = Audio12Activity::class.java
             return project
         }
 
     private val project13: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.3：实现锁屏显示和交互"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "音频1.3：实现通知栏显示和交互"
+            project.targetActivity = Audio13Activity::class.java
             return project
         }
 
     private val project14: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.4：音频焦点处理"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "音频1.4：实现通知栏大UI"
+            project.targetActivity = Audio14Activity::class.java
             return project
         }
 
     private val project15: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.5：耳机线控处理"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "音频1.5：实现锁屏时显示封面"
+            project.targetActivity = Audio15Activity::class.java
             return project
         }
 
     private val project16: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.6：使用ExoPlayer播放本地MP3"
+            project.projectName = "音频1.6：音频焦点处理"
+            project.targetActivity = Audio16Activity::class.java
+            return project
+        }
+
+    private val project17: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频1.7：实现耳机拔出暂停播放"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project18: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频1.8：耳机线控处理"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project19: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频1.8：使用ExoPlayer播放本地MP3"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

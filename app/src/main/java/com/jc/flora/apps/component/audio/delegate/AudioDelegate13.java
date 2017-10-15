@@ -1,26 +1,21 @@
 package com.jc.flora.apps.component.audio.delegate;
 
-import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.service.Audio9Service;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
- * Created by Samurai on 2017/10/9.
+ * Created by Samurai on 2017/10/15.
  */
-public class AudioDelegate9 extends Binder {
+public class AudioDelegate13 extends Binder {
 
     // mp3列表
     private ArrayList<MP3> mMp3List;
@@ -28,26 +23,17 @@ public class AudioDelegate9 extends Binder {
     private Context mContext;
     // 播放音频的核心组件MediaPlayer
     private MediaPlayer mMediaPlayer;
-    // 使用后台Service播放音频，界面和后台Service的连接对象，通过此对象进行通信
-    private ServiceConnection mConnection;
     // 当前播放的mp3文件索引
     private int mCurrentMp3Index = 0;
     // 当前播放位置
     private int mCurrentPosition = -1;
-    // 音频播放状态监听器
-    private AudioStatusListener mAudioStatusListener;
+    // 音频播放状态监听器集合
+    private ArrayList<AudioStatusListener> mAudioStatusListeners = new ArrayList<>();
 
-    /**
-     * 绑定音频播放组件，该方法会绑定后台播放音频的Service
-     * @param activity 控制音频播放的界面
-     * @param builder  返回控制组件的回调接口，通过该接口获取当前组件，可以进行播放的控制
-     */
-    public static void bindAudioDelegate(Activity activity, final DelegateBuilder builder) {
-        Intent intent = new Intent(activity, Audio9Service.class);
-        activity.bindService(intent, new AudioServiceConnection(builder), Activity.BIND_AUTO_CREATE);
-    }
+    // 播放模式
+    private AudioPlayMode mPlayMode = AudioPlayMode.LOOP;
 
-    public AudioDelegate9(Context ctx) {
+    public AudioDelegate13(Context ctx) {
         mContext = ctx;
     }
 
@@ -62,11 +48,31 @@ public class AudioDelegate9 extends Binder {
     }
 
     /**
-     * 设置音频播放状态监听回调
+     * 设置播放模式
+     * @param audioPlayMode 播放模式
+     */
+    public void setPlayMode(AudioPlayMode audioPlayMode) {
+        mPlayMode = audioPlayMode;
+        // 切换播放模式时回调
+        for (AudioStatusListener l : mAudioStatusListeners) {
+            l.onModeSelect(audioPlayMode.value());
+        }
+    }
+
+    /**
+     * 添加音频播放状态监听回调
      * @param l 音频播放状态监听回调
      */
-    public void setAudioStatusListener(AudioStatusListener l) {
-        mAudioStatusListener = l;
+    public void addAudioStatusListener(AudioStatusListener l) {
+        mAudioStatusListeners.add(l);
+    }
+
+    /**
+     * 移除音频播放状态监听回调
+     * @param l 音频播放状态监听回调
+     */
+    public void removeAudioStatusListener(AudioStatusListener l) {
+        mAudioStatusListeners.remove(l);
     }
 
     /**
@@ -75,8 +81,8 @@ public class AudioDelegate9 extends Binder {
     public void playAudio(){
         if (mMediaPlayer != null && !mMediaPlayer.isPlaying()) {
             mMediaPlayer.start();
-            if(mAudioStatusListener != null){
-                mAudioStatusListener.onPlay();
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onPlay();
             }
         }
     }
@@ -87,8 +93,8 @@ public class AudioDelegate9 extends Binder {
     public void pauseAudio(){
         if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
-            if(mAudioStatusListener != null){
-                mAudioStatusListener.onPause();
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onPause();
             }
         }
     }
@@ -125,7 +131,19 @@ public class AudioDelegate9 extends Binder {
      * 修改为不设置边界，调用selectAudio实现
      */
     public void nextAudio() {
-        selectAudio(mCurrentMp3Index + 1);
+        // 原来的逻辑默认为列表循环模式，新添加单曲模式和随机模式
+        switch (mPlayMode) {
+            case SINGLE:
+                selectAudio(mCurrentMp3Index);
+                break;
+            case SHUFFLE:
+                selectAudio(new Random().nextInt(mMp3List.size()));
+                break;
+            case LOOP:
+            default:
+                selectAudio(mCurrentMp3Index + 1);
+                break;
+        }
     }
 
     /**
@@ -133,7 +151,19 @@ public class AudioDelegate9 extends Binder {
      * 修改为不设置边界，调用selectAudio实现
      */
     public void preAudio() {
-        selectAudio(mCurrentMp3Index - 1);
+        // 原来的逻辑默认为列表循环模式，新添加单曲模式和随机模式
+        switch (mPlayMode) {
+            case SINGLE:
+                selectAudio(mCurrentMp3Index);
+                break;
+            case SHUFFLE:
+                selectAudio(new Random().nextInt(mMp3List.size()));
+                break;
+            case LOOP:
+            default:
+                selectAudio(mCurrentMp3Index - 1);
+                break;
+        }
     }
 
     /**
@@ -168,8 +198,8 @@ public class AudioDelegate9 extends Binder {
                 }
             });
             // 选择或切换的回调
-            if (mAudioStatusListener != null) {
-                mAudioStatusListener.onSelect(mCurrentMp3Index, mMediaPlayer.getDuration());
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onSelect(mCurrentMp3Index, mMediaPlayer.getDuration());
             }
             // 初始化播放位置
             mCurrentPosition = -1;
@@ -189,8 +219,8 @@ public class AudioDelegate9 extends Binder {
             if(position != mCurrentPosition){
                 mCurrentPosition = position;
                 // 播放位置的回调
-                if(mAudioStatusListener != null){
-                    mAudioStatusListener.onProgress(position);
+                for (AudioStatusListener l : mAudioStatusListeners) {
+                    l.onProgress(position);
                 }
             }
             mProgressRefreshHandler.sendEmptyMessageDelayed(0, 1000);
@@ -203,18 +233,10 @@ public class AudioDelegate9 extends Binder {
     public void start() {
         if (mMediaPlayer != null) {
             mMediaPlayer.start();
-            if (mAudioStatusListener != null) {
-                mAudioStatusListener.onPlay();
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onPlay();
             }
         }
-    }
-
-    /**
-     * 解绑后台播放音频的Service，在页面销毁后调用
-     * @param activity 控制音频播放的界面
-     */
-    public void unbind(Activity activity){
-        activity.unbindService(mConnection);
     }
 
     /**
@@ -223,6 +245,14 @@ public class AudioDelegate9 extends Binder {
      */
     public int getCurrentMp3Index() {
         return mCurrentMp3Index;
+    }
+
+    /**
+     * 获取当前播放的mp3
+     * @return 当前播放的mp3
+     */
+    public MP3 getCurrentMp3() {
+        return mMp3List.get(mCurrentMp3Index);
     }
 
     /**
@@ -244,37 +274,6 @@ public class AudioDelegate9 extends Binder {
      */
     public void seekToPosition(int msec) {
         mMediaPlayer.seekTo(msec);
-    }
-
-    // 使用后台Service播放音频，界面和后台Service的连接对象，通过此对象进行通信
-    private static class AudioServiceConnection implements ServiceConnection{
-
-        public AudioServiceConnection(DelegateBuilder builder) {
-            this.builder = builder;
-        }
-
-        // 返回控制组件的回调接口，通过该接口获取当前组件，可以进行播放的控制
-        private DelegateBuilder builder;
-
-        // 连接Service时回调，保存控制播放组件
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            if(builder != null && service instanceof AudioDelegate9){
-                AudioDelegate9 delegate = (AudioDelegate9)service;
-                // 绑定连接对象是为了方便解绑
-                delegate.mConnection = this;
-                builder.onBind(delegate);
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-        }
-    }
-
-    // 返回控制组件的回调接口，通过该接口获取当前组件，可以进行播放的控制
-    public interface DelegateBuilder{
-        void onBind(AudioDelegate9 delegate);
     }
 
 }

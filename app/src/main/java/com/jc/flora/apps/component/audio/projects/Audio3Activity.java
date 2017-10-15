@@ -42,7 +42,6 @@ public class Audio3Activity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mDelegate.release();
         mDelegate.unbind(this);
     }
 

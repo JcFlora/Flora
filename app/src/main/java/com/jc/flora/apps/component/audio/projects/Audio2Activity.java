@@ -34,7 +34,6 @@ public class Audio2Activity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mDelegate.release();
         mDelegate.unbind(this);
     }
 

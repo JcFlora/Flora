@@ -1,7 +1,11 @@
-package com.jc.flora.apps.component.audio.projects;
+package com.jc.flora.apps.component.audio.delegate;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.DialogInterface;
-import android.os.Bundle;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,10 +14,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioDelegate10;
-import com.jc.flora.apps.component.audio.delegate.AudioPlayMode;
-import com.jc.flora.apps.component.audio.delegate.AudioStatusListener;
 import com.jc.flora.apps.component.audio.model.MP3;
+import com.jc.flora.apps.component.audio.service.Audio12Service;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 import java.text.SimpleDateFormat;
@@ -21,17 +23,17 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Created by Samurai on 2017/10/10.
+ * Created by shijincheng on 2017/10/15.
  */
-public class Audio11Activity extends AppCompatActivity {
 
-    //进度条下面的当前进度文字，将毫秒化为mm:ss格式
+public class AudioPlayerDelegate12 {
+
+    // 进度条下面的当前进度文字，将毫秒化为mm:ss格式
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
-    //播放模式名称列表
+    // 播放模式名称列表
     private static final String[] MODE_ITEMS = {"列表循环", "单曲循环", "随机播放"};
-    //播放模式图标
+    // 播放模式图标
     private static final int[] MODE_ICON_RES_IDS = {R.drawable.audio_loop, R.drawable.audio_single, R.drawable.audio_shuffle};
-
     // mp3列表
     private static final ArrayList<MP3> MP3_LIST = new ArrayList<MP3>() {
         {
@@ -43,7 +45,9 @@ public class Audio11Activity extends AppCompatActivity {
         }
     };
 
-    private AudioDelegate10 mDelegate;
+    private AppCompatActivity mActivity;
+
+    private AudioDelegate12 mDelegate;
     // 当前mp3音频封面图
     private ImageView mIvCover;
     // 当前播放进度时间显示
@@ -67,35 +71,63 @@ public class Audio11Activity extends AppCompatActivity {
     // 下一个播放模式
     private AudioPlayMode mNextMode = AudioPlayMode.SINGLE;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("经典控制播放按钮");
-        setContentView(R.layout.activity_audio11);
-        findViews();
+    public AudioPlayerDelegate12(AppCompatActivity activity) {
+        mActivity = activity;
+    }
+
+    public void setIvCover(ImageView mIvCover) {
+        this.mIvCover = mIvCover;
+    }
+
+    public void setTvCurrentTime(TextView mTvCurrentTime) {
+        this.mTvCurrentTime = mTvCurrentTime;
+    }
+
+    public void setSbProgress(SeekBar mSbProgress) {
+        this.mSbProgress = mSbProgress;
+    }
+
+    public void setTvMaxTime(TextView mTvMaxTime) {
+        this.mTvMaxTime = mTvMaxTime;
+    }
+
+    public void setBtnMode(ImageView mBtnMode) {
+        this.mBtnMode = mBtnMode;
+    }
+
+    public void setBtnPre(ImageView mBtnPre) {
+        this.mBtnPre = mBtnPre;
+    }
+
+    public void setBtnPlay(ImageView mBtnPlay) {
+        this.mBtnPlay = mBtnPlay;
+    }
+
+    public void setBtnNext(ImageView mBtnNext) {
+        this.mBtnNext = mBtnNext;
+    }
+
+    public void setBtnSelect(ImageView mBtnSelect) {
+        this.mBtnSelect = mBtnSelect;
+    }
+
+    public void init() {
         initViews();
         initDelegate();
     }
 
-    private void findViews(){
-        mIvCover = (ImageView) findViewById(R.id.iv_cover);
-        mTvCurrentTime = (TextView) findViewById(R.id.tv_current_time);
-        mSbProgress = (SeekBar) findViewById(R.id.sb_progress);
-        mTvMaxTime = (TextView) findViewById(R.id.tv_max_time);
-        mBtnMode = (ImageView) findViewById(R.id.btn_mode);
-        mBtnPre = (ImageView) findViewById(R.id.btn_pre);
-        mBtnPlay = (ImageView) findViewById(R.id.btn_play);
-        mBtnNext = (ImageView) findViewById(R.id.btn_next);
-        mBtnSelect = (ImageView) findViewById(R.id.btn_select);
+    public void release() {
+        mDelegate.setAudioStatusListener(null);
+        mActivity.unbindService(mConnection);
     }
 
-    private void initViews(){
+    private void initViews() {
         // 设置手动滑动监听
         mSbProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //这里很重要，如果不判断是否来自用户操作进度条，会不断执行下面语句块里面的逻辑，然后就会卡顿
-                if(fromUser && mDelegate != null){
+                if (fromUser && mDelegate != null) {
                     mDelegate.seekToPosition(progress);
                 }
             }
@@ -117,9 +149,9 @@ public class Audio11Activity extends AppCompatActivity {
         mBtnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mIsPlaying){
+                if (mIsPlaying) {
                     mDelegate.pauseAudio();
-                }else{
+                } else {
                     mDelegate.playAudio();
                 }
             }
@@ -144,25 +176,34 @@ public class Audio11Activity extends AppCompatActivity {
         });
     }
 
-    private void initDelegate(){
-        AudioDelegate10.bindAudioDelegate(this, new AudioDelegate10.DelegateBuilder() {
-            @Override
-            public void onBind(AudioDelegate10 delegate) {
-                mDelegate = delegate;
-                mDelegate.setAudioStatusListener(mAudioStatusListener);
-                mDelegate.setMp3List(MP3_LIST);
-            }
-        });
+    private void initDelegate() {
+        Intent intent = new Intent(mActivity, Audio12Service.class);
+        mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 
+    // 使用后台Service播放音频，界面和后台Service的连接对象，通过此对象进行通信
+    private ServiceConnection mConnection = new ServiceConnection() {
+        // 连接Service时回调，保存控制播放组件
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mDelegate = (AudioDelegate12) service;
+            mDelegate.setAudioStatusListener(mAudioStatusListener);
+            mDelegate.setMp3List(MP3_LIST);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+    };
+
     // 之前的界面刷新功能改成监听回调实现，实现控制反转，由播放状态本身进行控制
-    private AudioStatusListener mAudioStatusListener = new AudioStatusListener(){
+    private AudioStatusListener mAudioStatusListener = new AudioStatusListener() {
 
         @Override
         public void onModeSelect(int index) {
             mBtnMode.setImageResource(MODE_ICON_RES_IDS[index]);
-            ToastDelegate.show(Audio11Activity.this, MODE_ITEMS[index]);
-            mNextMode = AudioPlayMode.valueOf((++index)%3);
+            ToastDelegate.show(mActivity, MODE_ITEMS[index]);
+            mNextMode = AudioPlayMode.valueOf((++index) % 3);
         }
 
         @Override
@@ -199,7 +240,7 @@ public class Audio11Activity extends AppCompatActivity {
 
     private void showMp3ListDialog() {
         final String[] ITEMS = {"童话镇", "恋人心", "半壶纱", "帝都", "萌二代"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setTitle("选择歌曲");
         builder.setItems(ITEMS, new DialogInterface.OnClickListener() {
             @Override
@@ -210,13 +251,6 @@ public class Audio11Activity extends AppCompatActivity {
         });
         builder.setCancelable(true);
         builder.show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mDelegate.setAudioStatusListener(null);
-        mDelegate.unbind(this);
     }
 
 }

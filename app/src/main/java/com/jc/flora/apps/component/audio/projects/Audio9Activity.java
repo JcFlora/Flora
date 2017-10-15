@@ -160,7 +160,6 @@ public class Audio9Activity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mDelegate.setAudioStatusListener(null);
-        mDelegate.release();
         mDelegate.unbind(this);
     }
 

@@ -685,6 +685,21 @@
             android:name=".apps.component.audio.projects.Audio11Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.audio.projects.Audio12Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.Audio13Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.Audio14Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.Audio15Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.Audio16Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.steps.StepsActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -775,6 +790,11 @@
         <service android:name=".apps.component.audio.service.Audio8Service" />
         <service android:name=".apps.component.audio.service.Audio9Service" />
         <service android:name=".apps.component.audio.service.Audio10Service" />
+        <service android:name=".apps.component.audio.service.Audio12Service" />
+        <service android:name=".apps.component.audio.service.Audio13Service" />
+        <service android:name=".apps.component.audio.service.Audio14Service" />
+        <service android:name=".apps.component.audio.service.Audio15Service" />
+        <service android:name=".apps.component.audio.service.Audio16Service" />
         <service android:name=".apps.ui.dialog.projects.TestService" />
 
     </application>

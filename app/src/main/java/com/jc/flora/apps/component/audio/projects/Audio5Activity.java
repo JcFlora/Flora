@@ -157,7 +157,6 @@ public class Audio5Activity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mDelegate.release();
         mDelegate.unbind(this);
         mProgressRefreshHandler.removeCallbacksAndMessages(null);
     }

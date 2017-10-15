@@ -189,7 +189,6 @@ public class Audio10Activity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mDelegate.setAudioStatusListener(null);
-        mDelegate.release();
         mDelegate.unbind(this);
     }
 

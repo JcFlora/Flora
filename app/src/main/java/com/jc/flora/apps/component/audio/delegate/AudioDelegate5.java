@@ -163,14 +163,12 @@ public class AudioDelegate5 extends Binder {
 
         // 返回控制组件的回调接口，通过该接口获取当前组件，可以进行播放的控制
         private DelegateBuilder builder;
-        // 当前控制播放组件
-        private AudioDelegate5 delegate;
 
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             if(builder != null && service instanceof AudioDelegate5){
-                delegate = (AudioDelegate5)service;
+                AudioDelegate5 delegate = (AudioDelegate5)service;
                 // 绑定连接对象是为了方便解绑
                 delegate.mConnection = this;
                 // 注意这里去掉了，连接Service后立刻初始化，放到setMp3List()方法里初始化
@@ -180,12 +178,8 @@ public class AudioDelegate5 extends Binder {
             }
         }
 
-        // 断开Service连接时回调，释放资源
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            if(delegate != null){
-                delegate.release();
-            }
         }
     }
 
