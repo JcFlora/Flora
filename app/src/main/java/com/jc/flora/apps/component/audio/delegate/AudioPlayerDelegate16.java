@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.service.Audio15Service;
 import com.jc.flora.apps.component.audio.service.Audio16Service;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Created by shijincheng on 2017/10/15.
+ * Created by shijincheng on 2017/10/16.
  */
 
 public class AudioPlayerDelegate16 {
@@ -48,7 +47,7 @@ public class AudioPlayerDelegate16 {
 
     private AppCompatActivity mActivity;
 
-    private AudioDelegate13 mDelegate;
+    private AudioDelegate16 mDelegate;
     // 当前mp3音频封面图
     private ImageView mIvCover;
     // 当前播放进度时间显示
@@ -187,7 +186,7 @@ public class AudioPlayerDelegate16 {
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mDelegate = (AudioDelegate13) service;
+            mDelegate = (AudioDelegate16) service;
             mDelegate.addAudioStatusListener(mAudioStatusListener);
             mDelegate.setMp3List(MP3_LIST);
         }

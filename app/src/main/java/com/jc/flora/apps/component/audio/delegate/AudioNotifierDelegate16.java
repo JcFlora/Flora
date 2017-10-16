@@ -16,7 +16,7 @@ import com.jc.flora.apps.component.audio.model.MP3;
 import com.jc.flora.apps.component.audio.projects.Audio16Activity;
 
 /**
- * Created by shijincheng on 2017/10/15.
+ * Created by shijincheng on 2017/10/16.
  */
 
 public class AudioNotifierDelegate16 {
@@ -29,11 +29,11 @@ public class AudioNotifierDelegate16 {
 
     private Service mService;
     private NotificationManager mNotificationManager;
-    private AudioDelegate13 mAudioDelegate;
+    private AudioDelegate16 mAudioDelegate;
     // 是否是亮色主题
     private boolean mIsLightNotificationTheme;
 
-    public AudioNotifierDelegate16(Service service, AudioDelegate13 audioDelegate) {
+    public AudioNotifierDelegate16(Service service, AudioDelegate16 audioDelegate) {
         mService = service;
         mAudioDelegate = audioDelegate;
         initNotificationManager();

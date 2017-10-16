@@ -184,7 +184,7 @@ class AudioActivity : AppCompatActivity() {
     private val project19: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.8：使用ExoPlayer播放本地MP3"
+            project.projectName = "音频1.9：使用ExoPlayer播放本地MP3"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

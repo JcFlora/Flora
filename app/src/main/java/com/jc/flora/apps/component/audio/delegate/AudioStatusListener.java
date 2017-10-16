@@ -21,4 +21,12 @@ public class AudioStatusListener {
     /** 播放进度回调 */
     public void onProgress(int progress){}
 
+    /**
+     * 在播放前进行拦截，返回true表示拦截，false表示不拦截
+     * @return 是否拦截，默认不拦截
+     */
+    public boolean onPlayIntercepted(){
+        return false;
+    }
+
 }

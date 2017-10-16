@@ -5,23 +5,22 @@ import android.content.Context;
 import android.media.AudioManager;
 
 /**
- * Created by shijincheng on 2017/10/15.
+ * Created by shijincheng on 2017/10/16.
  */
 
 public class AudioFocusDelegate16 {
 
-    private AudioDelegate13 mAudioDelegate;
+    private AudioDelegate16 mAudioDelegate;
     private AudioManager mAudioManager;
     private boolean isPausedByFocusLossTransient;
     private int mVolumeWhenFocusLossTransientCanDuck;
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
-    public AudioFocusDelegate16(Service service, AudioDelegate13 audioDelegate) {
+    public AudioFocusDelegate16(Service service, AudioDelegate16 audioDelegate) {
         mAudioDelegate = audioDelegate;
         mAudioManager = (AudioManager) service.getSystemService(Context.AUDIO_SERVICE);
         addAudioStatusListener();
-        //requestAudioFocus();
     }
 
     public void release() {
@@ -33,25 +32,27 @@ public class AudioFocusDelegate16 {
         mAudioDelegate.addAudioStatusListener(mAudioStatusListener);
     }
 
-    private boolean requestAudioFocus() {
-        return mAudioManager.requestAudioFocus(mFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN)
-                == AudioManager.AUDIOFOCUS_REQUEST_GRANTED;
-    }
-
     private AudioStatusListener mAudioStatusListener = new AudioStatusListener(){
         @Override
         public void onPlay() {
             mIsPlaying = true;
-            if(!requestAudioFocus()){
-                mAudioDelegate.pauseAudio();
-            }
         }
 
         @Override
         public void onPause() {
             mIsPlaying = false;
         }
+
+        @Override
+        public boolean onPlayIntercepted() {
+            return !requestAudioFocus();
+        }
     };
+
+    private boolean requestAudioFocus() {
+        return mAudioManager.requestAudioFocus(mFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN)
+                == AudioManager.AUDIOFOCUS_REQUEST_GRANTED;
+    }
 
     private AudioManager.OnAudioFocusChangeListener mFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
