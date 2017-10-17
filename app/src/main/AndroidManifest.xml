@@ -700,6 +700,9 @@
             android:name=".apps.component.audio.projects.Audio16Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.audio.projects.Audio17Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.steps.StepsActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -795,6 +798,7 @@
         <service android:name=".apps.component.audio.service.Audio14Service" />
         <service android:name=".apps.component.audio.service.Audio15Service" />
         <service android:name=".apps.component.audio.service.Audio16Service" />
+        <service android:name=".apps.component.audio.service.Audio17Service" />
         <service android:name=".apps.ui.dialog.projects.TestService" />
 
     </application>

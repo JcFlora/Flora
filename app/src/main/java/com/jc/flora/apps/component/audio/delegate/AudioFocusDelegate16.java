@@ -14,7 +14,7 @@ public class AudioFocusDelegate16 {
     private AudioManager mAudioManager;
     private boolean isPausedByFocusLossTransient;
     private int mVolumeWhenFocusLossTransientCanDuck;
-    // 状态标记，标识是否正在播放，用来控制播放按钮
+    // 状态标记，标识是否正在播放，用来控制焦点处理
     private boolean mIsPlaying;
 
     public AudioFocusDelegate16(Service service, AudioDelegate16 audioDelegate) {

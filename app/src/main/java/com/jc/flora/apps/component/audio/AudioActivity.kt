@@ -169,7 +169,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频1.7：实现耳机拔出暂停播放"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Audio17Activity::class.java
             return project
         }
 

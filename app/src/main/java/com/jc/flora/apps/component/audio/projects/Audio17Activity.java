@@ -8,13 +8,14 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate16;
+import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate17;
 
 /**
- * Created by Samurai on 2017/10/16.
+ * Created by Samurai on 2017/10/17.
  */
-public class Audio16Activity extends AppCompatActivity {
+public class Audio17Activity extends AppCompatActivity {
 
-    private AudioPlayerDelegate16 mDelegate;
+    private AudioPlayerDelegate17 mDelegate;
     // 当前mp3音频封面图
     private ImageView mIvCover;
     // 当前播放进度时间显示
@@ -37,7 +38,7 @@ public class Audio16Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("音频焦点处理");
+        setTitle("实现耳机拔出暂停播放");
         setContentView(R.layout.activity_audio11);
         findViews();
         initDelegate();
@@ -56,7 +57,7 @@ public class Audio16Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioPlayerDelegate16(this);
+        mDelegate = new AudioPlayerDelegate17(this);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);
