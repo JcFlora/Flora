@@ -46,7 +46,7 @@ class TypefaceActivity : AppCompatActivity() {
     private val project2: Project
         get() {
             val project = Project()
-            project.projectName = "显示汉语拼音（原样输入）"
+            project.projectName = "显示汉语拼音（单独输入）"
             project.targetActivity = PhoneticPinyin1Activity::class.java
             return project
         }
