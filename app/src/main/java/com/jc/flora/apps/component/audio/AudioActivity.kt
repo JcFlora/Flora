@@ -176,8 +176,8 @@ class AudioActivity : AppCompatActivity() {
     private val project18: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.8：耳机线控处理"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "音频1.8：实现界面上的音量控制"
+            project.targetActivity = Audio18Activity::class.java
             return project
         }
 
