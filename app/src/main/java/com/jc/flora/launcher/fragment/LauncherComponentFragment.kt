@@ -12,6 +12,7 @@ import com.jc.flora.apps.component.audio.AudioActivity
 import com.jc.flora.apps.component.exit.ExitActivity
 import com.jc.flora.apps.component.hybrid.HybridActivity
 import com.jc.flora.apps.component.image.ImageLoadActivity
+import com.jc.flora.apps.component.record.RecordActivity
 import com.jc.flora.apps.component.render.RenderActivity
 import com.jc.flora.apps.component.request.NetRequestActivity
 import com.jc.flora.apps.component.router.RouterActivity
@@ -72,6 +73,9 @@ class LauncherComponentFragment : CaptainFragment() {
 
                     LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
+                    LauncherApp("录制视频", R.mipmap.ic_video, NotFoundActivity::class.java),
+                    LauncherApp("录制音频", R.mipmap.ic_record, RecordActivity::class.java),
+
                     LauncherApp("组件通信", R.mipmap.ic_signal, NotFoundActivity::class.java),
                     LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java)
             )

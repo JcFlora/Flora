@@ -16,10 +16,10 @@ import com.jc.flora.apps.component.audio.model.MP3;
  *          <action android:name="android.intent.action.MEDIA_BUTTON" />
  *      </intent-filter>
  *  </receiver>
- * Created by shijincheng on 2017/10/15.
+ * Created by shijincheng on 2017/10/16.
  */
 
-public class AudioSessionDelegate15 {
+public class AudioSessionDelegate20 {
 
     private static final String TAG = "AudioSessionDelegate15";
 
@@ -32,11 +32,11 @@ public class AudioSessionDelegate15 {
             | PlaybackStateCompat.ACTION_SEEK_TO;
 
     private Service mService;
-    private AudioDelegate13 mAudioDelegate;
+    private AudioDelegate20 mAudioDelegate;
     private MediaSessionCompat mMediaSession;
     private int mPlaybackState = PlaybackStateCompat.STATE_PAUSED;
 
-    public AudioSessionDelegate15(Service service, AudioDelegate13 audioDelegate) {
+    public AudioSessionDelegate20(Service service, AudioDelegate20 audioDelegate) {
         mService = service;
         mAudioDelegate = audioDelegate;
         addAudioStatusListener();

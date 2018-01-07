@@ -1,4 +1,4 @@
-package com.jc.flora.apps.component.audio
+package com.jc.flora.apps.component.record
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,16 +8,18 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.audio.projects.*
-import java.util.*
+import com.jc.flora.apps.component.record.projects.Record1Activity
+import com.jc.flora.launcher.NotFoundActivity
+import java.util.ArrayList
 
 /**
- * Created by shijincheng on 2017/7/14.
+ * Created by shijincheng on 2017/11/18.
  */
-class AudioActivity : AppCompatActivity() {
+class RecordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = "播放音频"
+        title = "录制音频"
         setContentView(R.layout.activity_projects)
         addProjects()
     }
@@ -33,14 +35,14 @@ class AudioActivity : AppCompatActivity() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
-                    project16, project17, project18, project19, project20)
+                    project16, project17, project18, project19)
         }
 
     private val project1: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.1：使用MediaPlayer播放本地MP3"
-            project.targetActivity = Audio1Activity::class.java
+            project.projectName = "录制音频0.1：使用MediaRecorder录制AAC格式音频"
+            project.targetActivity = Record1Activity::class.java
             return project
         }
 
@@ -184,15 +186,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频1.9：使用ExoPlayer播放本地MP3"
-            project.targetActivity = Audio19Activity::class.java
-            return project
-        }
-
-    private val project20: Project
-        get() {
-            val project = Project()
-            project.projectName = "音频2.0：使用ExoPlayer播放本地MP3列表"
-            project.targetActivity = Audio20Activity::class.java
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 

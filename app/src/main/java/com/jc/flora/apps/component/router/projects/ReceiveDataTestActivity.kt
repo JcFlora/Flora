@@ -14,7 +14,7 @@ class ReceiveDataTestActivity : AppCompatActivity() {
         val btn = Button(this)
         setContentView(btn, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT))
         btn.text = "点击返回并回传数据"
-        btn.setOnClickListener { v ->
+        btn.setOnClickListener { _ ->
             val intent = Intent()
             intent.putExtra("result","ReceiveDataTestActivity")
             setResult(1, intent)

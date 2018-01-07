@@ -44,6 +44,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -706,6 +707,18 @@
             android:name=".apps.component.audio.projects.Audio18Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.audio.projects.Audio19Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.Audio20Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.record.RecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.record.projects.Record1Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.steps.StepsActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -802,7 +815,14 @@
         <service android:name=".apps.component.audio.service.Audio15Service" />
         <service android:name=".apps.component.audio.service.Audio16Service" />
         <service android:name=".apps.component.audio.service.Audio17Service" />
+        <service android:name=".apps.component.audio.service.Audio20Service" />
         <service android:name=".apps.ui.dialog.projects.TestService" />
+
+        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
