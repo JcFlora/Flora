@@ -216,7 +216,6 @@ public class AudioDelegate20 extends Binder {
                 public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
                     long duration = mExoPlayer.getDuration();
                     if(mExoPlayer.isLoading() && duration > 0){
-                        Log.e("aaaaaaaa",duration+"");
                         // 选择或切换的回调
                         for (AudioStatusListener l : mAudioStatusListeners) {
                             l.onSelect(mCurrentMp3Index, (int) duration);
@@ -316,7 +315,8 @@ public class AudioDelegate20 extends Binder {
      * 获取播放位置
      */
     public int getCurrentPosition() {
-        return (int)mExoPlayer.getCurrentPosition();
+        int position = (int)mExoPlayer.getCurrentPosition();
+        return position < 0 ? 0 : position;
     }
 
     /**

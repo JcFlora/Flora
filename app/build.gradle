@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 def SUPPORT_VERSION = "25.4.0"
+def static optVersionName(){
+    return "1.0"+new Date().format("yyyyMMdd",TimeZone.getTimeZone("UTC"))
+}
 android {
     compileSdkVersion 25
 
@@ -9,7 +12,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName optVersionName()
     }
     buildTypes {
         release {

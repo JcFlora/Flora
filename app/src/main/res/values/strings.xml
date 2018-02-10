@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">百花缭乱</string>
-
+    <string name="app_space">&#8194;&#8194;</string>
+    <string name="app_half_space">&#8194;</string>
 </resources>

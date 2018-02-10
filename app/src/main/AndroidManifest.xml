@@ -785,6 +785,13 @@
         <activity
             android:name=".apps.ui.typeface.projects.PhoneticPinyin2Activity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".apps.ui.literacy.LiteracyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.ui.literacy.projects.Literacy1Activity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

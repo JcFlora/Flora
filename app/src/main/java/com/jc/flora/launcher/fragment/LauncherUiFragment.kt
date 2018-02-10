@@ -19,6 +19,7 @@ import com.jc.flora.apps.ui.captain.CaptainActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.apps.ui.dialog.DialogActivity
 import com.jc.flora.apps.ui.list.ListActivity
+import com.jc.flora.apps.ui.literacy.LiteracyActivity
 import com.jc.flora.apps.ui.marquee.MarqueeActivity
 import com.jc.flora.apps.ui.progress.ProgressActivity
 import com.jc.flora.apps.ui.reload.ReloadActivity
@@ -83,7 +84,8 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("进度条", R.mipmap.ic_progress, ProgressActivity::class.java),
                     LauncherApp("贝塞尔曲线", R.mipmap.ic_bezier, BezierActivity::class.java),
 
-                    LauncherApp("特殊字库", R.mipmap.ic_typeface, TypefaceActivity::class.java)
+                    LauncherApp("特殊字库", R.mipmap.ic_typeface, TypefaceActivity::class.java),
+                    LauncherApp("拼音识字", R.mipmap.ic_literacy, LiteracyActivity::class.java)
             )
         }
 
