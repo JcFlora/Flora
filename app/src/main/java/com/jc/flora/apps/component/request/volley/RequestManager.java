@@ -6,7 +6,10 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.util.List;
 
 /**
  * 请求管理器
@@ -52,6 +55,14 @@ public class RequestManager {
             mRequestQueue = Volley.newRequestQueue(mApplicationContext);
         }
         return mRequestQueue;
+    }
+
+    public void createAndAddRequest(int method, String url, Response.Listener<String> listener,
+                                        Response.ErrorListener errorListener) {
+        // 构建Request对象
+        StringRequest request = new StringRequest(method, url, listener, errorListener);
+        // 添加到请求队列
+        addRequestToQueue(request);
     }
 
     public <T> void createAndAddRequest(int method, String url, Response.Listener<T> listener,

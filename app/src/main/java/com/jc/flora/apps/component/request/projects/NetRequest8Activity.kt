@@ -3,18 +3,17 @@ package com.jc.flora.apps.component.request.projects
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
-import com.android.volley.Response
+
 import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
 import com.jc.flora.apps.component.request.NetResponse
-import com.jc.flora.apps.component.request.volley.GetArticleListApi2
+import com.jc.flora.apps.component.request.retrofit.BaseApi
+import com.jc.flora.apps.component.request.retrofit.GetArticleListApi
 
 /**
- * 网络请求经典版：使用Volley+Gson
- * compile 'com.android.volley:volley:1.0.0'
- * compile 'com.google.code.gson:gson:2.8.0'
- * Created by shijincheng on 2017/3/18.
+ * 网络请求最新版：使用Retrofit+RxJava
+ * Created by shijincheng on 2017/1/12.
  */
-class NetRequest5Activity : AppCompatActivity() {
+class NetRequest8Activity : AppCompatActivity() {
 
     private var mTvContent: TextView? = null
     private var mProgressDialogDelegate: ProgressDialogDelegate? = null
@@ -26,17 +25,20 @@ class NetRequest5Activity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        title = "使用Volley+Gson"
+        title = "使用Retrofit+RxJava"
         mTvContent = TextView(this)
         setContentView(mTvContent)
     }
 
     private fun loadData() {
         mProgressDialogDelegate = ProgressDialogDelegate(this)
-        GetArticleListApi2(this, Response.Listener<NetResponse> { response ->
-            mProgressDialogDelegate?.hideLoadingDialog()
-            mTvContent?.text = response.results[0].toString()
-        }).sendRequest("Android", 2, 1)
+        GetArticleListApi().getArticleList("Android", 2, 1)
+                .subscribe(object : BaseApi.ObserverAdapter<NetResponse>() {
+                    override fun onNext(netResponse: NetResponse) {
+                        mProgressDialogDelegate?.hideLoadingDialog()
+                        mTvContent?.text = netResponse.results[0].toString()
+                    }
+                })
         mProgressDialogDelegate?.showLoadingDialog()
     }
 

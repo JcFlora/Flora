@@ -6,15 +6,16 @@ import android.widget.TextView
 import com.android.volley.Response
 import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
 import com.jc.flora.apps.component.request.NetResponse
-import com.jc.flora.apps.component.request.volley.GetArticleListApi2
+import com.jc.flora.apps.component.request.volley.BaseResponse
+import com.jc.flora.apps.component.request.volley.GetArticleListApi3
 
 /**
- * 网络请求经典版：使用Volley+Gson
+ * 网络请求经典版：使用Volley+Gson+通用返回实体
  * compile 'com.android.volley:volley:1.0.0'
  * compile 'com.google.code.gson:gson:2.8.0'
  * Created by shijincheng on 2017/3/18.
  */
-class NetRequest5Activity : AppCompatActivity() {
+class NetRequest6Activity : AppCompatActivity() {
 
     private var mTvContent: TextView? = null
     private var mProgressDialogDelegate: ProgressDialogDelegate? = null
@@ -26,14 +27,14 @@ class NetRequest5Activity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        title = "使用Volley+Gson"
+        title = "使用Volley+Gson+通用返回实体"
         mTvContent = TextView(this)
         setContentView(mTvContent)
     }
 
     private fun loadData() {
         mProgressDialogDelegate = ProgressDialogDelegate(this)
-        GetArticleListApi2(this, Response.Listener<NetResponse> { response ->
+        GetArticleListApi3(this, Response.Listener<BaseResponse.ArticleList> { response ->
             mProgressDialogDelegate?.hideLoadingDialog()
             mTvContent?.text = response.results[0].toString()
         }).sendRequest("Android", 2, 1)

@@ -12,7 +12,7 @@ import java.text.MessageFormat;
  * http://gank.io/api/search/query/listview/category/Android/count/2/page/1
  * Created by shijincheng on 2017/3/18.
  */
-public class GetArticleListApi extends BaseApi {
+public class GetArticleListApi2 extends BaseApi2<NetResponse> {
 
     private static final String HOST = "http://gank.io/api/";
     private static final String GET_ARTICLE_LIST_ACTION = "search/query/listview/category/{0}/count/{1}/page/{2}";
@@ -21,11 +21,11 @@ public class GetArticleListApi extends BaseApi {
     private int mCount = 2;
     private int mPageIndex = 1;
 
-    public GetArticleListApi(AppCompatActivity activity, Response.Listener<String> l) {
+    public GetArticleListApi2(AppCompatActivity activity, Response.Listener<NetResponse> l) {
         super(activity, l);
     }
 
-    public GetArticleListApi(AppCompatActivity activity, Response.Listener<String> l, Response.ErrorListener el) {
+    public GetArticleListApi2(AppCompatActivity activity, Response.Listener<NetResponse> l, Response.ErrorListener el) {
         super(activity, l, el);
     }
 
@@ -46,4 +46,8 @@ public class GetArticleListApi extends BaseApi {
         return MessageFormat.format(GET_ARTICLE_LIST_ACTION, mCategory, mCount, mPageIndex);
     }
 
+//    @Override
+//    protected Class<NetResponse> getRespClass() {
+//        return NetResponse.class;
+//    }
 }

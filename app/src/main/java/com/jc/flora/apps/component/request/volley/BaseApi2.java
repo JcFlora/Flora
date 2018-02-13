@@ -14,12 +14,12 @@ import java.lang.reflect.Type;
  * Api基类
  * Created by shijincheng on 2017/3/18.
  */
-public abstract class BaseApi implements Response.ErrorListener {
+public abstract class BaseApi2<Resp> implements Response.ErrorListener {
 
     /** 当前界面 */
     private AppCompatActivity mActivity;
     /** 返回成功的响应 */
-    private Response.Listener<String> mListener;
+    private Response.Listener<Resp> mListener;
     /** 返回失败的响应 */
     private Response.ErrorListener mErrorListener;
 
@@ -29,7 +29,7 @@ public abstract class BaseApi implements Response.ErrorListener {
      * @param activity 当前界面
      * @param l        返回成功的响应
      */
-    public BaseApi(AppCompatActivity activity, Response.Listener<String> l) {
+    public BaseApi2(AppCompatActivity activity, Response.Listener<Resp> l) {
         mActivity = activity;
         mListener = l;
         mErrorListener = this;
@@ -42,7 +42,7 @@ public abstract class BaseApi implements Response.ErrorListener {
      * @param l  返回成功的响应
      * @param el 返回失败的响应
      */
-    public BaseApi(AppCompatActivity activity, Response.Listener<String> l, Response.ErrorListener el) {
+    public BaseApi2(AppCompatActivity activity, Response.Listener<Resp> l, Response.ErrorListener el) {
         mActivity = activity;
         mListener = l;
         mErrorListener = el;
@@ -51,7 +51,7 @@ public abstract class BaseApi implements Response.ErrorListener {
     /** 发送请求 */
     protected void sendRequest() {
         RequestManager.getInstance(mActivity).createAndAddRequest(Request.Method.GET, getHost() + getAction(),
-                mListener, mErrorListener);
+                mListener, mErrorListener, getClass().getSimpleName(), getRespClass());
     }
 
 //    protected abstract int getMethod();
@@ -61,6 +61,17 @@ public abstract class BaseApi implements Response.ErrorListener {
 
     /** 设置Action */
     protected abstract String getAction();
+
+    /** 设置返回数据格式 */
+    protected Class<Resp> getRespClass(){
+        // Type是Java中所有类型的公共高级接口
+        // ParameterizedType是参数化类型，即泛型
+        ParameterizedType genType = (ParameterizedType) getClass().getGenericSuperclass();
+        // getActualTypeArguments获取参数化类型的数组，泛型可能有多个
+        Type[] params = genType.getActualTypeArguments();
+        // 泛型只有一个的时候，第1个即为泛型
+        return (Class<Resp>) params[0];
+    }
 
     /** 返回失败的默认响应 */
     public void onErrorResponse(VolleyError error) {

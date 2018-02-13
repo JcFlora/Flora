@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Gson请求
  * compile 'com.android.volley:volley:1.0.0'
- * compile 'com.google.code.gson:gson:2.4'
+ * compile 'com.google.code.gson:gson:2.8.0'
  * Created by shijincheng on 2017/3/18.
  */
 public class GsonRequest<Resp> extends Request<Resp> {

@@ -5,13 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.android.volley.Response
 import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
-import com.jc.flora.apps.component.request.NetResponse
 import com.jc.flora.apps.component.request.volley.GetArticleListApi
 
 /**
- * 网络请求经典版：使用Volley+Gson
+ * 网络请求经典版：使用Volley请求，String接收
  * compile 'com.android.volley:volley:1.0.0'
- * compile 'com.google.code.gson:gson:2.4'
  * Created by shijincheng on 2017/3/18.
  */
 class NetRequest4Activity : AppCompatActivity() {
@@ -26,16 +24,16 @@ class NetRequest4Activity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        title = "使用Volley+Gson"
+        title = "使用Volley请求，String接收"
         mTvContent = TextView(this)
         setContentView(mTvContent)
     }
 
     private fun loadData() {
         mProgressDialogDelegate = ProgressDialogDelegate(this)
-        GetArticleListApi(this, Response.Listener<NetResponse> { response ->
+        GetArticleListApi(this, Response.Listener<String> { response ->
             mProgressDialogDelegate?.hideLoadingDialog()
-            mTvContent?.text = response.results[0].toString()
+            mTvContent?.text = response
         }).sendRequest("Android", 2, 1)
         mProgressDialogDelegate?.showLoadingDialog()
     }

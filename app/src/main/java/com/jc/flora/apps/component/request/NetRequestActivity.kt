@@ -7,10 +7,8 @@ import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.component.request.projects.NetRequest1Activity
-import com.jc.flora.apps.component.request.projects.NetRequest2Activity
-import com.jc.flora.apps.component.request.projects.NetRequest4Activity
-import com.jc.flora.apps.component.request.projects.NetRequest5Activity
+import com.jc.flora.apps.component.request.projects.*
+import com.jc.flora.launcher.NotFoundActivity
 import java.util.ArrayList
 
 class NetRequestActivity : AppCompatActivity() {
@@ -30,7 +28,7 @@ class NetRequestActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project4, project5)
+            return arrayListOf(project1, project2, project4, project5, project6, project8)
         }
 
     private val project1: Project
@@ -49,10 +47,18 @@ class NetRequestActivity : AppCompatActivity() {
             return project
         }
 
+    private val project3: Project
+        get() {
+            val project = Project()
+            project.projectName = "网络请求0.3，将HttpURLConnection请求网络封装成框架"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.4，使用Volley+Gson"
+            project.projectName = "网络请求0.4，使用Volley请求，String接收"
             project.targetActivity = NetRequest4Activity::class.java
             return project
         }
@@ -60,8 +66,24 @@ class NetRequestActivity : AppCompatActivity() {
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.5，使用Retrofit+RxJava"
+            project.projectName = "网络请求0.5，使用Volley+Gson"
             project.targetActivity = NetRequest5Activity::class.java
+            return project
+        }
+
+    private val project6: Project
+        get() {
+            val project = Project()
+            project.projectName = "网络请求0.6，使用Volley+Gson+通用返回实体"
+            project.targetActivity = NetRequest6Activity::class.java
+            return project
+        }
+
+    private val project8: Project
+        get() {
+            val project = Project()
+            project.projectName = "网络请求0.8，使用Retrofit+RxJava"
+            project.targetActivity = NetRequest8Activity::class.java
             return project
         }
 
