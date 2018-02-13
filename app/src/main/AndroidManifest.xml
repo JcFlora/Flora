@@ -152,6 +152,12 @@
             android:name=".apps.component.request.projects.NetRequest5Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.request.projects.NetRequest6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.request.projects.NetRequest8Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.dialog.DialogActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -744,6 +750,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.ui.list.projects.ListSlip4Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.ui.nest.NestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.ui.nest.projects.Nest1Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.scene.payment.PaymentActivity"

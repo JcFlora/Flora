@@ -21,6 +21,7 @@ import com.jc.flora.apps.ui.dialog.DialogActivity
 import com.jc.flora.apps.ui.list.ListActivity
 import com.jc.flora.apps.ui.literacy.LiteracyActivity
 import com.jc.flora.apps.ui.marquee.MarqueeActivity
+import com.jc.flora.apps.ui.nest.NestActivity
 import com.jc.flora.apps.ui.progress.ProgressActivity
 import com.jc.flora.apps.ui.reload.ReloadActivity
 import com.jc.flora.apps.ui.shape.ShapeActivity
@@ -79,11 +80,12 @@ class LauncherUiFragment : CaptainFragment() {
                     LauncherApp("模糊效果", R.mipmap.ic_blur, BlurActivity::class.java),
                     LauncherApp("图像处理", R.mipmap.ic_ps, BlurActivity::class.java),
 
-                    LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
+                    LauncherApp("嵌套显示", R.mipmap.ic_nest, NestActivity::class.java),
                     LauncherApp("分步完成", R.mipmap.ic_steps, StepsActivity::class.java),
                     LauncherApp("进度条", R.mipmap.ic_progress, ProgressActivity::class.java),
                     LauncherApp("贝塞尔曲线", R.mipmap.ic_bezier, BezierActivity::class.java),
 
+                    LauncherApp("弧形布局", R.mipmap.ic_arc, ArcLayoutActivity::class.java),
                     LauncherApp("特殊字库", R.mipmap.ic_typeface, TypefaceActivity::class.java),
                     LauncherApp("拼音识字", R.mipmap.ic_literacy, LiteracyActivity::class.java)
             )

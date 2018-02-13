@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 def SUPPORT_VERSION = "25.4.0"
 def static optVersionName(){
-    return "1.0"+new Date().format("yyyyMMdd",TimeZone.getTimeZone("UTC"))
+    return "1.0."+new Date().format("yyyy_MM_dd",TimeZone.getTimeZone("UTC"))
 }
 android {
     compileSdkVersion 25
