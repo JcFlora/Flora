@@ -12,10 +12,8 @@ import java.util.List;
  * http://gank.io/api/search/query/listview/category/Android/count/2/page/1
  * Created by shijincheng on 2017/1/13.
  */
-public class NetResponse {
+public class NetResponse extends BaseResponse{
 
-    public int count;
-    public boolean error;
     public List<Result> results = new ArrayList<>();
 
     public NetResponse(){}

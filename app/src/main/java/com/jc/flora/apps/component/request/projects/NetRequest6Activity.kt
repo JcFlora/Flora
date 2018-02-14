@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.android.volley.Response
-import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
 import com.jc.flora.apps.component.request.NetResponse
-import com.jc.flora.apps.component.request.volley.BaseResponse
+import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
 import com.jc.flora.apps.component.request.volley.GetArticleListApi3
 
 /**
@@ -34,7 +33,7 @@ class NetRequest6Activity : AppCompatActivity() {
 
     private fun loadData() {
         mProgressDialogDelegate = ProgressDialogDelegate(this)
-        GetArticleListApi3(this, Response.Listener<BaseResponse.ArticleList> { response ->
+        GetArticleListApi3(this, Response.Listener<NetResponse> { response ->
             mProgressDialogDelegate?.hideLoadingDialog()
             mTvContent?.text = response.results[0].toString()
         }).sendRequest("Android", 2, 1)

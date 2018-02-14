@@ -28,7 +28,8 @@ class NetRequestActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project4, project5, project6, project8)
+            return arrayListOf(project1, project2, project4, project5,
+                    project6, project7, project8)
         }
 
     private val project1: Project
@@ -79,10 +80,18 @@ class NetRequestActivity : AppCompatActivity() {
             return project
         }
 
+    private val project7: Project
+        get() {
+            val project = Project()
+            project.projectName = "网络请求0.7，使用Retrofit+RxJava，String接收"
+            project.targetActivity = NetRequest7Activity::class.java
+            return project
+        }
+
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.8，使用Retrofit+RxJava"
+            project.projectName = "网络请求0.8，使用Retrofit+RxJava+Gson"
             project.targetActivity = NetRequest8Activity::class.java
             return project
         }

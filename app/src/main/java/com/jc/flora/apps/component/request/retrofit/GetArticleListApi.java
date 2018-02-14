@@ -19,11 +19,22 @@ public class GetArticleListApi extends BaseApi {
 
     private interface GetArticleListService {
         @GET(GET_ARTICLE_LIST_ACTION)
-        Observable<NetResponse> getArticleList(@Path("category") String category, @Path("count") int count, @Path("pageIndex") int pageIndex);
+        Observable<String> getArticleList(@Path("category") String category,
+                                                @Path("count") int count,
+                                                @Path("pageIndex") int pageIndex);
+        @GET(GET_ARTICLE_LIST_ACTION)
+        Observable<NetResponse> getArticleList2(@Path("category") String category,
+                                               @Path("count") int count,
+                                               @Path("pageIndex") int pageIndex);
     }
 
-    public Observable<NetResponse> getArticleList(String category, int count, int pageIndex) {
-        return getRetrofit().create(GetArticleListService.class).getArticleList(category, count, pageIndex)
+    public Observable<String> getArticleList(String category, int count, int pageIndex) {
+        return getStringRetrofit().create(GetArticleListService.class).getArticleList(category, count, pageIndex)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<NetResponse> getArticleList2(String category, int count, int pageIndex) {
+        return getGsonRetrofit().create(GetArticleListService.class).getArticleList2(category, count, pageIndex)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 

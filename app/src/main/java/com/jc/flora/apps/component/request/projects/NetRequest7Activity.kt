@@ -10,10 +10,10 @@ import com.jc.flora.apps.component.request.retrofit.BaseApi
 import com.jc.flora.apps.component.request.retrofit.GetArticleListApi
 
 /**
- * 网络请求最新版：使用Retrofit+RxJava+Gson
+ * 网络请求最新版：使用Retrofit+RxJava，String接收
  * Created by shijincheng on 2017/1/12.
  */
-class NetRequest8Activity : AppCompatActivity() {
+class NetRequest7Activity : AppCompatActivity() {
 
     private var mTvContent: TextView? = null
     private var mProgressDialogDelegate: ProgressDialogDelegate? = null
@@ -25,18 +25,18 @@ class NetRequest8Activity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        title = "使用Retrofit+RxJava+Gson"
+        title = "使用Retrofit+RxJava，String接收"
         mTvContent = TextView(this)
         setContentView(mTvContent)
     }
 
     private fun loadData() {
         mProgressDialogDelegate = ProgressDialogDelegate(this)
-        GetArticleListApi().getArticleList2("Android", 2, 1)
-                .subscribe(object : BaseApi.ObserverAdapter<NetResponse>() {
-                    override fun onNext(netResponse: NetResponse) {
+        GetArticleListApi().getArticleList("Android", 2, 1)
+                .subscribe(object : BaseApi.ObserverAdapter<String>() {
+                    override fun onNext(netResponse: String) {
                         mProgressDialogDelegate?.hideLoadingDialog()
-                        mTvContent?.text = netResponse.results[0].toString()
+                        mTvContent?.text = netResponse
                     }
                 })
         mProgressDialogDelegate?.showLoadingDialog()

@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Api基类
@@ -24,13 +25,29 @@ public class BaseApi {
 
     private static final String HOST = "http://gank.io/api/";
 
-    protected Retrofit getRetrofit(){
-        return sRetrofit;
+    protected Retrofit getStringRetrofit(){
+        return sStringRetrofit;
     }
 
-    private static Retrofit sRetrofit = initRetrofit();
+    protected Retrofit getGsonRetrofit(){
+        return sGsonRetrofit;
+    }
 
-    private static Retrofit initRetrofit() {
+    private static Retrofit sStringRetrofit = initStringRetrofit();
+
+    private static Retrofit sGsonRetrofit = initGsonRetrofit();
+
+    private static Retrofit initStringRetrofit() {
+        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(new GzipRequestInterceptor()).build();
+        return new Retrofit.Builder()
+                .baseUrl(HOST)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    private static Retrofit initGsonRetrofit() {
         OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(new GzipRequestInterceptor()).build();
         //使用GsonBuilder创建Gson，统一日期请求格式
         Gson gson = new GsonBuilder()
