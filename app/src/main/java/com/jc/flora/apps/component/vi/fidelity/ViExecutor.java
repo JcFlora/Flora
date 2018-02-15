@@ -10,7 +10,7 @@ import android.widget.TextView;
 /**
  * 适配执行器
  */
-public final class ViExecutor {
+final class ViExecutor {
 
     /** Vi数据投放器 */
     private ViDataDelivery mDataDelivery;
@@ -25,7 +25,7 @@ public final class ViExecutor {
      *
      * @param dataDelivery Vi数据投放器
      */
-    protected ViExecutor(ViDataDelivery dataDelivery) {
+    ViExecutor(ViDataDelivery dataDelivery) {
         this(dataDelivery, false);
     }
 
@@ -34,7 +34,7 @@ public final class ViExecutor {
      *
      * @param dataDelivery Vi数据投放器
      */
-    protected ViExecutor(ViDataDelivery dataDelivery, boolean isHeightScaleMode) {
+    ViExecutor(ViDataDelivery dataDelivery, boolean isHeightScaleMode) {
         mDataDelivery = dataDelivery;
         mScale = isHeightScaleMode ? dataDelivery.mHeightScale : dataDelivery.mWidthScale;
         mSide = isHeightScaleMode ? dataDelivery.mScreenHeight : dataDelivery.mScreenWidth;
@@ -90,7 +90,7 @@ public final class ViExecutor {
      * @param v         适配控件
      * @param hifiWidth 高保真宽度
      */
-    protected void setWidth(View v, double hifiWidth) {
+    void setWidth(View v, double hifiWidth) {
         if (!isViEnable(v)) {
             return;
         }
@@ -105,7 +105,7 @@ public final class ViExecutor {
      * @param v          适配控件
      * @param hifiHeight 高保真高度
      */
-    protected void setHeight(View v, double hifiHeight) {
+    void setHeight(View v, double hifiHeight) {
         if (!isViEnable(v)) {
             return;
         }
@@ -121,7 +121,7 @@ public final class ViExecutor {
      * @param hifiWidth 高保真宽度
      * @param hifiHeight 高保真高度
      */
-    protected void setWidthHeight(View v, double hifiWidth, double hifiHeight) {
+    void setWidthHeight(View v, double hifiWidth, double hifiHeight) {
         if (!isViEnable(v)) {
             return;
         }
@@ -137,7 +137,7 @@ public final class ViExecutor {
      * @param v              适配控件
      * @param hifiWidthScale 高保真宽度比例
      */
-    protected void setWidthByScale(View v, double hifiWidthScale) {
+    void setWidthByScale(View v, double hifiWidthScale) {
         if (!isViEnable(v)) {
             return;
         }
@@ -152,7 +152,7 @@ public final class ViExecutor {
      * @param v               适配控件
      * @param hifiHeightScale 高保真高度比例
      */
-    protected void setHeightByScale(View v, double hifiHeightScale) {
+    void setHeightByScale(View v, double hifiHeightScale) {
         if (!isViEnable(v)) {
             return;
         }
@@ -168,7 +168,7 @@ public final class ViExecutor {
      * @param hifiWidthScale 高保真宽度比例
      * @param hifiHeightScale 高保真高度比例
      */
-    protected void setWidthHeightByScale(View v, double hifiWidthScale, double hifiHeightScale) {
+    void setWidthHeightByScale(View v, double hifiWidthScale, double hifiHeightScale) {
         if (!isViEnable(v)) {
             return;
         }
@@ -185,7 +185,7 @@ public final class ViExecutor {
      * @param hifiHeightWidthRatio 高保真宽度高度比例
      */
     @Deprecated
-    protected void setHeightOnLayouted(final View v, final double hifiHeightWidthRatio) {
+    void setHeightOnLayouted(final View v, final double hifiHeightWidthRatio) {
         if (hifiHeightWidthRatio <= 0 || !isViEnable(v)) {
             return;
         }
@@ -215,7 +215,7 @@ public final class ViExecutor {
      * @param tv           文本控件
      * @param hifiTextSize 高保真字体大小
      */
-    protected void setTextSize(TextView tv, int hifiTextSize) {
+    void setTextSize(TextView tv, int hifiTextSize) {
         if (tv == null) {
             return;
         }
@@ -224,13 +224,13 @@ public final class ViExecutor {
     }
 
     /**
-     * 获取适配后的尺寸，单位px
+     * hifi转换为px
      *
-     * @param hifiDimen 高保真中给出的尺寸
+     * @param hifiValue 高保真中给出的尺寸
      * @return 适配后的尺寸
      */
-    protected double getViDimen(double hifiDimen) {
-        return hifiDimen * mScale;
+    double hifi2px(double hifiValue) {
+        return mScale * hifiValue;
     }
 
     /**
@@ -239,7 +239,7 @@ public final class ViExecutor {
      * @param dpValue dp值
      * @return px值
      */
-    protected double dp2px(double dpValue) {
+    double dp2px(double dpValue) {
         return mDataDelivery.mDensity * dpValue;
     }
 

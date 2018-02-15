@@ -107,7 +107,7 @@ public class Render {
         int index = textSize.ordinal();
         int px = mResources.getDimensionPixelSize(TEXT_SIZE_RES[index]);
         if(index >= 5){
-            px = (int) mFidelity.getViDimen(px);
+            px = (int) mFidelity.hifi2px(px);
         }
         return px;
     }

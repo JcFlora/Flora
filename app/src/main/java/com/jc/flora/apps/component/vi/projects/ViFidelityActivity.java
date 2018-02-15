@@ -1,5 +1,6 @@
 package com.jc.flora.apps.component.vi.projects;
 
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -7,7 +8,6 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.vi.fidelity.Fidelity;
-import com.jc.flora.apps.component.vi.fidelity.ViSettingConstants;
 
 /**
  * Created by Samurai on 2017/6/7.
@@ -20,8 +20,8 @@ public class ViFidelityActivity extends AppCompatActivity {
     private TextView mTvViText14;
     private TextView mTvViText20;
     private TextView mTvViText30;
-    private TextView mTvViDimens200;
-    private TextView mTvViDimens400;
+    private TextView mTvViDimens200px;
+    private TextView mTvViDimens400px;
     private TextView mTvViDimens200dp;
 
     @Override
@@ -40,17 +40,16 @@ public class ViFidelityActivity extends AppCompatActivity {
         mTvViText14 = (TextView) findViewById(R.id.tv_vi_text_14);
         mTvViText20 = (TextView) findViewById(R.id.tv_vi_text_20);
         mTvViText30 = (TextView) findViewById(R.id.tv_vi_text_30);
-        mTvViDimens200 = (TextView) findViewById(R.id.tv_vi_dimens_200);
-        mTvViDimens400 = (TextView) findViewById(R.id.tv_vi_dimens_400);
+        mTvViDimens200px = (TextView) findViewById(R.id.tv_vi_dimens_200px);
+        mTvViDimens400px = (TextView) findViewById(R.id.tv_vi_dimens_400px);
         mTvViDimens200dp = (TextView) findViewById(R.id.tv_vi_dimens_200dp);
     }
 
     private void initViews(){
-
-        // 获取设计稿标准宽度和高度的常量
-        String hifiResolution = ViSettingConstants.HIFI_WIDTH+ "X" +ViSettingConstants.HIFI_HEIGHT;
+        // 高保真组件初始化，真实项目中请在Application的onCreate()方法中调用
+        Fidelity.init(this,720,1280);
         // 打印设计稿的标准分辨率
-        mTvHifiResolution.setText("设计稿标准分辨率："+hifiResolution);
+        mTvHifiResolution.setText("设计稿标准分辨率：" + 720 + "X" + 1280);
 
         // 获取默认的高保真组件（默认以宽度基准进行适配）
         Fidelity fidelity = Fidelity.getInstance(this);
@@ -69,15 +68,21 @@ public class ViFidelityActivity extends AppCompatActivity {
         fidelity.setTextSize(mTvViText30, 30);
 
         // 适配设计稿200px的尺寸
-        int dimens200 = (int) (fidelity.getViDimen(200) + 0.5);
-        mTvViDimens200.setText("200px适配后的实际尺寸：" + dimens200);
+        int dimens200px = (int) (fidelity.hifi2px(200) + 0.5);
+        mTvViDimens200px.setText("200px适配后的实际尺寸：" + dimens200px);
         // 适配设计稿400px的尺寸
-        int dimens400 = (int) (fidelity.getViDimen(400) + 0.5);
-        mTvViDimens400.setText("400px适配后的实际尺寸：" + dimens400);
+        int dimens400px = (int) (fidelity.hifi2px(400) + 0.5);
+        mTvViDimens400px.setText("400px适配后的实际尺寸：" + dimens400px);
 
         // 获取200dp在当前手机上的px值
         int dimens200dp = (int) (fidelity.dp2px(200) + 0.5);
         mTvViDimens200dp.setText("200dp适配后的实际尺寸：" + dimens200dp);
     }
 
+    @Override
+    protected void onDestroy() {
+        // 释放资源，真实项目中请在Application的onDestroy()方法中调用
+        Fidelity.destroy();
+        super.onDestroy();
+    }
 }

@@ -46,7 +46,7 @@ public class CustomDialogDelegate {
         mDialog.getWindow().setBackgroundDrawable(
                 ShapeDelegate.getSolidCornerDrawable(20, 0xffffffff));
         // 重设对话框宽度
-        setDialogWidth((int) Fidelity.getInstance(mActivity).getViDimen(640));
+        setDialogWidth((int) Fidelity.getInstance(mActivity).hifi2px(640));
     }
 
     private void onCreateViewHolder(){

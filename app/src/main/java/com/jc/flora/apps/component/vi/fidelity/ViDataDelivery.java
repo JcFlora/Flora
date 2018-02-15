@@ -6,25 +6,41 @@ import android.util.DisplayMetrics;
 /**
  * Vi数据投放器
  */
-public final class ViDataDelivery {
+final class ViDataDelivery {
+
+    /** 高保真宽度 */
+    static int sHifiWidth = 720;
+    /** 高保真高度 */
+    static int sHifiHeight = 1280;
+    /** 是否是手机屏幕（高保真宽度小于高保真高度） */
+    static boolean sIsPhone = true;
 
     /** 实际屏幕宽度 */
-    protected int mScreenWidth;
+    int mScreenWidth;
     /** 实际屏幕高度 */
-    protected int mScreenHeight;
+    int mScreenHeight;
     /** 实际屏幕宽度与高保真宽度比例 */
-    protected double mWidthScale;
+    double mWidthScale;
     /** 实际屏幕高度与高保真高度比例 */
-    protected double mHeightScale;
+    double mHeightScale;
     /** 像素/点数 */
-    protected float mDensity;
+    float mDensity;
+
+    public static void initStatic(int hifiWidth, int hifiHeight){
+        if(hifiWidth <= 0 || hifiHeight <= 0){
+            return;
+        }
+        sHifiWidth = hifiWidth;
+        sHifiHeight = hifiHeight;
+        sIsPhone = hifiWidth <= hifiHeight;
+    }
 
     /**
      * Vi数据投放器
      *
      * @param context 当前上下文
      */
-    protected ViDataDelivery(Context context) {
+    ViDataDelivery(Context context) {
         initWidthAndHeight(context);
         initScale();
         checkWidthAndHeight();
@@ -44,19 +60,17 @@ public final class ViDataDelivery {
 
     /** 初始化实际屏幕宽度比例和屏幕高度比例 */
     private void initScale() {
-        mWidthScale = 1.0 * mScreenWidth / ViSettingConstants.HIFI_WIDTH;
-        mHeightScale = 1.0 * mScreenHeight / ViSettingConstants.HIFI_HEIGHT;
+        mWidthScale = 1.0 * mScreenWidth / sHifiWidth;
+        mHeightScale = 1.0 * mScreenHeight / sHifiHeight;
     }
 
-    /** 检查屏幕宽度高度是否和模式一致 */
+    /** 检查实际屏幕宽度高度是否和高保真模式一致 */
     private void checkWidthAndHeight() {
-        // 屏幕模式
-        boolean isPhone = ViSettingConstants.SCREEN_TYPE == ViSettingConstants.ScreenType.PHONE;
         // 宽度是否小于高度
         boolean isWidthLtHeight = mScreenWidth <= mScreenHeight;
         // 手机模式，宽度小于高度；平板模式，宽度大于高度
-        // 如果isPhone和isWidthLtHeight不一致，则交换宽高度和缩放比例
-        if (isPhone ^ isWidthLtHeight) {
+        // 如果sIsPhone和isWidthLtHeight不一致，则交换宽高度和缩放比例
+        if (sIsPhone ^ isWidthLtHeight) {
             swapWidthAndHeight();
             swapScale();
         }

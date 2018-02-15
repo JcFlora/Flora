@@ -13,19 +13,47 @@ public final class Fidelity {
     private static volatile Fidelity sWidthScaleInstance;
     /** 高保真组件 */
     private static volatile Fidelity sHeightScaleInstance;
+    /** 高保真组件守护器，在系统配置发生变化时，重启高保真组件 */
+    private static ViDaemon sDaemon;
     /** 适配执行器 */
     private ViExecutor mExecutor;
     /** 数据投放器 */
     private ViDataDelivery mDataDelivery;
 
     /**
-     * 高保真组件，单例外观类，对外提供简单Api
-     *
-     * @param context 当前上下文
+     * 初始化，建议在Application的onCreate()方法中调用
+     * @param context 上下文
      */
-    private Fidelity(Context context, boolean isHeightScaleMode) {
-        mDataDelivery = new ViDataDelivery(context);
-        mExecutor = new ViExecutor(mDataDelivery, isHeightScaleMode);
+    public static void init(Context context){
+        sWidthScaleInstance = null;
+        sHeightScaleInstance = null;
+        if(sDaemon == null){
+            sDaemon = new ViDaemon(context);
+            sDaemon.registerReceiver();
+        }
+    }
+
+    /**
+     * 初始化，建议在Application的onCreate()方法中调用
+     * @param context 上下文
+     * @param hifiWidth 高保真宽度
+     * @param hifiHeight 高保真高度
+     */
+    public static void init(Context context, int hifiWidth, int hifiHeight){
+        init(context);
+        ViDataDelivery.initStatic(hifiWidth,hifiHeight);
+    }
+
+    /**
+     * 释放资源，建议在Application的onDestroy()方法中调用
+     */
+    public static void destroy(){
+        if(sDaemon != null){
+            sDaemon.unregisterReceiver();
+            sDaemon = null;
+        }
+        sWidthScaleInstance = null;
+        sHeightScaleInstance = null;
     }
 
     /**
@@ -70,6 +98,16 @@ public final class Fidelity {
             }
         }
         return sHeightScaleInstance;
+    }
+
+    /**
+     * 高保真组件，单例外观类，对外提供简单Api
+     *
+     * @param context 当前上下文
+     */
+    private Fidelity(Context context, boolean isHeightScaleMode) {
+        mDataDelivery = new ViDataDelivery(context);
+        mExecutor = new ViExecutor(mDataDelivery, isHeightScaleMode);
     }
 
     /**
@@ -130,8 +168,7 @@ public final class Fidelity {
      * @param hifiWidthScale  高保真宽度比例
      * @param hifiHeightScale 高保真高度比例
      */
-    public void setWidthHeightByScale(View v, double hifiWidthScale,
-                                      double hifiHeightScale) {
+    public void setWidthHeightByScale(View v, double hifiWidthScale, double hifiHeightScale) {
         mExecutor.setWidthHeightByScale(v, hifiWidthScale, hifiHeightScale);
     }
 
@@ -157,13 +194,13 @@ public final class Fidelity {
     }
 
     /**
-     * 获取适配后的尺寸，单位px
+     * hifi转换为px
      *
-     * @param hifiDimen 高保真中给出的尺寸
+     * @param hifiValue 高保真中给出的尺寸
      * @return 适配后的尺寸
      */
-    public double getViDimen(double hifiDimen) {
-        return mExecutor.getViDimen(hifiDimen);
+    public double hifi2px(double hifiValue) {
+        return mExecutor.hifi2px(hifiValue);
     }
 
     /**
