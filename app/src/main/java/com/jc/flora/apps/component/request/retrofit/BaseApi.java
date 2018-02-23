@@ -14,40 +14,25 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Api基类
- * compile "com.squareup.retrofit2:retrofit:2.3.0"
- * compile "com.squareup.retrofit2:converter-gson:2.3.0"
- * compile "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
- * compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
- * compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+ * implementation "com.squareup.retrofit2:retrofit:2.3.0"
+ * implementation "com.squareup.retrofit2:converter-scalars:2.3.0"
+ * implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+ * implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+ * implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+ * implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
  * Created by shijincheng on 2017/3/20.
  */
 public class BaseApi {
 
     private static final String HOST = "http://gank.io/api/";
 
-    protected Retrofit getStringRetrofit(){
-        return sStringRetrofit;
+    protected Retrofit getRetrofit(){
+        return sRetrofit;
     }
 
-    protected Retrofit getGsonRetrofit(){
-        return sGsonRetrofit;
-    }
+    private static Retrofit sRetrofit = initRetrofit();
 
-    private static Retrofit sStringRetrofit = initStringRetrofit();
-
-    private static Retrofit sGsonRetrofit = initGsonRetrofit();
-
-    private static Retrofit initStringRetrofit() {
-        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(new GzipRequestInterceptor()).build();
-        return new Retrofit.Builder()
-                .baseUrl(HOST)
-                .client(httpClient)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-    }
-
-    private static Retrofit initGsonRetrofit() {
+    private static Retrofit initRetrofit() {
         OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(new GzipRequestInterceptor()).build();
         //使用GsonBuilder创建Gson，统一日期请求格式
         Gson gson = new GsonBuilder()
@@ -56,6 +41,7 @@ public class BaseApi {
         return new Retrofit.Builder()
                 .baseUrl(HOST)
                 .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
