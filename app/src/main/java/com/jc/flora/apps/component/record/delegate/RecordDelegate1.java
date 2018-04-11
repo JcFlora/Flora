@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * <uses-permission android:name="android.permission.RECORD_AUDIO" />
  * <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
  * Created by shijincheng on 2017/11/18.
  */

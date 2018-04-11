@@ -59,7 +59,7 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("退出功能", R.mipmap.ic_exit, ExitActivity::class.java),
                     LauncherApp("版本升级", R.mipmap.ic_upgrade, UpgradeActivity::class.java),
                     LauncherApp("页面路由", R.mipmap.ic_router, RouterActivity::class.java),
-                    LauncherApp("混合开发", R.mipmap.ic_hybrid, HybridActivity::class.java),
+                    LauncherApp("数据统计", R.mipmap.ic_statistics, StatisticsActivity::class.java),
 
                     LauncherApp("网络请求", R.mipmap.ic_net, NetRequestActivity::class.java),
                     LauncherApp("图片加载", R.mipmap.ic_image, ImageLoadActivity::class.java),
@@ -68,8 +68,8 @@ class LauncherComponentFragment : CaptainFragment() {
 
                     LauncherApp("本地缓存", R.mipmap.ic_cache, NotFoundActivity::class.java),
                     LauncherApp("数据库", R.mipmap.ic_db, NotFoundActivity::class.java),
-                    LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java),
-                    LauncherApp("数据统计", R.mipmap.ic_statistics, StatisticsActivity::class.java),
+                    LauncherApp("混合开发", R.mipmap.ic_hybrid, HybridActivity::class.java),
+                    LauncherApp("本地开发", R.mipmap.ic_native, NotFoundActivity::class.java),
 
                     LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
@@ -77,7 +77,8 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("录制音频", R.mipmap.ic_record, RecordActivity::class.java),
 
                     LauncherApp("组件通信", R.mipmap.ic_signal, NotFoundActivity::class.java),
-                    LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java)
+                    LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java),
+                    LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java)
             )
         }
 

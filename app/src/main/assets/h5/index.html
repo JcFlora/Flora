@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>移动客户端H5登录测试页面</title>
+    <style type="text/css">
+        *{ margin: 0; padding: 0; list-style-type: none; }
+        a, img{ border: 0; }
+        body { font: 12px/180% Arial, Helvetica, sans-serif; }
+    </style>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="jquery-1.9.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".cd-form input.full-width").width($(".cd-form").width() - 72);
+            $(".full-width2").click(function() {
+                if(window.sso != null && window.sso.funCallback != null){
+                    var username = $(".bdqh[ref='1']").find("input[type='text']").val();
+                    var pass = $(".bdqh[ref='1']").find("input[type='password']").val();
+                    window.sso.funCallback(username, pass);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="Title">移动客户端H5登录测试页面</div>
+<form method="post" action="./SignInApp.aspx" id="Div1">
+    <div class="cd-user-modal">
+        <div class="cd-user-modal-container">
+            <ul class="cd-switcher">
+                <li class="li_on" rel="itemli">用户名登录</li>
+            </ul>
+            <div class="bdqhbox">
+                <div id="Div2" class="bdqh" style="display: block;" ref="1">
+                    <!-- 注册表单 -->
+                    <div class="cd-form">
+                        <p class="fieldset">
+                            <label class="image-replace cd-username"
+                                   for="signin-username">用户名</label>
+                            <input name="signinusername3" id="signinusername3"
+                                   class="full-width has-padding has-border" placeholder="输入用户名"
+                                   type="text">
+                        </p>
+                        <p class="fieldset">
+                            <label class="image-replace cd-password"
+                                   for="signin-password">密码</label>
+                            <input name="signinpassword3" id="signinpassword3"
+                                   class="full-width has-padding has-border" placeholder="输入密码"
+                                   type="password">
+                        </p>
+                        <div class="diverror"
+                             style="display: none; text-align: center; color: Red;">
+                        </div>
+                        <p class="fieldset">
+                            <input class="full-width2" value="登 录" type="button">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
