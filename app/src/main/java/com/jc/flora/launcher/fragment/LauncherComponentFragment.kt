@@ -71,10 +71,10 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("混合开发", R.mipmap.ic_hybrid, HybridActivity::class.java),
                     LauncherApp("本地开发", R.mipmap.ic_native, NotFoundActivity::class.java),
 
-                    LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
-                    LauncherApp("录制视频", R.mipmap.ic_video, NotFoundActivity::class.java),
                     LauncherApp("录制音频", R.mipmap.ic_record, RecordActivity::class.java),
+                    LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),
+                    LauncherApp("录制视频", R.mipmap.ic_dv, NotFoundActivity::class.java),
 
                     LauncherApp("组件通信", R.mipmap.ic_signal, NotFoundActivity::class.java),
                     LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java),
