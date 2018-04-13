@@ -5,29 +5,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.ndk.delegate.NativeDelegate1;
+import com.jc.flora.apps.component.ndk.delegate.NativeDelegate2;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
  * Created by Shijincheng on 2018/4/13.
  */
 
-public class Ndk1Activity extends AppCompatActivity {
+public class Ndk2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("最基础的JNI调用");
-        setContentView(R.layout.activity_ndk1);
+        setTitle("以源码的形式编译Lame动态库");
+        setContentView(R.layout.activity_ndk2);
     }
 
-    public void callJni(View v) {
-        String s = new NativeDelegate1().getStringFromJni();
-        ToastDelegate.show(this, s);
-    }
-
-    public void callJava(View v) {
-        String s = new NativeDelegate1().callJavaMethod();
+    public void showLameVersion(View v) {
+        String s = new NativeDelegate2().getLameVersion();
         ToastDelegate.show(this, s);
     }
 

@@ -72,4 +72,6 @@ public class NativeDelegate1 {
 
     public native String getStringFromJni();
 
+    public native String callJavaMethod();
+
 }
