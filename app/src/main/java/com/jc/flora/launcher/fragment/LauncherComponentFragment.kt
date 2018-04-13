@@ -12,6 +12,7 @@ import com.jc.flora.apps.component.audio.AudioActivity
 import com.jc.flora.apps.component.exit.ExitActivity
 import com.jc.flora.apps.component.hybrid.HybridActivity
 import com.jc.flora.apps.component.image.ImageLoadActivity
+import com.jc.flora.apps.component.ndk.NdkActivity
 import com.jc.flora.apps.component.record.RecordActivity
 import com.jc.flora.apps.component.render.RenderActivity
 import com.jc.flora.apps.component.request.NetRequestActivity
@@ -69,7 +70,7 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("本地缓存", R.mipmap.ic_cache, NotFoundActivity::class.java),
                     LauncherApp("数据库", R.mipmap.ic_db, NotFoundActivity::class.java),
                     LauncherApp("混合开发", R.mipmap.ic_hybrid, HybridActivity::class.java),
-                    LauncherApp("本地开发", R.mipmap.ic_native, NotFoundActivity::class.java),
+                    LauncherApp("本地开发", R.mipmap.ic_ndk, NdkActivity::class.java),
 
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
                     LauncherApp("录制音频", R.mipmap.ic_record, RecordActivity::class.java),

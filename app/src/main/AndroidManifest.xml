@@ -807,6 +807,14 @@
         <activity
             android:name=".apps.ui.literacy.projects.Literacy1Activity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".apps.component.ndk.NdkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.ndk.projects.Ndk1Activity"
+            android:screenOrientation="portrait" />
+
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
