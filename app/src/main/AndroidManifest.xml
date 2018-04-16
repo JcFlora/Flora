@@ -146,19 +146,22 @@
             android:name=".apps.component.request.projects.NetRequest2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.component.request.projects.NetRequest4Activity"
+            android:name=".apps.component.request.projects.NetRequest3Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.component.request.projects.NetRequest5Activity"
+            android:name=".apps.component.request.projects.VolleyRequest1Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.component.request.projects.NetRequest6Activity"
+            android:name=".apps.component.request.projects.VolleyRequest2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.component.request.projects.NetRequest7Activity"
+            android:name=".apps.component.request.projects.VolleyRequest3Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.component.request.projects.NetRequest8Activity"
+            android:name=".apps.component.request.projects.RetrofitRequest1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.request.projects.RetrofitRequest2Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.ui.dialog.DialogActivity"

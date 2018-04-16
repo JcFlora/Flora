@@ -3,17 +3,15 @@ package com.jc.flora.apps.component.request.projects
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
-
-import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
-import com.jc.flora.apps.component.request.NetResponse
 import com.jc.flora.apps.component.request.retrofit.BaseApi
 import com.jc.flora.apps.component.request.retrofit.GetArticleListApi
+import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
 
 /**
  * 网络请求最新版：使用Retrofit+RxJava，String接收
  * Created by shijincheng on 2017/1/12.
  */
-class NetRequest7Activity : AppCompatActivity() {
+class RetrofitRequest1Activity : AppCompatActivity() {
 
     private var mTvContent: TextView? = null
     private var mProgressDialogDelegate: ProgressDialogDelegate? = null

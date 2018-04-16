@@ -8,8 +8,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.request.projects.*
-import com.jc.flora.launcher.NotFoundActivity
-import java.util.ArrayList
+import java.util.*
 
 class NetRequestActivity : AppCompatActivity() {
 
@@ -28,8 +27,8 @@ class NetRequestActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project4, project5,
-                    project6, project7, project8)
+            return arrayListOf(project1, project2, project3, project11, project12,
+                    project13, project21, project22)
         }
 
     private val project1: Project
@@ -52,47 +51,47 @@ class NetRequestActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "网络请求0.3，将HttpURLConnection请求网络封装成框架"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = NetRequest3Activity::class.java
             return project
         }
 
-    private val project4: Project
+    private val project11: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.4，使用Volley请求，String接收"
-            project.targetActivity = NetRequest4Activity::class.java
+            project.projectName = "Volley请求0.1，使用Volley请求，String接收"
+            project.targetActivity = VolleyRequest1Activity::class.java
             return project
         }
 
-    private val project5: Project
+    private val project12: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.5，使用Volley+Gson"
-            project.targetActivity = NetRequest5Activity::class.java
+            project.projectName = "Volley请求0.2，使用Volley+Gson"
+            project.targetActivity = VolleyRequest2Activity::class.java
             return project
         }
 
-    private val project6: Project
+    private val project13: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.6，使用Volley+Gson+通用返回实体"
-            project.targetActivity = NetRequest6Activity::class.java
+            project.projectName = "Volley请求0.3，使用Volley+Gson+通用返回实体"
+            project.targetActivity = VolleyRequest3Activity::class.java
             return project
         }
 
-    private val project7: Project
+    private val project21: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.7，使用Retrofit+RxJava，String接收"
-            project.targetActivity = NetRequest7Activity::class.java
+            project.projectName = "Retrofit请求0.1，使用Retrofit+RxJava，String接收"
+            project.targetActivity = RetrofitRequest1Activity::class.java
             return project
         }
 
-    private val project8: Project
+    private val project22: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.8，使用Retrofit+RxJava+Gson"
-            project.targetActivity = NetRequest8Activity::class.java
+            project.projectName = "Retrofit请求0.2，使用Retrofit+RxJava+Gson"
+            project.targetActivity = RetrofitRequest2Activity::class.java
             return project
         }
 
