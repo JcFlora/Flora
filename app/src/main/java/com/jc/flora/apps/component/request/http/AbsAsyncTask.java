@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import java.net.SocketException;
 
 /**
- * 异步请求框架 ，所有的请求都继承自这个抽象类，泛型参数分别为请求参数，请求进度，请求结果
+ * 异步请求框架 ，所有的请求都继承自这个抽象类，泛型参数分为请求结果
  * Created by Shijincheng on 2018/4/16.
  */
 

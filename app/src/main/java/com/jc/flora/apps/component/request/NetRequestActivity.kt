@@ -8,6 +8,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.request.projects.*
+import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 class NetRequestActivity : AppCompatActivity() {
@@ -27,8 +28,8 @@ class NetRequestActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project11, project12,
-                    project13, project21, project22)
+            return arrayListOf(project1, project2, project3, project4, project5,
+                    project11, project12, project13, project21, project22)
         }
 
     private val project1: Project
@@ -50,8 +51,24 @@ class NetRequestActivity : AppCompatActivity() {
     private val project3: Project
         get() {
             val project = Project()
-            project.projectName = "网络请求0.3，将HttpURLConnection请求网络封装成框架"
+            project.projectName = "网络请求0.3，使用AsyncTask封装Http请求框架"
             project.targetActivity = NetRequest3Activity::class.java
+            return project
+        }
+
+    private val project4: Project
+        get() {
+            val project = Project()
+            project.projectName = "网络请求0.4，使用线程池封装Http请求框架"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project5: Project
+        get() {
+            val project = Project()
+            project.projectName = "网络请求0.5，使用AsyncTask封装Soap请求框架"
+            project.targetActivity = NetRequest5Activity::class.java
             return project
         }
 
