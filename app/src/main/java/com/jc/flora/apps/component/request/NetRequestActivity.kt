@@ -8,7 +8,6 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.request.projects.*
-import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 class NetRequestActivity : AppCompatActivity() {
@@ -60,7 +59,7 @@ class NetRequestActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "网络请求0.4，使用线程池封装Http请求框架"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = NetRequest4Activity::class.java
             return project
         }
 

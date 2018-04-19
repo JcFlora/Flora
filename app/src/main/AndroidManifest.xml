@@ -149,6 +149,9 @@
             android:name=".apps.component.request.projects.NetRequest3Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.request.projects.NetRequest4Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.request.projects.NetRequest5Activity"
             android:screenOrientation="portrait" />
         <activity

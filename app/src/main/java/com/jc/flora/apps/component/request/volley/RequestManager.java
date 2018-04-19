@@ -9,8 +9,6 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.List;
-
 /**
  * 请求管理器
  * compile 'com.android.volley:volley:1.0.0'
@@ -25,22 +23,22 @@ public class RequestManager {
     private Context mApplicationContext;
 
     /**
-     * 获取Api管理器
+     * 获取请求管理器
      */
     public static RequestManager getInstance(Context ctx) {
         // 获取全局上下文
-        ApiManagerHolder.sInstance.mApplicationContext = ctx.getApplicationContext();
+        RequestManagerHolder.sInstance.mApplicationContext = ctx.getApplicationContext();
         // 创建请求队列
-        ApiManagerHolder.sInstance.mRequestQueue = ApiManagerHolder.sInstance.getRequestQueue();
-        return ApiManagerHolder.sInstance;
+        RequestManagerHolder.sInstance.mRequestQueue = RequestManagerHolder.sInstance.getRequestQueue();
+        return RequestManagerHolder.sInstance;
     }
 
-    private static class ApiManagerHolder {
+    private static class RequestManagerHolder {
         /** 静态内部类单例对象 */
         private static RequestManager sInstance = new RequestManager();
     }
 
-    /** Api管理器 */
+    /** 请求管理器 */
     private RequestManager() {
     }
 
