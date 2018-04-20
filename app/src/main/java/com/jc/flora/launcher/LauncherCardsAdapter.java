@@ -2,6 +2,9 @@ package com.jc.flora.launcher;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +24,12 @@ public class LauncherCardsAdapter extends RecyclerView.Adapter<LauncherCardsAdap
 
     private Activity mActivity;
     private List<LauncherApp> mData;
+    private ColorMatrixColorFilter mGrayFilter;
 
     public LauncherCardsAdapter(Activity activity, List<LauncherApp> data) {
         mActivity = activity;
         mData = data;
+        initGrayFilter();
     }
 
     @Override
@@ -36,6 +41,7 @@ public class LauncherCardsAdapter extends RecyclerView.Adapter<LauncherCardsAdap
     public void onBindViewHolder(ViewHolder holder, int position) {
         final int index = holder.getAdapterPosition();
         holder.tvTitle.setText(mData.get(index).appName);
+        holder.ivIcon.setColorFilter(getColorFilter(index));
         holder.ivIcon.setImageResource(mData.get(index).appIconResId);
         holder.vItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +54,17 @@ public class LauncherCardsAdapter extends RecyclerView.Adapter<LauncherCardsAdap
     @Override
     public int getItemCount() {
         return mData == null ? 0 : mData.size();
+    }
+
+    private void initGrayFilter(){
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+        mGrayFilter = new ColorMatrixColorFilter(matrix);
+    }
+
+    private ColorFilter getColorFilter(int index){
+        boolean isNotFoundActivity = mData.get(index).targetActivity.isAssignableFrom(NotFoundActivity.class);
+        return isNotFoundActivity ? mGrayFilter : null;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
