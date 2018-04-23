@@ -15,4 +15,12 @@ public class URLData<T> {
         this.clazz = clazz;
     }
 
+    public boolean isGetRequest(){
+        return "get".equals(netType);
+    }
+
+    public boolean isPostRequest(){
+        return "post".equals(netType);
+    }
+
 }

@@ -22,6 +22,7 @@ public class HttpRequest<Result> implements Runnable {
 	private RequestCallback<Result> mRequestCallback;
 	private HttpURLConnection mConnection;
 	private Handler mHandler;
+	private String mUrl;
 
 	HttpRequest(URLData<Result> data, List<RequestParameter> params, RequestCallback<Result> callBack) {
 		mUrlData = data;
@@ -40,9 +41,9 @@ public class HttpRequest<Result> implements Runnable {
 	public void run() {
 		try {
 			String strResponse;
-			if (mUrlData.netType.equals("get")) {
+			if (mUrlData.isGetRequest()) {
 				strResponse = doGet();
-			} else if (mUrlData.netType.equals("post")) {
+			} else if (mUrlData.isPostRequest()) {
 				strResponse = doPost();
 			} else {
 				return;
@@ -51,6 +52,10 @@ public class HttpRequest<Result> implements Runnable {
 			if (TextUtils.isEmpty(strResponse)) {
 				handleNetworkError("网络异常");
 			} else if (mRequestCallback != null) {
+				// 把成功获取到的数据记录到缓存
+				if (mUrlData.isGetRequest() && mUrlData.expires > 0) {
+					CacheManager.getInstance().putFileCache(mUrl, strResponse, mUrlData.expires);
+				}
 				// 解析返回数据
 				final Result result = new Gson().fromJson(strResponse, mUrlData.clazz);
 				// 设置回调函数
@@ -69,10 +74,15 @@ public class HttpRequest<Result> implements Runnable {
 	}
 
 	private String doGet() throws SocketException {
-		String url = mUrlData.url.trim().toLowerCase();
-		ILog.D("preUrl = " + url);
-		if (TextUtils.isEmpty(url) || !url.startsWith("http://")) {
+		mUrl = mUrlData.url.trim().toLowerCase();
+		ILog.D("preUrl = " + mUrl);
+		if (TextUtils.isEmpty(mUrl) || !mUrl.startsWith("http://")) {
 			return null;
+		}
+
+		// 这里要对key进行排序
+		if (mUrlData.expires > 0) {
+			sortKeys();
 		}
 
 		if (mParams != null && mParams.size() > 0) {
@@ -82,11 +92,20 @@ public class HttpRequest<Result> implements Runnable {
 				String val = param.value;
 				para += "&" + key + "=" + val;
 			}
-			url += "?" + para.substring(1, para.length());
-			ILog.D("url = " + url);
+			mUrl += "?" + para.substring(1, para.length());
+			ILog.D("url = " + mUrl);
 		}
+
+		// 检查缓存
+		if (mUrlData.expires > 0) {
+			String content = CacheManager.getInstance().getFileCache(mUrl);
+			if (content != null) {
+				return content;
+			}
+		}
+
 		try {
-			mConnection = (HttpURLConnection) new URL(url).openConnection();
+			mConnection = (HttpURLConnection) new URL(mUrl).openConnection();
 			mConnection.setRequestMethod("GET");
 			mConnection.setReadTimeout(5000);
 			mConnection.setConnectTimeout(10000);
@@ -107,9 +126,9 @@ public class HttpRequest<Result> implements Runnable {
 	}
 
 	private String doPost() throws SocketException {
-		String url = mUrlData.url.trim().toLowerCase();
-		ILog.D("preUrl = " + url);
-		if (TextUtils.isEmpty(url) || !url.startsWith("http://")) {
+		mUrl = mUrlData.url.trim().toLowerCase();
+		ILog.D("preUrl = " + mUrl);
+		if (TextUtils.isEmpty(mUrl) || !mUrl.startsWith("http://")) {
 			return null;
 		}
 
@@ -127,7 +146,7 @@ public class HttpRequest<Result> implements Runnable {
 
 		try {
 			// 调用URL的openConnection()方法,获取HttpURLConnection对象
-			mConnection = (HttpURLConnection) new URL(url).openConnection();
+			mConnection = (HttpURLConnection) new URL(mUrl).openConnection();
 			// 设置请求方法为post
 			mConnection.setRequestMethod("POST");
 			// 设置读取超时为5秒
@@ -157,6 +176,55 @@ public class HttpRequest<Result> implements Runnable {
 			}
 		}
 		return null;
+	}
+
+	private void sortKeys() {
+		for (int i = 1; i < mParams.size(); i++) {
+			for (int j = i; j > 0; j--) {
+				RequestParameter p1 = mParams.get(j - 1);
+				RequestParameter p2 = mParams.get(j);
+				if (compare(p1.name, p2.name)) {
+					// 交互p1和p2这两个对象，写的超级恶心
+					String name = p1.name;
+					String value = p1.name;
+					p1.name=p2.name;
+					p1.value=p2.value;
+					p2.name=name;
+					p2.value=value;
+				}
+			}
+		}
+	}
+
+	// 返回true说明str1大，返回false说明str2大
+	private boolean compare(String str1, String str2) {
+		String uppStr1 = str1.toUpperCase();
+		String uppStr2 = str2.toUpperCase();
+
+		boolean str1IsLonger = true;
+		int minLen = 0;
+
+		if (str1.length() < str2.length()) {
+			minLen = str1.length();
+			str1IsLonger = false;
+		} else {
+			minLen = str2.length();
+			str1IsLonger = true;
+		}
+
+		for (int index = 0; index < minLen; index++) {
+			char ch1 = uppStr1.charAt(index);
+			char ch2 = uppStr2.charAt(index);
+			if (ch1 != ch2) {
+				if (ch1 > ch2) {
+					return true; // str1大
+				} else {
+					return false; // str2大
+				}
+			}
+		}
+
+		return str1IsLonger;
 	}
 
 	private void handleNetworkError(final String errorMsg) {

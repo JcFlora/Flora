@@ -19,9 +19,16 @@ public class GetArticleListApi {
     }
 
     public void sendRequest(String category, int count, int pageIndex) {
+        sendRequest(category,count,pageIndex,true);
+    }
+
+    public void sendRequest(String category, int count, int pageIndex, boolean useCache) {
         if(MOCK){
             doMock();
         }else {
+            if(!useCache){
+                mUrlData.expires = 0;
+            }
             mUrlData.url = HOST + MessageFormat.format(GET_ARTICLE_LIST_ACTION, category, count, pageIndex);
             RequestManager.getInstance().createAndAddRequest(mUrlData, mCallBack);
         }
