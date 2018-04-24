@@ -16,6 +16,8 @@ import com.jc.flora.apps.ui.dialog.delegate.SystemDialogDelegate;
  */
 public class TestService extends Service {
 
+    private Handler mHandler = new Handler();
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -35,5 +37,11 @@ public class TestService extends Service {
             SystemDialogDelegate.showDialog(TestService.this);
         }
     };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+    }
 
 }

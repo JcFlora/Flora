@@ -13,6 +13,8 @@ import com.jc.flora.R;
  */
 public class PendingTransitionActivity extends AppCompatActivity {
 
+    private Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class PendingTransitionActivity extends AppCompatActivity {
     }
 
     private void gotoNextActivity(final String flag){
-        new Handler().postDelayed(new Runnable() {
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(PendingTransitionActivity.this,PendingTransition2Activity.class);
@@ -39,4 +41,9 @@ public class PendingTransitionActivity extends AppCompatActivity {
         },200);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mHandler.removeCallbacksAndMessages(null);
+    }
 }

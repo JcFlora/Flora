@@ -25,6 +25,8 @@ public class Stable8Activity extends AppCompatActivity {
     private RecyclerView mRvContent;
     /** 下拉刷新布局 */
     private SwipeRefreshLayout mSrlContent;
+    /** 刷新数据的任务 */
+    private Runnable mStopReloadTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +81,21 @@ public class Stable8Activity extends AppCompatActivity {
     }
 
     private void refreshDataAndUi() {
-        mSrlContent.postDelayed(new Runnable() {
+        mStopReloadTask = new Runnable() {
             @Override
             public void run() {
                 // 关闭下拉刷新的加载动画，防止接口超时时加载动画一直进行
                 mSrlContent.setRefreshing(false);
                 ToastDelegate.show(Stable8Activity.this,"刷新数据");
             }
-        },1500);
+        };
+        mSrlContent.postDelayed(mStopReloadTask, 1500);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSrlContent.removeCallbacks(mStopReloadTask);
     }
 
 }

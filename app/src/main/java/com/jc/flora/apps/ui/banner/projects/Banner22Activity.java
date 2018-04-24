@@ -22,6 +22,8 @@ public class Banner22Activity extends AppCompatActivity {
 
     /** 下拉刷新布局 */
     private SwipeRefreshLayout mSrlContent;
+    /** 刷新数据的任务 */
+    private Runnable mStopReloadTask;
     private BannerView21 mBv;
     private BannerDelegate22 mBannerDelegate;
 
@@ -73,7 +75,7 @@ public class Banner22Activity extends AppCompatActivity {
 
     private void onReload() {
         // 模拟耗时
-        mSrlContent.postDelayed(new Runnable() {
+        mStopReloadTask = new Runnable() {
             @Override
             public void run() {
                 // 关闭下拉刷新的加载动画，防止接口超时时加载动画一直进行
@@ -81,7 +83,14 @@ public class Banner22Activity extends AppCompatActivity {
                 ToastDelegate.show(Banner22Activity.this,"刷新数据");
                 requestBannerInfo();
             }
-        },1500);
+        };
+        mSrlContent.postDelayed(mStopReloadTask, 1500);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSrlContent.removeCallbacks(mStopReloadTask);
     }
 
 }

@@ -1,0 +1,2 @@
+com/jc/flora/apps/ui/captain/widget/GradientIconView.class
+com/jc/flora/launcher/LauncherSplashActivity.class

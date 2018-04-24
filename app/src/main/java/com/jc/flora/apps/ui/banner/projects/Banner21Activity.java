@@ -25,6 +25,8 @@ public class Banner21Activity extends AppCompatActivity {
 
     /** 下拉刷新布局 */
     private SwipeRefreshLayout mSrlContent;
+    /** 刷新数据的任务 */
+    private Runnable mStopReloadTask;
     private BannerView21 mBv1, mBv2;
 
     @Override
@@ -130,12 +132,13 @@ public class Banner21Activity extends AppCompatActivity {
     }
 
     private void refreshDataAndUi() {
-        mSrlContent.postDelayed(new Runnable() {
+        mStopReloadTask = new Runnable() {
             @Override
             public void run() {
                 onReload();
             }
-        },1500);
+        };
+        mSrlContent.postDelayed(mStopReloadTask, 1500);
     }
 
     private void onReload(){
@@ -168,6 +171,12 @@ public class Banner21Activity extends AppCompatActivity {
         });
         mBv1.reload();
         mBv2.reload();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSrlContent.removeCallbacks(mStopReloadTask);
     }
 
 }

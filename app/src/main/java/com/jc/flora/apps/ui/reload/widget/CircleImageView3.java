@@ -13,7 +13,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.support.v4.view.ViewCompat;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 
 /**
  * Private class created to work around issues with AnimationListeners being
@@ -22,7 +22,7 @@ import android.widget.ImageView;
  *
  * @hide
  */
-class CircleImageView3 extends ImageView {
+class CircleImageView3 extends AppCompatImageView {
 
     private static final int KEY_SHADOW_COLOR = 0x1E000000;
     private static final int FILL_SHADOW_COLOR = 0x3D000000;

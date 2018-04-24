@@ -9,6 +9,7 @@ import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.reload.projects.Reload1Activity
 import com.jc.flora.apps.ui.reload.projects.Reload2Activity
+import com.jc.flora.apps.ui.reload.projects.Reload3Activity
 import java.util.*
 
 /**
@@ -31,7 +32,7 @@ class ReloadActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2)
+            return arrayListOf(project1, project2, project3)
         }
 
     private val project1: Project
@@ -47,6 +48,14 @@ class ReloadActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "实现点击刷新和自动刷新"
             project.targetActivity = Reload2Activity::class.java
+            return project
+        }
+
+    private val project3: Project
+        get() {
+            val project = Project()
+            project.projectName = "实现点击back刷新"
+            project.targetActivity = Reload3Activity::class.java
             return project
         }
 

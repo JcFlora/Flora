@@ -14,6 +14,8 @@ import com.jc.flora.R;
  */
 public class Blur1Activity extends AppCompatActivity {
 
+    private Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class Blur1Activity extends AppCompatActivity {
         MyGalleryAdapter adapter = new MyGalleryAdapter(this);
         myGallery.setAdapter(adapter);
         myGallery.setVisibility(View.INVISIBLE);
-        new Handler().postDelayed(new Runnable() {
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 myGallery.setVisibility(View.VISIBLE);
@@ -54,7 +56,13 @@ public class Blur1Activity extends AppCompatActivity {
         },150);
     }
 
-//	public static Bitmap convertViewToBitmap(View view){
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+    }
+
+    //	public static Bitmap convertViewToBitmap(View view){
 //	  //view.measure(MeasureSpec.makeMeasureSpec(0,0), MeasureSpec.makeMeasureSpec(0,0));
 //	  //view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
 //	  view.buildDrawingCache();

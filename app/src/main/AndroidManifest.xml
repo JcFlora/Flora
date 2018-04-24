@@ -51,7 +51,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="android.support.multidex.MultiDexApplication">
         <activity
             android:name=".launcher.LauncherSplashActivity"
             android:screenOrientation="portrait"
@@ -449,6 +450,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.ui.reload.projects.Reload2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.ui.reload.projects.Reload3Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.ui.badge.BadgeActivity"
