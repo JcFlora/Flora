@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
+import com.jc.flora.apps.component.exit.projects.AppRestartActivity
 import com.jc.flora.apps.component.exit.projects.DialogExitActivity
 import com.jc.flora.apps.component.exit.projects.DoubleBackExitActivity
-import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -55,7 +55,7 @@ class ExitActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "重启（一键退出+启动首页）"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AppRestartActivity::class.java
             return project
         }
 

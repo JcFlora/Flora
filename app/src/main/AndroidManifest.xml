@@ -109,6 +109,12 @@
             android:name=".apps.component.exit.projects.DoubleBackExitActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.exit.projects.AppRestartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.exit.projects.AppRestart2Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.upgrade.UpgradeActivity"
             android:screenOrientation="portrait" />
         <activity
