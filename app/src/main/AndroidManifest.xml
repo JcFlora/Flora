@@ -177,6 +177,9 @@
             android:name=".apps.component.request.projects.RetrofitRequest2Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.request.projects.RetrofitRequest3Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.dialog.DialogActivity"
             android:screenOrientation="portrait" />
         <activity

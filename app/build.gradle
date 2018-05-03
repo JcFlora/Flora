@@ -66,6 +66,11 @@ dependencies {
     implementation 'com.mostafagazar:customshapeimageview:1.0.4'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
     implementation 'com.google.android.exoplayer:exoplayer:r2.4.3'
+    implementation ('org.simpleframework:simple-xml:2.7.1') {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
 }
 repositories {
     mavenCentral()

@@ -3,6 +3,7 @@ package com.jc.flora.apps.component.request.retrofit;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jc.flora.apps.component.deviceinfo.DeviceUtil;
+import com.jc.flora.apps.component.request.retrofit.soap.convert.SoapConverterFactory;
 
 import java.security.cert.CertificateException;
 
@@ -32,11 +33,11 @@ public class BaseApi {
 
     private static final String HOST = "https://gank.io/api/";
 
-    protected Retrofit getRetrofit() {
-        return sRetrofit;
-    }
+    private static final String SOAP_HOST = "http://ws.webxml.com.cn/";
 
     private static Retrofit sRetrofit = initRetrofit();
+
+    private static Retrofit sSoapRetrofit = initSoapRetrofit();
 
     private static Retrofit initRetrofit() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder().addInterceptor(new GzipRequestInterceptor());
@@ -53,6 +54,26 @@ public class BaseApi {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
+    }
+
+    private static Retrofit initSoapRetrofit() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        initSSLSocketFactory(builder);
+        OkHttpClient httpClient = builder.build();
+        return new Retrofit.Builder()
+                .baseUrl(SOAP_HOST)
+                .client(httpClient)
+                .addConverterFactory(SoapConverterFactory.create(SoapConverterFactory.STRING))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    protected Retrofit getRetrofit() {
+        return sRetrofit;
+    }
+
+    protected Retrofit getSoapRetrofit() {
+        return sSoapRetrofit;
     }
 
     private static void initSSLSocketFactory(OkHttpClient.Builder builder) {

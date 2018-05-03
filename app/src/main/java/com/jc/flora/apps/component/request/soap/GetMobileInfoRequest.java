@@ -6,10 +6,10 @@ import org.ksoap2.serialization.SoapObject;
 
 public abstract class GetMobileInfoRequest extends AbsAsyncTask<String> {
 
-	private String mCity;
+	private String mMobileCode;
 
-	public void sendRequest(String city){
-		mCity = city;
+	public void sendRequest(String mobileCode){
+		mMobileCode = mobileCode;
 		execute();
 	}
 
@@ -31,7 +31,7 @@ public abstract class GetMobileInfoRequest extends AbsAsyncTask<String> {
 	@Override
 	protected ContentValues params2ContentValues() {
 		ContentValues contentValues = new ContentValues(1);
-		contentValues.put("mobileCode", mCity);
+		contentValues.put("mobileCode", mMobileCode);
 		return contentValues;
 	}
 
