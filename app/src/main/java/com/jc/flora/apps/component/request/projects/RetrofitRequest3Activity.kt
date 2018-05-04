@@ -8,7 +8,7 @@ import com.jc.flora.apps.component.request.retrofit.GetMobileInfoApi
 import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
 
 /**
- * 网络请求最新版：使用Retrofit+RxJava+Gson
+ * 网络请求最新版：使用Retrofit+RxJava封装Soap请求
  * Created by shijincheng on 2018/5/2.
  */
 class RetrofitRequest3Activity : AppCompatActivity() {
@@ -36,7 +36,7 @@ class RetrofitRequest3Activity : AppCompatActivity() {
                         mProgressDialogDelegate?.hideLoadingDialog()
                         mTvContent?.text = result
                     }
-                });
+                })
         mProgressDialogDelegate?.showLoadingDialog()
     }
 

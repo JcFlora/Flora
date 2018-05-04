@@ -1,0 +1,30 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:text="串行，有依赖关系"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getDataBySerial"/>
+
+    <Button
+        android:text="串行，无依赖关系"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getDataByConcat"/>
+
+    <Button
+        android:text="并行"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getDataByZip"/>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
