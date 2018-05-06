@@ -1,18 +1,22 @@
-package com.jc.flora.apps.component.request.trh;
+package com.jc.flora.apps.component.request.nao;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
 import com.jc.flora.apps.component.request.http.ILog;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+import org.ksoap2.transport.ServiceConnection;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.SocketException;
 import java.net.URL;
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class HttpRequest<Result> implements Runnable {
 	private List<RequestParameter> mParams;
 	private RequestCallback<Result> mRequestCallback;
 	private HttpURLConnection mConnection;
+	private HttpTransportSE mTransport;
 	private Handler mHandler;
 	private String mUrl;
 
@@ -36,10 +41,44 @@ public class HttpRequest<Result> implements Runnable {
 		if(mConnection != null){
 			mConnection.disconnect();
 		}
+		if(mTransport != null){
+			try {
+				ServiceConnection connection = mTransport.getServiceConnection();
+				if(connection != null){
+					connection.disconnect();
+				}
+			} catch (IOException e) {
+			}
+		}
 	}
 
 	@Override
 	public void run() {
+		if (mUrlData.isSoapRequest()) {
+			requestSoap();
+		}else{
+			requestHttp();
+		}
+	}
+
+	private void requestSoap(){
+		SoapObject soapObject = doSoap();
+		if (soapObject == null) {
+			handleNetworkError("网络异常");
+		} else if (mRequestCallback != null) {
+			// 解析返回数据
+			final Result result = mUrlData.parseResponse(soapObject);
+			// 设置回调函数
+			mHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					mRequestCallback.onSuccess(result);
+				}
+			});
+		}
+	}
+
+	private void requestHttp(){
 		try {
 			String strResponse;
 			if (mUrlData.isGetRequest()) {
@@ -58,7 +97,7 @@ public class HttpRequest<Result> implements Runnable {
 					CacheManager.getInstance().putFileCache(mUrl, strResponse, mUrlData.expires);
 				}
 				// 解析返回数据
-				final Result result = new Gson().fromJson(strResponse, mUrlData.clazz);
+				final Result result = mUrlData.parseResponse(strResponse);
 				// 设置回调函数
 				mHandler.post(new Runnable() {
 					@Override
@@ -70,6 +109,42 @@ public class HttpRequest<Result> implements Runnable {
 		} catch (IllegalArgumentException e) {
 			handleNetworkError("网络异常");
 		}
+	}
+
+	private SoapObject doSoap() {
+		mUrl = mUrlData.url.trim().toLowerCase();
+		ILog.D("preUrl = " + mUrl);
+		if (TextUtils.isEmpty(mUrl) || !mUrl.startsWith("http://")) {
+			return null;
+		}
+		String spaceName = mUrlData.soapNameSpace;
+		String methodName = mUrlData.soapMethodName;
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		SoapObject soapObject = new SoapObject(mUrlData.soapNameSpace, methodName);
+		if (mParams != null && mParams.size() > 0) {
+			for (RequestParameter param : mParams) {
+				String key = param.name;
+				String val = param.value;
+				soapObject.addProperty(key, val);
+			}
+		}
+		envelope.bodyOut = soapObject;
+		envelope.encodingStyle = "UTF-8";
+		envelope.dotNet = true;
+		ILog.D("out = " + envelope.bodyOut.toString());
+		mTransport = new HttpTransportSE(mUrl);
+		mTransport.debug = true;
+		try {
+			mTransport.call(spaceName + methodName, envelope);
+			if (envelope.getResponse() != null) {
+				SoapObject result = (SoapObject) envelope.bodyIn;
+				ILog.D("in = " + envelope.bodyIn.toString());
+				return result;
+			}
+		} catch (Exception e) {
+			handleNetworkError("网络异常");
+		}
+		return null;
 	}
 
 	private String doGet() {

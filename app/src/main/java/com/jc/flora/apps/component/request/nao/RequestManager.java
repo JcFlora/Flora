@@ -1,4 +1,4 @@
-package com.jc.flora.apps.component.request.trh;
+package com.jc.flora.apps.component.request.nao;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class RequestManager {
 	 * 有参数调用
 	 */
 	public <T> void createAndAddRequest(URLData<T> urlData, List<RequestParameter> params,
-			RequestCallback<T> requestCallback) {
+                                        RequestCallback<T> requestCallback) {
 		HttpRequest<T> request = new HttpRequest<>(urlData, params, requestCallback);
 		addRequest(request);
 	}

@@ -1,4 +1,4 @@
-package com.jc.flora.apps.component.request.trh;
+package com.jc.flora.apps.component.request.nao;
 
 import com.google.gson.Gson;
 import com.jc.flora.apps.component.request.NetResponse;
