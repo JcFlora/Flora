@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.dialog.delegate.CustomDialogDelegate;
+import com.jc.flora.apps.ui.dialog.delegate.CustomDialogDelegate2;
 import com.jc.flora.apps.ui.dialog.delegate.CustomListDialogDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.MultiChoiceDialogDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.SingleChoiceDialogDelegate;
@@ -22,6 +23,7 @@ public class AlertDialogActivity extends AppCompatActivity {
     private MultiChoiceDialogDelegate mMultiChoiceDialogDelegate;
     private CustomListDialogDelegate mCustomListDialogDelegate;
     private CustomDialogDelegate mCustomDialogDelegate;
+    private CustomDialogDelegate2 mCustomDialogDelegate2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class AlertDialogActivity extends AppCompatActivity {
         mMultiChoiceDialogDelegate = new MultiChoiceDialogDelegate(this);
         mCustomListDialogDelegate = new CustomListDialogDelegate(this);
         mCustomDialogDelegate = new CustomDialogDelegate(this);
+        mCustomDialogDelegate2 = new CustomDialogDelegate2(this);
     }
 
     public void showToastDialog(View v){
@@ -64,6 +67,10 @@ public class AlertDialogActivity extends AppCompatActivity {
 
     public void showCustomDialog(View v){
         mCustomDialogDelegate.show();
+    }
+
+    public void showCartoonDialog(View v){
+        mCustomDialogDelegate2.show();
     }
 
     private void showToastDialog() {
