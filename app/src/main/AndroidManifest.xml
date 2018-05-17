@@ -207,6 +207,9 @@
             android:name=".apps.ui.dialog.projects.BottomSheetDialogActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.ui.dialog.projects.SpinnerActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.hybrid.HybridActivity"
             android:screenOrientation="portrait" />
         <activity

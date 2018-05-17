@@ -31,7 +31,8 @@ class DialogActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5, project6, project7)
+            return arrayListOf(project1, project2, project3, project4, project5,
+                    project6, project7, project8)
         }
 
     private val project1: Project
@@ -86,6 +87,14 @@ class DialogActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "Spinner"
+            project.targetActivity = SpinnerActivity::class.java
+            return project
+        }
+
+    private val project8: Project
+        get() {
+            val project = Project()
+            project.projectName = "Picker"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
