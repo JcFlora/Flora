@@ -23,9 +23,9 @@ public class SpinnerActivity extends AppCompatActivity {
 
     private void initViews(){
         TextView btn = (TextView) findViewById(R.id.btn_country);
-        SpinnerDelegate spinnerDelegate = new SpinnerDelegate(this);
-        spinnerDelegate.init(btn);
-        spinnerDelegate.setOnItemSelectedListener(new SpinnerDelegate.OnSpinnerItemSelectedListener() {
+        SpinnerDelegate delegate = new SpinnerDelegate(this);
+        delegate.init(btn);
+        delegate.setOnItemSelectedListener(new SpinnerDelegate.OnSpinnerItemSelectedListener() {
             @Override
             public void onItemSelected(int which, boolean byUser) {
                 if(byUser){

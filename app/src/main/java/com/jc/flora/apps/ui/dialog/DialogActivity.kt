@@ -8,7 +8,6 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.dialog.projects.*
-import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -95,7 +94,7 @@ class DialogActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "Picker"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = PickerActivity::class.java
             return project
         }
 
