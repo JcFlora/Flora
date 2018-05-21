@@ -572,6 +572,9 @@
             android:name=".apps.component.vi.projects.ViConstraint1Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.vi.projects.ViConstraint2Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.vi.projects.ViCodeActivity"
             android:screenOrientation="portrait" />
         <activity
