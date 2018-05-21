@@ -30,7 +30,7 @@ class ViActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5, project6)
+            return arrayListOf(project1, project2, project3, project4, project5, project6, project7)
         }
 
     private val project1: Project
@@ -68,12 +68,20 @@ class ViActivity : AppCompatActivity() {
     private val project5: Project
         get() {
             val project = Project()
+            project.projectName = "使用约束布局适配控件"
+            project.targetActivity = ViConstraint1Activity::class.java
+            return project
+        }
+
+    private val project6: Project
+        get() {
+            val project = Project()
             project.projectName = "使用代码计算适配"
             project.targetActivity = ViCodeActivity::class.java
             return project
         }
 
-    private val project6: Project
+    private val project7: Project
         get() {
             val project = Project()
             project.projectName = "使用Fidelity组件适配"

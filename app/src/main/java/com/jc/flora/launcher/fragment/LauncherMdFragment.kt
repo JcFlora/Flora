@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jc.flora.R
-import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.apps.md.toolbar.ToolbarActivity
+import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.launcher.LauncherApp
 import com.jc.flora.launcher.LauncherCardsAdapter
 import com.jc.flora.launcher.NotFoundActivity
@@ -42,7 +42,8 @@ class LauncherMdFragment : CaptainFragment() {
         get() {
             return arrayListOf(
                     LauncherApp("Toolbar", R.mipmap.ic_bow, ToolbarActivity::class.java),
-                    LauncherApp("FloatActionButton", R.mipmap.ic_bow, NotFoundActivity::class.java)
+                    LauncherApp("FloatActionButton", R.mipmap.ic_bow, NotFoundActivity::class.java),
+                    LauncherApp("ConstraintLayout", R.mipmap.ic_chain, NotFoundActivity::class.java)
             )
         }
 

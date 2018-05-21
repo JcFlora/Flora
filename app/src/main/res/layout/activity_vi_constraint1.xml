@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/top_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#ff44aacc"
+        android:gravity="center"
+        android:text="70%"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintTop_toTopOf="@id/root"
+        app:layout_constraintWidth_percent="0.7"/>
+
+    <TextView
+        android:id="@+id/top_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#ffe40000"
+        android:gravity="center"
+        android:text="30%"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toEndOf="@id/top_left"
+        app:layout_constraintTop_toTopOf="@id/root"
+        app:layout_constraintWidth_percent="0.3"/>
+
+    <View
+        android:id="@+id/bottom_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#ff00ff"
+        app:layout_constraintHeight_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/top_left"
+        app:layout_constraintWidth_percent="0.3"/>
+
+    <View
+        android:id="@+id/bottom_right_top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#ff00ff22"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toEndOf="@id/bottom_left"
+        app:layout_constraintTop_toBottomOf="@id/top_left"
+        app:layout_constraintWidth_percent="0.7"/>
+
+    <View
+        android:id="@+id/bottom_right_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#0000ff"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toEndOf="@id/bottom_left"
+        app:layout_constraintTop_toBottomOf="@id/bottom_right_top"
+        app:layout_constraintWidth_percent="0.7"/>
+</android.support.constraint.ConstraintLayout>
