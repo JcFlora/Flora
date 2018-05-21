@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,7 +13,7 @@
         android:gravity="center"
         android:text="70%"
         app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintTop_toTopOf="@id/root"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.7"/>
 
     <TextView
@@ -26,7 +25,7 @@
         android:text="30%"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toEndOf="@id/top_left"
-        app:layout_constraintTop_toTopOf="@id/root"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.3"/>
 
     <View

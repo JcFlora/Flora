@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:background="@drawable/light_red_oval_selector"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+    <Button
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/light_blue_oval_selector"
+        android:text="1"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintCircle="@+id/root"
+        app:layout_constraintCircleRadius="120dp"
+        app:layout_constraintCircleAngle="0"/>
+
+    <Button
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/light_blue_oval_selector"
+        android:text="2"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintCircle="@+id/root"
+        app:layout_constraintCircleRadius="120dp"
+        app:layout_constraintCircleAngle="72"/>
+
+    <Button
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/light_blue_oval_selector"
+        android:text="3"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintCircle="@+id/root"
+        app:layout_constraintCircleRadius="120dp"
+        app:layout_constraintCircleAngle="144"/>
+
+    <Button
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/light_blue_oval_selector"
+        android:text="4"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintCircle="@+id/root"
+        app:layout_constraintCircleRadius="120dp"
+        app:layout_constraintCircleAngle="216"/>
+
+    <Button
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/light_blue_oval_selector"
+        android:text="5"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintCircle="@+id/root"
+        app:layout_constraintCircleRadius="120dp"
+        app:layout_constraintCircleAngle="288"/>
+
+</android.support.constraint.ConstraintLayout>
