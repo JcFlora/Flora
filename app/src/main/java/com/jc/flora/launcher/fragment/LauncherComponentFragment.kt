@@ -52,14 +52,19 @@ class LauncherComponentFragment : CaptainFragment() {
     private val mApps: ArrayList<LauncherApp>
         get() {
             return arrayListOf(
+                    LauncherApp("分发代理", R.mipmap.ic_distribute, NotFoundActivity::class.java),
+                    LauncherApp("页面路由", R.mipmap.ic_router, RouterActivity::class.java),
+                    LauncherApp("组件通信", R.mipmap.ic_signal, NotFoundActivity::class.java),
+                    LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java),
+
                     LauncherApp("屏幕适配", R.mipmap.ic_vi, ViActivity::class.java),
                     LauncherApp("设计规范", R.mipmap.ic_render, RenderActivity::class.java),
                     LauncherApp("设备信息", R.mipmap.ic_device, NotFoundActivity::class.java),
-                    LauncherApp("权限控制", R.mipmap.ic_security, NotFoundActivity::class.java),
+                    LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java),
 
                     LauncherApp("退出功能", R.mipmap.ic_exit, ExitActivity::class.java),
                     LauncherApp("版本升级", R.mipmap.ic_upgrade, UpgradeActivity::class.java),
-                    LauncherApp("页面路由", R.mipmap.ic_router, RouterActivity::class.java),
+                    LauncherApp("权限控制", R.mipmap.ic_security, NotFoundActivity::class.java),
                     LauncherApp("数据统计", R.mipmap.ic_statistics, StatisticsActivity::class.java),
 
                     LauncherApp("网络请求", R.mipmap.ic_net, NetRequestActivity::class.java),
@@ -75,11 +80,8 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
                     LauncherApp("录制音频", R.mipmap.ic_record, RecordActivity::class.java),
                     LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),
-                    LauncherApp("录制视频", R.mipmap.ic_dv, NotFoundActivity::class.java),
+                    LauncherApp("录制视频", R.mipmap.ic_dv, NotFoundActivity::class.java)
 
-                    LauncherApp("组件通信", R.mipmap.ic_signal, NotFoundActivity::class.java),
-                    LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java),
-                    LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java)
             )
         }
 
