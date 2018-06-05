@@ -7,10 +7,7 @@ import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.component.render.projects.RenderColorActivity
-import com.jc.flora.apps.component.render.projects.RenderDimen1Activity
-import com.jc.flora.apps.component.render.projects.RenderDimen2Activity
-import com.jc.flora.apps.component.render.projects.RenderTextActivity
+import com.jc.flora.apps.component.render.projects.*
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
@@ -89,7 +86,7 @@ class RenderActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "防抖动"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = RenderDebounceActivity::class.java
             return project
         }
 }
