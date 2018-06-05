@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.exit.delegate.DoubleClickDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 import com.jc.flora.apps.ui.reload.widget.AutoSwipeRefreshLayout;
 
@@ -16,11 +17,8 @@ public class Reload3Activity extends AppCompatActivity {
     /** 下拉刷新布局 */
     private AutoSwipeRefreshLayout mSrlContent;
 
-    /** 确认退出等待时间 */
-    private static final long EXIT_WAIT_TIME = 2000;
-    /** 第一次按返回的时间点 */
-    private long mExitTime = 0;
-    /** 刷新数据的任务 */
+    private DoubleClickDelegate mDoubleClickDelegate;
+
     private Runnable mStopReloadTask;
 
     @Override
@@ -28,6 +26,7 @@ public class Reload3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("实现点击back刷新");
         setContentView(R.layout.activity_reload3);
+        mDoubleClickDelegate = new DoubleClickDelegate();
         mSrlContent = (AutoSwipeRefreshLayout) findViewById(R.id.srl_content);
         // 设置下拉刷新色调
         mSrlContent.setColorSchemeResources(
@@ -64,14 +63,13 @@ public class Reload3Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if((System.currentTimeMillis() - mExitTime) > EXIT_WAIT_TIME){
-            ToastDelegate.show(this, "再按一次返回键退出");
-            mExitTime = System.currentTimeMillis();
-            mSrlContent.autoRefresh();
-        } else {
+        if(mDoubleClickDelegate.isDoubleClick()){
             ToastDelegate.cancel();
             ToastDelegate.onAppExit();
             finish();
+        }else{
+            ToastDelegate.show(this, "再按一次返回键退出");
+            mSrlContent.autoRefresh();
         }
     }
 

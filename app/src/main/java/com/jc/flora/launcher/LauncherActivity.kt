@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.widget.LinearLayout
 import com.jc.flora.R
+import com.jc.flora.apps.component.exit.delegate.DoubleClickDelegate
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate
 
 /**
@@ -12,15 +13,11 @@ import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate
  */
 class LauncherActivity : AppCompatActivity() {
 
-    /** 确认退出等待时间  */
-    private val EXIT_WAIT_TIME: Long = 2000
-    /** 第一次按返回的时间点  */
-    private var mExitTime: Long = 0
-
     private var mVpContainer: ViewPager? = null
     private var mLayoutCaptainIndicators: LinearLayout? = null
 
     private var mDelegate: LauncherCaptainDelegate? = null
+    private var mDoubleClickDelegate: DoubleClickDelegate? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,19 +37,19 @@ class LauncherActivity : AppCompatActivity() {
         mDelegate?.setVpContainer(mVpContainer)
         mDelegate?.setLayoutCaptainIndicators(mLayoutCaptainIndicators)
         mDelegate?.init()
+        mDoubleClickDelegate = DoubleClickDelegate()
     }
 
     override fun onBackPressed() {
         if(mDelegate?.back2Tab0()!!){
             return
         }
-        if (System.currentTimeMillis() - mExitTime > EXIT_WAIT_TIME) {
-            ToastDelegate.show(this, "再按一次返回键退出")
-            mExitTime = System.currentTimeMillis()
-        } else {
+        if(mDoubleClickDelegate?.isDoubleClick!!){
             ToastDelegate.cancel()
             ToastDelegate.onAppExit()
             finish()
+        }else{
+            ToastDelegate.show(this, "再按一次返回键退出")
         }
     }
 
