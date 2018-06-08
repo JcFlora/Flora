@@ -1,7 +1,8 @@
 package com.jc.flora.apps.component.upgrade.renovate;
 
-import android.os.Environment;
 import android.text.TextUtils;
+
+import com.jc.flora.apps.component.folder.FolderUtils;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -17,7 +18,7 @@ public class AppUpgradeInfo {
     private static final int TYPE_RECOMMEND_UPGRADE = 0;
 
     private static final String DISPLAY_MESSAGE_PATTERN = "更新版本：{0}\n更新日期：{1}\n更新内容：{2}\n";
-    private static final String SAVE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()+"/flora/";
+    private static final String SAVE_PATH = FolderUtils.getAppFolderPath();
 
     /** 包名 */
     public String packageName;

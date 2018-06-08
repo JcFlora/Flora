@@ -46,6 +46,7 @@ public class RxGetVerCodeDelegate {
 
     // 验证码主题
     private Observable<Object> mVerCodeObservable;
+    private Observable<Long> mCountDownObservable;
 
     public RxGetVerCodeDelegate(AppCompatActivity activity) {
         mActivity = activity;
@@ -117,11 +118,11 @@ public class RxGetVerCodeDelegate {
     /** 启动倒计时主题 */
     private void startCountDown() {
         // 按单位时间分发事件
-        Observable.interval(VER_CODE_COUNT_DOWN_INTERVAL, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+        mCountDownObservable = Observable.interval(VER_CODE_COUNT_DOWN_INTERVAL, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 // 设置保持时长
-                .take(VER_CODE_COUNT_DOWN_TIME)
-                // 订阅事件：倒计时反馈事件
-                .subscribe(new Observer<Long>() {
+                .take(VER_CODE_COUNT_DOWN_TIME);
+        // 订阅事件：倒计时反馈事件
+        mCountDownObservable.subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                     }
@@ -187,6 +188,7 @@ public class RxGetVerCodeDelegate {
     public void stop() {
         // 取消倒计时观测
         mVerCodeObservable.unsubscribeOn(AndroidSchedulers.mainThread());
+        mCountDownObservable.unsubscribeOn(AndroidSchedulers.mainThread());
     }
 
     /** 验证码获取成功后的监听 */

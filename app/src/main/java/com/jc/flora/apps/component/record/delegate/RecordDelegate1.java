@@ -4,7 +4,8 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
-import android.os.Environment;
+
+import com.jc.flora.apps.component.folder.FolderUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.io.IOException;
 
 public class RecordDelegate1 {
 
-    private static final String SAVE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/flora/";
+    private static final String SAVE_PATH = FolderUtils.getAppFolderPath();
 
     private static final String SAVE_NAME = "test1.acc";
 

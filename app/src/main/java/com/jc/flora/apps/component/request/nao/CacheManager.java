@@ -1,6 +1,6 @@
 package com.jc.flora.apps.component.request.nao;
 
-import android.os.Environment;
+import com.jc.flora.apps.component.folder.FolderUtils;
 
 import java.io.File;
 
@@ -9,8 +9,7 @@ import java.io.File;
  */
 public class CacheManager {
 	/** 缓存文件路径 */
-	private static final String APP_CACHE_PATH = Environment
-			.getExternalStorageDirectory().getAbsolutePath() + "/flora/apiCache/";
+	private static final String APP_CACHE_PATH = FolderUtils.getAppFolderPath() + "apiCache/";
 
 	/** sdcard 最小空间，如果小于10M，不会再向sdcard里面写入任何数据 */
 	private static final long SDCARD_MIN_SPACE = 1024 * 1024 * 10;

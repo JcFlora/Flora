@@ -863,6 +863,9 @@
         <activity
             android:name=".apps.component.ndk.projects.Ndk2Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.folder.FolderActivity"
+            android:screenOrientation="portrait" />
 
         <!-- alipay sdk begin -->
         <activity

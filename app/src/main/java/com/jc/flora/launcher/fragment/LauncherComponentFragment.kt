@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.jc.flora.R
 import com.jc.flora.apps.component.audio.AudioActivity
 import com.jc.flora.apps.component.exit.ExitActivity
+import com.jc.flora.apps.component.folder.FolderActivity
 import com.jc.flora.apps.component.hybrid.HybridActivity
 import com.jc.flora.apps.component.image.ImageLoadActivity
 import com.jc.flora.apps.component.ndk.NdkActivity
@@ -62,7 +63,7 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("设备信息", R.mipmap.ic_device, NotFoundActivity::class.java),
                     LauncherApp("权限控制", R.mipmap.ic_security, NotFoundActivity::class.java),
 
-                    LauncherApp("文件处理", R.mipmap.ic_folder, NotFoundActivity::class.java),
+                    LauncherApp("文件处理", R.mipmap.ic_folder, FolderActivity::class.java),
                     LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java),
                     LauncherApp("本地缓存", R.mipmap.ic_cache, NotFoundActivity::class.java),
                     LauncherApp("数据库", R.mipmap.ic_db, NotFoundActivity::class.java),
