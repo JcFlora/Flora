@@ -55,7 +55,7 @@ public class FolderUtils {
         if(TextUtils.isEmpty(path)){
             return false;
         }
-        return !TextUtils.isEmpty(path) && new File(path).exists();
+        return new File(path).exists();
     }
 
     /**
@@ -71,6 +71,56 @@ public class FolderUtils {
         return new File(dirPath, fileName).exists();
     }
 
+    /**
+     * 获取文件的最后一次修改时间
+     * @param path
+     * @return
+     */
+    public static long getLastModified(String path){
+        if(TextUtils.isEmpty(path)){
+            return -1L;
+        }
+        return new File(path).lastModified();
+    }
+
+/*---------------------------------------------文件遍历筛选-------------------------------------------*/
+
+    /**
+     * 遍历文件夹下的所有文件
+     * @param path
+     * @return
+     */
+    public File[] listFiles(String path){
+        return null;
+    }
+
+    /**
+     * 筛选文件夹下的特定格式文件
+     * @param path
+     * @return
+     */
+    public File[] listFiles2(String path){
+        return null;
+    }
+
+    /**
+     * 遍历并排序文件夹下的所有文件
+     * @param path
+     * @return
+     */
+    public File[] listFiles3(String path){
+        return null;
+    }
+
+    /**
+     * 遍历文件夹下的所有文件，并以树的形式返回
+     * @param path
+     * @return
+     */
+    public File[] listFiles4(String path){
+        return null;
+    }
+
 /*---------------------------------------------文件创建----------------------------------------------*/
 
     /**
@@ -80,6 +130,9 @@ public class FolderUtils {
      * @return
      */
     public static boolean createFile(String dirPath, String fileName) {
+        if(TextUtils.isEmpty(dirPath) || TextUtils.isEmpty(fileName)){
+            return false;
+        }
         File file = new File(dirPath, fileName);
         if (file.exists()) {
             return false;
@@ -103,20 +156,78 @@ public class FolderUtils {
      * @param path
      */
     private static boolean createDir(String path) {
-        File dir = new File(path);
-        if(dir.exists()){
+        if(TextUtils.isEmpty(path)){
             return false;
-        }else{
-            return dir.mkdirs();
         }
+        return new File(path).mkdirs();
     }
 
 /*---------------------------------------------文件删除----------------------------------------------*/
 
+    /**
+     * 删除一个文件或文件夹
+     * @param path
+     * @return
+     */
+    public boolean delete(String path){
+        return false;
+    }
+
+    /**
+     * 删除一个文件
+     * @param file
+     * @return
+     */
+    private boolean deleteFile(File file){
+        return false;
+    }
+
+    /**
+     * 删除一个文件夹
+     * @param dir
+     * @return
+     */
+    private boolean deleteDir(File dir){
+        return false;
+    }
+
 /*---------------------------------------------文件写入内容------------------------------------------*/
+
+/*---------------------------------------------文件读出内容------------------------------------------*/
+
+/*---------------------------------------------文件移动----------------------------------------------*/
+
+    /**
+     * 文件移动
+     * 源文件必须存在，目标文件必须不存在
+     * @param path1 源文件路径
+     * @param path2 目标文件路径
+     * @return
+     */
+    public boolean move(String path1, String path2){
+        if(TextUtils.isEmpty(path1) || TextUtils.isEmpty(path2)){
+            return false;
+        }
+        File file1 = new File(path1);
+        File file2 = new File(path2);
+        if(!file1.exists() || file2.exists()){
+            return false;
+        }
+        return file1.renameTo(file2);
+    }
 
 /*---------------------------------------------文件复制----------------------------------------------*/
 
+    /**
+     * 文件复制
+     * 源文件必须存在，目标文件必须不存在
+     * @param path1 源文件路径
+     * @param path2 目标文件路径
+     * @return
+     */
+    public boolean copy(String path1, String path2){
+        return false;
+    }
 /*---------------------------------------------文件合并----------------------------------------------*/
 
 /*---------------------------------------------压缩解压缩--------------------------------------------*/
@@ -152,7 +263,7 @@ public class FolderUtils {
      */
     public static long getFileSize(String path){
         File file = new File(path);
-        if(file.exists() && file.canRead() && file.isFile()){
+        if(file.isFile() && file.canRead()){
             return file.length();
         }
         return -1;
@@ -177,11 +288,11 @@ public class FolderUtils {
         if(!file.exists()){
             return -1;
         }
-        if (file.isFile() && !file.isDirectory()){
+        if (file.isFile()){
             return file.length();
         }
         long size = 0;
-        final File[] children = file.listFiles();
+        File[] children = file.listFiles();
         if (children != null){
             for (File child : children){
                 size += getDirSize(child);
