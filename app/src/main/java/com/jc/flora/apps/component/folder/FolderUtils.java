@@ -90,7 +90,7 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    public File[] listFiles(String path){
+    public static File[] listFiles(String path){
         return null;
     }
 
@@ -99,7 +99,7 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    public File[] listFiles2(String path){
+    public static File[] listFiles2(String path){
         return null;
     }
 
@@ -108,16 +108,7 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    public File[] listFiles3(String path){
-        return null;
-    }
-
-    /**
-     * 遍历文件夹下的所有文件，并以树的形式返回
-     * @param path
-     * @return
-     */
-    public File[] listFiles4(String path){
+    public static File[] listFiles3(String path){
         return null;
     }
 
@@ -136,16 +127,15 @@ public class FolderUtils {
         File file = new File(dirPath, fileName);
         if (file.exists()) {
             return false;
-        }else {
-            boolean hasParent = true;
-            if(!exists(dirPath)){
-                hasParent = createDir(dirPath);
-            }
-            try {
-                return hasParent && file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        }
+        boolean hasParent = true;
+        if(!exists(dirPath)){
+            hasParent = createDir(dirPath);
+        }
+        try {
+            return hasParent && file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -169,26 +159,58 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    public boolean delete(String path){
-        return false;
-    }
-
-    /**
-     * 删除一个文件
-     * @param file
-     * @return
-     */
-    private boolean deleteFile(File file){
-        return false;
+    public static boolean delete(String path) {
+        if (TextUtils.isEmpty(path)) {
+            return false;
+        }
+        File file = new File(path);
+        if (!file.exists()) {
+            return false;
+        }
+        if (file.isFile()) {
+            return file.delete();
+        } else {
+            return deleteDir(file);
+        }
     }
 
     /**
      * 删除一个文件夹
-     * @param dir
+     * @param file
      * @return
      */
-    private boolean deleteDir(File dir){
-        return false;
+    private static boolean deleteDir(File file){
+        if(file.isFile()){
+            return file.delete();
+        }
+        File[] children = file.listFiles();
+        return deleteFiles(children) && file.delete();
+    }
+
+    /**
+     * 删除文件数组
+     * @param files
+     * @return
+     */
+    private static boolean deleteFiles(File[] files){
+        if(files == null || files.length == 0){
+            return true;
+        }
+        boolean flag = true;
+        for (File child : files){
+            if(child.isFile()){
+                flag = child.delete();
+                if(!flag){
+                    break;
+                }
+            }else{
+                flag = deleteDir(child);
+                if(!flag) {
+                    break;
+                }
+            }
+        }
+        return flag;
     }
 
 /*---------------------------------------------文件写入内容------------------------------------------*/
@@ -204,7 +226,7 @@ public class FolderUtils {
      * @param path2 目标文件路径
      * @return
      */
-    public boolean move(String path1, String path2){
+    public static boolean move(String path1, String path2){
         if(TextUtils.isEmpty(path1) || TextUtils.isEmpty(path2)){
             return false;
         }
@@ -225,9 +247,10 @@ public class FolderUtils {
      * @param path2 目标文件路径
      * @return
      */
-    public boolean copy(String path1, String path2){
+    public static boolean copy(String path1, String path2){
         return false;
     }
+
 /*---------------------------------------------文件合并----------------------------------------------*/
 
 /*---------------------------------------------压缩解压缩--------------------------------------------*/
