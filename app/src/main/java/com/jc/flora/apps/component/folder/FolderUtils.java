@@ -1,13 +1,23 @@
 package com.jc.flora.apps.component.folder;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Environment;
+import android.os.StatFs;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 
 /**
@@ -28,12 +38,27 @@ public class FolderUtils {
     private static final long G_BYTES = M_BYTES * 1000;
     private static final long T_BYTES = G_BYTES * 1000;
 
+/*---------------------------------------------SD卡相关----------------------------------------------*/
+
     /**
      * 获取SD卡根路径
      * @return
      */
     public static String getSdcardPath() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
+    }
+
+    /**
+     * 获取安装在用户手机上的应用的cache路径
+     * 4.4以前的手机，没装sd卡的话，该路径返回空
+     * @return cache path
+     */
+    public static String getAppExternalCacheFolderPath(Context context) {
+        File cacheDir = context.getExternalCacheDir();
+        if(cacheDir == null){
+            return "";
+        }
+        return cacheDir.getAbsolutePath() + "/";
     }
 
     /**
@@ -44,6 +69,82 @@ public class FolderUtils {
         return getSdcardPath() + APP_FOLDER_SDCARD_PATH_NAME;
     }
 
+    /**
+     * 创建应用总文件夹
+     * @return
+     */
+    public static boolean createAppFolder(){
+        File dir = new File(getAppFolderPath());
+        return dir.exists() || dir.mkdirs();
+    }
+
+/*---------------------------------------------SD卡空间----------------------------------------------*/
+
+    /**
+     * 获取格式化后的Sd卡总空间
+     * @param context
+     * @return
+     */
+    public static String getFormatedSdcardTotalSize(@Nullable Context context){
+        return formatFileSize(context, getSdcardTotalSize());
+    }
+
+    /**
+     * 获取格式化后的Sd卡可用空间
+     * @param context
+     * @return
+     */
+    public static String getFormatedSdcardAvailableSize(@Nullable Context context){
+        return formatFileSize(context, getSdcardAvailableSize());
+    }
+
+    /**
+     * 获取Sd卡总空间
+     * @return
+     */
+    public static long getSdcardTotalSize() {
+        StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getAbsolutePath());
+        long blockCount = statFs.getBlockSize();
+        long availableBlocks = statFs.getBlockCount();
+        return blockCount * availableBlocks;
+    }
+
+    /**
+     * 获取Sd卡可用空间
+     * @return
+     */
+    public static long getSdcardAvailableSize() {
+        StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getAbsolutePath());
+        long blockSize = statFs.getBlockSize();
+        long availableBlocks = statFs.getAvailableBlocks();
+        return blockSize * availableBlocks;
+    }
+
+/*---------------------------------------------类型转换----------------------------------------------*/
+
+    public static String getFileNameByPath(String path) {
+        if (!TextUtils.isEmpty(path)) {
+            return path.substring(path.lastIndexOf(File.separator) + 1);
+        }
+        return "";
+    }
+
+    public static File getFileByPath(String path){
+        return new File(path);
+    }
+
+    public static File getFileByPath(String dirPath, String fileName){
+        return new File(dirPath, fileName);
+    }
+
+    public static Uri getUriByFilePath(String path){
+        return Uri.fromFile(new File(path));
+    }
+
+    public static Uri getUriByFilePath(String dirPath, String fileName){
+        return Uri.fromFile(new File(dirPath, fileName));
+    }
+
 /*---------------------------------------------文件查询----------------------------------------------*/
 
     /**
@@ -51,7 +152,7 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    private static boolean exists(String path) {
+    public static boolean exists(String path) {
         if(TextUtils.isEmpty(path)){
             return false;
         }
@@ -76,14 +177,31 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    public static long getLastModified(String path){
+    public static long getLastModifiedTime(String path){
         if(TextUtils.isEmpty(path)){
             return -1L;
         }
         return new File(path).lastModified();
     }
 
-/*---------------------------------------------文件遍历筛选-------------------------------------------*/
+    /**
+     * 获取文件后缀名
+     * @param path
+     * @return
+     */
+    public static String getFileExtName(String path) {
+        if (TextUtils.isEmpty(path)) {
+            return "";
+        }
+        int dot = path.lastIndexOf('.');
+        if ((dot > -1) && (dot < (path.length() - 1))) {
+            return path.substring(dot + 1);
+        }else{
+            return "";
+        }
+    }
+
+/*todo---------------------------------------------文件遍历筛选-------------------------------------------*/
 
     /**
      * 遍历文件夹下的所有文件
@@ -213,14 +331,85 @@ public class FolderUtils {
         return flag;
     }
 
+/*---------------------------------------------文件读出内容------------------------------------------*/
+
+    /**
+     * 读取文件
+     * @param path
+     * @return
+     */
+    public static String readFromFile(String path) {
+        if (TextUtils.isEmpty(path)) {
+            return null;
+        }
+        File file = new File(path);
+        if (!file.exists()) {
+            return null;
+        }
+        StringBuilder content = new StringBuilder();
+        FileChannel channel = null;
+        try {
+            channel = new FileInputStream(file).getChannel();
+            ByteBuffer bb = ByteBuffer.allocate(80_000);
+            while (channel.read(bb) != -1) {
+                bb.flip();
+                CharBuffer charBuffer = Charset.defaultCharset().decode(bb.asReadOnlyBuffer());
+                content.append(charBuffer.toString());
+                bb.clear();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(channel != null){
+                    channel.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return content.toString().trim();
+    }
+
 /*---------------------------------------------文件写入内容------------------------------------------*/
 
-/*---------------------------------------------文件读出内容------------------------------------------*/
+    /**
+     * 向文件写入数据
+     * @param dirPath
+     * @param fileName
+     * @param content
+     */
+    public static void writeToFile(String dirPath, String fileName, String content){
+        if(TextUtils.isEmpty(dirPath) || TextUtils.isEmpty(fileName)){
+            return;
+        }
+        File file = new File(dirPath, fileName);
+        if(!file.exists()){
+            createFile(dirPath, fileName);
+        }
+        FileChannel channel = null;
+        try {
+            channel = new FileOutputStream(file).getChannel();
+            channel.write(ByteBuffer.wrap(content.getBytes()));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(channel != null){
+                    channel.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 /*---------------------------------------------文件移动----------------------------------------------*/
 
     /**
-     * 文件移动
+     * 文件移动（重命名）
      * 源文件必须存在，目标文件必须不存在
      * @param path1 源文件路径
      * @param path2 目标文件路径
@@ -240,6 +429,7 @@ public class FolderUtils {
 
 /*---------------------------------------------文件复制----------------------------------------------*/
 
+    //todo 使用FileChannel实现复制
     /**
      * 文件复制
      * 源文件必须存在，目标文件必须不存在
@@ -252,8 +442,6 @@ public class FolderUtils {
     }
 
 /*---------------------------------------------文件合并----------------------------------------------*/
-
-/*---------------------------------------------压缩解压缩--------------------------------------------*/
 
 /*---------------------------------------------文件长度----------------------------------------------*/
 
@@ -355,6 +543,37 @@ public class FolderUtils {
             fileSizeString = df.format((double) fileSize / T_BYTES) + "TB";
         }
         return fileSizeString;
+    }
+
+/*---------------------------------------------压缩解压缩--------------------------------------------*/
+
+/*---------------------------------------------Assert相关--------------------------------------------*/
+
+    /**
+     * 从assets文件夹中获取文件并读取数据
+     *
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public static String readFromAssetsFile(Context context, String fileName) {
+        String result = "";
+        try {
+            final InputStream in = context.getResources().getAssets().open(fileName);
+            // 获取文件的字节数
+            int length = in.available();
+            // 创建byte数组
+            byte[] buffer = new byte[length];
+            // 将文件中的数据读到byte数组中
+            in.read(buffer);
+            result = new String(buffer, "UTF-8");
+            in.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

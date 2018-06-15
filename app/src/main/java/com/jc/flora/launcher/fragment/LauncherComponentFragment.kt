@@ -80,6 +80,7 @@ class LauncherComponentFragment : CaptainFragment() {
 
                     LauncherApp("数据统计", R.mipmap.ic_statistics, StatisticsActivity::class.java),
                     LauncherApp("崩溃统计", R.mipmap.ic_exception, NotFoundActivity::class.java),
+                    LauncherApp("系统支持", R.mipmap.ic_support, NotFoundActivity::class.java),
 
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
                     LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),

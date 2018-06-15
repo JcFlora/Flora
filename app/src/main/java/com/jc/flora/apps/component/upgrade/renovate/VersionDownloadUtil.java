@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import java.io.File;
+import com.jc.flora.apps.component.folder.FolderUtils;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,7 +52,7 @@ public class VersionDownloadUtil {
 			return;
 		}
 		mCancelUpgrade = true;
-		deleteFile();
+		FolderUtils.delete(mFilePathName);
 	}
 	
 	/* 用于更新界面的Handler */
@@ -80,7 +80,7 @@ public class VersionDownloadUtil {
 	private void installApk() {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setDataAndType(Uri.fromFile(new File(mFilePathName)), INSTALL_TYPE);
+		intent.setDataAndType(FolderUtils.getUriByFilePath(mFilePathName), INSTALL_TYPE);
 		mContext.startActivity(intent);
 		if(mContext instanceof Activity){
 			((Activity)mContext).finish();
@@ -89,11 +89,6 @@ public class VersionDownloadUtil {
 		}
 	}
 
-	private boolean deleteFile() {
-		File file = new File(mFilePathName);
-		return file.isFile() && file.exists() && file.delete();
-	}
-	
 	public interface onDownloadProgressChangedListener{
 		void onDownloadProgressChanged(int downloadProgress);
 	}

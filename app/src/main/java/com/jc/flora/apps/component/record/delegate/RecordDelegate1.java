@@ -3,11 +3,9 @@ package com.jc.flora.apps.component.record.delegate;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.net.Uri;
 
 import com.jc.flora.apps.component.folder.FolderUtils;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -33,18 +31,19 @@ public class RecordDelegate1 {
     }
 
     public void init(){
-        File path = new File(SAVE_PATH);
-        if(!path.exists()){
-            path.mkdir();
-        }
-        File file = new File(SAVE_PATH + SAVE_NAME);
-        if(!file.exists()){
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        FolderUtils.createFile(SAVE_PATH, SAVE_NAME);
+//        File path = new File(SAVE_PATH);
+//        if(!path.exists()){
+//            path.mkdir();
+//        }
+//        File file = new File(SAVE_PATH + SAVE_NAME);
+//        if(!file.exists()){
+//            try {
+//                file.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     public void startRecord() {
@@ -99,7 +98,7 @@ public class RecordDelegate1 {
     public void recreateAudio(){
         if(mMediaPlayer == null){
             // 播放声音
-            mMediaPlayer = MediaPlayer.create(mContext, Uri.fromFile(new File(SAVE_PATH + SAVE_NAME)));
+            mMediaPlayer = MediaPlayer.create(mContext, FolderUtils.getUriByFilePath(SAVE_PATH, SAVE_NAME));
             if(mMediaPlayer != null){
                 // 不循环
                 mMediaPlayer.setLooping(false);
