@@ -30,7 +30,7 @@ import java.text.DecimalFormat;
 
 public class FolderUtils {
 
-    /** 当前应用总文件夹的路径名 */
+    /** 当前应用总文件夹的路径名，若使用隐藏文件夹，文件夹名以.开头 */
     private static final String APP_FOLDER_SDCARD_PATH_NAME = "flora/";
 
     private static final long K_BYTES = 1000;
@@ -49,7 +49,8 @@ public class FolderUtils {
     }
 
     /**
-     * 获取安装在用户手机上的应用的cache路径
+     * 获取安装在用户手机上的应用的沙盒cache路径
+     * 该路径的数据会随应用卸载一并删除？todo
      * 4.4以前的手机，没装sd卡的话，该路径返回空
      * @return cache path
      */
@@ -122,6 +123,11 @@ public class FolderUtils {
 
 /*---------------------------------------------类型转换----------------------------------------------*/
 
+    /**
+     * 获取文件的完整文件名，包含后缀名
+     * @param path
+     * @return
+     */
     public static String getFileNameByPath(String path) {
         if (!TextUtils.isEmpty(path)) {
             return path.substring(path.lastIndexOf(File.separator) + 1);
@@ -182,6 +188,15 @@ public class FolderUtils {
             return -1L;
         }
         return new File(path).lastModified();
+    }
+
+    /**
+     * 获取无后缀文件名
+     * @param path
+     * @return
+     */
+    public static String getNoExtFileName(String path) {
+        return "";
     }
 
     /**
@@ -429,16 +444,58 @@ public class FolderUtils {
 
 /*---------------------------------------------文件复制----------------------------------------------*/
 
-    //todo 使用FileChannel实现复制
     /**
      * 文件复制
      * 源文件必须存在，目标文件必须不存在
-     * @param path1 源文件路径
-     * @param path2 目标文件路径
+     * @param srcPath 源文件路径
+     * @param destDirPath 目标文件父路径
+     * @param destFileName 目标文件名字
      * @return
      */
-    public static boolean copy(String path1, String path2){
-        return false;
+    public static boolean copy(String srcPath, String destDirPath, String destFileName){
+        if(TextUtils.isEmpty(srcPath) || TextUtils.isEmpty(destDirPath)|| TextUtils.isEmpty(destFileName)){
+            return false;
+        }
+        File srcFile = new File(srcPath);
+        File destFile = new File(destDirPath, destFileName);
+        if(!srcFile.exists() || destFile.exists()){
+            return false;
+        }
+        if(!createDir(destDirPath)){
+            return false;
+        }
+        copy(srcFile, destFile);
+        return true;
+    }
+
+    /**
+     * 文件复制
+     * @param srcFile   源文件
+     * @param destFile  目标文件
+     */
+    private static void copy(final File srcFile, final File destFile) {
+        FileChannel fcin = null;
+        FileChannel fcout = null;
+        try {
+            fcin = new FileInputStream(srcFile).getChannel();
+            fcout = new FileOutputStream(destFile).getChannel();
+            fcin.transferTo(0, fcin.size(), fcout);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fcin != null) {
+                    fcin.close();
+                }
+                if (fcout != null) {
+                    fcout.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 /*---------------------------------------------文件合并----------------------------------------------*/
