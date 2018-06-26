@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.deviceinfo.DeviceUtil;
 
 /**
  * Created by shijincheng on 2017/3/1.
@@ -42,11 +43,17 @@ public class TestBottomSheetDialog extends BottomSheetDialog{
     private void init(){
         // 加载布局
         setContentView(R.layout.dialog_bottom_sheet);
-        // 设置对话框的宽度
-        getWindow().getAttributes().width = ViewGroup.LayoutParams.MATCH_PARENT;
+        // 设置对话框的宽度和高度
+        if(getWindow() != null){
+            int dialogHeight = DeviceUtil.getScreenHeight(getContext());
+            getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, dialogHeight);
+        }
+//        // 老版本高度需要去除掉StatusBar的高度，25版本已不需要
 //        // 设置对话框的宽度和高度
-//        int dialogHeight = DeviceUtil.getHeightExcludeStatusBar(getContext());
-//        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, dialogHeight);
+//        if(getWindow() != null) {
+//            int dialogHeight = DeviceUtil.getHeightExcludeStatusBar(getContext());
+//            getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, dialogHeight);
+//        }
         // 设置是否支持滑动退出
         View bottomSheet = findViewById(android.support.design.R.id.design_bottom_sheet);
         if(bottomSheet != null){

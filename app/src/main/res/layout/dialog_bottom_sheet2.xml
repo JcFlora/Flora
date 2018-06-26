@@ -1,0 +1,91 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:text="请选择以下角色"
+        android:textColor="#333333"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:id="@+id/layout_student"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/student"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/dialog_role_student"/>
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/student"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="我是学生"
+                android:textColor="#333333"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/iv_student_check"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/dialog_role_check"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_teacher"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:id="@+id/teacher"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/dialog_role_teacher"/>
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/teacher"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="我是老师"
+                android:textColor="#333333"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/iv_teacher_check"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/dialog_role_check"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
