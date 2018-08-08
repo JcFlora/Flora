@@ -1,0 +1,40 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入你想设置的sp缓存"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存sp缓存"
+        android:onClick="saveCache"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="展示最新的sp缓存"
+        android:onClick="showCache"
+        android:textAllCaps="false"/>
+
+    <TextView
+        android:id="@+id/tv_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="最新的sp缓存："/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清空sp缓存"
+        android:onClick="clearCache"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

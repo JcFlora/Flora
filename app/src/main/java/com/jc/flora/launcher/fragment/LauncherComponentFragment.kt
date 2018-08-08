@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.jc.flora.R
 import com.jc.flora.apps.component.audio.AudioActivity
+import com.jc.flora.apps.component.cache.CacheActivity
 import com.jc.flora.apps.component.exit.ExitActivity
 import com.jc.flora.apps.component.folder.FolderActivity
 import com.jc.flora.apps.component.hybrid.HybridActivity
@@ -60,12 +61,12 @@ class LauncherComponentFragment : CaptainFragment() {
 
                     LauncherApp("屏幕适配", R.mipmap.ic_vi, ViActivity::class.java),
                     LauncherApp("设计规范", R.mipmap.ic_render, RenderActivity::class.java),
-                    LauncherApp("设备信息", R.mipmap.ic_device, NotFoundActivity::class.java),
+                    LauncherApp("日志管理", R.mipmap.ic_log, NotFoundActivity::class.java),
                     LauncherApp("权限控制", R.mipmap.ic_security, NotFoundActivity::class.java),
 
                     LauncherApp("文件处理", R.mipmap.ic_folder, FolderActivity::class.java),
                     LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java),
-                    LauncherApp("本地缓存", R.mipmap.ic_cache, NotFoundActivity::class.java),
+                    LauncherApp("本地缓存", R.mipmap.ic_cache, CacheActivity::class.java),
                     LauncherApp("数据库", R.mipmap.ic_db, NotFoundActivity::class.java),
 
                     LauncherApp("网络请求", R.mipmap.ic_net, NetRequestActivity::class.java),
@@ -80,6 +81,7 @@ class LauncherComponentFragment : CaptainFragment() {
 
                     LauncherApp("数据统计", R.mipmap.ic_statistics, StatisticsActivity::class.java),
                     LauncherApp("崩溃统计", R.mipmap.ic_exception, NotFoundActivity::class.java),
+                    LauncherApp("设备信息", R.mipmap.ic_device, NotFoundActivity::class.java),
                     LauncherApp("系统支持", R.mipmap.ic_support, NotFoundActivity::class.java),
 
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
