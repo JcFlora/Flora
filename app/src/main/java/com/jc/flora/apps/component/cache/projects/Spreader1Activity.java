@@ -15,7 +15,7 @@ import com.jc.flora.apps.component.cache.delegate.UserSpreader;
 /**
  * Created by shijincheng on 2017/1/25.
  */
-public class SpreaderActivity extends AppCompatActivity {
+public class Spreader1Activity extends AppCompatActivity {
 
     private EditText mEtCache;
     private TextView mTvCache;
@@ -23,8 +23,8 @@ public class SpreaderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cache_spreader);
-        setTitle("sp缓存");
+        setContentView(R.layout.activity_cache_spreader1);
+        setTitle("基本数据类型的sp缓存");
         mEtCache = (EditText) findViewById(R.id.et_cache);
         mTvCache = (TextView) findViewById(R.id.tv_cache);
         Spreader.init(this);
@@ -42,6 +42,10 @@ public class SpreaderActivity extends AppCompatActivity {
 
     public void clearCache(View v) {
         UserSpreader.clearUserName();
+    }
+
+    public void clearAllCache(View v) {
+        Spreader.clear();
     }
 
     private void showCache(){

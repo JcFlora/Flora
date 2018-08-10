@@ -39,7 +39,10 @@ public class UserCacher {
      */
     public static void clearUserName(){
         sUserName = null;
-        Cacher.clear();
+        if (Cacher.edit() != null) {
+            Cacher.edit().remove(KEY_USER_NAME);
+            Cacher.edit().apply();
+        }
     }
 
 }

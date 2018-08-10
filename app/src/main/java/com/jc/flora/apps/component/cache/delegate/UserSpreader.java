@@ -32,7 +32,10 @@ public class UserSpreader {
      * 清空时调用
      */
     public static void clearUserName(){
-        writeUserName(null);
+        if (Spreader.edit() != null) {
+            Spreader.edit().remove(KEY_USER_NAME);
+            Spreader.edit().apply();
+        }
     }
 
 }

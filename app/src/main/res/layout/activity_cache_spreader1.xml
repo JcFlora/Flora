@@ -37,4 +37,11 @@
         android:onClick="clearCache"
         android:textAllCaps="false"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清空所有sp缓存"
+        android:onClick="clearAllCache"
+        android:textAllCaps="false"/>
+
 </LinearLayout>

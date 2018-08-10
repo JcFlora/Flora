@@ -15,7 +15,7 @@ import com.jc.flora.apps.component.cache.delegate.UserCacher;
 /**
  * Created by shijincheng on 2017/1/25.
  */
-public class CacherActivity extends AppCompatActivity {
+public class Cacher1Activity extends AppCompatActivity {
 
     private EditText mEtCache;
     private TextView mTvCache;
@@ -23,8 +23,8 @@ public class CacherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cache_cacher);
-        setTitle("静态变量缓存");
+        setContentView(R.layout.activity_cache_cacher1);
+        setTitle("基本数据类型的静态变量缓存");
         mEtCache = (EditText) findViewById(R.id.et_cache);
         mTvCache = (TextView) findViewById(R.id.tv_cache);
         Cacher.init(this);
