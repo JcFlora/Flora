@@ -82,11 +82,16 @@ public class Splash7Delegate extends Fragment {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         if (mVideoView != null) {
             mVideoPosition = mVideoView.getCurrentPosition();
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         if(mCountDownTimer != null){
             mCountDownTimer.cancel();
             mCountDownTimer = null;
