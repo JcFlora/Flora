@@ -22,6 +22,7 @@ import com.jc.flora.apps.component.router.RouterActivity
 import com.jc.flora.apps.component.statistics.StatisticsActivity
 import com.jc.flora.apps.component.upgrade.UpgradeActivity
 import com.jc.flora.apps.component.vi.ViActivity
+import com.jc.flora.apps.component.video.VideoActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.launcher.LauncherApp
 import com.jc.flora.launcher.LauncherAppsAdapter
@@ -85,7 +86,7 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("系统支持", R.mipmap.ic_support, NotFoundActivity::class.java),
 
                     LauncherApp("播放音频", R.mipmap.ic_audio, AudioActivity::class.java),
-                    LauncherApp("播放视频", R.mipmap.ic_video, NotFoundActivity::class.java),
+                    LauncherApp("播放视频", R.mipmap.ic_video, VideoActivity::class.java),
                     LauncherApp("录制音频", R.mipmap.ic_record, RecordActivity::class.java),
                     LauncherApp("录制视频", R.mipmap.ic_dv, NotFoundActivity::class.java)
 
