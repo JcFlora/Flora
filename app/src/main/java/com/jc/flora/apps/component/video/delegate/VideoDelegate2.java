@@ -7,7 +7,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.MediaController;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.jc.flora.R;
@@ -15,12 +16,14 @@ import com.jc.flora.R;
 import java.util.HashMap;
 
 /**
- * Created by Shijincheng on 2018/8/24.
+ * Created by Shijincheng on 2018/8/26.
  */
 
-public class Video1Delegate extends Fragment {
+public class VideoDelegate2 extends Fragment {
 
     private VideoView mVideoView;
+    // 播放按钮
+    private ImageView mBtnPlay;
 
     private int mVideoPosition = 0;
     /** 当前视频正在播放 */
@@ -28,9 +31,12 @@ public class Video1Delegate extends Fragment {
     /** 当前界面正处在前台运行 */
     private boolean mIsInForeground = true;
 
-    public Video1Delegate setVideoView(VideoView videoView) {
+    public void setVideoView(VideoView videoView) {
         mVideoView = videoView;
-        return this;
+    }
+
+    public void setBtnPlay(ImageView btnPlay) {
+        mBtnPlay = btnPlay;
     }
 
     public void addToActivity(AppCompatActivity activity, String tag) {
@@ -79,8 +85,19 @@ public class Video1Delegate extends Fragment {
     }
 
     private void initView() {
+        mBtnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mVideoView.isPlaying()) {
+                    mVideoView.pause();
+                    mBtnPlay.setImageResource(R.drawable.video_play);
+                } else {
+                    mVideoView.start();
+                    mBtnPlay.setImageResource(R.drawable.video_pause);
+                }
+            }
+        });
         mVideoView.setBackgroundResource(R.drawable.video_rainbow);
-        mVideoView.setMediaController(new MediaController(getActivity()));
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {

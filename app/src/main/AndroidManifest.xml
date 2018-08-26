@@ -884,6 +884,12 @@
         <activity
             android:name=".apps.component.video.projects.Video1Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.video.projects.Video2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.video.projects.Video3Activity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

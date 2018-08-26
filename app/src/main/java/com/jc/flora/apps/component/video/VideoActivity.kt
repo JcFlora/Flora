@@ -9,6 +9,9 @@ import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.audio.projects.*
 import com.jc.flora.apps.component.video.projects.Video1Activity
+import com.jc.flora.apps.component.video.projects.Video2Activity
+import com.jc.flora.apps.component.video.projects.Video3Activity
+import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -48,24 +51,24 @@ class VideoActivity : AppCompatActivity() {
     private val project2: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.2：后台Service播放本地MP3"
-            project.targetActivity = Audio2Activity::class.java
+            project.projectName = "视频0.2：自定义播放暂停按钮"
+            project.targetActivity = Video2Activity::class.java
             return project
         }
 
     private val project3: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.3：支持暂停和继续播放"
-            project.targetActivity = Audio3Activity::class.java
+            project.projectName = "视频0.3：实现自定义控制层的动态隐藏"
+            project.targetActivity = Video3Activity::class.java
             return project
         }
 
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.4：支持进度显示和控制"
-            project.targetActivity = Audio4Activity::class.java
+            project.projectName = "视频0.4：自定义进度显示和控制"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
