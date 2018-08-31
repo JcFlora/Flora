@@ -7,12 +7,15 @@
     <FrameLayout
         android:id="@+id/layout_video"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
 
         <VideoView
             android:id="@+id/vv_video"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"/>
 
     </FrameLayout>
 

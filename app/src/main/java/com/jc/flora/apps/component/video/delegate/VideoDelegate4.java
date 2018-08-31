@@ -5,22 +5,31 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.jc.flora.R;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
- * Created by Shijincheng on 2018/8/26.
+ * Created by Shijincheng on 2018/8/27.
  */
 
-public class VideoDelegate3 extends Fragment {
+public class VideoDelegate4 extends Fragment {
+
+    //进度条下面的当前进度文字，将毫秒化为mm:ss格式
+    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
     // 视频父布局
     private View mLayoutVideo;
@@ -30,6 +39,12 @@ public class VideoDelegate3 extends Fragment {
     private View mLayoutController;
     // 播放按钮
     private ImageView mBtnPlay;
+    // 当前播放进度时间显示
+    private TextView mTvCurrentTime;
+    // 播放进度条
+    private SeekBar mSbProgress;
+    // 总进度时间显示
+    private TextView mTvMaxTime;
 
     private int mVideoPosition = 0;
     /** 当前视频正在播放 */
@@ -51,6 +66,18 @@ public class VideoDelegate3 extends Fragment {
 
     public void setBtnPlay(ImageView btnPlay) {
         mBtnPlay = btnPlay;
+    }
+
+    public void setTvCurrentTime(TextView tvCurrentTime) {
+        mTvCurrentTime = tvCurrentTime;
+    }
+
+    public void setSbProgress(SeekBar sbProgress) {
+        mSbProgress = sbProgress;
+    }
+
+    public void setTvMaxTime(TextView tvMaxTime) {
+        mTvMaxTime = tvMaxTime;
     }
 
     public void addToActivity(AppCompatActivity activity, String tag) {
@@ -94,6 +121,7 @@ public class VideoDelegate3 extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         mLayoutVideo.removeCallbacks(mFadeOut);
+        mProgressRefreshHandler.removeCallbacksAndMessages(null);
         if (mVideoView != null) {
             mVideoView.stopPlayback();
         }
@@ -131,6 +159,7 @@ public class VideoDelegate3 extends Fragment {
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
+                setMaxProgress();
                 setRemoveBgWhenFirstPlayListener(mp);
                 if(mIsInForeground && mIsVideoPlaying){
                     mp.start();
@@ -138,6 +167,34 @@ public class VideoDelegate3 extends Fragment {
             }
         });
         mVideoView.setVideoPath("android.resource://" + getActivity().getPackageName() + "/" + R.raw.rainbow);
+        initProgress();
+    }
+
+    private void initProgress() {
+        // 设置手动滑动监听
+        mSbProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //这里很重要，如果不判断是否来自用户操作进度条，会不断执行下面语句块里面的逻辑，然后就会卡顿卡顿
+                if(fromUser){
+                    mVideoView.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // 手指开始滑动时，SeekBar近似常显
+                showController(3600000);
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // 手指停止滑动时，SeekBar常显
+                showController();
+            }
+        });
+        // 开始不停地刷新播放进度
+        mProgressRefreshHandler.sendEmptyMessage(0);
     }
 
     private void hideController(){
@@ -145,15 +202,38 @@ public class VideoDelegate3 extends Fragment {
     }
 
     private void showController(){
+        showController(3000);
+    }
+
+    private void showController(int timeout){
         mLayoutController.setVisibility(View.VISIBLE);
         mLayoutVideo.removeCallbacks(mFadeOut);
-        mLayoutVideo.postDelayed(mFadeOut, 3000);
+        mLayoutVideo.postDelayed(mFadeOut, timeout);
+    }
+
+    private void setMaxProgress(){
+        // 初始化播放最大进度值
+        mSbProgress.setMax(mVideoView.getDuration());
+        // 初始化总时间
+        mTvMaxTime.setText(FORMAT.format(mVideoView.getDuration()));
     }
 
     private final Runnable mFadeOut = new Runnable() {
         @Override
         public void run() {
             hideController();
+        }
+    };
+
+    // 用于刷新播放进度的Handler
+    private Handler mProgressRefreshHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mSbProgress.setProgress(mVideoView.getCurrentPosition());
+            String currentTime = FORMAT.format(mVideoView.getCurrentPosition());
+            mTvCurrentTime.setText(currentTime);
+            mProgressRefreshHandler.sendEmptyMessageDelayed(0, 1000);
         }
     };
 

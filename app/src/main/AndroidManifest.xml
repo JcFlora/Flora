@@ -890,6 +890,18 @@
         <activity
             android:name=".apps.component.video.projects.Video3Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.video.projects.Video4Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.video.projects.Video5Activity"
+            android:screenOrientation="landscape"
+            android:theme="@style/FloraTheme"/>
+        <activity
+            android:name=".apps.component.video.projects.Video6Activity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/FloraTheme"/>
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

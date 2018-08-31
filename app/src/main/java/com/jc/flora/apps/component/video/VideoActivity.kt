@@ -8,10 +8,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.audio.projects.*
-import com.jc.flora.apps.component.video.projects.Video1Activity
-import com.jc.flora.apps.component.video.projects.Video2Activity
-import com.jc.flora.apps.component.video.projects.Video3Activity
-import com.jc.flora.launcher.NotFoundActivity
+import com.jc.flora.apps.component.video.projects.*
 import java.util.*
 
 /**
@@ -68,23 +65,23 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频0.4：自定义进度显示和控制"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Video4Activity::class.java
             return project
         }
 
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.5：支持多个MP3切换播放"
-            project.targetActivity = Audio5Activity::class.java
+            project.projectName = "视频0.5：全屏显示"
+            project.targetActivity = Video5Activity::class.java
             return project
         }
 
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.6：支持上一首／下一首功能"
-            project.targetActivity = Audio6Activity::class.java
+            project.projectName = "视频0.6：单个视频的全屏/小屏切换"
+            project.targetActivity = Video6Activity::class.java
             return project
         }
 
