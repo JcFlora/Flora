@@ -71,6 +71,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name=".apps.component.distribute.DistributeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.distribute.projects.Distribute1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.distribute.projects.Distribute2Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.scene.splash.SplashActivity"
             android:screenOrientation="portrait" />
         <activity
