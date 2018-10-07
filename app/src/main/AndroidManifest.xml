@@ -80,6 +80,9 @@
             android:name=".apps.component.distribute.projects.Distribute2Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.distribute.projects.Distribute3Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.scene.splash.SplashActivity"
             android:screenOrientation="portrait" />
         <activity

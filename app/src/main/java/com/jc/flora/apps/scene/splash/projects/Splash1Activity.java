@@ -1,5 +1,6 @@
 package com.jc.flora.apps.scene.splash.projects;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,7 @@ public class Splash1Activity extends AppCompatActivity{
         mHandler.sendEmptyMessage(0);
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
