@@ -33,16 +33,12 @@ public abstract class AbsAsyncTask<Result> extends AsyncTask<Void, Integer, Resu
     /** 使用HTTP向服务器发送请求的方法*/
     private String requestHttp() {
         String json = null;
-        try {
-            String url = getBaseUrl() + getMethodUrl();
-            ContentValues params = params2ContentValues();
-            if ("GET".equals(getMethodType())) {
-                json = new HttpGetMethod(url, params).doGet();
-            } else if ("POST".equals(getMethodType())) {
-                json = new HttpPostMethod(url, params).doPost();
-            }
-        } catch (SocketException e) {
-            e.printStackTrace();
+        String url = getBaseUrl() + getMethodUrl();
+        ContentValues params = params2ContentValues();
+        if ("GET".equals(getMethodType())) {
+            json = new HttpGetMethod(url, params).doGet();
+        } else if ("POST".equals(getMethodType())) {
+            json = new HttpPostMethod(url, params).doPost();
         }
         return json;
     }
@@ -73,8 +69,7 @@ public abstract class AbsAsyncTask<Result> extends AsyncTask<Void, Integer, Resu
                 return rstObj;
             }
         } catch (Exception e) {
-            if (null != e.getMessage())
-                e.printStackTrace();
+            e.printStackTrace();
             ILog.D(e.getMessage());
         }
         return null;

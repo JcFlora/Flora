@@ -1,5 +1,7 @@
 package com.jc.flora.apps.component.request;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,7 +11,7 @@ import java.util.List;
 
 /**
  * 返回json实体类示例
- * http://gank.io/api/search/query/listview/category/Android/count/2/page/1
+ * https://gank.io/api/search/query/listview/category/Android/count/2/page/1
  * Created by shijincheng on 2017/1/13.
  */
 public class NetResponse extends BaseResponse{
@@ -25,7 +27,7 @@ public class NetResponse extends BaseResponse{
     }
 
     private void optResultsFromJson(JSONObject json, String resultsKey)throws JSONException {
-        JSONArray array = json.getJSONArray(resultsKey);
+        JSONArray array = json.optJSONArray(resultsKey);
         for (int i = 0, length = array.length(); i < length; i++) {
             JSONObject jsonResult = (JSONObject)array.get(i);
             Result result = new Result(jsonResult);
@@ -35,6 +37,7 @@ public class NetResponse extends BaseResponse{
 
     public static class Result{
         public String desc;
+        @SerializedName("ganhuo_id")
         public String ganhuoId;
         public String publishedAt;
         public String type;

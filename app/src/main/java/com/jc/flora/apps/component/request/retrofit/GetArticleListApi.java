@@ -10,7 +10,7 @@ import retrofit2.http.Path;
 
 /**
  * 获取文章列表的Api
- * http://gank.io/api/search/query/listview/category/Android/count/2/page/1
+ * https://gank.io/api/search/query/listview/category/Android/count/2/page/1
  * Created by shijincheng on 2017/3/20.
  */
 public class GetArticleListApi extends BaseApi {

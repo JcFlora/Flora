@@ -75,7 +75,7 @@ public class HttpRequest<Result> implements Runnable {
 	private String doGet() {
 		mUrl = mUrlData.url.trim().toLowerCase();
 		ILog.D("preUrl = " + mUrl);
-		if (TextUtils.isEmpty(mUrl) || !mUrl.startsWith("http://")) {
+		if (TextUtils.isEmpty(mUrl) || !(mUrl.startsWith("http://") || mUrl.startsWith("https://"))) {
 			return null;
 		}
 
@@ -127,7 +127,7 @@ public class HttpRequest<Result> implements Runnable {
 	private String doPost() {
 		mUrl = mUrlData.url.trim().toLowerCase();
 		ILog.D("preUrl = " + mUrl);
-		if (TextUtils.isEmpty(mUrl) || !mUrl.startsWith("http://")) {
+		if (TextUtils.isEmpty(mUrl) || !(mUrl.startsWith("http://") || mUrl.startsWith("https://"))) {
 			return null;
 		}
 

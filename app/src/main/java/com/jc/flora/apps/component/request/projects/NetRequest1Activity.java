@@ -1,10 +1,12 @@
 package com.jc.flora.apps.component.request.projects;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.jc.flora.apps.component.request.NetResponse;
@@ -34,11 +36,11 @@ public class NetRequest1Activity extends AppCompatActivity {
         mTvContent = new TextView(this);
         setContentView(mTvContent);
         // 开启子线程发起请求，如果在主线程中发起，会报错
-        getThread.start();
+        mGetThread.start();
     }
 
     /** 开启子线程发起请求 */
-    private Thread getThread = new Thread(){
+    private Thread mGetThread = new Thread(){
         public void run() {
             sendRequest();
         }
@@ -55,14 +57,14 @@ public class NetRequest1Activity extends AppCompatActivity {
     private void sendRequest(){
         HttpURLConnection connection = null;
         try {
-            URL url = new URL("http://gank.io/api/search/query/listview/category/Android/count/2/page/1");
+            URL url = new URL("https://gank.io/api/search/query/listview/category/Android/count/2/page/1");
             connection = (HttpURLConnection) url.openConnection();
             if(connection.getResponseCode() == 200){
                 InputStream is = connection.getInputStream();
                 mResult = inputStreamToString(is);
                 Message msg = Message.obtain();
                 msg.what = 0;
-                getHandler.sendMessage(msg);
+                mGetHandler.sendMessage(msg);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -95,7 +97,8 @@ public class NetRequest1Activity extends AppCompatActivity {
     }
 
     /** 获取数据后，用于回调主线程的Handler */
-    private Handler getHandler = new Handler(){
+    @SuppressLint("HandlerLeak")
+    private Handler mGetHandler = new Handler(){
         public void handleMessage(android.os.Message msg) {
             if(msg.what == 0 && mResult !=null){
                 try {
@@ -108,5 +111,11 @@ public class NetRequest1Activity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mGetHandler.removeCallbacksAndMessages(null);
+    }
 
 }

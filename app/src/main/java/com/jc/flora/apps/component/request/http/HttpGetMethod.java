@@ -21,10 +21,10 @@ class HttpGetMethod {
         mParams = params;
     }
 
-    String doGet() throws SocketException {
+    String doGet() {
         String url = mUrl.trim().toLowerCase();
         ILog.D("preUrl = " + url);
-        if (TextUtils.isEmpty(url) || !url.startsWith("http://")) {
+        if (TextUtils.isEmpty(url) || !(url.startsWith("http://") || url.startsWith("https://"))) {
             return null;
         }
 
@@ -39,6 +39,7 @@ class HttpGetMethod {
             url += "?" + para.substring(1, para.length());
             ILog.D("url = " + url);
         }
+
         try {
             conn = (HttpURLConnection) new URL(url).openConnection();
             conn.setRequestMethod("GET");

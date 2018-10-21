@@ -7,7 +7,7 @@ import java.text.MessageFormat;
 
 public class GetArticleListApi {
 
-    private static final String HOST = "http://gank.io/api/";
+    private static final String HOST = "https://gank.io/api/";
     private static final String GET_ARTICLE_LIST_ACTION = "search/query/listview/category/{0}/count/{1}/page/{2}";
     private static boolean MOCK = false;
 

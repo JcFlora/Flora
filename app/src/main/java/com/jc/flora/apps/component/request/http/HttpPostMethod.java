@@ -22,10 +22,10 @@ class HttpPostMethod {
         mParams = params;
     }
 
-    String doPost() throws SocketException {
+    String doPost() {
         String url = mUrl.trim().toLowerCase();
         ILog.D("preUrl = " + url);
-        if (TextUtils.isEmpty(url) || !url.startsWith("http://")) {
+        if (TextUtils.isEmpty(url) || !(url.startsWith("http://") || url.startsWith("https://"))) {
             return null;
         }
 
