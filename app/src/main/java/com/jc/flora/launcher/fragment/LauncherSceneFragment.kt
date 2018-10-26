@@ -12,6 +12,7 @@ import com.jc.flora.apps.scene.bluetooth.BluetoothActivity
 import com.jc.flora.apps.scene.guider.GuiderActivity
 import com.jc.flora.apps.scene.login.LoginActivity
 import com.jc.flora.apps.scene.payment.PaymentActivity
+import com.jc.flora.apps.scene.qrcode.QrcodeActivity
 import com.jc.flora.apps.scene.splash.SplashActivity
 import com.jc.flora.apps.scene.telephone.TelephoneActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
@@ -54,7 +55,7 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("图片选择", R.mipmap.ic_photo, NotFoundActivity::class.java),
                     LauncherApp("浏览大图", R.mipmap.ic_album, NotFoundActivity::class.java),
                     LauncherApp("内容分享", R.mipmap.ic_share, NotFoundActivity::class.java),
-                    LauncherApp("扫二维码", R.mipmap.ic_qrcode, NotFoundActivity::class.java),
+                    LauncherApp("二维码", R.mipmap.ic_qrcode, QrcodeActivity::class.java),
 
                     LauncherApp("电商首页", R.mipmap.ic_home, NotFoundActivity::class.java),
                     LauncherApp("商品分类", R.mipmap.ic_category, NotFoundActivity::class.java),

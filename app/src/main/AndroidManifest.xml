@@ -914,6 +914,12 @@
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/FloraTheme"/>
+        <activity
+            android:name=".apps.scene.qrcode.QrcodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.qrcode.projects.Qrcode1Activity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

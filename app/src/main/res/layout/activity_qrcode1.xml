@@ -1,0 +1,103 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_qrcode_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入二维码的内容"
+        android:textColor="#3d3d3d"
+        android:textColorHint="#cccccc"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="容错率："/>
+
+    <RadioGroup
+        android:id="@+id/rg_error_correction_level"
+        android:checkedButton="@+id/rb_m"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_l"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="L(7%)"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/rb_m"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M(15%)"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/rb_q"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Q(25%)"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/rb_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="H(30%)"/>
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生成二维码"
+        android:onClick="createQrcode"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生成带Logo二维码（图片合成）"
+        android:onClick="addLogoToQrcode"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生成带Logo二维码（像素合成）"
+        android:onClick="createQrcodeWithLogo"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="识别二维码"
+        android:onClick="fetchQrcodeText"
+        android:textAllCaps="false"/>
+
+    <ImageView
+        android:id="@+id/iv_qrcode"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
