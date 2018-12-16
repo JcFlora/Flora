@@ -7,9 +7,7 @@ import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.component.distribute.projects.Distribute1Activity
-import com.jc.flora.apps.component.distribute.projects.Distribute2Activity
-import com.jc.flora.apps.component.distribute.projects.Distribute3Activity
+import com.jc.flora.apps.component.distribute.projects.*
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
@@ -34,7 +32,7 @@ class DistributeActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8, project9)
+                    project6, project7, project8, project9, project10)
         }
 
     private val project1: Project
@@ -65,7 +63,7 @@ class DistributeActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "通过注入实现业务代理之间的关联"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Distribute4Activity::class.java
             return project
         }
 
@@ -73,7 +71,7 @@ class DistributeActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "使用Fragment实现自动同步生命周期的业务代理"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Distribute5Activity::class.java
             return project
         }
 
@@ -81,7 +79,7 @@ class DistributeActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "处理Fragment代理默认缓存恢复引起的问题"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Distribute6Activity::class.java
             return project
         }
 
@@ -89,7 +87,7 @@ class DistributeActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "处理Fragment代理异步加载引起的问题"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Distribute7Activity::class.java
             return project
         }
 
@@ -102,6 +100,14 @@ class DistributeActivity : AppCompatActivity() {
         }
 
     private val project9: Project
+        get() {
+            val project = Project()
+            project.projectName = "在Fragment中使用Fragment代理"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project10: Project
         get() {
             val project = Project()
             project.projectName = "抽取父类"

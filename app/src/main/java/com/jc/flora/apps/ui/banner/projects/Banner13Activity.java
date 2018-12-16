@@ -23,7 +23,7 @@ import java.util.List;
 public class Banner13Activity extends AppCompatActivity {
 
     private static final String[] IMAGE_URIS =
-            {"http://img.taodiantong.cn/v55183/infoimg/2013-07/130720115322ky.jpg"};
+            {"https://img.zcool.cn/community/011fc259a36272a801211d25e148bc.jpg"};
 
     private int mImageLength;
 
