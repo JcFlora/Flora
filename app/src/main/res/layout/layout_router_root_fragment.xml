@@ -1,0 +1,52 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_goto_launcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="去主页面"/>
+
+    <Button
+        android:id="@+id/btn_goto_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="去空页面"/>
+
+    <Button
+        android:id="@+id/btn_go_with_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转并传递数据"/>
+
+    <Button
+        android:id="@+id/btn_go_and_receive_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转并接收回传数据"/>
+
+    <Button
+        android:id="@+id/btn_goto_not_found_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="去空Fragment"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_push_not_found_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="去空Fragment，带返回"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_push_share_data_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转Fragment并共享数据"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

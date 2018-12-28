@@ -1,14 +1,15 @@
 package com.jc.flora.apps.component.router
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.router.projects.EasyRouterActivity
-import java.util.ArrayList
+import com.jc.flora.apps.component.router.projects.FragmentRouterActivity
+import java.util.*
 
 /**
  * Created by shijincheng on 2017/5/16.
@@ -30,7 +31,7 @@ class RouterActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1)
+            return arrayListOf(project1, project2)
         }
 
     private val project1: Project
@@ -38,6 +39,14 @@ class RouterActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "页面路由0.1：基础路由跳转"
             project.targetActivity = EasyRouterActivity::class.java
+            return project
+        }
+
+    private val project2: Project
+        get() {
+            val project = Project()
+            project.projectName = "页面路由0.2：Fragment的路由跳转"
+            project.targetActivity = FragmentRouterActivity::class.java
             return project
         }
 

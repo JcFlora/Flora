@@ -515,6 +515,9 @@
             android:name=".apps.component.router.projects.EasyRouterActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.router.projects.FragmentRouterActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.router.projects.GetDataTestActivity"
             android:screenOrientation="portrait" />
         <activity

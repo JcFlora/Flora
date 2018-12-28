@@ -51,4 +51,31 @@ public class RouterUtil {
         fragment.startActivityForResult(intent, requestCode);
     }
 
+    public static void setRootFragmentForActivity(AppCompatActivity activity, Fragment fragment, int containerViewId){
+        if(activity != null){
+            activity.getSupportFragmentManager().beginTransaction().add(containerViewId, fragment, "rootFragment").commitAllowingStateLoss();
+        }
+    }
+
+    public static void gotoNotFoundFragment(Fragment fragment, int containerViewId) {
+        NotFoundFragment fg = new NotFoundFragment();
+        fragment.getFragmentManager().beginTransaction().hide(fragment).add(containerViewId, fg, "notFoundFragment").commitAllowingStateLoss();
+    }
+
+    public static void pushNotFoundFragment(Fragment fragment, int containerViewId) {
+        NotFoundFragment fg = new NotFoundFragment();
+        fragment.getFragmentManager().beginTransaction().hide(fragment).add(containerViewId, fg, "notFoundFragment").addToBackStack(fragment.getActivity().getLocalClassName()).commitAllowingStateLoss();
+    }
+
+    public static void pushShareDataFragment(Fragment fragment, int containerViewId) {
+        ShareDataFragment fg = new ShareDataFragment();
+        fragment.getFragmentManager().beginTransaction().hide(fragment).add(containerViewId, fg, "shareDataFragment").addToBackStack(fragment.getActivity().getLocalClassName()).commitAllowingStateLoss();
+    }
+
+    public static void popFragment(Fragment fragment) {
+        if(!fragment.getFragmentManager().popBackStackImmediate()){
+            fragment.getActivity().onBackPressed();
+        }
+    }
+
 }
