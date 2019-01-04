@@ -8,6 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="弹出Toast"
-        android:onClick="showToast"/>
+        android:onClick="showToast"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="屏幕中间弹出Toast"
+        android:onClick="showToastInScreenCenter"
+        android:textAllCaps="false"/>
 
 </LinearLayout>

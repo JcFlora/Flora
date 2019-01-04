@@ -23,4 +23,7 @@ public class ToastActivity extends AppCompatActivity {
         ToastDelegate.show(this, "我是一个Toast");
     }
 
+    public void showToastInScreenCenter(View view) {
+        ToastDelegate.showInScreenCenter(this, "我是屏幕中间的Toast");
+    }
 }
