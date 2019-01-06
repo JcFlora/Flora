@@ -10,6 +10,9 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import com.jc.flora.apps.component.audio.model.MP3;
 
 /**
+ *
+ * implementation "com.android.support:support-media-compat:$SUPPORT_VERSION"
+ *
  * 在低版本上，需要在manifest配置文件中添加
  *  <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >
  *      <intent-filter>

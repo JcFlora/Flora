@@ -139,7 +139,7 @@ public class QrcodeCreateDelegate {
         // 画二维码
         canvas.drawBitmap(qrBitmap, 0, 0, null);
         // 保存二维码底图
-        canvas.save(Canvas.ALL_SAVE_FLAG);
+        canvas.save();
         // 缩放画布到sx倍大小
         canvas.scale(sx, sx, mQrcodeWith / 2, mQrcodeHeight / 2);
         // 画logo图
