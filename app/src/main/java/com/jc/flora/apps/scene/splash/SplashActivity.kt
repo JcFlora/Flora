@@ -1,23 +1,15 @@
 package com.jc.flora.apps.scene.splash
 
 import android.os.Bundle
-import android.os.Handler
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.scene.splash.projects.Splash1Activity
-import com.jc.flora.apps.scene.splash.projects.Splash2Activity
-import com.jc.flora.apps.scene.splash.projects.Splash3Activity
-import com.jc.flora.apps.scene.splash.projects.Splash5Activity
-import com.jc.flora.apps.scene.splash.projects.Splash7Activity
+import com.jc.flora.apps.scene.splash.projects.*
 import com.jc.flora.launcher.NotFoundActivity
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by shijincheng on 2017/1/17.
@@ -32,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects = findViewById(R.id.rv_projects) as RecyclerView
+        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
         rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }

@@ -25,7 +25,7 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects = findViewById(R.id.rv_projects) as RecyclerView
+        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
         rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }

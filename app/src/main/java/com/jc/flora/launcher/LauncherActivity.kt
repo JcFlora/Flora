@@ -27,8 +27,8 @@ class LauncherActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        mVpContainer = findViewById(R.id.vp_content) as ViewPager
-        mLayoutCaptainIndicators = findViewById(R.id.layout_captain_indicators) as LinearLayout
+        mVpContainer = findViewById(R.id.vp_content)
+        mLayoutCaptainIndicators = findViewById(R.id.layout_captain_indicators)
     }
 
     private fun initDelegate() {

@@ -10,7 +10,7 @@ import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.audio.projects.*
 import com.jc.flora.apps.component.record.projects.Record1Activity
 import com.jc.flora.launcher.NotFoundActivity
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by shijincheng on 2017/11/18.
@@ -25,7 +25,7 @@ class RecordActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects = findViewById(R.id.rv_projects) as RecyclerView
+        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
         rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }

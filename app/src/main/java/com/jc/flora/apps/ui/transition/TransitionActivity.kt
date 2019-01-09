@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.transition.projects.PendingTransitionActivity
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by shijincheng on 2017/3/2.
@@ -25,7 +23,7 @@ class TransitionActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects = findViewById(R.id.rv_projects) as RecyclerView
+        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
         rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }

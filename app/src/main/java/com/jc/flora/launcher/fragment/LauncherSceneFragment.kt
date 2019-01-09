@@ -30,7 +30,7 @@ class LauncherSceneFragment : CaptainFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.layout_launcher_fragment, container, false)
-        rvApps = v.findViewById(R.id.rv_apps) as RecyclerView
+        rvApps = v.findViewById(R.id.rv_apps)
         return v
     }
 

@@ -4,41 +4,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.ui.banner.projects.Banner10Activity
-import com.jc.flora.apps.ui.banner.projects.Banner11Activity
-import com.jc.flora.apps.ui.banner.projects.Banner12Activity
-import com.jc.flora.apps.ui.banner.projects.Banner13Activity
-import com.jc.flora.apps.ui.banner.projects.Banner14Activity
-import com.jc.flora.apps.ui.banner.projects.Banner15Activity
-import com.jc.flora.apps.ui.banner.projects.Banner16Activity
-import com.jc.flora.apps.ui.banner.projects.Banner1Activity
-import com.jc.flora.apps.ui.banner.projects.Banner2Activity
-import com.jc.flora.apps.ui.banner.projects.Banner3Activity
-import com.jc.flora.apps.ui.banner.projects.Banner4Activity
-import com.jc.flora.apps.ui.banner.projects.Banner5Activity
-import com.jc.flora.apps.ui.banner.projects.Banner6Activity
-import com.jc.flora.apps.ui.banner.projects.Banner7Activity
-import com.jc.flora.apps.ui.banner.projects.Banner8Activity
-import com.jc.flora.apps.ui.banner.projects.Banner9Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth10Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth11Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth12Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth1Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth2Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth3Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth4Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth5Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth6Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth7Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth8Activity
-import com.jc.flora.apps.scene.bluetooth.projects.Bluetooth9Activity
+import com.jc.flora.apps.scene.bluetooth.projects.*
 import com.jc.flora.launcher.NotFoundActivity
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by shijincheng on 2017/2/28.
@@ -59,7 +30,7 @@ class BluetoothActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects = findViewById(R.id.rv_projects) as RecyclerView
+        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
         rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }

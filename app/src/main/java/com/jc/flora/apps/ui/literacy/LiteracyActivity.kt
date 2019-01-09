@@ -8,10 +8,9 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.ui.literacy.projects.Literacy1Activity
-import com.jc.flora.apps.ui.typeface.projects.PhoneticIpaActivity
 import com.jc.flora.apps.ui.typeface.projects.PhoneticPinyin1Activity
 import com.jc.flora.apps.ui.typeface.projects.PhoneticPinyin2Activity
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by shijincheng on 2018/1/21.
@@ -26,7 +25,7 @@ class LiteracyActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects = findViewById(R.id.rv_projects) as RecyclerView
+        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
         rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }
