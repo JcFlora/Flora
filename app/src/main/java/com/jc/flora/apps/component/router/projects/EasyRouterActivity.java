@@ -28,6 +28,10 @@ public class EasyRouterActivity extends AppCompatActivity {
         RouterUtil.gotoNotFound(this);
     }
 
+    public void gotoNotFound2(View v){
+        RouterUtil.gotoNotFound2(this);
+    }
+
     public void goWithData(View view) {
         RouterUtil.goWithData(this, "EasyRouterActivity");
     }

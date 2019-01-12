@@ -21,6 +21,13 @@ public class RouterUtil {
         context.startActivity(new Intent(context, NotFoundActivity.class));
     }
 
+    public static void gotoNotFound2(Context context) {
+        Intent[] intents = new Intent[2];
+        intents[0] = new Intent(context, LauncherActivity.class);
+        intents[1] = new Intent(context, NotFoundActivity.class);
+        context.startActivities(intents);
+    }
+
     public static void goWithData(Context context, String from) {
         Intent intent = new Intent(context, GetDataTestActivity.class);
         intent.putExtra("from", from);
@@ -30,6 +37,12 @@ public class RouterUtil {
     public static void goAndReceiveData(AppCompatActivity activity, int requestCode) {
         Intent intent = new Intent(activity, ReceiveDataTestActivity.class);
         activity.startActivityForResult(intent, requestCode);
+    }
+
+    public static void gotoH5(Context context, String url) {
+        Intent intent = new Intent(context, TestH5Activity.class);
+        intent.putExtra("url", url);
+        context.startActivity(intent);
     }
 
     public static void gotoLauncher(Fragment fragment) {
@@ -53,23 +66,44 @@ public class RouterUtil {
 
     public static void setRootFragmentForActivity(AppCompatActivity activity, Fragment fragment, int containerViewId){
         if(activity != null){
-            activity.getSupportFragmentManager().beginTransaction().add(containerViewId, fragment, "rootFragment").commitAllowingStateLoss();
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(containerViewId, fragment, "rootFragment")
+                    .commitAllowingStateLoss();
         }
     }
 
     public static void gotoNotFoundFragment(Fragment fragment, int containerViewId) {
         NotFoundFragment fg = new NotFoundFragment();
-        fragment.getFragmentManager().beginTransaction().hide(fragment).add(containerViewId, fg, "notFoundFragment").commitAllowingStateLoss();
+        fragment.getFragmentManager()
+                .beginTransaction()
+                .hide(fragment)
+                .add(containerViewId, fg, "notFoundFragment")
+                .commitAllowingStateLoss();
     }
 
     public static void pushNotFoundFragment(Fragment fragment, int containerViewId) {
-        NotFoundFragment fg = new NotFoundFragment();
-        fragment.getFragmentManager().beginTransaction().hide(fragment).add(containerViewId, fg, "notFoundFragment").addToBackStack(fragment.getActivity().getLocalClassName()).commitAllowingStateLoss();
+        pushFragment(fragment, containerViewId, new NotFoundFragment(), "notFoundFragment");
     }
 
     public static void pushShareDataFragment(Fragment fragment, int containerViewId) {
-        ShareDataFragment fg = new ShareDataFragment();
-        fragment.getFragmentManager().beginTransaction().hide(fragment).add(containerViewId, fg, "shareDataFragment").addToBackStack(fragment.getActivity().getLocalClassName()).commitAllowingStateLoss();
+        pushFragment(fragment, containerViewId, new ShareDataFragment(), "shareDataFragment");
+    }
+
+    public static void push2Fragments(Fragment fragment, int containerViewId) {
+        NotFoundFragment fg1 = new NotFoundFragment();
+        ShareDataFragment fg2 = new ShareDataFragment();
+        pushFragment(fragment, containerViewId, fg1, "notFoundFragment");
+        pushFragment(fg1, containerViewId, fg2, "shareDataFragment");
+    }
+
+    private static void pushFragment(Fragment fragment, int containerViewId, Fragment targetFragment, String tag){
+        fragment.getFragmentManager()
+                .beginTransaction()
+                .hide(fragment)
+                .add(containerViewId, targetFragment, tag)
+                .addToBackStack(fragment.getActivity().getLocalClassName())
+                .commitAllowingStateLoss();
     }
 
     public static void popFragment(Fragment fragment) {

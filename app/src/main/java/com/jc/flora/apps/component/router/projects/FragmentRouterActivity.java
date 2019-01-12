@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.jc.flora.R;
 
 /**
- * Created by shijincheng on 2017/5/16.
+ * Created by shijincheng on 2018/12/28.
  */
 public class FragmentRouterActivity extends AppCompatActivity {
 

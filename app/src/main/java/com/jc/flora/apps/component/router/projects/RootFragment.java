@@ -13,7 +13,7 @@ import com.jc.flora.R;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
- * Created by shijincheng on 2017/3/6.
+ * Created by Shijincheng on 2018/12/28.
  */
 public class RootFragment extends Fragment{
 
@@ -74,6 +74,12 @@ public class RootFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 RouterUtil.pushShareDataFragment(RootFragment.this, R.id.layout_fragment);
+            }
+        });
+        view.findViewById(R.id.btn_push_2_fragments).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RouterUtil.push2Fragments(RootFragment.this, R.id.layout_fragment);
             }
         });
     }

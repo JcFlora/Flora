@@ -19,6 +19,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="多页面跳转"
+        android:onClick="gotoNotFound2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="跳转并传递数据"
         android:onClick="goWithData"/>
 
@@ -27,29 +33,5 @@
         android:layout_height="wrap_content"
         android:text="跳转并接收回传数据"
         android:onClick="goAndReceiveData"/>
-
-<!--    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="多选对话框"
-        android:onClick="showMultiChoiceDialog"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="对话框按钮字体不同色"
-        android:onClick="showTwoColorDialog"/>-->
-
-<!--    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="自定义列表对话框"
-        android:onClick="showCustomListDialog"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="自定义对话框"
-        android:onClick="showCustomDialog"/>-->
 
 </LinearLayout>

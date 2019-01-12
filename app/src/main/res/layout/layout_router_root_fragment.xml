@@ -49,4 +49,11 @@
         android:text="跳转Fragment并共享数据"
         android:textAllCaps="false"/>
 
+    <Button
+        android:id="@+id/btn_push_2_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转多个Fragment"
+        android:textAllCaps="false"/>
+
 </LinearLayout>

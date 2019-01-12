@@ -9,6 +9,7 @@ import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.router.projects.EasyRouterActivity
 import com.jc.flora.apps.component.router.projects.FragmentRouterActivity
+import com.jc.flora.apps.component.router.projects.UrlRouterActivity
 import java.util.*
 
 /**
@@ -31,7 +32,7 @@ class RouterActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2)
+            return arrayListOf(project1, project2, project3)
         }
 
     private val project1: Project
@@ -47,6 +48,14 @@ class RouterActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "页面路由0.2：Fragment的路由跳转"
             project.targetActivity = FragmentRouterActivity::class.java
+            return project
+        }
+
+    private val project3: Project
+        get() {
+            val project = Project()
+            project.projectName = "页面路由0.3：拦截Url的路由跳转"
+            project.targetActivity = UrlRouterActivity::class.java
             return project
         }
 

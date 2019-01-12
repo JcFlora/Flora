@@ -518,10 +518,16 @@
             android:name=".apps.component.router.projects.FragmentRouterActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.router.projects.UrlRouterActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.router.projects.GetDataTestActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.component.router.projects.ReceiveDataTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.router.projects.TestH5Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.scene.login.LoginActivity"

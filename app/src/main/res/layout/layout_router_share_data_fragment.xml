@@ -8,7 +8,7 @@
         android:id="@+id/btn_go_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="返回"/>
+        android:text="保存数据并返回"/>
 
     <EditText
         android:id="@+id/et_share_data"
