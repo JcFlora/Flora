@@ -518,7 +518,19 @@
             android:name=".apps.component.router.projects.FragmentRouterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.component.router.projects.UrlRouterActivity"
+            android:name=".apps.component.router.projects.UrlRouter1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.router.projects.UrlRouter2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.router.projects.UrlRouter3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.router.projects.ModuleRouterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.router.projects.MultiRouterActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.component.router.projects.GetDataTestActivity"

@@ -1,30 +1,18 @@
-package com.jc.flora.apps.component.router.projects;
+package com.jc.flora.apps.component.router.delegate;
 
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
 
-import com.jc.flora.R;
+import com.jc.flora.apps.component.router.projects.RouterUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by shijincheng on 2019/1/12.
+ * Created by Shijincheng on 2019/1/14.
  */
-public class UrlRouterActivity extends AppCompatActivity {
 
-    private static final String[] URLS =
-            {"https://m.baidu.com/index.html?@target=launcher",
-            "https://m.baidu.com/index.html?@target=notFound",
-            "https://m.baidu.com/index.html?@target=notFound2",
-            "https://m.baidu.com/index.html?@target=withData&from=UrlRouterActivity",
-            "https://m.baidu.com/index.html",
-            "https://m.baidu.com/index.html?@target=unknown"};
+public class UrlRouter2Delegate {
 
     private static final String TARGET_KEY = "@target";
     private static final String TARGET_LAUNCHER = "launcher";
@@ -32,66 +20,29 @@ public class UrlRouterActivity extends AppCompatActivity {
     private static final String TARGET_NOT_FOUND2 = "notFound2";
     private static final String TARGET_WITH_DATA = "withData";
 
-    private TextView mTvUrl;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("拦截Url的路由跳转");
-        setContentView(R.layout.activity_router_url);
-        initViews();
-    }
-
-    private void initViews(){
-        mTvUrl = findViewById(R.id.tv_url);
-        mTvUrl.setText(URLS[0]);
-    }
-
-    public void configUrl(View v){
-        showUrlListDialog();
-    }
-
-    public void routePage(View v){
-        routePage(mTvUrl.getText().toString().trim());
-    }
-
-    private void showUrlListDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("配置Url");
-        builder.setItems(URLS, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                mTvUrl.setText(URLS[which]);
-            }
-        });
-        builder.setCancelable(true);
-        builder.show();
-    }
-
-    private void routePage(String url){
+    public static void routePage(Context context, String url){
         Map<String, String> params = urlSplit(url);
         if(!params.containsKey(TARGET_KEY)){
-            RouterUtil.gotoH5(this, url);
+            RouterUtil.gotoH5(context, url);
             return;
         }
         String target = params.get(TARGET_KEY);
         switch (target) {
             case TARGET_LAUNCHER:
-                RouterUtil.gotoLauncher(this);
+                RouterUtil.gotoLauncher(context);
                 break;
             case TARGET_NOT_FOUND:
-                RouterUtil.gotoNotFound(this);
+                RouterUtil.gotoNotFound(context);
                 break;
             case TARGET_NOT_FOUND2:
-                RouterUtil.gotoNotFound2(this);
+                RouterUtil.gotoNotFound2(context);
                 break;
             case TARGET_WITH_DATA:
                 String data = params.containsKey("from") ? params.get("from") : "";
-                RouterUtil.goWithData(this, data);
+                RouterUtil.goWithData(context, data);
                 break;
             default:
-                RouterUtil.gotoH5(this, url);
+                RouterUtil.gotoH5(context, url);
                 break;
         }
 

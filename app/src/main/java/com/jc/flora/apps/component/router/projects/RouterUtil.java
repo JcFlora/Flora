@@ -83,26 +83,27 @@ public class RouterUtil {
     }
 
     public static void pushNotFoundFragment(Fragment fragment, int containerViewId) {
-        pushFragment(fragment, containerViewId, new NotFoundFragment(), "notFoundFragment");
+        pushFragment(fragment, containerViewId, new NotFoundFragment(), "notFoundFragment", fragment.getActivity().getLocalClassName());
     }
 
     public static void pushShareDataFragment(Fragment fragment, int containerViewId) {
-        pushFragment(fragment, containerViewId, new ShareDataFragment(), "shareDataFragment");
+        pushFragment(fragment, containerViewId, new ShareDataFragment(), "shareDataFragment", fragment.getActivity().getLocalClassName());
     }
 
     public static void push2Fragments(Fragment fragment, int containerViewId) {
         NotFoundFragment fg1 = new NotFoundFragment();
         ShareDataFragment fg2 = new ShareDataFragment();
-        pushFragment(fragment, containerViewId, fg1, "notFoundFragment");
-        pushFragment(fg1, containerViewId, fg2, "shareDataFragment");
+        String backStack = fragment.getActivity().getLocalClassName();
+        pushFragment(fragment, containerViewId, fg1, "notFoundFragment", backStack);
+        pushFragment(fg1, containerViewId, fg2, "shareDataFragment", backStack);
     }
 
-    private static void pushFragment(Fragment fragment, int containerViewId, Fragment targetFragment, String tag){
+    private static void pushFragment(Fragment fragment, int containerViewId, Fragment targetFragment, String tag, String backStack){
         fragment.getFragmentManager()
                 .beginTransaction()
                 .hide(fragment)
                 .add(containerViewId, targetFragment, tag)
-                .addToBackStack(fragment.getActivity().getLocalClassName())
+                .addToBackStack(backStack)
                 .commitAllowingStateLoss();
     }
 
