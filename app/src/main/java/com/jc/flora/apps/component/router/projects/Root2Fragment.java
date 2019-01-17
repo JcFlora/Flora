@@ -3,6 +3,7 @@ package com.jc.flora.apps.component.router.projects;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,14 +27,13 @@ public class Root2Fragment extends Fragment{
         mActivity = (MultiRouterActivity)getActivity();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_router_root_fragment, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btn_goto_launcher).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,25 +62,25 @@ public class Root2Fragment extends Fragment{
         view.findViewById(R.id.btn_goto_not_found_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MultiRouterDelegate.getFragmentRouter().gotoNotFoundFragment(Root2Fragment.this, R.id.layout_fragment);
+                MultiRouterDelegate.getFragmentRouter().gotoNotFoundFragment(Root2Fragment.this);
             }
         });
         view.findViewById(R.id.btn_push_not_found_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MultiRouterDelegate.getFragmentRouter().pushNotFoundFragment(Root2Fragment.this, R.id.layout_fragment);
+                MultiRouterDelegate.getFragmentRouter().pushNotFoundFragment(Root2Fragment.this);
             }
         });
         view.findViewById(R.id.btn_push_share_data_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MultiRouterDelegate.getFragmentRouter().pushShareDataFragment(Root2Fragment.this, R.id.layout_fragment);
+                MultiRouterDelegate.getFragmentRouter().pushShareDataFragment(Root2Fragment.this);
             }
         });
         view.findViewById(R.id.btn_push_2_fragments).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MultiRouterDelegate.getFragmentRouter().push2Fragments(Root2Fragment.this, R.id.layout_fragment);
+                MultiRouterDelegate.getFragmentRouter().push2Fragments(Root2Fragment.this);
             }
         });
     }

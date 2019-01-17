@@ -3,6 +3,7 @@ package com.jc.flora.apps.component.router.delegate;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.jc.flora.apps.component.router.projects.GetDataTestActivity;
 import com.jc.flora.apps.component.router.projects.NotFoundFragment;
@@ -53,32 +54,50 @@ public class FragmentRouterDelegate {
         }
     }
 
-    public void gotoNotFoundFragment(Fragment fragment, int containerViewId) {
+    public void gotoNotFoundFragment(Fragment fragment) {
         NotFoundFragment fg = new NotFoundFragment();
         fragment.getFragmentManager()
                 .beginTransaction()
                 .hide(fragment)
-                .add(containerViewId, fg, "notFoundFragment")
+                .add(getContainerViewIdByFragment(fragment), fg, "notFoundFragment")
                 .commitAllowingStateLoss();
     }
 
-    public void pushNotFoundFragment(Fragment fragment, int containerViewId) {
-        pushFragment(fragment, containerViewId, new NotFoundFragment(), "notFoundFragment", fragment.getActivity().getLocalClassName());
+    public void pushNotFoundFragment(Fragment fragment) {
+        pushFragment(fragment, new NotFoundFragment(), "notFoundFragment");
     }
 
-    public void pushShareDataFragment(Fragment fragment, int containerViewId) {
-        pushFragment(fragment, containerViewId, new ShareData2Fragment(), "shareDataFragment", fragment.getActivity().getLocalClassName());
+    public void pushShareDataFragment(Fragment fragment) {
+        pushFragment(fragment, new ShareData2Fragment(), "shareDataFragment");
     }
 
-    public void push2Fragments(Fragment fragment, int containerViewId) {
+    public void push2Fragments(Fragment fragment) {
+        // push第一个
         NotFoundFragment fg1 = new NotFoundFragment();
+        pushFragment(fragment, fg1, "notFoundFragment");
+        // push第二个
         ShareData2Fragment fg2 = new ShareData2Fragment();
-        String backStack = fragment.getActivity().getLocalClassName();
-        pushFragment(fragment, containerViewId, fg1, "notFoundFragment", backStack);
+        int containerViewId = getContainerViewIdByFragment(fragment);
+        String backStack = getBackStackNameByFragment(fragment);
         pushFragment(fg1, containerViewId, fg2, "shareDataFragment", backStack);
     }
 
+    private void pushFragment(Fragment fragment, Fragment targetFragment, String tag){
+        int containerViewId = getContainerViewIdByFragment(fragment);
+        String backStack = getBackStackNameByFragment(fragment);
+        pushFragment(fragment, containerViewId, targetFragment, tag, backStack);
+    }
+
+    private String getBackStackNameByFragment(Fragment fragment){
+        return fragment.getActivity().getLocalClassName();
+    }
+
+    private int getContainerViewIdByFragment(Fragment fragment){
+        return ((View)fragment.getView().getParent()).getId();
+    }
+
     private void pushFragment(Fragment fragment, int containerViewId, Fragment targetFragment, String tag, String backStack){
+        // 注意：addToBackStack和commitNow不能一起使用。
         fragment.getFragmentManager()
                 .beginTransaction()
                 .hide(fragment)

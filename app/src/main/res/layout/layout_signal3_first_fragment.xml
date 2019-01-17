@@ -1,0 +1,22 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_push_second_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转Fragment并接收通信"
+        android:textAllCaps="false"/>
+
+    <TextView
+        android:id="@+id/tv_receive_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="此处更新通信数据"/>
+
+</LinearLayout>

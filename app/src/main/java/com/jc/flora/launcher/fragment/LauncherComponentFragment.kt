@@ -20,6 +20,7 @@ import com.jc.flora.apps.component.record.RecordActivity
 import com.jc.flora.apps.component.render.RenderActivity
 import com.jc.flora.apps.component.request.NetRequestActivity
 import com.jc.flora.apps.component.router.RouterActivity
+import com.jc.flora.apps.component.signal.SignalActivity
 import com.jc.flora.apps.component.statistics.StatisticsActivity
 import com.jc.flora.apps.component.upgrade.UpgradeActivity
 import com.jc.flora.apps.component.vi.ViActivity
@@ -58,7 +59,7 @@ class LauncherComponentFragment : CaptainFragment() {
             return arrayListOf(
                     LauncherApp("分发代理", R.mipmap.ic_distribute, DistributeActivity::class.java),
                     LauncherApp("页面路由", R.mipmap.ic_router, RouterActivity::class.java),
-                    LauncherApp("组件通信", R.mipmap.ic_signal, NotFoundActivity::class.java),
+                    LauncherApp("组件通信", R.mipmap.ic_signal, SignalActivity::class.java),
                     LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java),
 
                     LauncherApp("屏幕适配", R.mipmap.ic_vi, ViActivity::class.java),

@@ -3,6 +3,7 @@ package com.jc.flora.apps.component.router.projects;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,14 +26,13 @@ public class RootFragment extends Fragment{
         mActivity = (FragmentRouterActivity)getActivity();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_router_root_fragment, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btn_goto_launcher).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,25 +61,25 @@ public class RootFragment extends Fragment{
         view.findViewById(R.id.btn_goto_not_found_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RouterUtil.gotoNotFoundFragment(RootFragment.this, R.id.layout_fragment);
+                RouterUtil.gotoNotFoundFragment(RootFragment.this);
             }
         });
         view.findViewById(R.id.btn_push_not_found_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RouterUtil.pushNotFoundFragment(RootFragment.this, R.id.layout_fragment);
+                RouterUtil.pushNotFoundFragment(RootFragment.this);
             }
         });
         view.findViewById(R.id.btn_push_share_data_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RouterUtil.pushShareDataFragment(RootFragment.this, R.id.layout_fragment);
+                RouterUtil.pushShareDataFragment(RootFragment.this);
             }
         });
         view.findViewById(R.id.btn_push_2_fragments).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RouterUtil.push2Fragments(RootFragment.this, R.id.layout_fragment);
+                RouterUtil.push2Fragments(RootFragment.this);
             }
         });
     }

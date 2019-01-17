@@ -953,6 +953,24 @@
         <activity
             android:name=".apps.scene.qrcode.projects.Qrcode1Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.signal.SignalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.signal.projects.Signal1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.signal.projects.Signal2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.signal.projects.Signal3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.signal.projects.SetResult1TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.signal.projects.SetResult2TestActivity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
