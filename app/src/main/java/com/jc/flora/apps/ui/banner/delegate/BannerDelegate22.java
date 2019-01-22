@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.banner.ec.BannerInfo;
 import com.jc.flora.apps.ui.banner.transformer.TransitionEffect;
@@ -60,7 +61,7 @@ public class BannerDelegate22 {
             @Override
             public void deliverImage(ImageView imageView, int position) {
                 // 注意这里面使用了dontAnimate()和dontTransform()，可以防止在ViewPager里出现闪烁
-                Glide.with(mActivity).load(mBannerList.get(position).imgUrl).dontAnimate().dontTransform().into(imageView);
+                Glide.with(mActivity).load(mBannerList.get(position).imgUrl).apply(new RequestOptions().dontAnimate().dontTransform()).into(imageView);
             }
         });
         mBannerView.reload();

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.banner.transformer.TransitionEffect;
 import com.jc.flora.apps.ui.banner.widget.BannerView21;
@@ -83,7 +84,7 @@ public class Banner21Activity extends AppCompatActivity {
             @Override
             public void deliverImage(ImageView imageView, int position) {
                 // 注意这里面使用了dontAnimate()和dontTransform()，可以防止在ViewPager里出现闪烁
-                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).dontAnimate().dontTransform().into(imageView);
+                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).apply(new RequestOptions().dontAnimate().dontTransform()).into(imageView);
             }
         });
         mBv1.setOnBannerItemClickListener(new BannerView21.OnBannerItemClickListener() {
@@ -117,7 +118,7 @@ public class Banner21Activity extends AppCompatActivity {
             @Override
             public void deliverImage(ImageView imageView, int position) {
                 // 注意这里面使用了dontAnimate()和dontTransform()，可以防止在ViewPager里出现闪烁
-                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).dontAnimate().dontTransform().into(imageView);
+                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).apply(new RequestOptions().dontAnimate().dontTransform()).into(imageView);
             }
         });
         mBv2.setOnBannerItemClickListener(new BannerView21.OnBannerItemClickListener() {
@@ -154,7 +155,7 @@ public class Banner21Activity extends AppCompatActivity {
             @Override
             public void deliverImage(ImageView imageView, int position) {
                 // 注意这里面使用了dontAnimate()和dontTransform()，可以防止在ViewPager里出现闪烁
-                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).dontAnimate().dontTransform().into(imageView);
+                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).apply(new RequestOptions().dontAnimate().dontTransform()).into(imageView);
             }
         });
         // 添加数据投放器，修改数据投放方式，支持任意方式加载数据
@@ -166,7 +167,7 @@ public class Banner21Activity extends AppCompatActivity {
             @Override
             public void deliverImage(ImageView imageView, int position) {
                 // 注意这里面使用了dontAnimate()和dontTransform()，可以防止在ViewPager里出现闪烁
-                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).dontAnimate().dontTransform().into(imageView);
+                Glide.with(Banner21Activity.this).load(IMAGE_URIS[position]).apply(new RequestOptions().dontAnimate().dontTransform()).into(imageView);
             }
         });
         mBv1.reload();
