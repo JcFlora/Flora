@@ -188,7 +188,9 @@ public class RxGetVerCodeDelegate {
     public void stop() {
         // 取消倒计时观测
         mVerCodeObservable.unsubscribeOn(AndroidSchedulers.mainThread());
-        mCountDownObservable.unsubscribeOn(AndroidSchedulers.mainThread());
+        if(mCountDownObservable != null){
+            mCountDownObservable.unsubscribeOn(AndroidSchedulers.mainThread());
+        }
     }
 
     /** 验证码获取成功后的监听 */

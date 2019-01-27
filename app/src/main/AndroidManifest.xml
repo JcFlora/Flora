@@ -276,6 +276,9 @@
             android:name=".apps.ui.transition.projects.PendingTransition2Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.ui.transition.projects.FragmentTransitionActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.stable.StableActivity"
             android:screenOrientation="portrait" />
         <activity

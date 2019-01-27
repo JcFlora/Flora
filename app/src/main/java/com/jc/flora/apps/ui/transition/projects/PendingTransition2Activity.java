@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.jc.flora.R;
+import com.jc.flora.apps.ui.transition.delegate.PendingTransitionDelegate;
 
 /**
  * Created by shijincheng on 2017/3/2.
@@ -17,12 +17,8 @@ public class PendingTransition2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFlag = getIntent().getStringExtra("flag");
-        if("slide".equals(mFlag)){
-            overridePendingTransition(R.anim.page_enter_slide, R.anim.page_exit_slide);
-        }else if("fade".equals(mFlag)){
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }
-
+        // 设置页面的进入动画
+        PendingTransitionDelegate.initPendingTransition(this, mFlag);
         setTitle("测试页面");
         TextView tv = new TextView(this);
         setContentView(tv);
@@ -32,11 +28,8 @@ public class PendingTransition2Activity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        if("slide".equals(mFlag)){
-            overridePendingTransition(R.anim.page_reenter_slide, R.anim.page_return_slide);
-        }else if("fade".equals(mFlag)){
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }
+        // 设置页面的退出动画
+        PendingTransitionDelegate.finishPendingTransition(this, mFlag);
     }
 
 }

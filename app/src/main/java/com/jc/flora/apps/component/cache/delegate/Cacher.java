@@ -3,6 +3,8 @@ package com.jc.flora.apps.component.cache.delegate;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+
 /**
  * 双缓存的静态变量缓存设计
  * Created by Shijincheng on 2018/8/8.
@@ -34,6 +36,14 @@ public class Cacher {
 
     public static SharedPreferences.Editor edit(){
         return sEditor;
+    }
+
+    public static String objectToString(Object obj){
+        return new Gson().toJson(obj);
+    }
+
+    public static <T> T stringToObject(String str, Class<T> clazz) {
+        return new Gson().fromJson(str, clazz);
     }
 
     /**

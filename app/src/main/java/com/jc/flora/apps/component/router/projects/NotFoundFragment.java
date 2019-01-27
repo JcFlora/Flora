@@ -1,5 +1,6 @@
 package com.jc.flora.apps.component.router.projects;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ public class NotFoundFragment extends Fragment {
         ImageView iv = new ImageView(getActivity());
         iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
         iv.setImageResource(R.drawable.bg_not_found);
+        iv.setBackgroundColor(Color.WHITE);
         return iv;
     }
 

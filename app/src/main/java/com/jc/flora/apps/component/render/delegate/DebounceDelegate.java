@@ -7,7 +7,7 @@ package com.jc.flora.apps.component.render.delegate;
 public class DebounceDelegate {
 
     /** 抖动范围时间 */
-    private static final long FAST_DOUBLE_TIME = 800;
+    private static final long FAST_DOUBLE_TIME = 400;
     /** 上一次点击的时间点 */
     private long mLastClickTime = 0;
 

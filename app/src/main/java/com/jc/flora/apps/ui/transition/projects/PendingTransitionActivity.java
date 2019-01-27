@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.ui.transition.delegate.PendingTransitionDelegate;
 
 /**
  * Created by shijincheng on 2017/3/2.
@@ -23,11 +24,11 @@ public class PendingTransitionActivity extends AppCompatActivity {
     }
 
     public void slideNextActivity(View v) {
-        gotoNextActivity("slide");
+        gotoNextActivity(PendingTransitionDelegate.PUSH);
     }
 
     public void fadeNextActivity(View v) {
-        gotoNextActivity("fade");
+        gotoNextActivity(PendingTransitionDelegate.FADE);
     }
 
     private void gotoNextActivity(final String flag){

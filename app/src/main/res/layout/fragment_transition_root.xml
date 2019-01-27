@@ -1,0 +1,21 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_slide_next_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="侧滑到下一个Fragment"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_fade_next_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="淡入到下一个Fragment"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

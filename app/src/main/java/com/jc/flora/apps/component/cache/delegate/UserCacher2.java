@@ -1,7 +1,5 @@
 package com.jc.flora.apps.component.cache.delegate;
 
-import com.google.gson.Gson;
-
 /**
  * Created by Shijincheng on 2018/8/8.
  */
@@ -19,7 +17,7 @@ public class UserCacher2 {
      */
     public static User readUser() {
         if (sUser == null && Cacher.getSp() != null) {
-            sUser = stringToObject(Cacher.getSp().getString(KEY_USER, null), User.class);
+            sUser = Cacher.stringToObject(Cacher.getSp().getString(KEY_USER, null), User.class);
         }
         return sUser;
     }
@@ -31,7 +29,7 @@ public class UserCacher2 {
     public static void writeUser(User user) {
         sUser = user;
         if (Cacher.edit() != null) {
-            Cacher.edit().putString(KEY_USER, objectToString(user));
+            Cacher.edit().putString(KEY_USER, Cacher.objectToString(user));
             Cacher.edit().apply();
         }
     }
@@ -45,14 +43,6 @@ public class UserCacher2 {
             Cacher.edit().remove(KEY_USER);
             Cacher.edit().apply();
         }
-    }
-
-    private static String objectToString(Object obj){
-        return new Gson().toJson(obj);
-    }
-
-    private static <T> T stringToObject(String str, Class<T> clazz) {
-        return new Gson().fromJson(str, clazz);
     }
 
 }
