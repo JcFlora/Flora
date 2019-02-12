@@ -24,10 +24,10 @@ public class Banner14Activity extends AppCompatActivity {
 
     private static final String[] IMAGE_URIS =
             {"https://img.zcool.cn/community/011fc259a36272a801211d25e148bc.jpg",
+                    "https://img.zcool.cn/community/0196e859a36274a8012028a94e08d3.jpg",
                     "http://pic30.nipic.com/20130626/8174275_085522448172_2.jpg",
                     "http://pic18.nipic.com/20111215/577405_080531548148_2.jpg",
-                    "http://pic15.nipic.com/20110722/2912365_092519919000_2.jpg",
-                    "http://pic.58pic.com/58pic/12/64/27/55U58PICrdX.jpg"};
+                    "http://pic15.nipic.com/20110722/2912365_092519919000_2.jpg"};
 
     private int mImageLength;
 
@@ -59,7 +59,11 @@ public class Banner14Activity extends AppCompatActivity {
         if(mImageLength == 1){
             mVpBanner.setPagingEnabled(false);
         }
-        int falseLength = (mImageLength == 1 || mImageLength == 2) ? (mImageLength + 2) : mImageLength;
+        // 重点说明：ViewPager有预加载缓存，所以数量为2个以下时，必须手动添加多个
+        // 同时，ViewPager向右和向左滑动时，destroyItem和instantiateItem的执行顺序不一样，
+        // 数量为3个时，向左滑动会先add后remove，导致报错，所以3个需添加到6个保证左滑不报错
+        int[] lt3lengths = {0, 4, 4, 6};
+        int falseLength = (mImageLength <= 3) ? (lt3lengths[mImageLength]) : mImageLength;
         mViews = new ArrayList<>(falseLength);
         for (int i = 0; i < falseLength; i++) {
             ImageView iv = new ImageView(this);

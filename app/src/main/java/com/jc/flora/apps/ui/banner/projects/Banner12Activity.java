@@ -24,7 +24,7 @@ public class Banner12Activity extends AppCompatActivity {
 
     private static final String[] IMAGE_URIS =
             {"https://img.zcool.cn/community/011fc259a36272a801211d25e148bc.jpg",
-            "http://pic30.nipic.com/20130626/8174275_085522448172_2.jpg"};
+                    "https://img.zcool.cn/community/0196e859a36274a8012028a94e08d3.jpg"};
 
     private RelativeLayout mLayoutBanner;
     private ViewPager mVpBanner;
@@ -35,7 +35,7 @@ public class Banner12Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("支持2张以下图片");
+        setTitle("支持3张以下图片");
         setContentView(R.layout.activity_banner10);
         findViews();
         initData();
@@ -52,7 +52,11 @@ public class Banner12Activity extends AppCompatActivity {
     private void initData() {
         mViews = new ArrayList<>();
         int length = IMAGE_URIS.length;
-        int falseLength = (length == 1 || length == 2) ? (length + 2) : length;
+        // 重点说明：ViewPager有预加载缓存，所以数量为2个以下时，必须手动添加多个
+        // 同时，ViewPager向右和向左滑动时，destroyItem和instantiateItem的执行顺序不一样，
+        // 数量为3个时，向左滑动会先add后remove，导致报错，所以3个需添加到6个保证左滑不报错
+        int[] lt3lengths = {0, 4, 4, 6};
+        int falseLength = (length <= 3) ? (lt3lengths[length]) : length;
         for (int i = 0; i < falseLength; i++) {
             ImageView iv = new ImageView(this);
             iv.setScaleType(ImageView.ScaleType.FIT_XY);

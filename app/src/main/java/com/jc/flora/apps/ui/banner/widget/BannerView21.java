@@ -156,7 +156,11 @@ public class BannerView21 extends RelativeLayout {
         if (mImageLength == 1) {
             mVpBanner.setPagingEnabled(false);
         }
-        int falseLength = (mImageLength == 1 || mImageLength == 2) ? (mImageLength + 2) : mImageLength;
+        // 重点说明：ViewPager有预加载缓存，所以数量为2个以下时，必须手动添加多个
+        // 同时，ViewPager向右和向左滑动时，destroyItem和instantiateItem的执行顺序不一样，
+        // 数量为3个时，向左滑动会先add后remove，导致报错，所以3个需添加到6个保证左滑不报错
+        int[] lt3lengths = {0, 4, 4, 6};
+        int falseLength = (mImageLength <= 3) ? (lt3lengths[mImageLength]) : mImageLength;
         mViews = new ArrayList<>(falseLength);
         for (int i = 0; i < falseLength; i++) {
             ImageView iv = new ImageView(getContext());

@@ -15,10 +15,10 @@ public class Banner20Activity extends AppCompatActivity {
 
     private static final String[] IMAGE_URIS =
             {"https://img.zcool.cn/community/011fc259a36272a801211d25e148bc.jpg",
+                    "https://img.zcool.cn/community/0196e859a36274a8012028a94e08d3.jpg",
                     "http://pic30.nipic.com/20130626/8174275_085522448172_2.jpg",
                     "http://pic18.nipic.com/20111215/577405_080531548148_2.jpg",
-                    "http://pic15.nipic.com/20110722/2912365_092519919000_2.jpg",
-                    "http://pic.58pic.com/58pic/12/64/27/55U58PICrdX.jpg"};
+                    "http://pic15.nipic.com/20110722/2912365_092519919000_2.jpg"};
 
     private BannerView20 mBv1, mBv2;
 
