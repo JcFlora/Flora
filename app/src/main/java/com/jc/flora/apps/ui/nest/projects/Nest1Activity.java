@@ -37,8 +37,8 @@ public class Nest1Activity extends AppCompatActivity {
         mRv1.setNestedScrollingEnabled(false);
         mRv2.setNestedScrollingEnabled(false);
         mRv1.setHasFixedSize(false);
-        mRv1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mRv2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
+        mRv1.setLayoutManager(new LinearLayoutManager(this));
+        mRv2.setLayoutManager(new LinearLayoutManager(this));
         mRv1.setAdapter(new MyAdapter());
         mRv2.setAdapter(new MyAdapter());
     }

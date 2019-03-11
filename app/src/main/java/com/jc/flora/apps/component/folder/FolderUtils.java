@@ -249,6 +249,32 @@ public class FolderUtils {
 
     /**
      * 创建文件
+     * @param path  文件全路径名
+     * @return
+     */
+    public static boolean createFile(String path) {
+        if(TextUtils.isEmpty(path)){
+            return false;
+        }
+        File file = new File(path);
+        if (file.exists()) {
+            return false;
+        }
+        boolean hasParent = true;
+        String dirPath = path.substring(0, path.lastIndexOf("/"));
+        if(!exists(dirPath)){
+            hasParent = createDir(dirPath);
+        }
+        try {
+            return hasParent && file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 创建文件
      * @param dirPath  父路径
      * @param fileName 文件名
      * @return

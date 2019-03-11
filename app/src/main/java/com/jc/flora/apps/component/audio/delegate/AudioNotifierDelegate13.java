@@ -1,6 +1,7 @@
 package com.jc.flora.apps.component.audio.delegate;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -16,6 +17,7 @@ import com.jc.flora.apps.component.audio.model.MP3;
 import com.jc.flora.apps.component.audio.projects.Audio13Activity;
 
 /**
+ * <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
  * Created by shijincheng on 2017/10/15.
  */
 
@@ -100,6 +102,16 @@ public class AudioNotifierDelegate13 {
     };
 
     private Notification buildNotification(MP3 mp3, boolean isPlaying) {
+        String channelId = "flora_audio_id";
+        String channelName = "flora_audio_name";
+        String channelDescription = "flora_audio_description";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription(channelDescription);
+            channel.setSound(null, null);
+            mNotificationManager.createNotificationChannel(channel);
+        }
         mIsLightNotificationTheme = NotifierUtil.isLightNotificationTheme(mService);
         Intent intent = new Intent(mService, Audio13Activity.class);
         intent.putExtra("notification", true);
@@ -108,7 +120,7 @@ public class AudioNotifierDelegate13 {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(mService, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(mService)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(mService, channelId)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.mipmap.ic_audio)
                 .setCustomContentView(getRemoteViews(mp3, isPlaying));

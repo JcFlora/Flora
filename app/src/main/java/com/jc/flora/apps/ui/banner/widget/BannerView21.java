@@ -138,7 +138,9 @@ public class BannerView21 extends RelativeLayout {
             mAutoScrollDelegate.destroy();
         }
         start();
-        mAutoScrollDelegate.startAutoPlay();
+        if(mAutoScrollDelegate != null){
+            mAutoScrollDelegate.startAutoPlay();
+        }
     }
 
     private void addViewPager(){

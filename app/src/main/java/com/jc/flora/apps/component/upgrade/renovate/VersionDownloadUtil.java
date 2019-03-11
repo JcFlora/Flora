@@ -42,6 +42,9 @@ public class VersionDownloadUtil {
 		if(TextUtils.isEmpty(mFilePathName)){
 			return;
 		}
+		if(!FolderUtils.exists(mFilePathName)){
+			FolderUtils.createFile(mFilePathName);
+		}
 		mCancelUpgrade = false;
 		mDownloadThread = new DownloadThread();
 		mDownloadThread.start();
