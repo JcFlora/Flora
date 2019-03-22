@@ -84,7 +84,7 @@ public class AudioNotifierDelegate16 {
     private BroadcastReceiver mAudioNotifierReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent == null) {
+            if (intent == null || intent.getAction() == null) {
                 return;
             }
             switch (intent.getAction()) {

@@ -14,14 +14,14 @@ import android.widget.RemoteViews;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.projects.Audio15Activity;
+import com.jc.flora.apps.component.audio.projects.AudioList21Activity;
 
 /**
  * <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
- * Created by shijincheng on 2017/10/15.
+ * Created by shijincheng on 2018/1/7.
  */
 
-public class AudioNotifierDelegate15 {
+public class AudioNotifierDelegate21 {
 
     private static final int NOTIFICATION_ID = 0x111;
     public static final String EXTRA_PLAY = "play";
@@ -31,11 +31,11 @@ public class AudioNotifierDelegate15 {
 
     private Service mService;
     private NotificationManager mNotificationManager;
-    private AudioDelegate13 mAudioDelegate;
+    private AudioDelegate20 mAudioDelegate;
     // 是否是亮色主题
     private boolean mIsLightNotificationTheme;
 
-    public AudioNotifierDelegate15(Service service, AudioDelegate13 audioDelegate) {
+    public AudioNotifierDelegate21(Service service, AudioDelegate20 audioDelegate) {
         mService = service;
         mAudioDelegate = audioDelegate;
         initNotificationManager();
@@ -118,7 +118,7 @@ public class AudioNotifierDelegate15 {
             mNotificationManager.createNotificationChannel(channel);
         }
         mIsLightNotificationTheme = NotifierUtil.isLightNotificationTheme(mService);
-        Intent intent = new Intent(mService, Audio15Activity.class);
+        Intent intent = new Intent(mService, AudioList21Activity.class);
         intent.putExtra("notification", true);
         intent.setAction(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

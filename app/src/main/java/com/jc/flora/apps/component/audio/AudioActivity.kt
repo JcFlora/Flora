@@ -33,7 +33,8 @@ class AudioActivity : AppCompatActivity() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
-                    project16, project17, project18, project19, project20)
+                    project16, project17, project18, project19, project20,
+                    project21, project22)
         }
 
     private val project1: Project
@@ -193,6 +194,22 @@ class AudioActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "音频2.0：使用ExoPlayer播放本地MP3列表"
             project.targetActivity = Audio20Activity::class.java
+            return project
+        }
+
+    private val project21: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.1：列表页面播放本地MP3"
+            project.targetActivity = AudioList21Activity::class.java
+            return project
+        }
+
+    private val project22: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.2：列表+详情双页同步播放"
+            project.targetActivity = AudioList22Activity::class.java
             return project
         }
 

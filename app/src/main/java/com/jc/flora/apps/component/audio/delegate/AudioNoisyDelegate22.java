@@ -8,16 +8,16 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 
 /**
- * Created by shijincheng on 2017/10/17.
+ * Created by shijincheng on 2018/1/7.
  */
 
-public class AudioNoisyDelegate17 {
+public class AudioNoisyDelegate22 {
 
     private Service mService;
-    private AudioDelegate16 mAudioDelegate;
+    private AudioDelegate22 mAudioDelegate;
     private boolean mIsReceiverRegistered = false;
 
-    public AudioNoisyDelegate17(Service service, AudioDelegate16 audioDelegate) {
+    public AudioNoisyDelegate22(Service service, AudioDelegate22 audioDelegate) {
         mService = service;
         mAudioDelegate = audioDelegate;
         addAudioStatusListener();

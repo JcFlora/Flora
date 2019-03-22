@@ -14,7 +14,7 @@ import android.widget.RemoteViews;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.projects.Audio17Activity;
+import com.jc.flora.apps.component.audio.projects.Audio20Activity;
 
 /**
  * <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -84,7 +84,7 @@ public class AudioNotifierDelegate20 {
     private BroadcastReceiver mAudioNotifierReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent == null) {
+            if (intent == null || intent.getAction() == null) {
                 return;
             }
             switch (intent.getAction()) {
@@ -118,7 +118,7 @@ public class AudioNotifierDelegate20 {
             mNotificationManager.createNotificationChannel(channel);
         }
         mIsLightNotificationTheme = NotifierUtil.isLightNotificationTheme(mService);
-        Intent intent = new Intent(mService, Audio17Activity.class);
+        Intent intent = new Intent(mService, Audio20Activity.class);
         intent.putExtra("notification", true);
         intent.setAction(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

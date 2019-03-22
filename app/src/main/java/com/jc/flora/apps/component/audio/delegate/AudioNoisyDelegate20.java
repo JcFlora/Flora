@@ -65,7 +65,7 @@ public class AudioNoisyDelegate20 {
     private BroadcastReceiver mAudioNoisyReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent == null) {
+            if (intent == null || intent.getAction() == null) {
                 return;
             }
             switch (intent.getAction()) {
