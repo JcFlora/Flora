@@ -27,7 +27,6 @@
             android:id="@+id/iv_audio_bar_cover"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
             android:contentDescription=""/>
 
         <LinearLayout
@@ -56,8 +55,7 @@
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/sb_audio_bar_progress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

@@ -962,6 +962,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/FloraTheme"/>
         <activity
+            android:name=".apps.component.video.projects.Video7Activity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/FloraTheme"/>
+        <activity
             android:name=".apps.scene.qrcode.QrcodeActivity"
             android:screenOrientation="portrait" />
         <activity

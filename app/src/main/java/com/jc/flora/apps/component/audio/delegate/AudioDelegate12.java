@@ -1,19 +1,13 @@
 package com.jc.flora.apps.component.audio.delegate;
 
-import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.service.Audio10Service;
 
 import java.util.ArrayList;
 import java.util.Random;

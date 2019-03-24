@@ -1,5 +1,6 @@
 package com.jc.flora.apps.component.video.delegate;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -259,6 +260,7 @@ public class VideoDelegate6 extends Fragment {
     };
 
     // 用于刷新播放进度的Handler
+    @SuppressLint("HandlerLeak")
     private Handler mProgressRefreshHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {

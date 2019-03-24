@@ -1,34 +1,32 @@
 package com.jc.flora.apps.component.video.delegate;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.MediaMetadataRetriever;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.vi.fidelity.Fidelity;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.Locale;
 
 /**
- * Created by Shijincheng on 2018/8/27.
+ * 注意，对应Activity需要配置android:configChanges="keyboardHidden|orientation|screenSize"
+ * Created by Shijincheng on 2019/3/24.
  */
 
-public class VideoDelegate4 extends Fragment {
+public class VideoControllerDelegate7 extends Fragment {
 
+    /** 视频在720p高保真下的高度，实际开发中，这个值一般通过视频的宽高度比例设置为固定值 */
+    private static final double VIDEO_HEIGHT = 720d * 434 / 800;
     //进度条下面的当前进度文字，将毫秒化为mm:ss格式
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
@@ -46,12 +44,12 @@ public class VideoDelegate4 extends Fragment {
     private SeekBar mSbProgress;
     // 总进度时间显示
     private TextView mTvMaxTime;
+    // 全屏/小屏切换
+    private ImageView mBtnSwitchScreen;
+    // 状态标记，标识是否正在播放，用来控制播放按钮
+    private boolean mIsPlaying;
 
-    private int mVideoPosition = 0;
-    /** 当前视频正在播放 */
-    private boolean mIsVideoPlaying = false;
-    /** 当前界面正处在前台运行 */
-    private boolean mIsInForeground = true;
+    private VideoDelegate7 mVideoDelegate;
 
     public void setLayoutVideo(View layoutVideo) {
         mLayoutVideo = layoutVideo;
@@ -81,6 +79,14 @@ public class VideoDelegate4 extends Fragment {
         mTvMaxTime = tvMaxTime;
     }
 
+    public void setBtnSwitchScreen(ImageView btnSwitchScreen) {
+        mBtnSwitchScreen = btnSwitchScreen;
+    }
+
+    public void setVideoDelegate(VideoDelegate7 videoDelegate) {
+        mVideoDelegate = videoDelegate;
+    }
+
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
@@ -91,44 +97,19 @@ public class VideoDelegate4 extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (!mIsInForeground && mVideoView != null) {
-            mIsInForeground = true;
-            mVideoView.seekTo(mVideoPosition);
-            mVideoView.resume();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mVideoView != null) {
-            mVideoPosition = mVideoView.getCurrentPosition();
-            mIsVideoPlaying = mVideoView.isPlaying();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mIsInForeground = false;
+        initDelegate();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mLayoutVideo.removeCallbacks(mFadeOut);
-        mProgressRefreshHandler.removeCallbacksAndMessages(null);
-        if (mVideoView != null) {
-            mVideoView.stopPlayback();
-        }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initView() {
+        Fidelity.getInstance(getActivity()).setWidthHeight(mLayoutVideo,
+                ViewGroup.LayoutParams.MATCH_PARENT, VIDEO_HEIGHT);
         mLayoutController.setVisibility(View.GONE);
         mLayoutVideo.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -146,28 +127,24 @@ public class VideoDelegate4 extends Fragment {
         mBtnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mVideoView.isPlaying()) {
-                    mVideoView.pause();
-                    mBtnPlay.setImageResource(R.drawable.video_play);
+                if (mIsPlaying) {
+                    mVideoDelegate.pause();
                 } else {
-                    mVideoView.start();
-                    mBtnPlay.setImageResource(R.drawable.video_pause);
+                    mVideoDelegate.start();
                 }
                 showController();
             }
         });
-        mVideoView.setBackgroundResource(R.drawable.video_rainbow);
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        mBtnSwitchScreen.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onPrepared(MediaPlayer mp) {
-                setMaxProgress();
-                setRemoveBgWhenFirstPlayListener(mp);
-                if(mIsInForeground && mIsVideoPlaying){
-                    mp.start();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    showController();
                 }
+                return false;
             }
         });
-        mVideoView.setVideoPath("android.resource://" + getActivity().getPackageName() + "/" + R.raw.rainbow);
+        mVideoView.setBackgroundResource(R.drawable.video_rainbow);
         initProgress();
     }
 
@@ -178,7 +155,7 @@ public class VideoDelegate4 extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //这里很重要，如果不判断是否来自用户操作进度条，会不断执行下面语句块里面的逻辑，然后就会卡顿卡顿
                 if(fromUser){
-                    mVideoView.seekTo(progress);
+                    mVideoDelegate.seekTo(progress);
                 }
             }
 
@@ -194,8 +171,38 @@ public class VideoDelegate4 extends Fragment {
                 showController();
             }
         });
-        // 开始不停地刷新播放进度
-        mProgressRefreshHandler.sendEmptyMessage(0);
+    }
+
+    private void initDelegate() {
+        mVideoDelegate.addVideoStatusListener(new VideoStatusListener() {
+
+            @Override
+            public void onSelect(int index, int maxProgress) {
+                // 初始化播放最大进度值
+                mSbProgress.setMax(maxProgress);
+                // 初始化总时间
+                mTvMaxTime.setText(FORMAT.format(maxProgress));
+            }
+
+            @Override
+            public void onPlay() {
+                mIsPlaying = true;
+                mBtnPlay.setImageResource(R.drawable.video_pause);
+            }
+
+            @Override
+            public void onPause() {
+                mIsPlaying = false;
+                mBtnPlay.setImageResource(R.drawable.video_play);
+            }
+
+            @Override
+            public void onProgress(int progress) {
+                mSbProgress.setProgress(progress);
+                mTvCurrentTime.setText(FORMAT.format(progress));
+            }
+
+        });
     }
 
     private void hideController(){
@@ -212,64 +219,11 @@ public class VideoDelegate4 extends Fragment {
         mLayoutVideo.postDelayed(mFadeOut, timeout);
     }
 
-    private void setMaxProgress(){
-        // 初始化播放最大进度值
-        mSbProgress.setMax(mVideoView.getDuration());
-        // 初始化总时间
-        mTvMaxTime.setText(FORMAT.format(mVideoView.getDuration()));
-    }
-
     private final Runnable mFadeOut = new Runnable() {
         @Override
         public void run() {
             hideController();
         }
     };
-
-    // 用于刷新播放进度的Handler
-    @SuppressLint("HandlerLeak")
-    private Handler mProgressRefreshHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            mSbProgress.setProgress(mVideoView.getCurrentPosition());
-            String currentTime = FORMAT.format(mVideoView.getCurrentPosition());
-            mTvCurrentTime.setText(currentTime);
-            mProgressRefreshHandler.sendEmptyMessageDelayed(0, 1000);
-        }
-    };
-
-    /**
-     * 设置第一帧画面为背景，仅适用于网络视频，不适用于本地
-     * @param uri 网络视频地址
-     */
-    private void setFirstFrameForBackground(String uri){
-        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        retriever.setDataSource(uri, new HashMap<String, String>());
-        Bitmap bitmap = retriever.getFrameAtTime();
-        mVideoView.setBackground(new BitmapDrawable(bitmap));
-        retriever.release();
-    }
-
-    /**
-     * 第一次播放时，移除VideoView的封面图
-     * @param mp
-     */
-    private void setRemoveBgWhenFirstPlayListener(MediaPlayer mp){
-        mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START){
-                    mVideoView.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mVideoView.setBackground(null);
-                        }
-                    },400);
-                }
-                return true;
-            }
-        });
-    }
 
 }

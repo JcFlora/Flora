@@ -1,5 +1,6 @@
 package com.jc.flora.apps.component.audio.projects;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -82,6 +83,7 @@ public class Audio4Activity extends AppCompatActivity {
     }
 
     // 用于刷新播放进度的Handler
+    @SuppressLint("HandlerLeak")
     private Handler mProgressRefreshHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {

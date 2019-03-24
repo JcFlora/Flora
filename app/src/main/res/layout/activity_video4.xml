@@ -22,12 +22,18 @@
             android:layout_height="match_parent"
             android:background="#66000000">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/video_bg_gradient_top"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/video_bg_gradient_bottom">
 
                 <ImageView
                     android:id="@+id/btn_play"

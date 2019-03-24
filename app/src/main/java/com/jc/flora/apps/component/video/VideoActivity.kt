@@ -9,6 +9,7 @@ import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.audio.projects.*
 import com.jc.flora.apps.component.video.projects.*
+import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -34,7 +35,8 @@ class VideoActivity : AppCompatActivity() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
-                    project16, project17, project18, project19, project20)
+                    project16, project17, project18, project19, project20,
+                    project21, project22, project23)
         }
 
     private val project1: Project
@@ -80,7 +82,7 @@ class VideoActivity : AppCompatActivity() {
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "视频0.6：单个视频的全屏/小屏切换"
+            project.projectName = "视频0.6：单个视频的全屏/半屏切换"
             project.targetActivity = Video6Activity::class.java
             return project
         }
@@ -88,112 +90,136 @@ class VideoActivity : AppCompatActivity() {
     private val project7: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.7：实现列表循环播放"
-            project.targetActivity = Audio7Activity::class.java
+            project.projectName = "视频0.7：添加状态监听实现控制反转"
+            project.targetActivity = Video7Activity::class.java
             return project
         }
 
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.8：添加状态监听实现控制反转"
-            project.targetActivity = Audio8Activity::class.java
+            project.projectName = "视频0.8：添加快进快退手势浮层"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project9: Project
         get() {
             val project = Project()
-            project.projectName = "音频0.9：实现自动播放下一首"
-            project.targetActivity = Audio9Activity::class.java
+            project.projectName = "视频0.9：添加亮度控制手势浮层"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project10: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.0：实现三种播放模式切换"
-            project.targetActivity = Audio10Activity::class.java
+            project.projectName = "视频1.0：添加音量控制手势浮层"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project11: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.1：经典控制播放按钮"
-            project.targetActivity = Audio11Activity::class.java
+            project.projectName = "视频1.1：实现倍速播放功能"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project12: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.2：封装AudioPlayerDelegate"
-            project.targetActivity = Audio12Activity::class.java
+            project.projectName = "视频1.2：添加首次播放浮层"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project13: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.3：实现通知栏显示和交互"
-            project.targetActivity = Audio13Activity::class.java
+            project.projectName = "视频1.3：实现列表播放"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project14: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.4：实现通知栏大UI"
-            project.targetActivity = Audio14Activity::class.java
+            project.projectName = "视频1.4：实现列表播放的全屏/半屏切换"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project15: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.5：实现锁屏时显示封面"
-            project.targetActivity = Audio15Activity::class.java
+            project.projectName = "视频1.5：列表+详情双页同步播放"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project16: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.6：音频焦点处理"
-            project.targetActivity = Audio16Activity::class.java
+            project.projectName = "视频1.6：添加共享元素转场动画"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project17: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.7：实现耳机拔出暂停播放"
-            project.targetActivity = Audio17Activity::class.java
+            project.projectName = "视频1.7：详情页滚动时独立浮动小窗播放"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project18: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.8：实现界面上的音量控制"
-            project.targetActivity = Audio18Activity::class.java
+            project.projectName = "视频1.8：播放在线视频"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project19: Project
         get() {
             val project = Project()
-            project.projectName = "音频1.9：使用ExoPlayer播放本地MP3"
-            project.targetActivity = Audio19Activity::class.java
+            project.projectName = "视频1.9：添加loading浮层"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project20: Project
         get() {
             val project = Project()
-            project.projectName = "音频2.0：使用ExoPlayer播放本地MP3列表"
-            project.targetActivity = Audio20Activity::class.java
+            project.projectName = "视频2.0：添加网络检测"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project21: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频2.1：添加非Wifi检测与流量显示浮层"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project22: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频2.2：使用ExoPlayer"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project23: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频2.3：使用IjkPlayer"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 

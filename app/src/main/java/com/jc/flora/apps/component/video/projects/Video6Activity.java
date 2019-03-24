@@ -30,7 +30,7 @@ public class Video6Activity extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_video6);
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
-        mToolbar.setTitle("单个视频的全屏/小屏切换");
+        mToolbar.setTitle("单个视频的全屏/半屏切换");
         mToolbar.setTitleTextColor(Color.WHITE);
         initVideoView();
     }

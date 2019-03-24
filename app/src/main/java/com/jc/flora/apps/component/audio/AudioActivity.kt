@@ -8,6 +8,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.audio.projects.*
+import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -34,7 +35,8 @@ class AudioActivity : AppCompatActivity() {
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
                     project16, project17, project18, project19, project20,
-                    project21, project22)
+                    project21, project22, project23, project24, project25,
+                    project26, project27)
         }
 
     private val project1: Project
@@ -210,6 +212,46 @@ class AudioActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "音频2.2：列表+详情双页同步播放"
             project.targetActivity = AudioList22Activity::class.java
+            return project
+        }
+
+    private val project23: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.3：列表添加播放状态显示"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project24: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.4：添加快进快退15秒功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project25: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.5：添加倍速播放功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project26: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.6：添加定时停止功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project27: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.7：播放在线音频"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
