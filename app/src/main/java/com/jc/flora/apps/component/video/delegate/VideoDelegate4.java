@@ -235,7 +235,7 @@ public class VideoDelegate4 extends Fragment {
             mSbProgress.setProgress(mVideoView.getCurrentPosition());
             String currentTime = FORMAT.format(mVideoView.getCurrentPosition());
             mTvCurrentTime.setText(currentTime);
-            mProgressRefreshHandler.sendEmptyMessageDelayed(0, 1000);
+            mProgressRefreshHandler.sendEmptyMessageDelayed(0, 100);
         }
     };
 

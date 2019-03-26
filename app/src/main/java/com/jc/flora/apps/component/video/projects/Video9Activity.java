@@ -12,15 +12,17 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate7;
+import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate9;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate7;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate7;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate9;
+import com.jc.flora.apps.component.video.widget.GestureCover9;
 
 /**
  * 需要配置android:configChanges="keyboardHidden|orientation|screenSize"
- * Created by Samurai on 2019/3/24.
+ * Created by Samurai on 2019/3/25.
  */
-public class Video7Activity extends AppCompatActivity {
+public class Video9Activity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private VideoView mVideoView;
@@ -28,21 +30,25 @@ public class Video7Activity extends AppCompatActivity {
     private ImageView mBtnPlay, mBtnSwitchScreen;
     private TextView mTvCurrentTime, mTvMaxTime;
     private SeekBar mSbProgress;
+    private GestureCover9 mGestureCover;
+
     private VideoDelegate7 mVideoDelegate;
-    private VideoControllerDelegate7 mControllerDelegate;
+    private VideoControllerDelegate9 mControllerDelegate;
     private VideoFullScreenDelegate7 mFullScreenDelegate;
+    private VideoGestureCoverDelegate9 mGestureCoverDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 去掉默认的ActionBar
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_video6);
+        setContentView(R.layout.activity_video9);
         findViews();
         initViews();
         initVideoDelegate();
         initControllerDelegate();
         initFullScreenDelegate();
+        initGestureCoverDelegate();
     }
 
     private void findViews(){
@@ -55,10 +61,11 @@ public class Video7Activity extends AppCompatActivity {
         mTvCurrentTime = (TextView) findViewById(R.id.tv_current_time);
         mSbProgress = (SeekBar) findViewById(R.id.sb_progress);
         mTvMaxTime = (TextView) findViewById(R.id.tv_max_time);
+        mGestureCover = findViewById(R.id.layout_gesture_cover);
     }
 
     private void initViews(){
-        mToolbar.setTitle("添加状态监听实现控制反转");
+        mToolbar.setTitle("添加亮度控制手势浮层");
         mToolbar.setTitleTextColor(Color.WHITE);
     }
 
@@ -69,7 +76,7 @@ public class Video7Activity extends AppCompatActivity {
     }
 
     private void initControllerDelegate(){
-        mControllerDelegate = new VideoControllerDelegate7();
+        mControllerDelegate = new VideoControllerDelegate9();
         mControllerDelegate.setLayoutVideo(mLayoutVideo);
         mControllerDelegate.setVideoView(mVideoView);
         mControllerDelegate.setLayoutController(mLayoutController);
@@ -78,6 +85,7 @@ public class Video7Activity extends AppCompatActivity {
         mControllerDelegate.setSbProgress(mSbProgress);
         mControllerDelegate.setTvMaxTime(mTvMaxTime);
         mControllerDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
+        mControllerDelegate.setGestureCover(mGestureCover);
         mControllerDelegate.setVideoDelegate(mVideoDelegate);
         mControllerDelegate.addToActivity(this,"videoControllerDelegate");
     }
@@ -88,6 +96,13 @@ public class Video7Activity extends AppCompatActivity {
         mFullScreenDelegate.setLayoutVideo(mLayoutVideo);
         mFullScreenDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
         mFullScreenDelegate.addToActivity(this,"videoFullScreenDelegate");
+    }
+
+    private void initGestureCoverDelegate(){
+        mGestureCoverDelegate = new VideoGestureCoverDelegate9();
+        mGestureCoverDelegate.setGestureCover(mGestureCover);
+        mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
+        mGestureCoverDelegate.init();
     }
 
     @Override

@@ -56,10 +56,18 @@ public class VideoDelegate7 extends Fragment {
 
     public void start() {
         mVideoView.start();
+        // 添加播放的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onPlay();
+        }
     }
 
     public void pause() {
         mVideoView.pause();
+        // 添加暂停播放的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onPause();
+        }
     }
 
     public void seekTo(int progress) {
@@ -141,7 +149,7 @@ public class VideoDelegate7 extends Fragment {
             for (VideoStatusListener l : mVideoStatusListeners) {
                 l.onProgress(mVideoView.getCurrentPosition());
             }
-            mProgressRefreshHandler.sendEmptyMessageDelayed(0, 1000);
+            mProgressRefreshHandler.sendEmptyMessageDelayed(0, 100);
         }
     };
 

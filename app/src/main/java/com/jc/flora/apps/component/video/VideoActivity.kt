@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.component.audio.projects.*
 import com.jc.flora.apps.component.video.projects.*
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
@@ -36,7 +35,7 @@ class VideoActivity : AppCompatActivity() {
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
                     project16, project17, project18, project19, project20,
-                    project21, project22, project23)
+                    project21, project22, project23, project24, project25)
         }
 
     private val project1: Project
@@ -99,7 +98,7 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频0.8：添加快进快退手势浮层"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Video8Activity::class.java
             return project
         }
 
@@ -107,7 +106,7 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频0.9：添加亮度控制手势浮层"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Video9Activity::class.java
             return project
         }
 
@@ -115,22 +114,22 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频1.0：添加音量控制手势浮层"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Video10Activity::class.java
             return project
         }
 
     private val project11: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.1：实现倍速播放功能"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频1.1：添加封面浮层"
+            project.targetActivity = Video11Activity::class.java
             return project
         }
 
     private val project12: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.2：添加首次播放浮层"
+            project.projectName = "视频1.2：使用MediaPlayer+TextureView播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -146,7 +145,7 @@ class VideoActivity : AppCompatActivity() {
     private val project14: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.4：实现列表播放的全屏/半屏切换"
+            project.projectName = "视频1.4：列表播放的全屏/半屏切换"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -219,6 +218,22 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频2.3：使用IjkPlayer"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project24: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频2.4：动态切换播放引擎"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project25: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频2.5：实现倍速播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

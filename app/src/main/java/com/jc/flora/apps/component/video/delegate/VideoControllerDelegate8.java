@@ -14,16 +14,17 @@ import android.widget.VideoView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.vi.fidelity.Fidelity;
+import com.jc.flora.apps.component.video.widget.GestureCover8;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
  * 注意，对应Activity需要配置android:configChanges="keyboardHidden|orientation|screenSize"
- * Created by Shijincheng on 2019/3/24.
+ * Created by Shijincheng on 2019/3/25.
  */
 
-public class VideoControllerDelegate7 extends Fragment {
+public class VideoControllerDelegate8 extends Fragment {
 
     /** 视频在720p高保真下的高度，实际开发中，这个值一般通过视频的宽高度比例设置为固定值 */
     private static final double VIDEO_HEIGHT = 720d * 434 / 800;
@@ -46,6 +47,8 @@ public class VideoControllerDelegate7 extends Fragment {
     private TextView mTvMaxTime;
     // 全屏/小屏切换
     private ImageView mBtnSwitchScreen;
+    // 快进快退手势浮层
+    private GestureCover8 mGestureCover;
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
@@ -81,6 +84,10 @@ public class VideoControllerDelegate7 extends Fragment {
 
     public void setBtnSwitchScreen(ImageView btnSwitchScreen) {
         mBtnSwitchScreen = btnSwitchScreen;
+    }
+
+    public void setGestureCover(GestureCover8 gestureCover) {
+        mGestureCover = gestureCover;
     }
 
     public void setVideoDelegate(VideoDelegate7 videoDelegate) {
@@ -143,6 +150,16 @@ public class VideoControllerDelegate7 extends Fragment {
                     showController();
                 }
                 return false;
+            }
+        });
+        mGestureCover.setOnSingleTapUpListener(new GestureCover8.OnSingleTapUpListener() {
+            @Override
+            public void onSingleTapUp() {
+                if (mLayoutController.getVisibility() == View.VISIBLE) {
+                    hideController();
+                }else{
+                    showController();
+                }
             }
         });
         mVideoView.setBackgroundResource(R.drawable.video_rainbow);
