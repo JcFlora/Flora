@@ -189,11 +189,11 @@ public class VideoDelegate6 extends Fragment {
                 showController();
             }
         });
-        mVideoView.setBackgroundResource(R.drawable.video_rainbow);
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 setMaxProgress();
+                mp.seekTo(480);
                 setRemoveBgWhenFirstPlayListener(mp);
                 if(mIsInForeground && mIsVideoPlaying){
                     mp.start();

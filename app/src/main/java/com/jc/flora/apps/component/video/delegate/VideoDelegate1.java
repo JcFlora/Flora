@@ -79,11 +79,11 @@ public class VideoDelegate1 extends Fragment {
     }
 
     private void initView() {
-        mVideoView.setBackgroundResource(R.drawable.video_rainbow);
         mVideoView.setMediaController(new MediaController(getActivity()));
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
+                mp.seekTo(480);
                 setRemoveBgWhenFirstPlayListener(mp);
                 if(mIsInForeground && mIsVideoPlaying){
                     mp.start();

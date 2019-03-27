@@ -97,10 +97,10 @@ public class VideoDelegate2 extends Fragment {
                 }
             }
         });
-        mVideoView.setBackgroundResource(R.drawable.video_rainbow);
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
+                mp.seekTo(480);
                 setRemoveBgWhenFirstPlayListener(mp);
                 if(mIsInForeground && mIsVideoPlaying){
                     mp.start();

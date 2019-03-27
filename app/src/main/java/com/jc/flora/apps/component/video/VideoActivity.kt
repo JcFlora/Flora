@@ -35,7 +35,8 @@ class VideoActivity : AppCompatActivity() {
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
                     project16, project17, project18, project19, project20,
-                    project21, project22, project23, project24, project25)
+                    project21, project22, project23, project24, project25,
+                    project26)
         }
 
     private val project1: Project
@@ -81,7 +82,7 @@ class VideoActivity : AppCompatActivity() {
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "视频0.6：单个视频的全屏/半屏切换"
+            project.projectName = "视频0.6：单个视频的全半屏切换"
             project.targetActivity = Video6Activity::class.java
             return project
         }
@@ -130,22 +131,22 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频1.2：使用MediaPlayer+TextureView播放"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Video12Activity::class.java
             return project
         }
 
     private val project13: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.3：实现列表播放"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频1.3：支持多个视频切换播放"
+            project.targetActivity = Video13Activity::class.java
             return project
         }
 
     private val project14: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.4：列表播放的全屏/半屏切换"
+            project.projectName = "视频1.4：实现列表播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -153,7 +154,7 @@ class VideoActivity : AppCompatActivity() {
     private val project15: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.5：列表+详情双页同步播放"
+            project.projectName = "视频1.5：列表播放的全屏/半屏切换"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -161,7 +162,7 @@ class VideoActivity : AppCompatActivity() {
     private val project16: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.6：添加共享元素转场动画"
+            project.projectName = "视频1.6：列表+详情双页同步播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -169,7 +170,7 @@ class VideoActivity : AppCompatActivity() {
     private val project17: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.7：详情页滚动时独立浮动小窗播放"
+            project.projectName = "视频1.7：添加共享元素转场动画"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -177,7 +178,7 @@ class VideoActivity : AppCompatActivity() {
     private val project18: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.8：播放在线视频"
+            project.projectName = "视频1.8：详情页滚动时独立浮动小窗播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -185,7 +186,7 @@ class VideoActivity : AppCompatActivity() {
     private val project19: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.9：添加loading浮层"
+            project.projectName = "视频1.9：播放在线视频"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -193,7 +194,7 @@ class VideoActivity : AppCompatActivity() {
     private val project20: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.0：添加网络检测"
+            project.projectName = "视频2.0：添加loading浮层"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -201,7 +202,7 @@ class VideoActivity : AppCompatActivity() {
     private val project21: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.1：添加非Wifi检测与流量显示浮层"
+            project.projectName = "视频2.1：添加网络检测"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -209,7 +210,7 @@ class VideoActivity : AppCompatActivity() {
     private val project22: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.2：使用ExoPlayer"
+            project.projectName = "视频2.2：添加非Wifi检测与流量显示浮层"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -217,7 +218,7 @@ class VideoActivity : AppCompatActivity() {
     private val project23: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.3：使用IjkPlayer"
+            project.projectName = "视频2.3：使用ExoPlayer"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -225,7 +226,7 @@ class VideoActivity : AppCompatActivity() {
     private val project24: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.4：动态切换播放引擎"
+            project.projectName = "视频2.4：使用IjkPlayer"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -233,7 +234,15 @@ class VideoActivity : AppCompatActivity() {
     private val project25: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.5：实现倍速播放"
+            project.projectName = "视频2.5：动态切换播放引擎"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project26: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频2.6：实现倍速播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
