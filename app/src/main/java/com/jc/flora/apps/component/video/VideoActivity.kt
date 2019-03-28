@@ -146,15 +146,15 @@ class VideoActivity : AppCompatActivity() {
     private val project14: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.4：实现列表播放"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频1.4：支持视频容器的动态切换+全半屏切换优化"
+            project.targetActivity = Video14Activity::class.java
             return project
         }
 
     private val project15: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.5：列表播放的全屏/半屏切换"
+            project.projectName = "视频1.5：实现列表播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -162,7 +162,7 @@ class VideoActivity : AppCompatActivity() {
     private val project16: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.6：列表+详情双页同步播放"
+            project.projectName = "视频1.6：列表播放的全屏/半屏切换"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -170,7 +170,7 @@ class VideoActivity : AppCompatActivity() {
     private val project17: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.7：添加共享元素转场动画"
+            project.projectName = "视频1.7：列表+详情双页同步播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -243,6 +243,14 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频2.6：实现倍速播放"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project27: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频2.7：添加共享元素转场动画"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

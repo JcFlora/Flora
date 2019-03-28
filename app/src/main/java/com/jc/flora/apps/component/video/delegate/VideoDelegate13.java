@@ -34,6 +34,7 @@ public class VideoDelegate13 extends Fragment {
     private TextureView mTextureView;
     // 播放器
     private MediaPlayer mMediaPlayer;
+    // 缓冲区
     private Surface mSurface;
 
     private int mVideoPosition = 0;
@@ -194,10 +195,13 @@ public class VideoDelegate13 extends Fragment {
 
         @Override
         public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+            mSurface = new Surface(surface);
         }
 
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+            mSurface.release();
+            mSurface = null;
             return false;
         }
 
@@ -208,7 +212,11 @@ public class VideoDelegate13 extends Fragment {
     };
 
     private void recreate(final boolean autoStart) {
-        if(mMediaPlayer != null || mSurface == null){
+        if(mSurface == null){
+            return;
+        }
+        if(mMediaPlayer != null){
+            mMediaPlayer.setSurface(mSurface);
             return;
         }
         mMediaPlayer = new MediaPlayer();

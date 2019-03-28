@@ -8,15 +8,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate13;
+import com.jc.flora.apps.component.vi.fidelity.Fidelity;
+import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate14;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate13;
-import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate7;
+import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate14;
 import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate13;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
@@ -27,7 +30,10 @@ import java.util.ArrayList;
  * 需要配置android:configChanges="keyboardHidden|orientation|screenSize"
  * Created by Samurai on 2019/3/27.
  */
-public class Video13Activity extends AppCompatActivity {
+public class Video14Activity extends AppCompatActivity {
+
+    /** 视频在720p高保真下的高度，实际开发中，这个值一般通过视频的宽高度比例设置为固定值 */
+    private static final double VIDEO_HEIGHT = 720d * 434 / 800;
 
     // mp4列表
     private static final ArrayList<MP4> MP4_LIST = new ArrayList<MP4>() {
@@ -50,9 +56,11 @@ public class Video13Activity extends AppCompatActivity {
     private ImageView mIvAlbum;
     private TextView mTvVideoName;
 
+    private FrameLayout mLayoutContainer1, mLayoutContainer2;
+
     private VideoDelegate13 mVideoDelegate;
-    private VideoControllerDelegate13 mControllerDelegate;
-    private VideoFullScreenDelegate7 mFullScreenDelegate;
+    private VideoControllerDelegate14 mControllerDelegate;
+    private VideoFullScreenDelegate14 mFullScreenDelegate;
     private VideoGestureCoverDelegate13 mGestureCoverDelegate;
 
     @Override
@@ -60,7 +68,7 @@ public class Video13Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // 去掉默认的ActionBar
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_video13);
+        setContentView(R.layout.activity_video14);
         findViews();
         initViews();
         initVideoDelegate();
@@ -83,11 +91,17 @@ public class Video13Activity extends AppCompatActivity {
         mLayoutAlbumCover = findViewById(R.id.layout_album_cover);
         mIvAlbum = findViewById(R.id.iv_album);
         mTvVideoName = findViewById(R.id.tv_video_name);
+        mLayoutContainer1 = findViewById(R.id.layout_container1);
+        mLayoutContainer2 = findViewById(R.id.layout_container2);
     }
 
     private void initViews(){
-        mToolbar.setTitle("支持多个视频切换播放");
+        mToolbar.setTitle("支持视频容器的动态切换+全半屏切换优化");
         mToolbar.setTitleTextColor(Color.WHITE);
+        Fidelity.getInstance(this).setWidthHeight(mLayoutContainer1,
+                ViewGroup.LayoutParams.MATCH_PARENT, VIDEO_HEIGHT);
+        Fidelity.getInstance(this).setWidthHeight(mLayoutContainer2,
+                ViewGroup.LayoutParams.MATCH_PARENT, VIDEO_HEIGHT);
         mLayoutAlbumCover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +118,7 @@ public class Video13Activity extends AppCompatActivity {
     }
 
     private void initControllerDelegate(){
-        mControllerDelegate = new VideoControllerDelegate13();
+        mControllerDelegate = new VideoControllerDelegate14();
         mControllerDelegate.setLayoutVideo(mLayoutVideo);
         mControllerDelegate.setLayoutController(mLayoutController);
         mControllerDelegate.setBtnPlay(mBtnPlay);
@@ -118,9 +132,11 @@ public class Video13Activity extends AppCompatActivity {
     }
 
     private void initFullScreenDelegate(){
-        mFullScreenDelegate = new VideoFullScreenDelegate7();
+        mFullScreenDelegate = new VideoFullScreenDelegate14();
         mFullScreenDelegate.setHead(mToolbar);
         mFullScreenDelegate.setLayoutVideo(mLayoutVideo);
+        mFullScreenDelegate.setLayoutContainer(mLayoutContainer1);
+        mFullScreenDelegate.setLayoutFullContainer((FrameLayout) findViewById(android.R.id.content));
         mFullScreenDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
         mFullScreenDelegate.addToActivity(this,"videoFullScreenDelegate");
     }
@@ -139,6 +155,20 @@ public class Video13Activity extends AppCompatActivity {
 
     public void selectVideo(View v){
         showMp4ListDialog();
+    }
+
+    public void playInTop(View v){
+        mLayoutContainer1.removeView(mLayoutVideo);
+        mLayoutContainer2.removeView(mLayoutVideo);
+        mLayoutContainer1.addView(mLayoutVideo);
+        mFullScreenDelegate.setLayoutContainer(mLayoutContainer1);
+    }
+
+    public void playInBottom(View v){
+        mLayoutContainer1.removeView(mLayoutVideo);
+        mLayoutContainer2.removeView(mLayoutVideo);
+        mLayoutContainer2.addView(mLayoutVideo);
+        mFullScreenDelegate.setLayoutContainer(mLayoutContainer2);
     }
 
     private void showMp4ListDialog() {
