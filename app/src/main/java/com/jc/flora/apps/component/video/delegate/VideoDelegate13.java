@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
 
 import com.jc.flora.apps.component.video.model.MP4;
 
@@ -27,16 +28,19 @@ public class VideoDelegate13 extends Fragment {
 
     // mp4列表
     private ArrayList<MP4> mMp4List;
-    // 当前播放的mp4文件索引
-    private int mCurrentMp4Index = 0;
-
     // 视频视图
     private TextureView mTextureView;
     // 播放器
     private MediaPlayer mMediaPlayer;
     // 缓冲区
     private Surface mSurface;
+    // 视频缓冲数据
+    private SurfaceTexture mSurfaceTexture;
 
+    // 当前播放的mp4文件索引
+    private int mCurrentMp4Index = 0;
+    // 当前播放位置
+    private int mCurrentPosition = -1;
     private int mVideoPosition = 0;
     /** 当前视频正在播放 */
     private boolean mIsVideoPlaying = false;
@@ -183,25 +187,36 @@ public class VideoDelegate13 extends Fragment {
 
     private void init(){
         mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
+        mTextureView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View v) {
+                if(mSurfaceTexture != null){
+                    mTextureView.setSurfaceTexture(mSurfaceTexture);
+                }
+            }
+            @Override
+            public void onViewDetachedFromWindow(View v) {
+            }
+        });
     }
 
     private TextureView.SurfaceTextureListener mSurfaceTextureListener = new TextureView.SurfaceTextureListener() {
 
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-            mSurface = new Surface(surface);
-            recreate(false);
+            if(mSurfaceTexture == null){
+                mSurfaceTexture = surface;
+                mSurface = new Surface(surface);
+                recreate(false);
+            }
         }
 
         @Override
         public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-            mSurface = new Surface(surface);
         }
 
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-            mSurface.release();
-            mSurface = null;
             return false;
         }
 
@@ -212,11 +227,7 @@ public class VideoDelegate13 extends Fragment {
     };
 
     private void recreate(final boolean autoStart) {
-        if(mSurface == null){
-            return;
-        }
-        if(mMediaPlayer != null){
-            mMediaPlayer.setSurface(mSurface);
+        if(mMediaPlayer != null || mSurface == null){
             return;
         }
         mMediaPlayer = new MediaPlayer();
@@ -249,8 +260,8 @@ public class VideoDelegate13 extends Fragment {
     }
 
     private void initProgress() {
-//        // 初始化播放位置
-//        mCurrentPosition = -1;
+        // 初始化播放位置
+        mCurrentPosition = -1;
         // 开始不停地刷新播放进度
         mProgressRefreshHandler.sendEmptyMessage(0);
     }
@@ -261,8 +272,15 @@ public class VideoDelegate13 extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            for (VideoStatusListener l : mVideoStatusListeners) {
-                l.onProgress(mMediaPlayer.getCurrentPosition());
+            // 获取最新的播放位置
+            int position = mMediaPlayer.getCurrentPosition();
+            // 如果和上一次的播放位置不同，则触发回调
+            if(position != mCurrentPosition){
+                mCurrentPosition = position;
+                // 播放位置的回调
+                for (VideoStatusListener l : mVideoStatusListeners) {
+                    l.onProgress(position);
+                }
             }
             mProgressRefreshHandler.sendEmptyMessageDelayed(0, 100);
         }

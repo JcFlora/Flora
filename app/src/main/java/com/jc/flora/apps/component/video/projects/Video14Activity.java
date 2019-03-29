@@ -133,7 +133,6 @@ public class Video14Activity extends AppCompatActivity {
 
     private void initFullScreenDelegate(){
         mFullScreenDelegate = new VideoFullScreenDelegate14();
-        mFullScreenDelegate.setHead(mToolbar);
         mFullScreenDelegate.setLayoutVideo(mLayoutVideo);
         mFullScreenDelegate.setLayoutContainer(mLayoutContainer1);
         mFullScreenDelegate.setLayoutFullContainer((FrameLayout) findViewById(android.R.id.content));

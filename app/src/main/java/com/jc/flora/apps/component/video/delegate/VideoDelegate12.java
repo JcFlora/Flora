@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
 
 import com.jc.flora.R;
 
@@ -29,7 +30,10 @@ public class VideoDelegate12 extends Fragment {
     private TextureView mTextureView;
     // 播放器
     private MediaPlayer mMediaPlayer;
+    // 缓冲区
     private Surface mSurface;
+    // 视频缓冲数据
+    private SurfaceTexture mSurfaceTexture;
 
     private int mVideoPosition = 0;
     /** 当前视频正在播放 */
@@ -142,14 +146,28 @@ public class VideoDelegate12 extends Fragment {
 
     private void init(){
         mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
+        mTextureView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View v) {
+                if(mSurfaceTexture != null){
+                    mTextureView.setSurfaceTexture(mSurfaceTexture);
+                }
+            }
+            @Override
+            public void onViewDetachedFromWindow(View v) {
+            }
+        });
     }
 
     private TextureView.SurfaceTextureListener mSurfaceTextureListener = new TextureView.SurfaceTextureListener() {
 
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-            mSurface = new Surface(surface);
-            recreate();
+            if(mSurfaceTexture == null){
+                mSurfaceTexture = surface;
+                mSurface = new Surface(surface);
+                recreate();
+            }
         }
 
         @Override

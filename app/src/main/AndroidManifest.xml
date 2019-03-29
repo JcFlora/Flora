@@ -1002,6 +1002,21 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/FloraTheme"/>
         <activity
+            android:name=".apps.component.video.projects.Video15Activity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/FloraTheme"/>
+        <activity
+            android:name=".apps.component.video.projects.Video16Activity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/FloraTheme"/>
+        <activity
+            android:name=".apps.component.video.projects.Video17Activity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/FloraTheme"/>
+        <activity
             android:name=".apps.scene.qrcode.QrcodeActivity"
             android:screenOrientation="portrait" />
         <activity

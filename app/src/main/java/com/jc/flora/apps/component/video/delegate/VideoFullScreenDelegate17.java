@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.jc.flora.R;
@@ -17,31 +16,37 @@ import com.jc.flora.R;
  * Created by Shijincheng on 2019/3/27.
  */
 
-public class VideoFullScreenDelegate14 extends Fragment {
+public class VideoFullScreenDelegate17 extends Fragment {
 
-    // 视频父布局
-    private View mLayoutVideo;
-    // 视频容器
-    private FrameLayout mLayoutContainer;
-    // 全屏视频容器
-    private FrameLayout mLayoutFullContainer;
+//    // 视频父布局
+//    private View mLayoutVideo;
+//    // 视频容器
+//    private FrameLayout mLayoutContainer;
+//    // 全屏视频容器
+//    private FrameLayout mLayoutFullContainer;
     // 全屏/小屏切换
     private ImageView mBtnSwitchScreen;
 
-    public void setLayoutVideo(View layoutVideo) {
-        mLayoutVideo = layoutVideo;
-    }
+    private OnOrientationChangedListener mOnOrientationChangedListener;
 
-    public void setLayoutContainer(FrameLayout layoutContainer) {
-        mLayoutContainer = layoutContainer;
-    }
+//    public void setLayoutVideo(View layoutVideo) {
+//        mLayoutVideo = layoutVideo;
+//    }
 
-    public void setLayoutFullContainer(FrameLayout layoutFullContainer) {
-        mLayoutFullContainer = layoutFullContainer;
-    }
+//    public void setLayoutContainer(FrameLayout layoutContainer) {
+//        mLayoutContainer = layoutContainer;
+//    }
+
+//    public void setLayoutFullContainer(FrameLayout layoutFullContainer) {
+//        mLayoutFullContainer = layoutFullContainer;
+//    }
 
     public void setBtnSwitchScreen(ImageView btnSwitchScreen) {
         mBtnSwitchScreen = btnSwitchScreen;
+    }
+
+    public void setOnOrientationChangedListener(OnOrientationChangedListener l) {
+        mOnOrientationChangedListener = l;
     }
 
     public void addToActivity(AppCompatActivity activity, String tag) {
@@ -75,13 +80,19 @@ public class VideoFullScreenDelegate14 extends Fragment {
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
             setFullScreen();
             mBtnSwitchScreen.setImageResource(R.drawable.video_normal_screen);
-            mLayoutContainer.removeView(mLayoutVideo);
-            mLayoutFullContainer.addView(mLayoutVideo);
+            if(mOnOrientationChangedListener != null){
+                mOnOrientationChangedListener.onLandscape();
+            }
+//            mLayoutContainer.removeView(mLayoutVideo);
+//            mLayoutFullContainer.addView(mLayoutVideo);
         }else{
             quitFullScreen();
             mBtnSwitchScreen.setImageResource(R.drawable.video_full_screen);
-            mLayoutFullContainer.removeView(mLayoutVideo);
-            mLayoutContainer.addView(mLayoutVideo);
+            if(mOnOrientationChangedListener != null){
+                mOnOrientationChangedListener.onPortrait();
+            }
+//            mLayoutFullContainer.removeView(mLayoutVideo);
+//            mLayoutContainer.addView(mLayoutVideo);
         }
     }
 
@@ -103,6 +114,11 @@ public class VideoFullScreenDelegate14 extends Fragment {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         return isLandscape;
+    }
+
+    public interface OnOrientationChangedListener{
+        void onLandscape();
+        void onPortrait();
     }
 
 }
