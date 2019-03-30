@@ -15,6 +15,12 @@ public class VideoStatusListener {
     /** 暂停一个视频时的回调 */
     public void onPause(){}
 
+    /** 停止一个视频时的回调 */
+    public void onStop(){}
+
+    /** 完成一个视频时的回调 */
+    public void onComplete(){}
+
     /** 播放进度回调 */
     public void onProgress(int progress){}
 

@@ -185,8 +185,6 @@ public class VideoControllerDelegate14 extends Fragment {
                 mSbProgress.setMax(maxProgress);
                 // 初始化总时间
                 mTvMaxTime.setText(FORMAT.format(maxProgress));
-                mIsPlaying = false;
-                mBtnPlay.setImageResource(R.drawable.video_play);
             }
 
             @Override
@@ -197,6 +195,18 @@ public class VideoControllerDelegate14 extends Fragment {
 
             @Override
             public void onPause() {
+                mIsPlaying = false;
+                mBtnPlay.setImageResource(R.drawable.video_play);
+            }
+
+            @Override
+            public void onStop() {
+                mIsPlaying = false;
+                mBtnPlay.setImageResource(R.drawable.video_play);
+            }
+
+            @Override
+            public void onComplete() {
                 mIsPlaying = false;
                 mBtnPlay.setImageResource(R.drawable.video_play);
             }

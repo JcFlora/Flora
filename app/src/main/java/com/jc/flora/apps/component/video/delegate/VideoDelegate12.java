@@ -34,10 +34,10 @@ public class VideoDelegate12 extends Fragment {
     private Surface mSurface;
     // 视频缓冲数据
     private SurfaceTexture mSurfaceTexture;
-
-    private int mVideoPosition = 0;
-    /** 当前视频正在播放 */
-    private boolean mIsVideoPlaying = false;
+    // 当前播放位置
+    private int mCurrentPosition = -1;
+    /** ActivityOnPause时当前视频正在播放 */
+    private boolean mIsVideoPlayingWhenActivityOnPause = false;
     /** 当前界面正处在前台运行 */
     private boolean mIsInForeground = true;
 
@@ -100,6 +100,10 @@ public class VideoDelegate12 extends Fragment {
             mMediaPlayer.stop();
             mMediaPlayer.release();
             mMediaPlayer = null;
+            // 添加停止播放的回调
+            for (VideoStatusListener l : mVideoStatusListeners) {
+                l.onStop();
+            }
         }
         mProgressRefreshHandler.removeCallbacksAndMessages(null);
     }
@@ -115,8 +119,10 @@ public class VideoDelegate12 extends Fragment {
         super.onStart();
         if (!mIsInForeground && mMediaPlayer != null) {
             mIsInForeground = true;
-            mMediaPlayer.seekTo(mVideoPosition);
-            if (mIsVideoPlaying) {
+            if(mCurrentPosition >= 0){
+                mMediaPlayer.seekTo(mCurrentPosition);
+            }
+            if (mIsVideoPlayingWhenActivityOnPause) {
                 playVideo();
             }
         }
@@ -126,8 +132,7 @@ public class VideoDelegate12 extends Fragment {
     public void onPause() {
         super.onPause();
         if (mMediaPlayer != null) {
-            mVideoPosition = mMediaPlayer.getCurrentPosition();
-            mIsVideoPlaying = mMediaPlayer.isPlaying();
+            mIsVideoPlayingWhenActivityOnPause = mMediaPlayer.isPlaying();
             pauseVideo();
         }
     }
@@ -197,10 +202,16 @@ public class VideoDelegate12 extends Fragment {
             public void onPrepared(MediaPlayer mp) {
                 setMaxProgress();
                 mp.seekTo(480);
-                if(mIsInForeground && mIsVideoPlaying){
-                    playVideo();
-                }
                 initProgress();
+            }
+        });
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // 添加播放完成的回调
+                for (VideoStatusListener l : mVideoStatusListeners) {
+                    l.onComplete();
+                }
             }
         });
         String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.rainbow;
@@ -219,8 +230,8 @@ public class VideoDelegate12 extends Fragment {
     }
 
     private void initProgress() {
-//        // 初始化播放位置
-//        mCurrentPosition = -1;
+        // 初始化播放位置
+        mCurrentPosition = -1;
         // 开始不停地刷新播放进度
         mProgressRefreshHandler.sendEmptyMessage(0);
     }
@@ -231,8 +242,15 @@ public class VideoDelegate12 extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            for (VideoStatusListener l : mVideoStatusListeners) {
-                l.onProgress(mMediaPlayer.getCurrentPosition());
+            // 获取最新的播放位置
+            int position = mMediaPlayer.getCurrentPosition();
+            // 如果和上一次的播放位置不同，则触发回调
+            if(position != mCurrentPosition){
+                mCurrentPosition = position;
+                // 播放位置的回调
+                for (VideoStatusListener l : mVideoStatusListeners) {
+                    l.onProgress(position);
+                }
             }
             mProgressRefreshHandler.sendEmptyMessageDelayed(0, 100);
         }

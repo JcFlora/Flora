@@ -41,9 +41,8 @@ public class VideoDelegate13 extends Fragment {
     private int mCurrentMp4Index = 0;
     // 当前播放位置
     private int mCurrentPosition = -1;
-    private int mVideoPosition = 0;
-    /** 当前视频正在播放 */
-    private boolean mIsVideoPlaying = false;
+    /** ActivityOnPause时当前视频正在播放 */
+    private boolean mIsVideoPlayingWhenActivityOnPause = false;
     /** 当前界面正处在前台运行 */
     private boolean mIsInForeground = true;
 
@@ -137,12 +136,20 @@ public class VideoDelegate13 extends Fragment {
             mMediaPlayer.stop();
             mMediaPlayer.release();
             mMediaPlayer = null;
+            // 添加停止播放的回调
+            for (VideoStatusListener l : mVideoStatusListeners) {
+                l.onStop();
+            }
         }
         mProgressRefreshHandler.removeCallbacksAndMessages(null);
     }
 
     public void seekTo(int progress) {
         mMediaPlayer.seekTo(progress);
+    }
+
+    public int getCurrentMp4Index() {
+        return mCurrentMp4Index;
     }
 
     @Override
@@ -156,8 +163,10 @@ public class VideoDelegate13 extends Fragment {
         super.onStart();
         if (!mIsInForeground && mMediaPlayer != null) {
             mIsInForeground = true;
-            mMediaPlayer.seekTo(mVideoPosition);
-            if (mIsVideoPlaying) {
+            if(mCurrentPosition >= 0){
+                mMediaPlayer.seekTo(mCurrentPosition);
+            }
+            if (mIsVideoPlayingWhenActivityOnPause) {
                 playVideo();
             }
         }
@@ -167,8 +176,7 @@ public class VideoDelegate13 extends Fragment {
     public void onPause() {
         super.onPause();
         if (mMediaPlayer != null) {
-            mVideoPosition = mMediaPlayer.getCurrentPosition();
-            mIsVideoPlaying = mMediaPlayer.isPlaying();
+            mIsVideoPlayingWhenActivityOnPause = mMediaPlayer.isPlaying();
             pauseVideo();
         }
     }
@@ -238,10 +246,19 @@ public class VideoDelegate13 extends Fragment {
             public void onPrepared(MediaPlayer mp) {
                 setMaxProgress();
                 mp.seekTo(480);
-                if (mIsInForeground && (autoStart || mIsVideoPlaying)) {
+                if (autoStart && mIsInForeground) {
                     playVideo();
                 }
                 initProgress();
+            }
+        });
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                // 添加播放完成的回调
+                for (VideoStatusListener l : mVideoStatusListeners) {
+                    l.onComplete();
+                }
             }
         });
         Uri uri = mMp4List.get(mCurrentMp4Index).getVideoUri(getContext());

@@ -179,7 +179,7 @@ class VideoActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "视频1.8：列表全半屏切换时动态控制手势浮层可用"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Video18Activity::class.java
             return project
         }
 

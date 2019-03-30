@@ -35,8 +35,8 @@ public class Video11Activity extends AppCompatActivity {
 
     private VideoDelegate7 mVideoDelegate;
     private VideoControllerDelegate10 mControllerDelegate;
-    private VideoFullScreenDelegate7 mFullScreenDelegate;
     private VideoGestureCoverDelegate10 mGestureCoverDelegate;
+    private VideoFullScreenDelegate7 mFullScreenDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,8 @@ public class Video11Activity extends AppCompatActivity {
         initViews();
         initVideoDelegate();
         initControllerDelegate();
-        initFullScreenDelegate();
         initGestureCoverDelegate();
+        initFullScreenDelegate();
     }
 
     private void findViews(){
@@ -98,19 +98,19 @@ public class Video11Activity extends AppCompatActivity {
         mControllerDelegate.addToActivity(this,"videoControllerDelegate");
     }
 
+    private void initGestureCoverDelegate(){
+        mGestureCoverDelegate = new VideoGestureCoverDelegate10();
+        mGestureCoverDelegate.setGestureCover(mGestureCover);
+        mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
+        mGestureCoverDelegate.init();
+    }
+
     private void initFullScreenDelegate(){
         mFullScreenDelegate = new VideoFullScreenDelegate7();
         mFullScreenDelegate.setHead(mToolbar);
         mFullScreenDelegate.setLayoutVideo(mLayoutVideo);
         mFullScreenDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
         mFullScreenDelegate.addToActivity(this,"videoFullScreenDelegate");
-    }
-
-    private void initGestureCoverDelegate(){
-        mGestureCoverDelegate = new VideoGestureCoverDelegate10();
-        mGestureCoverDelegate.setGestureCover(mGestureCover);
-        mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
-        mGestureCoverDelegate.init();
     }
 
     private void playAudio(){

@@ -18,28 +18,10 @@ import com.jc.flora.R;
 
 public class VideoFullScreenDelegate17 extends Fragment {
 
-//    // 视频父布局
-//    private View mLayoutVideo;
-//    // 视频容器
-//    private FrameLayout mLayoutContainer;
-//    // 全屏视频容器
-//    private FrameLayout mLayoutFullContainer;
     // 全屏/小屏切换
     private ImageView mBtnSwitchScreen;
 
     private OnOrientationChangedListener mOnOrientationChangedListener;
-
-//    public void setLayoutVideo(View layoutVideo) {
-//        mLayoutVideo = layoutVideo;
-//    }
-
-//    public void setLayoutContainer(FrameLayout layoutContainer) {
-//        mLayoutContainer = layoutContainer;
-//    }
-
-//    public void setLayoutFullContainer(FrameLayout layoutFullContainer) {
-//        mLayoutFullContainer = layoutFullContainer;
-//    }
 
     public void setBtnSwitchScreen(ImageView btnSwitchScreen) {
         mBtnSwitchScreen = btnSwitchScreen;
@@ -83,16 +65,12 @@ public class VideoFullScreenDelegate17 extends Fragment {
             if(mOnOrientationChangedListener != null){
                 mOnOrientationChangedListener.onLandscape();
             }
-//            mLayoutContainer.removeView(mLayoutVideo);
-//            mLayoutFullContainer.addView(mLayoutVideo);
         }else{
             quitFullScreen();
             mBtnSwitchScreen.setImageResource(R.drawable.video_full_screen);
             if(mOnOrientationChangedListener != null){
                 mOnOrientationChangedListener.onPortrait();
             }
-//            mLayoutFullContainer.removeView(mLayoutVideo);
-//            mLayoutContainer.addView(mLayoutVideo);
         }
     }
 

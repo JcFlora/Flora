@@ -206,6 +206,18 @@ public class VideoControllerDelegate13 extends Fragment {
             }
 
             @Override
+            public void onStop() {
+                mIsPlaying = false;
+                mBtnPlay.setImageResource(R.drawable.video_play);
+            }
+
+            @Override
+            public void onComplete() {
+                mIsPlaying = false;
+                mBtnPlay.setImageResource(R.drawable.video_play);
+            }
+
+            @Override
             public void onProgress(int progress) {
                 mSbProgress.setProgress(progress);
                 mTvCurrentTime.setText(FORMAT.format(progress));

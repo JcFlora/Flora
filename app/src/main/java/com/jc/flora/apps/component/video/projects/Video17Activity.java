@@ -24,6 +24,7 @@ import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate14;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate13;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
 import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate13;
+import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate15;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
 
@@ -34,9 +35,6 @@ import java.util.ArrayList;
  * Created by Samurai on 2019/3/28.
  */
 public class Video17Activity extends AppCompatActivity {
-
-//    /** 视频在720p高保真下的高度，实际开发中，这个值一般通过视频的宽高度比例设置为固定值 */
-//    private static final double VIDEO_HEIGHT = 720d * 434 / 800;
 
     // mp4列表
     private static final ArrayList<MP4> MP4_LIST = new ArrayList<MP4>() {
@@ -56,11 +54,12 @@ public class Video17Activity extends AppCompatActivity {
     private RecyclerView mRvVideo;
     private VideoAdapter mAdapter;
     private View mLayoutVideoRender;
+    private ImageView mBtnSwitchScreen;
 
     private VideoDelegate13 mVideoDelegate;
     private VideoControllerDelegate14 mControllerDelegate;
+    private VideoListPlayDelegate15 mListPlayDelegate;
     private VideoFullScreenDelegate17 mFullScreenDelegate;
-    private VideoGestureCoverDelegate13 mGestureCoverDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,21 +71,21 @@ public class Video17Activity extends AppCompatActivity {
         initViews();
         initVideoDelegate();
         initControllerDelegate();
+        initVideoListPlayDelegate();
         initFullScreenDelegate();
-        initGestureCoverDelegate();
-        initVideoList();
     }
 
     private void findViews(){
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
         mRvVideo = findViewById(R.id.rv_video);
+        mRvVideo.setLayoutManager(new LinearLayoutManager(this));
+        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render, mRvVideo, false);
+        mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
     }
 
     private void initViews(){
         mToolbar.setTitle("列表播放的全半屏切换");
         mToolbar.setTitleTextColor(Color.WHITE);
-        mRvVideo.setLayoutManager(new LinearLayoutManager(this));
-        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render, mRvVideo, false);
     }
 
     private void initVideoDelegate(){
@@ -101,73 +100,43 @@ public class Video17Activity extends AppCompatActivity {
     private void initControllerDelegate(){
         View layoutVideo = mLayoutVideoRender.findViewById(R.id.layout_video);
         View layoutController = mLayoutVideoRender.findViewById(R.id.layout_controller);
-        ImageView mBtnPlay = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_play);
-        ImageView mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
-        TextView mTvCurrentTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_current_time);
-        SeekBar mSbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
-        TextView mTvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
-        GestureCover10 mGestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
+        ImageView btnPlay = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_play);
+        TextView tvCurrentTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_current_time);
+        SeekBar sbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
+        TextView tvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
+        GestureCover10 gestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
 
         mControllerDelegate = new VideoControllerDelegate14();
         mControllerDelegate.setLayoutVideo(layoutVideo);
         mControllerDelegate.setLayoutController(layoutController);
-        mControllerDelegate.setBtnPlay(mBtnPlay);
-        mControllerDelegate.setTvCurrentTime(mTvCurrentTime);
-        mControllerDelegate.setSbProgress(mSbProgress);
-        mControllerDelegate.setTvMaxTime(mTvMaxTime);
+        mControllerDelegate.setBtnPlay(btnPlay);
+        mControllerDelegate.setTvCurrentTime(tvCurrentTime);
+        mControllerDelegate.setSbProgress(sbProgress);
+        mControllerDelegate.setTvMaxTime(tvMaxTime);
         mControllerDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
-        mControllerDelegate.setGestureCover(mGestureCover);
+        mControllerDelegate.setGestureCover(gestureCover);
         mControllerDelegate.setVideoDelegate(mVideoDelegate);
         mControllerDelegate.addToActivity(this,"videoControllerDelegate");
     }
 
-    private void initFullScreenDelegate(){
-        final FrameLayout layoutFullContainer = findViewById(android.R.id.content);
-        ImageView mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
-
-        mFullScreenDelegate = new VideoFullScreenDelegate17();
-        mFullScreenDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
-        mFullScreenDelegate.setOnOrientationChangedListener(new VideoFullScreenDelegate17.OnOrientationChangedListener() {
+    private void initVideoListPlayDelegate(){
+        VideoAdapter adapter = new VideoAdapter(MP4_LIST);
+        mListPlayDelegate = new VideoListPlayDelegate15(adapter);
+        mListPlayDelegate.setLayoutVideoRender(mLayoutVideoRender);
+        mListPlayDelegate.setVideoDelegate(mVideoDelegate);
+        adapter.setRenderAttacher(new VideoAdapter.RenderAttacher() {
             @Override
-            public void onLandscape() {
-                mCurrentFullPlayPosition = mAdapter.getCurrentPlayPosition();
-                mAdapter.setCurrentPlayPosition(-1);
-                if(mLayoutVideoRender.getParent() != null){
-                    ((ViewGroup)mLayoutVideoRender.getParent()).removeView(mLayoutVideoRender);
-                }
-                layoutFullContainer.addView(mLayoutVideoRender);
-            }
-            @Override
-            public void onPortrait() {
-                layoutFullContainer.removeView(mLayoutVideoRender);
-                mAdapter.setCurrentPlayPosition(mCurrentFullPlayPosition);
+            public boolean addVideoRender(FrameLayout container, int position) {
+                return mListPlayDelegate.addVideoRender(container, position);
             }
         });
-        mFullScreenDelegate.addToActivity(this,"videoFullScreenDelegate");
-    }
-
-    private int mCurrentFullPlayPosition = -1;
-
-    private void initGestureCoverDelegate(){
-        GestureCover10 mGestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
-
-        mGestureCoverDelegate = new VideoGestureCoverDelegate13();
-        mGestureCover.setGestureEnable(false);
-        mGestureCoverDelegate.setGestureCover(mGestureCover);
-        mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
-        mGestureCoverDelegate.init();
-    }
-
-    private void initVideoList(){
-        mAdapter = new VideoAdapter(MP4_LIST);
-        mAdapter.setLayoutVideoRender(mLayoutVideoRender);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, final int position) {
-                playAudioAtPosition(position);
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mListPlayDelegate.playAudioAtPosition(position);
             }
         });
-        mRvVideo.setAdapter(mAdapter);
+        mRvVideo.setAdapter(adapter);
         mRvVideo.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
             @Override
             public void onChildViewAttachedToWindow(@NonNull View view) {
@@ -176,48 +145,34 @@ public class Video17Activity extends AppCompatActivity {
             @Override
             public void onChildViewDetachedFromWindow(@NonNull View view) {
                 int position = mRvVideo.getChildAdapterPosition(view);
-                if (position >= 0 && mAdapter.isCurrentPlay(position)) {
+                if (position >= 0 && mListPlayDelegate.isCurrentPlay(position)) {
                     mVideoDelegate.pauseVideo();
                 }
             }
         });
     }
 
-    private void playAudioAtPosition(int position){
-        if(mAdapter.isCurrentPlay(position)){
-            return;
-        }
-        boolean isFirstPlay = mLayoutVideoRender.getParent() == null;
-        if(isFirstPlay){
-            playAudioWhenFirst(position);
-        }else{
-            playAudioWhenChangePosition(position);
-        }
-    }
+    private void initFullScreenDelegate(){
+        final FrameLayout layoutFullContainer = findViewById(android.R.id.content);
 
-    private void playAudioWhenFirst(final int position){
-        mAdapter.setCurrentPlayPosition(position);
-        // 必须通过post的方式触发对应位置的视频播放，
-        // 如果立刻调用，会因为第一次add的TextureView的onSurfaceTextureAvailable还未调用到，而无法立刻播放
-        mRvVideo.postDelayed(new Runnable() {
+        mFullScreenDelegate = new VideoFullScreenDelegate17();
+        mFullScreenDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
+        mFullScreenDelegate.setOnOrientationChangedListener(new VideoFullScreenDelegate17.OnOrientationChangedListener() {
             @Override
-            public void run() {
-                mVideoDelegate.selectVideo(position);
+            public void onLandscape() {
+                mListPlayDelegate.setCurrentPlayPosition(-1);
+                if(mLayoutVideoRender.getParent() != null){
+                    ((ViewGroup)mLayoutVideoRender.getParent()).removeView(mLayoutVideoRender);
+                }
+                layoutFullContainer.addView(mLayoutVideoRender);
             }
-        },200);
-    }
-
-    private void playAudioWhenChangePosition(final int position){
-        mAdapter.setCurrentPlayPosition(-1);
-        mVideoDelegate.selectVideo(position);
-        // 通过post的方式添加播放器视图，
-        // 如果立刻添加，播放器视图会闪现前一个视频的最后一帧
-        mRvVideo.postDelayed(new Runnable() {
             @Override
-            public void run() {
-                mAdapter.setCurrentPlayPosition(position);
+            public void onPortrait() {
+                layoutFullContainer.removeView(mLayoutVideoRender);
+                mListPlayDelegate.setCurrentPlayPosition(mVideoDelegate.getCurrentMp4Index());
             }
-        },200);
+        });
+        mFullScreenDelegate.addToActivity(this,"videoFullScreenDelegate");
     }
 
     @Override

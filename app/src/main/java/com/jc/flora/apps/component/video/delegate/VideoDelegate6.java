@@ -59,9 +59,12 @@ public class VideoDelegate6 extends Fragment {
     // 全屏/小屏切换
     private ImageView mBtnSwitchScreen;
 
-    private int mVideoPosition = 0;
-    /** 当前视频正在播放 */
-    private boolean mIsVideoPlaying = false;
+    // 当前播放位置
+    private int mCurrentPosition = -1;
+    // ActivityOnPause时的播放位置
+    private int mVideoPositionWhenActivityOnPause = 0;
+    /** ActivityOnPause时当前视频正在播放 */
+    private boolean mIsVideoPlayingWhenActivityOnPause = false;
     /** 当前界面正处在前台运行 */
     private boolean mIsInForeground = true;
 
@@ -118,7 +121,7 @@ public class VideoDelegate6 extends Fragment {
         super.onStart();
         if (!mIsInForeground && mVideoView != null) {
             mIsInForeground = true;
-            mVideoView.seekTo(mVideoPosition);
+            mVideoView.seekTo(mVideoPositionWhenActivityOnPause);
             mVideoView.resume();
         }
     }
@@ -127,8 +130,8 @@ public class VideoDelegate6 extends Fragment {
     public void onPause() {
         super.onPause();
         if (mVideoView != null) {
-            mVideoPosition = mVideoView.getCurrentPosition();
-            mIsVideoPlaying = mVideoView.isPlaying();
+            mVideoPositionWhenActivityOnPause = mVideoView.getCurrentPosition();
+            mIsVideoPlayingWhenActivityOnPause = mVideoView.isPlaying();
         }
     }
 
@@ -195,7 +198,7 @@ public class VideoDelegate6 extends Fragment {
                 setMaxProgress();
                 mp.seekTo(480);
                 setRemoveBgWhenFirstPlayListener(mp);
-                if(mIsInForeground && mIsVideoPlaying){
+                if(mIsInForeground && mIsVideoPlayingWhenActivityOnPause){
                     mp.start();
                 }
             }
@@ -265,9 +268,15 @@ public class VideoDelegate6 extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mSbProgress.setProgress(mVideoView.getCurrentPosition());
-            String currentTime = FORMAT.format(mVideoView.getCurrentPosition());
-            mTvCurrentTime.setText(currentTime);
+            // 获取最新的播放位置
+            int position = mVideoView.getCurrentPosition();
+            // 如果和上一次的播放位置不同，则触发回调
+            if(position != mCurrentPosition){
+                mCurrentPosition = position;
+                mSbProgress.setProgress(position);
+                String currentTime = FORMAT.format(position);
+                mTvCurrentTime.setText(currentTime);
+            }
             mProgressRefreshHandler.sendEmptyMessageDelayed(0, 100);
         }
     };

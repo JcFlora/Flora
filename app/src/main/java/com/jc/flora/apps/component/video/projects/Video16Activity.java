@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.jc.flora.R;
 import com.jc.flora.apps.component.video.adapter.VideoAdapter;
 import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate14;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate13;
+import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate15;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
 
@@ -52,6 +54,7 @@ public class Video16Activity extends AppCompatActivity {
 
     private VideoDelegate13 mVideoDelegate;
     private VideoControllerDelegate14 mControllerDelegate;
+    private VideoListPlayDelegate15 mListPlayDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +66,19 @@ public class Video16Activity extends AppCompatActivity {
         initViews();
         initVideoDelegate();
         initControllerDelegate();
-        initVideoList();
+        initVideoListPlayDelegate();
     }
 
     private void findViews(){
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
         mRvVideo = findViewById(R.id.rv_video);
+        mRvVideo.setLayoutManager(new LinearLayoutManager(this));
+        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render, mRvVideo, false);
     }
 
     private void initViews(){
         mToolbar.setTitle("实现滑动到屏幕外自动暂停");
         mToolbar.setTitleTextColor(Color.WHITE);
-        mRvVideo.setLayoutManager(new LinearLayoutManager(this));
-        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render, mRvVideo, false);
     }
 
     private void initVideoDelegate(){
@@ -90,36 +93,44 @@ public class Video16Activity extends AppCompatActivity {
     private void initControllerDelegate(){
         View layoutVideo = mLayoutVideoRender.findViewById(R.id.layout_video);
         View layoutController = mLayoutVideoRender.findViewById(R.id.layout_controller);
-        ImageView mBtnPlay = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_play);
-        ImageView mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
-        TextView mTvCurrentTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_current_time);
-        SeekBar mSbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
-        TextView mTvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
-        GestureCover10 mGestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
+        ImageView btnPlay = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_play);
+        ImageView btnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
+        TextView tvCurrentTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_current_time);
+        SeekBar sbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
+        TextView tvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
+        GestureCover10 gestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
 
         mControllerDelegate = new VideoControllerDelegate14();
         mControllerDelegate.setLayoutVideo(layoutVideo);
         mControllerDelegate.setLayoutController(layoutController);
-        mControllerDelegate.setBtnPlay(mBtnPlay);
-        mControllerDelegate.setTvCurrentTime(mTvCurrentTime);
-        mControllerDelegate.setSbProgress(mSbProgress);
-        mControllerDelegate.setTvMaxTime(mTvMaxTime);
-        mControllerDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
-        mControllerDelegate.setGestureCover(mGestureCover);
+        mControllerDelegate.setBtnPlay(btnPlay);
+        mControllerDelegate.setTvCurrentTime(tvCurrentTime);
+        mControllerDelegate.setSbProgress(sbProgress);
+        mControllerDelegate.setTvMaxTime(tvMaxTime);
+        mControllerDelegate.setBtnSwitchScreen(btnSwitchScreen);
+        mControllerDelegate.setGestureCover(gestureCover);
         mControllerDelegate.setVideoDelegate(mVideoDelegate);
         mControllerDelegate.addToActivity(this,"videoControllerDelegate");
     }
 
-    private void initVideoList(){
-        mAdapter = new VideoAdapter(MP4_LIST);
-        mAdapter.setLayoutVideoRender(mLayoutVideoRender);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+    private void initVideoListPlayDelegate(){
+        VideoAdapter adapter = new VideoAdapter(MP4_LIST);
+        mListPlayDelegate = new VideoListPlayDelegate15(adapter);
+        mListPlayDelegate.setLayoutVideoRender(mLayoutVideoRender);
+        mListPlayDelegate.setVideoDelegate(mVideoDelegate);
+        adapter.setRenderAttacher(new VideoAdapter.RenderAttacher() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, final int position) {
-                playAudioAtPosition(position);
+            public boolean addVideoRender(FrameLayout container, int position) {
+                return mListPlayDelegate.addVideoRender(container, position);
             }
         });
-        mRvVideo.setAdapter(mAdapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mListPlayDelegate.playAudioAtPosition(position);
+            }
+        });
+        mRvVideo.setAdapter(adapter);
         mRvVideo.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
             @Override
             public void onChildViewAttachedToWindow(@NonNull View view) {
@@ -128,53 +139,11 @@ public class Video16Activity extends AppCompatActivity {
             @Override
             public void onChildViewDetachedFromWindow(@NonNull View view) {
                 int position = mRvVideo.getChildAdapterPosition(view);
-                if (position >= 0 && mAdapter.isCurrentPlay(position)) {
+                if (position >= 0 && mListPlayDelegate.isCurrentPlay(position)) {
                     mVideoDelegate.pauseVideo();
                 }
             }
         });
-    }
-
-    private void playAudioAtPosition(int position){
-        if(mAdapter.isCurrentPlay(position)){
-            return;
-        }
-        boolean isFirstPlay = mLayoutVideoRender.getParent() == null;
-        if(isFirstPlay){
-            playAudioWhenFirst(position);
-        }else{
-            playAudioWhenChangePosition(position);
-        }
-    }
-
-    private void playAudioWhenFirst(final int position){
-        mAdapter.setCurrentPlayPosition(position);
-        // 必须通过post的方式触发对应位置的视频播放，
-        // 如果立刻调用，会因为第一次add的TextureView的onSurfaceTextureAvailable还未调用到，而无法立刻播放
-        mRvVideo.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mVideoDelegate.selectVideo(position);
-            }
-        },200);
-    }
-
-    private void playAudioWhenChangePosition(final int position){
-        mAdapter.setCurrentPlayPosition(-1);
-        mVideoDelegate.selectVideo(position);
-        // 通过post的方式添加播放器视图，
-        // 如果立刻添加，播放器视图会闪现前一个视频的最后一帧
-        mRvVideo.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter.setCurrentPlayPosition(position);
-            }
-        },200);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
 }

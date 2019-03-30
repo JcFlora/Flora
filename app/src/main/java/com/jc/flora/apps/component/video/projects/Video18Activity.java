@@ -2,6 +2,7 @@ package com.jc.flora.apps.component.video.projects;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,6 +22,8 @@ import com.jc.flora.R;
 import com.jc.flora.apps.component.video.adapter.VideoAdapter;
 import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate14;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate13;
+import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate13;
 import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate15;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
@@ -28,9 +32,9 @@ import java.util.ArrayList;
 
 /**
  * 需要配置android:configChanges="keyboardHidden|orientation|screenSize"
- * Created by Samurai on 2019/3/28.
+ * Created by Samurai on 2019/3/30.
  */
-public class Video15Activity extends AppCompatActivity {
+public class Video18Activity extends AppCompatActivity {
 
     // mp4列表
     private static final ArrayList<MP4> MP4_LIST = new ArrayList<MP4>() {
@@ -48,11 +52,16 @@ public class Video15Activity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView mRvVideo;
+    private VideoAdapter mAdapter;
     private View mLayoutVideoRender;
+    private ImageView mBtnSwitchScreen;
+    private GestureCover10 mGestureCover;
 
     private VideoDelegate13 mVideoDelegate;
     private VideoControllerDelegate14 mControllerDelegate;
     private VideoListPlayDelegate15 mListPlayDelegate;
+    private VideoFullScreenDelegate17 mFullScreenDelegate;
+    private VideoGestureCoverDelegate13 mGestureCoverDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +73,9 @@ public class Video15Activity extends AppCompatActivity {
         initViews();
         initVideoDelegate();
         initControllerDelegate();
+        initGestureCoverDelegate();
         initVideoListPlayDelegate();
+        initFullScreenDelegate();
     }
 
     private void findViews(){
@@ -72,10 +83,12 @@ public class Video15Activity extends AppCompatActivity {
         mRvVideo = findViewById(R.id.rv_video);
         mRvVideo.setLayoutManager(new LinearLayoutManager(this));
         mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render, mRvVideo, false);
+        mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
+        mGestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
     }
 
     private void initViews(){
-        mToolbar.setTitle("实现列表播放");
+        mToolbar.setTitle("列表全半屏切换时动态控制手势浮层可用");
         mToolbar.setTitleTextColor(Color.WHITE);
     }
 
@@ -92,11 +105,9 @@ public class Video15Activity extends AppCompatActivity {
         View layoutVideo = mLayoutVideoRender.findViewById(R.id.layout_video);
         View layoutController = mLayoutVideoRender.findViewById(R.id.layout_controller);
         ImageView btnPlay = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_play);
-        ImageView btnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
         TextView tvCurrentTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_current_time);
         SeekBar sbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
         TextView tvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
-        GestureCover10 gestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
 
         mControllerDelegate = new VideoControllerDelegate14();
         mControllerDelegate.setLayoutVideo(layoutVideo);
@@ -105,10 +116,19 @@ public class Video15Activity extends AppCompatActivity {
         mControllerDelegate.setTvCurrentTime(tvCurrentTime);
         mControllerDelegate.setSbProgress(sbProgress);
         mControllerDelegate.setTvMaxTime(tvMaxTime);
-        mControllerDelegate.setBtnSwitchScreen(btnSwitchScreen);
-        mControllerDelegate.setGestureCover(gestureCover);
+        mControllerDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
+        mControllerDelegate.setGestureCover(mGestureCover);
         mControllerDelegate.setVideoDelegate(mVideoDelegate);
         mControllerDelegate.addToActivity(this,"videoControllerDelegate");
+    }
+
+    private void initGestureCoverDelegate(){
+        mGestureCover.setGestureEnable(false);
+
+        mGestureCoverDelegate = new VideoGestureCoverDelegate13();
+        mGestureCoverDelegate.setGestureCover(mGestureCover);
+        mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
+        mGestureCoverDelegate.init();
     }
 
     private void initVideoListPlayDelegate(){
@@ -129,6 +149,52 @@ public class Video15Activity extends AppCompatActivity {
             }
         });
         mRvVideo.setAdapter(adapter);
+        mRvVideo.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(@NonNull View view) {
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(@NonNull View view) {
+                int position = mRvVideo.getChildAdapterPosition(view);
+                if (position >= 0 && mListPlayDelegate.isCurrentPlay(position)) {
+                    mVideoDelegate.pauseVideo();
+                }
+            }
+        });
+    }
+
+    private void initFullScreenDelegate(){
+        final FrameLayout layoutFullContainer = findViewById(android.R.id.content);
+
+        mFullScreenDelegate = new VideoFullScreenDelegate17();
+        mFullScreenDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
+        mFullScreenDelegate.setOnOrientationChangedListener(new VideoFullScreenDelegate17.OnOrientationChangedListener() {
+            @Override
+            public void onLandscape() {
+                mListPlayDelegate.setCurrentPlayPosition(-1);
+                if(mLayoutVideoRender.getParent() != null){
+                    ((ViewGroup)mLayoutVideoRender.getParent()).removeView(mLayoutVideoRender);
+                }
+                layoutFullContainer.addView(mLayoutVideoRender);
+                mGestureCover.setGestureEnable(true);
+            }
+            @Override
+            public void onPortrait() {
+                layoutFullContainer.removeView(mLayoutVideoRender);
+                mListPlayDelegate.setCurrentPlayPosition(mVideoDelegate.getCurrentMp4Index());
+                mGestureCover.setGestureEnable(false);
+            }
+        });
+        mFullScreenDelegate.addToActivity(this,"videoFullScreenDelegate");
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mFullScreenDelegate.onBackPressed()){
+            return;
+        }
+        super.onBackPressed();
     }
 
 }
