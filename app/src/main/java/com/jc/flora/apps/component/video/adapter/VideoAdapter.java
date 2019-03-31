@@ -58,7 +58,7 @@ public class VideoAdapter extends BaseQuickAdapter<MP4, BaseViewHolder> {
         FrameLayout container = helper.getView(R.id.layout_video_container);
 
         tvTitle.setText(item.name);
-        ivAlbum.setImageResource(item.coverImgResId);
+        item.loadAlbum(ivAlbum);
 
         int position = helper.getAdapterPosition();
         if(mRenderAttacher != null){

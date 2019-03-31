@@ -36,7 +36,7 @@ class VideoActivity : AppCompatActivity() {
                     project11, project12, project13, project14, project15,
                     project16, project17, project18, project19, project20,
                     project21, project22, project23, project24, project25,
-                    project26)
+                    project26, project27, project28, project29, project30)
         }
 
     private val project1: Project
@@ -186,23 +186,23 @@ class VideoActivity : AppCompatActivity() {
     private val project19: Project
         get() {
             val project = Project()
-            project.projectName = "视频1.9：列表+详情双页同步播放"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频1.9：播放在线视频"
+            project.targetActivity = Video19Activity::class.java
             return project
         }
 
     private val project20: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.0：播放在线视频"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频2.0：添加loading浮层"
+            project.targetActivity = Video20Activity::class.java
             return project
         }
 
     private val project21: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.1：添加loading浮层"
+            project.projectName = "视频2.1："
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -218,7 +218,7 @@ class VideoActivity : AppCompatActivity() {
     private val project23: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.3：添加非Wifi检测与流量显示浮层"
+            project.projectName = "视频2.3：添加非Wifi检测与视频容量显示浮层"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -258,7 +258,7 @@ class VideoActivity : AppCompatActivity() {
     private val project28: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.8：添加共享元素转场动画"
+            project.projectName = "视频2.8：列表+详情双页同步播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -266,7 +266,15 @@ class VideoActivity : AppCompatActivity() {
     private val project29: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.9：详情页滚动时独立浮动小窗播放"
+            project.projectName = "视频2.9：添加共享元素转场动画"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project30: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频3.0：详情页滚动时独立浮动小窗播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

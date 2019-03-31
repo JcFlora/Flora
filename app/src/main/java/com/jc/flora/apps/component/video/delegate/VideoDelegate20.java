@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Created by Shijincheng on 2019/3/26.
  */
 
-public class VideoDelegate13 extends Fragment {
+public class VideoDelegate20 extends Fragment {
 
     // mp4列表
     private ArrayList<MP4> mMp4List;
@@ -254,8 +254,29 @@ public class VideoDelegate13 extends Fragment {
                 mp.seekTo(480);
                 if (autoStart && mIsInForeground) {
                     playVideo();
+                    // 添加准备结束的回调
+                    for (VideoStatusListener l : mVideoStatusListeners) {
+                        l.onPrepareEnd();
+                    }
                 }
                 initProgress();
+            }
+        });
+        mMediaPlayer.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+            @Override
+            public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
+                    // 添加缓冲开始的回调
+                    for (VideoStatusListener l : mVideoStatusListeners) {
+                        l.onBufferingStart();
+                    }
+                }else if(what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
+                    // 添加缓冲结束的回调
+                    for (VideoStatusListener l : mVideoStatusListeners) {
+                        l.onBufferingEnd();
+                    }
+                }
+                return true;
             }
         });
         mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -274,6 +295,12 @@ public class VideoDelegate13 extends Fragment {
             e.printStackTrace();
         }
         mMediaPlayer.prepareAsync();
+        if(autoStart && mIsInForeground){
+            // 添加准备开始的回调
+            for (VideoStatusListener l : mVideoStatusListeners) {
+                l.onPrepareStart(mCurrentMp4Index);
+            }
+        }
     }
 
     private void setMaxProgress(){

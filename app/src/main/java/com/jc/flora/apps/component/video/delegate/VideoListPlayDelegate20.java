@@ -9,18 +9,18 @@ import android.widget.FrameLayout;
  * Created by Shijincheng on 2019/3/30.
  */
 
-public class VideoListPlayDelegate15 {
+public class VideoListPlayDelegate20 {
 
     private RecyclerView mRvVideo;
     /** 视频渲染视图 */
     private View mLayoutVideoRender;
 
-    private VideoDelegate13 mVideoDelegate;
+    private VideoDelegate20 mVideoDelegate;
 
     /** 当前播放视频的位置 */
     private int mCurrentPlayPosition = -1;
 
-    public VideoListPlayDelegate15(RecyclerView rv) {
+    public VideoListPlayDelegate20(RecyclerView rv) {
         mRvVideo = rv;
     }
 
@@ -28,7 +28,7 @@ public class VideoListPlayDelegate15 {
         mLayoutVideoRender = layoutVideoRender;
     }
 
-    public void setVideoDelegate(VideoDelegate13 videoDelegate) {
+    public void setVideoDelegate(VideoDelegate20 videoDelegate) {
         this.mVideoDelegate = videoDelegate;
     }
 

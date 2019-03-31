@@ -6,11 +6,23 @@ package com.jc.flora.apps.component.video.delegate;
  */
 public class VideoStatusListener {
 
+    /** 视频准备开始时的回调 */
+    public void onPrepareStart(int index){}
+
+    /** 视频准备结束时的回调 */
+    public void onPrepareEnd(){}
+
     /** 选择或切换一个视频时的回调 */
     public void onSelect(int index, int maxProgress){}
 
     /** 播放一个视频时的回调 */
     public void onPlay(){}
+
+    /** 视频缓冲开始时的回调 */
+    public void onBufferingStart(){}
+
+    /** 视频缓冲结束时的回调 */
+    public void onBufferingEnd(){}
 
     /** 暂停一个视频时的回调 */
     public void onPause(){}

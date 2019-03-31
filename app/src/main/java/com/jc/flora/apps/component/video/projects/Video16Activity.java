@@ -49,7 +49,6 @@ public class Video16Activity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView mRvVideo;
-    private VideoAdapter mAdapter;
     private View mLayoutVideoRender;
 
     private VideoDelegate13 mVideoDelegate;
@@ -73,7 +72,7 @@ public class Video16Activity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
         mRvVideo = findViewById(R.id.rv_video);
         mRvVideo.setLayoutManager(new LinearLayoutManager(this));
-        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render, mRvVideo, false);
+        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render15, mRvVideo, false);
     }
 
     private void initViews(){
@@ -114,10 +113,11 @@ public class Video16Activity extends AppCompatActivity {
     }
 
     private void initVideoListPlayDelegate(){
-        VideoAdapter adapter = new VideoAdapter(MP4_LIST);
-        mListPlayDelegate = new VideoListPlayDelegate15(adapter);
+        mListPlayDelegate = new VideoListPlayDelegate15(mRvVideo);
         mListPlayDelegate.setLayoutVideoRender(mLayoutVideoRender);
         mListPlayDelegate.setVideoDelegate(mVideoDelegate);
+
+        VideoAdapter adapter = new VideoAdapter(MP4_LIST);
         adapter.setRenderAttacher(new VideoAdapter.RenderAttacher() {
             @Override
             public boolean addVideoRender(FrameLayout container, int position) {

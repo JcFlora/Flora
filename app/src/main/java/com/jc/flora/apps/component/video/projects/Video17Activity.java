@@ -23,7 +23,6 @@ import com.jc.flora.apps.component.video.adapter.VideoAdapter;
 import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate14;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate13;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
-import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate13;
 import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate15;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
@@ -52,7 +51,6 @@ public class Video17Activity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView mRvVideo;
-    private VideoAdapter mAdapter;
     private View mLayoutVideoRender;
     private ImageView mBtnSwitchScreen;
 
@@ -79,7 +77,7 @@ public class Video17Activity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
         mRvVideo = findViewById(R.id.rv_video);
         mRvVideo.setLayoutManager(new LinearLayoutManager(this));
-        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render, mRvVideo, false);
+        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render15, mRvVideo, false);
         mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
     }
 
@@ -120,10 +118,11 @@ public class Video17Activity extends AppCompatActivity {
     }
 
     private void initVideoListPlayDelegate(){
-        VideoAdapter adapter = new VideoAdapter(MP4_LIST);
-        mListPlayDelegate = new VideoListPlayDelegate15(adapter);
+        mListPlayDelegate = new VideoListPlayDelegate15(mRvVideo);
         mListPlayDelegate.setLayoutVideoRender(mLayoutVideoRender);
         mListPlayDelegate.setVideoDelegate(mVideoDelegate);
+
+        VideoAdapter adapter = new VideoAdapter(MP4_LIST);
         adapter.setRenderAttacher(new VideoAdapter.RenderAttacher() {
             @Override
             public boolean addVideoRender(FrameLayout container, int position) {
