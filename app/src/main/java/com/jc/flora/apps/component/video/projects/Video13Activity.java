@@ -134,7 +134,7 @@ public class Video13Activity extends AppCompatActivity {
 
     private void playVideo(){
         mLayoutAlbumCover.setVisibility(View.GONE);
-        mVideoDelegate.playVideo();
+        mVideoDelegate.selectVideo(0);
     }
 
     public void selectVideo(View v){

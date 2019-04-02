@@ -14,6 +14,22 @@
         android:foregroundGravity="center"/>
 
     <RelativeLayout
+        android:id="@+id/layout_loading_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#33000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/layout_controller"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -87,5 +103,51 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="52dp"
         android:layout_marginTop="52dp"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_prepare_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#33000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_prepare_album"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_complete_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/btn_replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/video_bg_replay"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:text="重播"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
 
 </FrameLayout>

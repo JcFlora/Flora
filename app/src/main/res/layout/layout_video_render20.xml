@@ -4,7 +4,6 @@
     android:id="@+id/layout_video"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
     android:clickable="true">
 
     <TextureView
@@ -13,6 +12,22 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:foregroundGravity="center"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_loading_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#33000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/layout_controller"
@@ -90,7 +105,7 @@
         android:layout_marginTop="52dp"/>
 
     <RelativeLayout
-        android:id="@+id/layout_loading_cover"
+        android:id="@+id/layout_prepare_cover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#33000000"
@@ -100,7 +115,8 @@
         <ImageView
             android:id="@+id/iv_prepare_album"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
 
         <android.support.v4.widget.ContentLoadingProgressBar
             style="?android:attr/progressBarStyleLarge"

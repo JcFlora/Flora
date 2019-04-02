@@ -201,7 +201,6 @@ public class VideoDelegate12 extends Fragment {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 setMaxProgress();
-                mp.seekTo(480);
                 initProgress();
             }
         });

@@ -3,10 +3,7 @@ package com.jc.flora.apps.component.video.delegate;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.jc.flora.apps.component.video.model.MP4;
-import com.jc.flora.apps.component.video.widget.GestureCover10;
-import com.jc.flora.apps.component.video.widget.SeekGestureDelegate;
 
 import java.util.ArrayList;
 
@@ -20,6 +17,7 @@ public class VideoLoadingCoverDelegate20 {
     private ArrayList<MP4> mMp4List;
 
     private View mLoadingCover;
+    private View mPrepareCover;
     private ImageView mIvPrepareAlbum;
     private VideoDelegate20 mVideoDelegate;
 
@@ -35,6 +33,10 @@ public class VideoLoadingCoverDelegate20 {
         mLoadingCover = loadingCover;
     }
 
+    public void setPrepareCover(View prepareCover) {
+        mPrepareCover = prepareCover;
+    }
+
     public void setIvPrepareAlbum(ImageView ivPrepareAlbum) {
         mIvPrepareAlbum = ivPrepareAlbum;
     }
@@ -48,15 +50,13 @@ public class VideoLoadingCoverDelegate20 {
 
             @Override
             public void onPrepareStart(int index) {
-                Glide.with(mIvPrepareAlbum).load(mMp4List.get(index).videoAlbum).into(mIvPrepareAlbum);
-                mLoadingCover.setVisibility(View.VISIBLE);
-                mIvPrepareAlbum.setVisibility(View.VISIBLE);
+                mMp4List.get(index).loadAlbum(mIvPrepareAlbum);
+                mPrepareCover.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onPrepareEnd() {
-                mLoadingCover.setVisibility(View.GONE);
-                mIvPrepareAlbum.setVisibility(View.GONE);
+                mPrepareCover.setVisibility(View.GONE);
             }
 
             @Override
@@ -71,11 +71,13 @@ public class VideoLoadingCoverDelegate20 {
 
             @Override
             public void onStop() {
+                mPrepareCover.setVisibility(View.GONE);
                 mLoadingCover.setVisibility(View.GONE);
             }
 
             @Override
             public void onComplete() {
+                mPrepareCover.setVisibility(View.GONE);
                 mLoadingCover.setVisibility(View.GONE);
             }
         });

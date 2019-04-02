@@ -130,7 +130,6 @@ public class VideoDelegate3 extends Fragment {
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                mp.seekTo(480);
                 setRemoveBgWhenFirstPlayListener(mp);
                 if(mIsInForeground && mIsVideoPlaying){
                     mp.start();

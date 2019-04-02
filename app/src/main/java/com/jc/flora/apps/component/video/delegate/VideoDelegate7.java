@@ -126,7 +126,6 @@ public class VideoDelegate7 extends Fragment {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 setMaxProgress();
-                mp.seekTo(480);
                 setRemoveBgWhenFirstPlayListener(mp);
                 if (mIsInForeground && mIsVideoPlayingWhenActivityOnPause) {
                     start();

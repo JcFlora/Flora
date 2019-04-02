@@ -40,7 +40,7 @@ public class VideoControllerDelegate20 extends Fragment {
     private TextView mTvMaxTime;
     // 全屏/小屏切换
     private ImageView mBtnSwitchScreen;
-    // 音量控制手势浮层
+    // 手势控制浮层
     private GestureCover10 mGestureCover;
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
@@ -180,6 +180,14 @@ public class VideoControllerDelegate20 extends Fragment {
         mVideoDelegate.addVideoStatusListener(new VideoStatusListener() {
 
             @Override
+            public void onPrepareStart(int index) {
+                // 初始化当前进度
+                mSbProgress.setProgress(0);
+                // 初始化当前时间
+                mTvCurrentTime.setText("00:00");
+            }
+
+            @Override
             public void onSelect(int index, int maxProgress) {
                 // 初始化播放最大进度值
                 mSbProgress.setMax(maxProgress);
@@ -191,6 +199,12 @@ public class VideoControllerDelegate20 extends Fragment {
             public void onPlay() {
                 mIsPlaying = true;
                 mBtnPlay.setImageResource(R.drawable.video_pause);
+            }
+
+            @Override
+            public void onBufferingUpdate(int percent) {
+                int secondaryProgress = (int) (mSbProgress.getMax() * percent / 100f + 0.5f);
+                mSbProgress.setSecondaryProgress(secondaryProgress);
             }
 
             @Override

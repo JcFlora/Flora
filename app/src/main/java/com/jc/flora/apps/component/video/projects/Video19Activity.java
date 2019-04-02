@@ -39,9 +39,9 @@ public class Video19Activity extends AppCompatActivity {
     // mp4列表
     private static final ArrayList<MP4> MP4_LIST = new ArrayList<MP4>() {
         {
-            add(new MP4("中国古代的军事实力", "https://m.yunpub.cn/7b99173f1eddc48370dd006edb15c174/5ca1625e/m/201903/21/0ba3f9e4ff6b4b699cfaa2329a59400dm128.mp4", "https://upload.yunpub.cn/i/201903/21/baf25bc80e4c4e00b6ac139cdf4e9515i321.jpeg"));
-            add(new MP4("宋朝皇帝的小爱好", "https://m.yunpub.cn/73835faf870a72d18ecfaf0fde39da15/5ca16502/m/201903/15/02ed29db3210403fb794083f61ec90dbm757.mp4", "https://upload.yunpub.cn/i/201903/15/6d71ba47aa89427098f147546721ef68i846.jpg"));
-            add(new MP4("玛丽莲·梦露的人间往事", "https://m.yunpub.cn/08ca7ff7e0dc452985ed571efff7261d/5ca16502/m/201901/30/7d07e49886514fc79adb28899295bfb8m658.mp4", "https://upload.yunpub.cn/i/201901/30/3dbb98b085a74f52968635694bfa132ci852.png"));
+            add(new MP4("中国古代的军事实力", "https://m.yunpub.cn/64726bf9a04f4114e6cabd3c272dfd06/5ca2e9c6/m/201903/21/0ba3f9e4ff6b4b699cfaa2329a59400dm128.mp4", "https://upload.yunpub.cn/i/201903/21/baf25bc80e4c4e00b6ac139cdf4e9515i321.jpeg"));
+            add(new MP4("宋朝皇帝的小爱好", "https://m.yunpub.cn/683b008c15b3328fd05dbb2a2757aea4/5ca2ebcc/m/201903/15/02ed29db3210403fb794083f61ec90dbm757.mp4", "https://upload.yunpub.cn/i/201903/15/6d71ba47aa89427098f147546721ef68i846.jpg"));
+            add(new MP4("玛丽莲·梦露的人间往事", "https://m.yunpub.cn/d75517fed26494c2236ccb51a76f03db/5ca2ec20/m/201901/30/7d07e49886514fc79adb28899295bfb8m658.mp4", "https://upload.yunpub.cn/i/201901/30/3dbb98b085a74f52968635694bfa132ci852.png"));
             add(new MP4("爱因斯坦的传奇一生", "https://m.yunpub.cn/c3989860a9abc7f73228a97b0d37673c/5ca1e050/m/201811/15/38158e1fc146465a8fb0f7bd3f821afbm100.mp4", "https://upload.yunpub.cn/i/201811/15/424eb5f3241e40a4b5efd65a068c86a3i397.jpg"));
             add(new MP4("杜甫的官二代生涯", "https://m.yunpub.cn/59dbad38637fd24031ca569a77dc9ad3/5ca1e307/m/201812/28/74b4c7ba20224170800d6c08659227cem664.mp4", "https://upload.yunpub.cn/i/201812/28/c58b8824fc7f4a6f8071eb581c5123b9i668.jpg"));
             add(new MP4("大秦帝国", "https://m.yunpub.cn/bf7c4b2fad9dcd05ec2a2e2bdf1e8a4e/5ca1e2a7/m/201807/19/f4408565137e4897be469f768ac3daa7m853.mp4", "https://upload.yunpub.cn/i/201807/19/323bb6cf0cd249d99e731738479e1f4bi421.jpg"));

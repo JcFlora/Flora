@@ -45,8 +45,8 @@ public class VideoDelegate20 extends Fragment {
     private boolean mIsVideoPlayingWhenActivityOnPause = false;
     /** 当前界面正处在前台运行 */
     private boolean mIsInForeground = true;
-    /** 是否是第一次设置数据 */
-    private boolean mIsFirstSetData = true;
+    /** 准备好之后是否自动播放 */
+    private boolean mAutoStart = false;
 
     // 视频播放状态监听器集合
     private ArrayList<VideoStatusListener> mVideoStatusListeners = new ArrayList<>();
@@ -74,11 +74,10 @@ public class VideoDelegate20 extends Fragment {
      * @param mp4List 播放的mp4列表
      */
     public void setMp4List(ArrayList<MP4> mp4List) {
+        boolean isFirstSetData = (mMp4List == null);
         mMp4List = mp4List;
         mCurrentMp4Index = -1;
-        if(mIsFirstSetData){
-            mIsFirstSetData = false;
-        }else{
+        if(!isFirstSetData){
             release();
         }
     }
@@ -130,8 +129,9 @@ public class VideoDelegate20 extends Fragment {
      * 复位（从头开始播放）
      */
     public void resetVideo() {
+        mAutoStart = true;
         release();
-        recreate(true);
+        recreate();
     }
 
     /**
@@ -221,7 +221,8 @@ public class VideoDelegate20 extends Fragment {
             if(mSurfaceTexture == null){
                 mSurfaceTexture = surface;
                 mSurface = new Surface(surface);
-                recreate(false);
+                mAutoStart = false;
+                recreate();
             }
         }
 
@@ -240,54 +241,17 @@ public class VideoDelegate20 extends Fragment {
 
     };
 
-    private void recreate(final boolean autoStart) {
+    private void recreate() {
         if(mMediaPlayer != null || mSurface == null || mCurrentMp4Index < 0){
             return;
         }
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setSurface(mSurface);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                setMaxProgress();
-                mp.seekTo(480);
-                if (autoStart && mIsInForeground) {
-                    playVideo();
-                    // 添加准备结束的回调
-                    for (VideoStatusListener l : mVideoStatusListeners) {
-                        l.onPrepareEnd();
-                    }
-                }
-                initProgress();
-            }
-        });
-        mMediaPlayer.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
-                    // 添加缓冲开始的回调
-                    for (VideoStatusListener l : mVideoStatusListeners) {
-                        l.onBufferingStart();
-                    }
-                }else if(what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
-                    // 添加缓冲结束的回调
-                    for (VideoStatusListener l : mVideoStatusListeners) {
-                        l.onBufferingEnd();
-                    }
-                }
-                return true;
-            }
-        });
-        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                // 添加播放完成的回调
-                for (VideoStatusListener l : mVideoStatusListeners) {
-                    l.onComplete();
-                }
-            }
-        });
+        mMediaPlayer.setOnPreparedListener(mOnPreparedListener);
+        mMediaPlayer.setOnBufferingUpdateListener(mOnBufferingUpdateListener);
+        mMediaPlayer.setOnInfoListener(mOnInfoListener);
+        mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
         Uri uri = mMp4List.get(mCurrentMp4Index).getVideoUri(getContext());
         try {
             mMediaPlayer.setDataSource(getContext(), uri, null);
@@ -295,13 +259,66 @@ public class VideoDelegate20 extends Fragment {
             e.printStackTrace();
         }
         mMediaPlayer.prepareAsync();
-        if(autoStart && mIsInForeground){
+        if(mAutoStart && mIsInForeground){
             // 添加准备开始的回调
             for (VideoStatusListener l : mVideoStatusListeners) {
                 l.onPrepareStart(mCurrentMp4Index);
             }
         }
     }
+
+    private MediaPlayer.OnPreparedListener mOnPreparedListener = new MediaPlayer.OnPreparedListener() {
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            setMaxProgress();
+            if (mAutoStart && mIsInForeground) {
+                playVideo();
+                // 添加准备结束的回调
+                for (VideoStatusListener l : mVideoStatusListeners) {
+                    l.onPrepareEnd();
+                }
+            }
+            initProgress();
+        }
+    };
+
+    private MediaPlayer.OnBufferingUpdateListener mOnBufferingUpdateListener = new MediaPlayer.OnBufferingUpdateListener() {
+        @Override
+        public void onBufferingUpdate(MediaPlayer mp, int percent) {
+            // 添加缓冲进度变化的回调
+            for (VideoStatusListener l : mVideoStatusListeners) {
+                l.onBufferingUpdate(percent);
+            }
+        }
+    };
+
+    private MediaPlayer.OnInfoListener mOnInfoListener = new MediaPlayer.OnInfoListener() {
+        @Override
+        public boolean onInfo(MediaPlayer mp, int what, int extra) {
+            if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
+                // 添加缓冲开始的回调
+                for (VideoStatusListener l : mVideoStatusListeners) {
+                    l.onBufferingStart();
+                }
+            }else if(what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
+                // 添加缓冲结束的回调
+                for (VideoStatusListener l : mVideoStatusListeners) {
+                    l.onBufferingEnd();
+                }
+            }
+            return true;
+        }
+    };
+
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            // 添加播放完成的回调
+            for (VideoStatusListener l : mVideoStatusListeners) {
+                l.onComplete();
+            }
+        }
+    };
 
     private void setMaxProgress(){
         for (VideoStatusListener l : mVideoStatusListeners) {

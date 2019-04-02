@@ -44,7 +44,7 @@ public class VideoControllerDelegate12 extends Fragment {
     private TextView mTvMaxTime;
     // 全屏/小屏切换
     private ImageView mBtnSwitchScreen;
-    // 音量控制手势浮层
+    // 手势控制浮层
     private GestureCover10 mGestureCover;
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;

@@ -149,7 +149,8 @@ public class Video14Activity extends AppCompatActivity {
 
     private void playVideo(){
         mLayoutAlbumCover.setVisibility(View.GONE);
-        mVideoDelegate.playVideo();
+        mVideoDelegate.selectVideo(0);
+        mTtvVideo.setAlpha(1);
     }
 
     public void selectVideo(View v){
@@ -190,6 +191,7 @@ public class Video14Activity extends AppCompatActivity {
         mTvVideoName.setText("MV："+MP4_LIST.get(index).name);
         mLayoutAlbumCover.setVisibility(View.GONE);
         mVideoDelegate.selectVideo(index);
+        mTtvVideo.setAlpha(1);
     }
 
     @Override

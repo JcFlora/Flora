@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.video.adapter.VideoAdapter;
+import com.jc.flora.apps.component.video.delegate.VideoCompleteCoverDelegate21;
 import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate20;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate20;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
@@ -33,9 +34,9 @@ import java.util.ArrayList;
 
 /**
  * 需要配置android:configChanges="keyboardHidden|orientation|screenSize"
- * Created by Samurai on 2019/3/31.
+ * Created by Samurai on 2019/4/1.
  */
-public class Video20Activity extends AppCompatActivity {
+public class Video21Activity extends AppCompatActivity {
 
     // mp4列表
     private static final ArrayList<MP4> MP4_LIST = new ArrayList<MP4>() {
@@ -70,6 +71,7 @@ public class Video20Activity extends AppCompatActivity {
     private VideoFullScreenDelegate17 mFullScreenDelegate;
     private VideoGestureCoverDelegate20 mGestureCoverDelegate;
     private VideoLoadingCoverDelegate20 mLoadingCoverDelegate;
+    private VideoCompleteCoverDelegate21 mCompleteCoverDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,19 +87,20 @@ public class Video20Activity extends AppCompatActivity {
         initVideoListPlayDelegate();
         initFullScreenDelegate();
         initLoadingDelegate();
+        initCompleteDelegate();
     }
 
     private void findViews(){
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
         mRvVideo = findViewById(R.id.rv_video);
         mRvVideo.setLayoutManager(new LinearLayoutManager(this));
-        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render20, mRvVideo, false);
+        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render21, mRvVideo, false);
         mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
         mGestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
     }
 
     private void initViews(){
-        mToolbar.setTitle("添加loading浮层");
+        mToolbar.setTitle("添加完成播放浮层");
         mToolbar.setTitleTextColor(Color.WHITE);
     }
 
@@ -211,6 +214,17 @@ public class Video20Activity extends AppCompatActivity {
         mLoadingCoverDelegate.setIvPrepareAlbum(ivPrepareAlbum);
         mLoadingCoverDelegate.setVideoDelegate(mVideoDelegate);
         mLoadingCoverDelegate.init();
+    }
+
+    private void initCompleteDelegate(){
+        View completeCover = mLayoutVideoRender.findViewById(R.id.layout_complete_cover);
+        View btnReplay = mLayoutVideoRender.findViewById(R.id.btn_replay);
+
+        mCompleteCoverDelegate = new VideoCompleteCoverDelegate21();
+        mCompleteCoverDelegate.setCompleteCover(completeCover);
+        mCompleteCoverDelegate.setBtnReplay(btnReplay);
+        mCompleteCoverDelegate.setVideoDelegate(mVideoDelegate);
+        mCompleteCoverDelegate.init();
     }
 
     @Override

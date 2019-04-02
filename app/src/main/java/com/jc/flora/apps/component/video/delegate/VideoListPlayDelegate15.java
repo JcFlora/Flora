@@ -45,14 +45,14 @@ public class VideoListPlayDelegate15 {
     }
 
     public boolean addVideoRender(FrameLayout container, int position){
-        if(container.getChildCount() > 1){
-            container.removeViewAt(0);
+        if(container.getChildCount() > 2){
+            container.removeViewAt(1);
         }
         if(isCurrentPlay(position)){
             if(mLayoutVideoRender.getParent() != null){
                 ((ViewGroup)mLayoutVideoRender.getParent()).removeView(mLayoutVideoRender);
             }
-            container.addView(mLayoutVideoRender, 0);
+            container.addView(mLayoutVideoRender, 1);
             return true;
         }
         return false;

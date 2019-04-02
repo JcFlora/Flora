@@ -11,6 +11,13 @@
         android:layout_height="wrap_content"
         android:background="@android:color/black">
 
+        <ImageView
+            android:id="@+id/iv_album"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/video_rainbow"/>
+
         <TextureView
             android:id="@+id/ttv_video"
             android:layout_width="match_parent"
@@ -98,13 +105,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true">
-
-            <ImageView
-                android:id="@+id/iv_album"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/video_rainbow"/>
 
             <ImageView
                 android:layout_width="wrap_content"

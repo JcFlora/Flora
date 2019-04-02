@@ -45,8 +45,6 @@ public class VideoDelegate13 extends Fragment {
     private boolean mIsVideoPlayingWhenActivityOnPause = false;
     /** 当前界面正处在前台运行 */
     private boolean mIsInForeground = true;
-    /** 是否是第一次设置数据 */
-    private boolean mIsFirstSetData = true;
 
     // 视频播放状态监听器集合
     private ArrayList<VideoStatusListener> mVideoStatusListeners = new ArrayList<>();
@@ -74,11 +72,10 @@ public class VideoDelegate13 extends Fragment {
      * @param mp4List 播放的mp4列表
      */
     public void setMp4List(ArrayList<MP4> mp4List) {
+        boolean isFirstSetData = (mMp4List == null);
         mMp4List = mp4List;
         mCurrentMp4Index = -1;
-        if(mIsFirstSetData){
-            mIsFirstSetData = false;
-        }else{
+        if(!isFirstSetData){
             release();
         }
     }
@@ -251,7 +248,6 @@ public class VideoDelegate13 extends Fragment {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 setMaxProgress();
-                mp.seekTo(480);
                 if (autoStart && mIsInForeground) {
                     playVideo();
                 }

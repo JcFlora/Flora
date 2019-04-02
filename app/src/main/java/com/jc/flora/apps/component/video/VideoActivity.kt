@@ -194,7 +194,7 @@ class VideoActivity : AppCompatActivity() {
     private val project20: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.0：添加loading浮层"
+            project.projectName = "视频2.0：添加loading浮层和缓冲进度"
             project.targetActivity = Video20Activity::class.java
             return project
         }
@@ -202,15 +202,15 @@ class VideoActivity : AppCompatActivity() {
     private val project21: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.1："
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频2.1：添加完成播放浮层"
+            project.targetActivity = Video21Activity::class.java
             return project
         }
 
     private val project22: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.2：添加网络检测"
+            project.projectName = "视频2.2：添加网络检测浮层"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -218,7 +218,7 @@ class VideoActivity : AppCompatActivity() {
     private val project23: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.3：添加非Wifi检测与视频容量显示浮层"
+            project.projectName = "视频2.3：添加非Wifi检测与视频容量显示功能"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

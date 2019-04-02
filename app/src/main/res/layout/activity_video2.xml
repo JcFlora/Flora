@@ -14,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:foregroundGravity="center"/>
+            android:foregroundGravity="center"
+            android:background="@drawable/video_rainbow"/>
 
         <RelativeLayout
             android:id="@+id/layout_controller"

@@ -18,6 +18,9 @@ public class VideoStatusListener {
     /** 播放一个视频时的回调 */
     public void onPlay(){}
 
+    /** 视频缓冲进度变化的回调 */
+    public void onBufferingUpdate(int percent){}
+
     /** 视频缓冲开始时的回调 */
     public void onBufferingStart(){}
 
