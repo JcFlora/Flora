@@ -39,6 +39,17 @@ public class VideoStatusListener {
     /** 播放进度回调 */
     public void onProgress(int progress){}
 
+    /**
+     * 在播放前进行拦截，返回true表示拦截，false表示不拦截
+     * @return 是否拦截，默认不拦截
+     */
+    public boolean onPlayIntercepted(){
+        return false;
+    }
+
+    /** 播放出错时的回调 */
+    public void onError(){}
+
 //    /** 全屏时的回调 */
 //    public void onFullScreen(){}
 //

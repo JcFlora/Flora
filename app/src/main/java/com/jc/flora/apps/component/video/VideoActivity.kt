@@ -210,16 +210,16 @@ class VideoActivity : AppCompatActivity() {
     private val project22: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.2：添加网络检测浮层"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频2.2：添加错误浮层与无网络检测功能"
+            project.targetActivity = Video22Activity::class.java
             return project
         }
 
     private val project23: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.3：添加非Wifi检测与视频容量显示功能"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频2.3：添加移动网络检测与视频容量显示功能"
+            project.targetActivity = Video23Activity::class.java
             return project
         }
 

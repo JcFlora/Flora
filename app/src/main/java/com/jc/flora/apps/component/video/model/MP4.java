@@ -16,9 +16,10 @@ public class MP4 {
     public String name;
     public int resId;
     public int coverImgResId;
-    public String videoUrl;
     public String videoAlbum;
-    public String videoLocalPath;
+    public String videoUrl;
+    public String videoCapacity = "";
+    public String videoLocalPath = "";
 
     public MP4(String name, int resId, int coverImgResId) {
         this.name = name;
@@ -26,10 +27,15 @@ public class MP4 {
         this.coverImgResId = coverImgResId;
     }
 
-    public MP4(String name, String videoUrl, String videoAlbum) {
+    public MP4(String name, String videoAlbum, String videoUrl) {
         this.name = name;
-        this.videoUrl = videoUrl;
         this.videoAlbum = videoAlbum;
+        this.videoUrl = videoUrl;
+    }
+
+    public MP4(String name, String videoAlbum, String videoUrl, String videoCapacity) {
+        this(name, videoAlbum, videoUrl);
+        this.videoCapacity = videoCapacity;
     }
 
     public Uri getVideoUri(Context context){

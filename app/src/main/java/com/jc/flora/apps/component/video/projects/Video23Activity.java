@@ -20,13 +20,14 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.video.adapter.VideoAdapter;
-import com.jc.flora.apps.component.video.delegate.VideoCompleteCoverDelegate21;
-import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate20;
-import com.jc.flora.apps.component.video.delegate.VideoDelegate20;
+import com.jc.flora.apps.component.video.delegate.VideoCompleteCoverDelegate22;
+import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate22;
+import com.jc.flora.apps.component.video.delegate.VideoDelegate22;
+import com.jc.flora.apps.component.video.delegate.VideoErrorCoverDelegate23;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
-import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate20;
-import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate20;
-import com.jc.flora.apps.component.video.delegate.VideoLoadingCoverDelegate20;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate22;
+import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate22;
+import com.jc.flora.apps.component.video.delegate.VideoLoadingCoverDelegate22;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
 
@@ -34,9 +35,9 @@ import java.util.ArrayList;
 
 /**
  * 需要配置android:configChanges="keyboardHidden|orientation|screenSize"
- * Created by Samurai on 2019/4/1.
+ * Created by Samurai on 2019/4/3.
  */
-public class Video21Activity extends AppCompatActivity {
+public class Video23Activity extends AppCompatActivity {
 
     // mp4列表
     private static final ArrayList<MP4> MP4_LIST = new ArrayList<MP4>() {
@@ -44,35 +45,43 @@ public class Video21Activity extends AppCompatActivity {
             add(new MP4(
                     "你欠缺的也许并不是能力",
                     "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/b/a/c36e048e284c459686133e66a79e2eba.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2016/06/22/SBP8G92E3_hd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2016/06/22/SBP8G92E3_hd.mp4",
+                    "83.1MB"));
             add(new MP4(
                     "坚持与放弃",
                     "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/0/4/e4c8836bfe154d76a808da38d0733304.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2015/08/27/SB13F5AGJ_sd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2015/08/27/SB13F5AGJ_sd.mp4",
+                    "77.7MB"));
             add(new MP4(
                     "不想从被子里出来",
                     "http://open-image.nosdn.127.net/57baaaeaad4e4fda8bdaceafdb9d45c2.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/01/12/SD70VQJ74_sd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/01/12/SD70VQJ74_sd.mp4",
+                    "16.3MB"));
             add(new MP4(
                     "不耐烦的中国人?",
                     "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/e/9/ac655948c705413b8a63a7aaefd4cde9.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2017/05/31/SCKR8V6E9_hd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2017/05/31/SCKR8V6E9_hd.mp4",
+                    "22.8MB"));
             add(new MP4(
                     "神奇的珊瑚",
                     "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/e/4/75bc6c5227314e63bbfd5d9f0c5c28e4.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2016/01/11/SBC46Q9DV_hd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2016/01/11/SBC46Q9DV_hd.mp4",
+                    "59.5MB"));
             add(new MP4(
                     "怎样经营你的人脉",
                     "http://open-image.nosdn.127.net/image/snapshot_movie/2018/3/b/c/9d451a2da3cf42b0a049ba3e249222bc.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/04/19/SDEQS1GO6_hd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/04/19/SDEQS1GO6_hd.mp4",
+                    "55.9MB"));
             add(new MP4(
                     "怎么才能不畏将来",
                     "http://open-image.nosdn.127.net/image/snapshot_movie/2018/1/c/8/1aec3637270f465faae52713a7c191c8.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/01/25/SD82Q0AQE_hd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/01/25/SD82Q0AQE_hd.mp4",
+                    "56.6MB"));
             add(new MP4(
                     "音乐和艺术如何改变世界",
                     "http://open-image.nosdn.127.net/image/snapshot_movie/2017/12/2/8/f30dd5f2f09c405c98e7eb6c06c89928.jpg",
-                    "https://mov.bn.netease.com/open-movie/nos/mp4/2017/12/04/SD3SUEFFQ_hd.mp4"));
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2017/12/04/SD3SUEFFQ_hd.mp4",
+                    "147MB"));
         }
     };
 
@@ -82,13 +91,14 @@ public class Video21Activity extends AppCompatActivity {
     private ImageView mBtnSwitchScreen;
     private GestureCover10 mGestureCover;
 
-    private VideoDelegate20 mVideoDelegate;
-    private VideoControllerDelegate20 mControllerDelegate;
-    private VideoListPlayDelegate20 mListPlayDelegate;
+    private VideoDelegate22 mVideoDelegate;
+    private VideoControllerDelegate22 mControllerDelegate;
+    private VideoListPlayDelegate22 mListPlayDelegate;
     private VideoFullScreenDelegate17 mFullScreenDelegate;
-    private VideoGestureCoverDelegate20 mGestureCoverDelegate;
-    private VideoLoadingCoverDelegate20 mLoadingCoverDelegate;
-    private VideoCompleteCoverDelegate21 mCompleteCoverDelegate;
+    private VideoGestureCoverDelegate22 mGestureCoverDelegate;
+    private VideoLoadingCoverDelegate22 mLoadingCoverDelegate;
+    private VideoCompleteCoverDelegate22 mCompleteCoverDelegate;
+    private VideoErrorCoverDelegate23 mErrorCoverDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,26 +115,27 @@ public class Video21Activity extends AppCompatActivity {
         initFullScreenDelegate();
         initLoadingDelegate();
         initCompleteDelegate();
+        initErrorDelegate();
     }
 
     private void findViews(){
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
         mRvVideo = findViewById(R.id.rv_video);
         mRvVideo.setLayoutManager(new LinearLayoutManager(this));
-        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render21, mRvVideo, false);
+        mLayoutVideoRender = LayoutInflater.from(this).inflate(R.layout.layout_video_render22, mRvVideo, false);
         mBtnSwitchScreen = (ImageView) mLayoutVideoRender.findViewById(R.id.btn_switch_screen);
         mGestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
     }
 
     private void initViews(){
-        mToolbar.setTitle("添加完成播放浮层");
+        mToolbar.setTitle("添加移动网络检测与视频容量显示功能");
         mToolbar.setTitleTextColor(Color.WHITE);
     }
 
     private void initVideoDelegate(){
         TextureView textureView = mLayoutVideoRender.findViewById(R.id.ttv_video);
 
-        mVideoDelegate = new VideoDelegate20();
+        mVideoDelegate = new VideoDelegate22();
         mVideoDelegate.setTextureView(textureView);
         mVideoDelegate.setMp4List(MP4_LIST);
         mVideoDelegate.addToActivity(this, "videoDelegate");
@@ -138,7 +149,7 @@ public class Video21Activity extends AppCompatActivity {
         SeekBar sbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
         TextView tvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
 
-        mControllerDelegate = new VideoControllerDelegate20();
+        mControllerDelegate = new VideoControllerDelegate22();
         mControllerDelegate.setLayoutVideo(layoutVideo);
         mControllerDelegate.setLayoutController(layoutController);
         mControllerDelegate.setBtnPlay(btnPlay);
@@ -154,14 +165,14 @@ public class Video21Activity extends AppCompatActivity {
     private void initGestureCoverDelegate(){
         mGestureCover.setGestureEnable(false);
 
-        mGestureCoverDelegate = new VideoGestureCoverDelegate20();
+        mGestureCoverDelegate = new VideoGestureCoverDelegate22();
         mGestureCoverDelegate.setGestureCover(mGestureCover);
         mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
         mGestureCoverDelegate.init();
     }
 
     private void initVideoListPlayDelegate(){
-        mListPlayDelegate = new VideoListPlayDelegate20(mRvVideo);
+        mListPlayDelegate = new VideoListPlayDelegate22(mRvVideo);
         mListPlayDelegate.setLayoutVideoRender(mLayoutVideoRender);
         mListPlayDelegate.setVideoDelegate(mVideoDelegate);
 
@@ -224,7 +235,7 @@ public class Video21Activity extends AppCompatActivity {
         View prepareCover = mLayoutVideoRender.findViewById(R.id.layout_prepare_cover);
         ImageView ivPrepareAlbum = mLayoutVideoRender.findViewById(R.id.iv_prepare_album);
 
-        mLoadingCoverDelegate = new VideoLoadingCoverDelegate20();
+        mLoadingCoverDelegate = new VideoLoadingCoverDelegate22();
         mLoadingCoverDelegate.setMp4List(MP4_LIST);
         mLoadingCoverDelegate.setPrepareCover(prepareCover);
         mLoadingCoverDelegate.setLoadingCover(loadingCover);
@@ -237,11 +248,25 @@ public class Video21Activity extends AppCompatActivity {
         View completeCover = mLayoutVideoRender.findViewById(R.id.layout_complete_cover);
         View btnReplay = mLayoutVideoRender.findViewById(R.id.btn_replay);
 
-        mCompleteCoverDelegate = new VideoCompleteCoverDelegate21();
+        mCompleteCoverDelegate = new VideoCompleteCoverDelegate22();
         mCompleteCoverDelegate.setCompleteCover(completeCover);
         mCompleteCoverDelegate.setBtnReplay(btnReplay);
         mCompleteCoverDelegate.setVideoDelegate(mVideoDelegate);
         mCompleteCoverDelegate.init();
+    }
+
+    private void initErrorDelegate(){
+        View errorCover = mLayoutVideoRender.findViewById(R.id.layout_error_cover);
+        TextView tvErrorInfo = mLayoutVideoRender.findViewById(R.id.tv_error_info);
+        TextView btnRetry = mLayoutVideoRender.findViewById(R.id.btn_retry);
+
+        mErrorCoverDelegate = new VideoErrorCoverDelegate23();
+        mErrorCoverDelegate.setMp4List(MP4_LIST);
+        mErrorCoverDelegate.setErrorCover(errorCover);
+        mErrorCoverDelegate.setTvErrorInfo(tvErrorInfo);
+        mErrorCoverDelegate.setBtnRetry(btnRetry);
+        mErrorCoverDelegate.setVideoDelegate(mVideoDelegate);
+        mErrorCoverDelegate.init();
     }
 
     @Override

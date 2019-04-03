@@ -40,21 +40,38 @@ public class Video20Activity extends AppCompatActivity {
     // mp4列表
     private static final ArrayList<MP4> MP4_LIST = new ArrayList<MP4>() {
         {
-            add(new MP4("中国古代的军事实力", "https://m.yunpub.cn/64726bf9a04f4114e6cabd3c272dfd06/5ca2e9c6/m/201903/21/0ba3f9e4ff6b4b699cfaa2329a59400dm128.mp4", "https://upload.yunpub.cn/i/201903/21/baf25bc80e4c4e00b6ac139cdf4e9515i321.jpeg"));
-            add(new MP4("宋朝皇帝的小爱好", "https://m.yunpub.cn/683b008c15b3328fd05dbb2a2757aea4/5ca2ebcc/m/201903/15/02ed29db3210403fb794083f61ec90dbm757.mp4", "https://upload.yunpub.cn/i/201903/15/6d71ba47aa89427098f147546721ef68i846.jpg"));
-            add(new MP4("玛丽莲·梦露的人间往事", "https://m.yunpub.cn/d75517fed26494c2236ccb51a76f03db/5ca2ec20/m/201901/30/7d07e49886514fc79adb28899295bfb8m658.mp4", "https://upload.yunpub.cn/i/201901/30/3dbb98b085a74f52968635694bfa132ci852.png"));
-            add(new MP4("爱因斯坦的传奇一生", "https://m.yunpub.cn/c3989860a9abc7f73228a97b0d37673c/5ca1e050/m/201811/15/38158e1fc146465a8fb0f7bd3f821afbm100.mp4", "https://upload.yunpub.cn/i/201811/15/424eb5f3241e40a4b5efd65a068c86a3i397.jpg"));
-            add(new MP4("杜甫的官二代生涯", "https://m.yunpub.cn/59dbad38637fd24031ca569a77dc9ad3/5ca1e307/m/201812/28/74b4c7ba20224170800d6c08659227cem664.mp4", "https://upload.yunpub.cn/i/201812/28/c58b8824fc7f4a6f8071eb581c5123b9i668.jpg"));
-            add(new MP4("大秦帝国", "https://m.yunpub.cn/bf7c4b2fad9dcd05ec2a2e2bdf1e8a4e/5ca1e2a7/m/201807/19/f4408565137e4897be469f768ac3daa7m853.mp4", "https://upload.yunpub.cn/i/201807/19/323bb6cf0cd249d99e731738479e1f4bi421.jpg"));
-            add(new MP4("科学的真相", "https://m.yunpub.cn/4c380c6e11397ef31e9842dbb1786bad/5ca1e3a3/m/201806/28/fc94844b8c6a4e4c896c996f60be07d6m269.mp4", "https://upload.yunpub.cn/i/201806/28/adc0244c153645e1960c98d6aeb94813i482.jpg"));
-            add(new MP4("科学的诞生", "https://m.yunpub.cn/61b7cf74d96510618d9281588c6b4a89/5ca1e3d5/group1/M00/02/05/CjN5vlsDo1SAebZUAslBxG6Ui3k374.mp4", "https://upload.yunpub.cn/group1/M00/02/05/CjN5vlsDosKAbXrwAAf4s6a1bYY842.jpg"));
-            add(new MP4("小家越住越大", "https://m.yunpub.cn/19de3ca97d44fddc91a7a290d09f2038/5ca1ebeb/group1/M00/02/0C/CjN5vlsPY6GABWufAjVAilHk_KM439.mp4", "https://upload.yunpub.cn/group1/M00/01/F5/CiyniFsPYymAUKc4AAiIpgL1lC0825.jpg"));
-            add(new MP4("一战简史", "https://m.yunpub.cn/2f13670ed64962c7108704e583846e90/5ca1ee9a/group1/M00/01/6A/CjN5vlpAvzSAJT0qAXmXR787wy8851.mp4", "https://upload.yunpub.cn/group1/M00/01/6A/CjN5vlpAvwmATRCLAAXzwVNZu28802.jpg"));
-            add(new MP4("两千年政商关系史", "https://m.yunpub.cn/797b2be8773565ec02969a6a4631092b/5ca1ecff/group1/M00/01/4A/CjN5vlofZgOAZYCwAmJfe3TlAhw280.mp4", "https://upload.yunpub.cn/group1/M00/01/43/Cqs08lofZW-ASt53AAZAvNvya60458.jpg"));
-            add(new MP4("中央银行养成记", "https://m.yunpub.cn/2e8fe75c9bc2c60fce62441d2eab6c00/5ca1efba/group1/M00/01/3B/CjN5vloDtfGALoU-ArxKakMh85M684.mp4", "https://upload.yunpub.cn/group1/M00/01/30/Cqs08loDtb-ACzI7AAPb3OGxL5I11.jpeg"));
-            add(new MP4("新编中国史", "https://m.yunpub.cn/91ef1552d78528deb2d35b5b64be4fdc/5ca20513/group1/M00/01/2D/CiyniFn5JtqAawN_A5PQEAcgGFA660.mp4", "https://upload.yunpub.cn/group1/M00/01/2D/CiyniFn5Jp6AJr37AAWWJp4Xw3c557.jpg"));
-            add(new MP4("二战简史", "https://m.yunpub.cn/e3999024d893dab7cc0af6ce44e9d3cd/5ca20578/group1/M00/01/29/Cqs08lnxQUSAHgsQAp1BPG3d3IA825.mp4", "https://upload.yunpub.cn/group1/M00/01/35/CjN5vlnxQESAKj2aAAX6ddLGkqI558.jpg"));
-            add(new MP4("白银帝国", "https://m.yunpub.cn/e685b2bb9f77a83e0d59030eaffdaa2f/5ca205d9/group1/M00/00/B2/Cqs08llI5wOANsfdAb1dHLk4y1k186.mp4", "https://upload.yunpub.cn/group1/M00/00/B9/CiyniFlI5huAMdj4AA9OjfRD6no723.png"));
+            add(new MP4(
+                    "你欠缺的也许并不是能力",
+                    "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/b/a/c36e048e284c459686133e66a79e2eba.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2016/06/22/SBP8G92E3_hd.mp4"));
+            add(new MP4(
+                    "坚持与放弃",
+                    "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/0/4/e4c8836bfe154d76a808da38d0733304.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2015/08/27/SB13F5AGJ_sd.mp4"));
+            add(new MP4(
+                    "不想从被子里出来",
+                    "http://open-image.nosdn.127.net/57baaaeaad4e4fda8bdaceafdb9d45c2.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/01/12/SD70VQJ74_sd.mp4"));
+            add(new MP4(
+                    "不耐烦的中国人?",
+                    "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/e/9/ac655948c705413b8a63a7aaefd4cde9.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2017/05/31/SCKR8V6E9_hd.mp4"));
+            add(new MP4(
+                    "神奇的珊瑚",
+                    "http://open-image.nosdn.127.net/image/snapshot_movie/2016/11/e/4/75bc6c5227314e63bbfd5d9f0c5c28e4.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2016/01/11/SBC46Q9DV_hd.mp4"));
+            add(new MP4(
+                    "怎样经营你的人脉",
+                    "http://open-image.nosdn.127.net/image/snapshot_movie/2018/3/b/c/9d451a2da3cf42b0a049ba3e249222bc.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/04/19/SDEQS1GO6_hd.mp4"));
+            add(new MP4(
+                    "怎么才能不畏将来",
+                    "http://open-image.nosdn.127.net/image/snapshot_movie/2018/1/c/8/1aec3637270f465faae52713a7c191c8.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2018/01/25/SD82Q0AQE_hd.mp4"));
+            add(new MP4(
+                    "音乐和艺术如何改变世界",
+                    "http://open-image.nosdn.127.net/image/snapshot_movie/2017/12/2/8/f30dd5f2f09c405c98e7eb6c06c89928.jpg",
+                    "https://mov.bn.netease.com/open-movie/nos/mp4/2017/12/04/SD3SUEFFQ_hd.mp4"));
         }
     };
 
