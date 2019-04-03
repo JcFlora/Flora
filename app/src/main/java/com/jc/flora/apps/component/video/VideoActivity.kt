@@ -226,15 +226,15 @@ class VideoActivity : AppCompatActivity() {
     private val project24: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.4：使用ExoPlayer"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频2.4：抽离MediaPlayer播放引擎"
+            project.targetActivity = Video24Activity::class.java
             return project
         }
 
     private val project25: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.5：使用IjkPlayer"
+            project.projectName = "视频2.5：使用ExoPlayer"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -242,7 +242,7 @@ class VideoActivity : AppCompatActivity() {
     private val project26: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.6：动态切换播放引擎"
+            project.projectName = "视频2.6：使用IjkPlayer"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
