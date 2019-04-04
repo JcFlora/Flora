@@ -246,7 +246,7 @@ public class VideoDelegate24 extends Fragment {
         if(mPlayer.available() || mSurface == null || mCurrentMp4Index < 0){
             return;
         }
-        mPlayer.init();
+        mPlayer.init(getContext());
         mPlayer.setSurface(mSurface);
         Uri uri = mMp4List.get(mCurrentMp4Index).getVideoUri(getContext());
         mPlayer.setOnPreparedListener(mOnPreparedListener);

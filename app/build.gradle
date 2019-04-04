@@ -18,8 +18,12 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags ""
-                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'armeabi-v7a'//, 'arm64-v8a', 'x86', 'x86_64'
             }
+        }
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi-v7a' //, 'arm64-v8a', 'x86', 'x86_64'
         }
     }
     buildTypes {
@@ -78,5 +82,7 @@ dependencies {
         exclude group: 'stax', module: 'stax'
     }
     implementation 'com.google.zxing:core:3.3.3'
-
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
 }

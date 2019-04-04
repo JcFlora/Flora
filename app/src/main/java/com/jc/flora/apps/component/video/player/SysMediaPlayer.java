@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.Surface;
 
-import com.jc.flora.apps.component.video.delegate.VideoStatusListener;
-
 import java.io.IOException;
 
 /**
@@ -22,7 +20,7 @@ public class SysMediaPlayer extends BasePlayer {
     private MediaPlayer mMediaPlayer;
 
     @Override
-    public void init() {
+    public void init(Context context) {
         mMediaPlayer = new MediaPlayer();
     }
 
@@ -59,11 +57,6 @@ public class SysMediaPlayer extends BasePlayer {
     @Override
     public void seekTo(int msc) {
         mMediaPlayer.seekTo(msc);
-    }
-
-    @Override
-    public void stop() {
-        mMediaPlayer.stop();
     }
 
     @Override
@@ -115,9 +108,7 @@ public class SysMediaPlayer extends BasePlayer {
         @Override
         public void onBufferingUpdate(MediaPlayer mp, int percent) {
             // 添加缓冲进度变化的回调
-            for (VideoStatusListener l : mVideoStatusListeners) {
-                l.onBufferingUpdate(percent);
-            }
+            callbackWhenBufferingUpdate(percent);
         }
     };
 
@@ -126,14 +117,10 @@ public class SysMediaPlayer extends BasePlayer {
         public boolean onInfo(MediaPlayer mp, int what, int extra) {
             if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
                 // 添加缓冲开始的回调
-                for (VideoStatusListener l : mVideoStatusListeners) {
-                    l.onBufferingStart();
-                }
+                callbackWhenBufferingStart();
             }else if(what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
                 // 添加缓冲结束的回调
-                for (VideoStatusListener l : mVideoStatusListeners) {
-                    l.onBufferingEnd();
-                }
+                callbackWhenBufferingEnd();
             }
             return true;
         }
@@ -143,9 +130,7 @@ public class SysMediaPlayer extends BasePlayer {
         @Override
         public void onCompletion(MediaPlayer mp) {
             // 添加播放完成的回调
-            for (VideoStatusListener l : mVideoStatusListeners) {
-                l.onComplete();
-            }
+            callbackWhenComplete();
         }
     };
 
@@ -153,9 +138,7 @@ public class SysMediaPlayer extends BasePlayer {
         @Override
         public boolean onError(MediaPlayer mp, int what, int extra) {
             // 添加播放出错的回调
-            for (VideoStatusListener l : mVideoStatusListeners) {
-                l.onError();
-            }
+            callbackWhenError();
             return true;
         }
     };

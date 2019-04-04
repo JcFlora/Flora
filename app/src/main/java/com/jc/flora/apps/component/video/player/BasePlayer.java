@@ -14,10 +14,11 @@ import java.util.ArrayList;
 
 public abstract class BasePlayer {
 
+    // 准备状态的监听器
     protected OnPreparedListener mOnPreparedListener;
 
     // 视频播放状态监听器集合
-    protected ArrayList<VideoStatusListener> mVideoStatusListeners = new ArrayList<>();
+    private ArrayList<VideoStatusListener> mVideoStatusListeners = new ArrayList<>();
 
     public void setOnPreparedListener(OnPreparedListener onPreparedListener) {
         mOnPreparedListener = onPreparedListener;
@@ -31,7 +32,7 @@ public abstract class BasePlayer {
         mVideoStatusListeners.add(l);
     }
 
-    public abstract void init();
+    public abstract void init(Context context);
 
     public abstract boolean available();
 
@@ -47,7 +48,7 @@ public abstract class BasePlayer {
 
     public abstract void seekTo(int msc);
 
-    public abstract void stop();
+//    public abstract void stop();
 
     public abstract void release();
 
@@ -111,6 +112,42 @@ public abstract class BasePlayer {
         // 播放位置的回调
         for (VideoStatusListener l : mVideoStatusListeners) {
             l.onProgress(position);
+        }
+    }
+
+    protected void callbackWhenComplete(){
+        // 添加播放完成的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onComplete();
+        }
+    }
+
+    protected void callbackWhenError(){
+
+        // 添加播放出错的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onError();
+        }
+    }
+
+    protected void callbackWhenBufferingStart(){
+        // 添加缓冲开始的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onBufferingStart();
+        }
+    }
+
+    protected void callbackWhenBufferingEnd(){
+        // 添加缓冲结束的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onBufferingEnd();
+        }
+    }
+
+    protected void callbackWhenBufferingUpdate(int percent){
+        // 添加缓冲进度变化的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onBufferingUpdate(percent);
         }
     }
 

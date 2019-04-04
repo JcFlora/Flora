@@ -29,6 +29,7 @@ public class VideoCompleteCoverDelegate24 {
             @Override
             public void onClick(View v) {
                 mVideoDelegate.playVideo();
+//                mVideoDelegate.selectVideo(mVideoDelegate.getCurrentMp4Index());
             }
         });
         mVideoDelegate.addVideoStatusListener(new VideoStatusListener(){

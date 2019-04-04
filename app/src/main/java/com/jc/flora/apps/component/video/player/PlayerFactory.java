@@ -11,10 +11,10 @@ public class PlayerFactory {
             case MEDIA:
                 return new SysMediaPlayer();
             case EXO:
-                return new SysMediaPlayer();
+                return new ExoMediaPlayer();
             case IJK:
             default:
-                return new SysMediaPlayer();
+                return new IjkPlayer();
         }
     }
 
