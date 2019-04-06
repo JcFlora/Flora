@@ -1,7 +1,6 @@
 package com.jc.flora.apps.component.video.player;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.view.Surface;
 
@@ -50,7 +49,7 @@ public class ExoMediaPlayer extends BasePlayer {
         TrackSelection.Factory selectionFactory = new AdaptiveTrackSelection.Factory(mBandwidthMeter);
         TrackSelector trackSelector = new DefaultTrackSelector(selectionFactory);
         mExoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
-        mExoPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mExoPlayer.setAudioStreamType(C.STREAM_TYPE_MUSIC);
         mExoPlayer.addListener(mAudioEventListener);
     }
 

@@ -41,6 +41,8 @@ public class VideoDelegate20 extends Fragment {
     private int mCurrentMp4Index = -1;
     // 当前播放位置
     private int mCurrentPosition = -1;
+    // 是否创建新的缓冲区，无缝播放设置false，切换新视频时设置true
+    private boolean mNeedNewSurface = false;
     /** ActivityOnPause时当前视频正在播放 */
     private boolean mIsVideoPlayingWhenActivityOnPause = false;
     /** 当前界面正处在前台运行 */
@@ -113,6 +115,15 @@ public class VideoDelegate20 extends Fragment {
      * @param index 切换的视频索引
      */
     public void selectVideo(int index) {
+        selectVideo(index, false);
+    }
+
+    /**
+     * 切换视频（从头开始播放）
+     * @param index 切换的视频索引
+     * @param needNewSurface 是否需要新的缓冲区
+     */
+    public void selectVideo(int index, boolean needNewSurface) {
         if(index < 0){
             // 第一个的上一个切换成最后一个
             mCurrentMp4Index = mMp4List.size() - 1;
@@ -122,6 +133,7 @@ public class VideoDelegate20 extends Fragment {
         }else{
             mCurrentMp4Index = index;
         }
+        mNeedNewSurface = needNewSurface;
         resetVideo();
     }
 
@@ -129,9 +141,15 @@ public class VideoDelegate20 extends Fragment {
      * 复位（从头开始播放）
      */
     public void resetVideo() {
-        mAutoStart = true;
-        release();
-        recreate();
+        pauseVideo();
+        mProgressRefreshHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mAutoStart = true;
+                release();
+                recreate();
+            }
+        });
     }
 
     /**
@@ -204,7 +222,7 @@ public class VideoDelegate20 extends Fragment {
         mTextureView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
             public void onViewAttachedToWindow(View v) {
-                if(mSurfaceTexture != null){
+                if(mSurfaceTexture != null && !mNeedNewSurface){
                     mTextureView.setSurfaceTexture(mSurfaceTexture);
                 }
             }
@@ -218,11 +236,14 @@ public class VideoDelegate20 extends Fragment {
 
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-            if(mSurfaceTexture == null){
+            if(mSurfaceTexture == null || mNeedNewSurface){
                 mSurfaceTexture = surface;
                 mSurface = new Surface(surface);
-                mAutoStart = false;
-                recreate();
+                if(!mNeedNewSurface){
+                    mAutoStart = false;
+                    recreate();
+                }
+                mNeedNewSurface = false;
             }
         }
 

@@ -62,37 +62,8 @@ public class VideoListPlayDelegate20 {
         if(isCurrentPlay(position)){
             return;
         }
-        boolean isFirstPlay = mLayoutVideoRender.getParent() == null;
-        if(isFirstPlay){
-            playAudioWhenFirst(position);
-        }else{
-            playAudioWhenChangePosition(position);
-        }
-    }
-
-    private void playAudioWhenFirst(final int position){
         setCurrentPlayPosition(position);
-        // 必须通过post的方式触发对应位置的视频播放，
-        // 如果立刻调用，会因为第一次add的TextureView的onSurfaceTextureAvailable还未调用到，而无法立刻播放
-        mRvVideo.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mVideoDelegate.selectVideo(position);
-            }
-        },200);
-    }
-
-    private void playAudioWhenChangePosition(final int position){
-        setCurrentPlayPosition(-1);
-        mVideoDelegate.selectVideo(position);
-        // 通过post的方式添加播放器视图，
-        // 如果立刻添加，播放器视图会闪现前一个视频的最后一帧
-        mRvVideo.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setCurrentPlayPosition(position);
-            }
-        },200);
+        mVideoDelegate.selectVideo(position, true);
     }
 
 }
