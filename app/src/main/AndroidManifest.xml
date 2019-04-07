@@ -1085,6 +1085,12 @@
         <activity
             android:name=".apps.component.signal.projects.SetResult2TestActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.AlbumActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Album1Activity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
