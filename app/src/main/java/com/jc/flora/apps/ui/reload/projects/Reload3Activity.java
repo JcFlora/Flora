@@ -2,7 +2,6 @@ package com.jc.flora.apps.ui.reload.projects;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.exit.delegate.DoubleClickDelegate;
@@ -57,10 +56,6 @@ public class Reload3Activity extends AppCompatActivity {
         mSrlContent.postDelayed(mStopReloadTask, 1500);
     }
 
-    public void reload(View v){
-//        mSrlContent.autoRefresh();
-    }
-
     @Override
     public void onBackPressed() {
         if(mDoubleClickDelegate.isDoubleClick()){
@@ -75,6 +70,7 @@ public class Reload3Activity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        mSrlContent.setRefreshing(false);
         mSrlContent.removeCallbacks(mStopReloadTask);
         super.onDestroy();
     }

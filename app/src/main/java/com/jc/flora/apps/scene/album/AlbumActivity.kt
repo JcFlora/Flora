@@ -8,6 +8,9 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.scene.album.projects.Album1Activity
+import com.jc.flora.apps.scene.album.projects.Album2Activity
+import com.jc.flora.apps.scene.album.projects.Album3Activity
+import com.jc.flora.apps.scene.album.projects.Album4Activity
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
@@ -46,31 +49,31 @@ class AlbumActivity : AppCompatActivity() {
     private val project2: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.2："
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "图片选择0.2：使用系统拍照"
+            project.targetActivity = Album2Activity::class.java
             return project
         }
 
     private val project3: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.3："
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "图片选择0.3：添加图片压缩功能"
+            project.targetActivity = Album3Activity::class.java
             return project
         }
 
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.4："
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "图片选择0.4：添加系统裁剪功能"
+            project.targetActivity = Album4Activity::class.java
             return project
         }
 
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.5："
+            project.projectName = "图片选择0.5：列表展示选择结果"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

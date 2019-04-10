@@ -3,6 +3,8 @@ package com.jc.flora.apps.component.upgrade.renovate;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -16,6 +18,7 @@ import java.io.File;
 
 /**
  * 升级检测业务管理
+ * 需配置7.0FileProvider
  * Created by Samurai on 2016/6/12.
  */
 public class VersionCheckDelegate {
@@ -203,7 +206,14 @@ public class VersionCheckDelegate {
     private void installApk(final AppUpgradeInfo response) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setDataAndType(Uri.fromFile(new File(response.getFilePathName())), "application/vnd.android.package-archive");
+        File file = new File(response.getFilePathName());
+        String type = "application/vnd.android.package-archive";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setDataAndType(FileProvider.getUriForFile(mActivity, mActivity.getPackageName() + ".provider", file), type);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else {
+            intent.setDataAndType(Uri.fromFile(file), type);
+        }
         mActivity.startActivity(intent);
         mActivity.finish();
     }

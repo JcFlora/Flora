@@ -47,6 +47,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:allowBackup="true"
@@ -1091,6 +1092,15 @@
         <activity
             android:name=".apps.scene.album.projects.Album1Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Album2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Album3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Album4Activity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -1131,6 +1141,16 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

@@ -32,18 +32,6 @@ public class RecordDelegate1 {
 
     public void init(){
         FolderUtils.createFile(SAVE_PATH, SAVE_NAME);
-//        File path = new File(SAVE_PATH);
-//        if(!path.exists()){
-//            path.mkdir();
-//        }
-//        File file = new File(SAVE_PATH + SAVE_NAME);
-//        if(!file.exists()){
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     public void startRecord() {

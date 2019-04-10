@@ -60,6 +60,7 @@ public class Reload2Activity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        mSrlContent.setRefreshing(false);
         mSrlContent.removeCallbacks(mStopReloadTask);
     }
 

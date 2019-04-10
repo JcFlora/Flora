@@ -1,21 +1,23 @@
 package com.jc.flora.apps.scene.album.projects;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.album.delegate.GalleryDelegate;
+import com.jc.flora.apps.scene.album.model.PickImage;
 
 /**
  * Created by shijincheng on 2019/4/6.
  */
 public class Album1Activity extends AppCompatActivity {
 
-    private ImageView mIvPhoto;
+    private TextView mTvImagePath;
+    private ImageView mIvImage;
+    private GalleryDelegate mGalleryDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,38 +25,36 @@ public class Album1Activity extends AppCompatActivity {
         setTitle("使用系统相册");
         setContentView(R.layout.activity_album1);
         findViews();
+        initDelegate();
     }
 
     private void findViews(){
-        mIvPhoto = findViewById(R.id.iv_photo);
+        mTvImagePath = findViewById(R.id.tv_image_path);
+        mIvImage = findViewById(R.id.iv_image);
     }
 
-    public void openSysAlbum(View v){
-        Intent intent = new Intent();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        }else{
-            intent.setAction(Intent.ACTION_GET_CONTENT);
+    private void initDelegate(){
+        mGalleryDelegate = new GalleryDelegate();
+        mGalleryDelegate.init();
+        mGalleryDelegate.addToActivity(this, "gallery");
+    }
+
+    public void openFileChooser(View v){
+        mGalleryDelegate.openFileChooser(mOnImagePickedCallback);
+    }
+
+    public void openAlbum(View v){
+        mGalleryDelegate.openAlbum(mOnImagePickedCallback);
+    }
+
+    private GalleryDelegate.OnImagePickedCallback mOnImagePickedCallback = new GalleryDelegate.OnImagePickedCallback() {
+        @Override
+        public void onImagePicked(PickImage image) {
+            // 显示图片路径
+            mTvImagePath.setText("相册选择图片路径：" + image.imagePath);
+            // 显示图片
+            mIvImage.setImageURI(image.uri);
         }
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        startActivityForResult(intent, 101);
-    }
+    };
 
-    public void openAlbumApp(View v){
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_PICK);
-        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-        startActivityForResult(intent, 102);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            if(requestCode == 101 || requestCode == 102){
-                mIvPhoto.setImageURI(data.getData());
-            }
-        }
-    }
 }

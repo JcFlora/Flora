@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.jc.flora.apps.ui.banner.delegate.AutoScrollDelegate20;
 import com.jc.flora.apps.ui.banner.delegate.IndicatorDelegate20;
 import com.jc.flora.apps.ui.banner.projects.BannerLoopPagerAdapter;
@@ -158,8 +157,7 @@ public class BannerView20 extends RelativeLayout {
             ImageView iv = new ImageView(getContext());
             iv.setScaleType(ImageView.ScaleType.FIT_XY);
             mViews.add(iv);
-            // 注意这里面使用了dontAnimate()和dontTransform()，可以防止在ViewPager里出现闪烁
-            Glide.with(getContext()).load(mImageUris[i % mImageLength]).apply(new RequestOptions().dontAnimate().dontTransform()).into(iv);
+            Glide.with(getContext()).load(mImageUris[i % mImageLength]).into(iv);
             final int j = i % mImageLength;
             if(mOnBannerItemClickListener != null){
                 iv.setOnClickListener(new OnClickListener() {

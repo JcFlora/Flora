@@ -16,8 +16,30 @@
         android:text="从相册选择图片并获取图片路径"
         android:onClick="openAlbum"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拍照并创建照片"
+        android:onClick="openCamera"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="三合一"
+        android:onClick="pickImage"/>
+
     <TextView
         android:id="@+id/tv_image_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_image_compress_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_image_crop_path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
