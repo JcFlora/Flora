@@ -13,12 +13,4 @@ public class PickImage {
     public Bitmap bitmap;
     public Uri uri;
 
-    public PickImage() {
-    }
-
-    public PickImage(Uri uri, String imagePath) {
-        this.uri = uri;
-        this.imagePath = imagePath;
-    }
-
 }

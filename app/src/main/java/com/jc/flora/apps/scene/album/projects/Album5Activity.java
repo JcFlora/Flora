@@ -4,46 +4,66 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.folder.FolderUtils;
 import com.jc.flora.apps.scene.album.delegate.CaptureDelegate;
 import com.jc.flora.apps.scene.album.delegate.CompressDelegate;
 import com.jc.flora.apps.scene.album.delegate.CropDelegate;
 import com.jc.flora.apps.scene.album.delegate.GalleryDelegate;
+import com.jc.flora.apps.scene.album.delegate.UploadGridDelegate;
 import com.jc.flora.apps.scene.album.model.PickImage;
+import com.jc.flora.apps.scene.preview.projects.SingleEasyPreviewActivity;
+import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate;
+
+import java.util.ArrayList;
 
 /**
- * Created by shijincheng on 2019/4/9.
+ * Created by shijincheng on 2019/4/10.
  */
-public class Album4Activity extends AppCompatActivity {
+public class Album5Activity extends AppCompatActivity {
 
-    private TextView mTvImagePath, mTvImageCompressPath, mTvImageCropPath;
-    private ImageView mIvImage;
+    private RecyclerView mRvPhoto;
+    /** 上传图片提示文字 */
+    private TextView mTvUploadPhotoHint;
+    private UploadGridDelegate mUploadGridDelegate;
     private GalleryDelegate mGalleryDelegate;
     private CaptureDelegate mCaptureDelegate;
     private CompressDelegate mCompressDelegate;
     private CropDelegate mCropDelegate;
+    private ProgressDialogDelegate mProgressDialogDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("添加系统裁剪功能");
-        setContentView(R.layout.activity_album4);
+        setTitle("列表展示选择结果");
+        setContentView(R.layout.activity_album5);
         findViews();
+        initUploadGridDelegate();
         initGalleryDelegate();
         initCaptureDelegate();
         initCompressDelegate();
         initCropDelegate();
+        initProgressDialogDelegate();
     }
 
     private void findViews(){
-        mTvImagePath = findViewById(R.id.tv_image_path);
-        mTvImageCompressPath = findViewById(R.id.tv_image_compress_path);
-        mTvImageCropPath = findViewById(R.id.tv_image_crop_path);
-        mIvImage = findViewById(R.id.iv_image);
+        mRvPhoto = findViewById(R.id.rv_photo);
+        mTvUploadPhotoHint = findViewById(R.id.tv_upload_photo_hint);
+        mRvPhoto.setLayoutManager(new GridLayoutManager(this, 4));
+    }
+
+    private void initUploadGridDelegate(){
+        mUploadGridDelegate = new UploadGridDelegate(this);
+        mUploadGridDelegate.setRvUploadGrid(mRvPhoto);
+        mUploadGridDelegate.setTvUploadPhotoHint(mTvUploadPhotoHint);
+        mUploadGridDelegate.setAddPhotoBridge(mAddPhotoBridge);
+        mUploadGridDelegate.setPreviewPhotoBridge(mPreviewPhotoBridge);
+        mUploadGridDelegate.init();
     }
 
     private void initGalleryDelegate(){
@@ -68,21 +88,23 @@ public class Album4Activity extends AppCompatActivity {
         mCropDelegate.addToActivity(this, "crop");
     }
 
-    public void openFileChooser(View v){
-        mGalleryDelegate.openFileChooser(mOnImagePickedCallback);
+    private void initProgressDialogDelegate(){
+        mProgressDialogDelegate = new ProgressDialogDelegate(this);
     }
 
-    public void openAlbum(View v){
-        mGalleryDelegate.openAlbum(mOnImagePickedCallback);
-    }
+    private UploadGridDelegate.AddPhotoBridge mAddPhotoBridge = new UploadGridDelegate.AddPhotoBridge() {
+        @Override
+        public void startAddPhoto(int addCount) {
+            showListDialog();
+        }
+    };
 
-    public void openCamera(View v){
-        mCaptureDelegate.openCamera(mOnCapturedCallback);
-    }
-
-    public void pickImage(View v){
-        showListDialog();
-    }
+    private UploadGridDelegate.PreviewPhotoBridge mPreviewPhotoBridge = new UploadGridDelegate.PreviewPhotoBridge() {
+        @Override
+        public void previewPhoto(ArrayList<PickImage> photoList, int index) {
+            SingleEasyPreviewActivity.route(Album5Activity.this, photoList.get(index).uri);
+        }
+    };
 
     private void showListDialog() {
         final String[] ITEMS = {"照片", "相册", "拍照", "取消"};
@@ -102,13 +124,13 @@ public class Album4Activity extends AppCompatActivity {
     private void pickImage(int which){
         switch (which){
             case 0 :
-                openFileChooser(null);
+                mGalleryDelegate.openFileChooser(mOnImagePickedCallback);
                 break;
             case 1 :
-                openAlbum(null);
+                mGalleryDelegate.openAlbum(mOnImagePickedCallback);
                 break;
             case 2 :
-                openCamera(null);
+                mCaptureDelegate.openCamera(mOnCapturedCallback);
                 break;
         }
     }
@@ -116,8 +138,6 @@ public class Album4Activity extends AppCompatActivity {
     private GalleryDelegate.OnImagePickedCallback mOnImagePickedCallback = new GalleryDelegate.OnImagePickedCallback() {
         @Override
         public void onImagePicked(PickImage image) {
-            // 显示图片路径
-            mTvImagePath.setText("相册选择图片原图路径：" + image.imagePath);
             // 开始压缩
             mCompressDelegate.compressImage(image, mOnImageCompressedCallback);
         }
@@ -126,8 +146,6 @@ public class Album4Activity extends AppCompatActivity {
     private CaptureDelegate.OnCapturedCallback mOnCapturedCallback = new CaptureDelegate.OnCapturedCallback() {
         @Override
         public void onCaptured(PickImage image) {
-            // 显示图片路径
-            mTvImagePath.setText("拍照图片原图路径：" + image.imagePath);
             // 开始压缩
             mCompressDelegate.compressImage(image, mOnImageCompressedCallback);
         }
@@ -136,8 +154,6 @@ public class Album4Activity extends AppCompatActivity {
     private CompressDelegate.OnImageCompressedCallback mOnImageCompressedCallback = new CompressDelegate.OnImageCompressedCallback() {
         @Override
         public void onImageCompressed(PickImage image) {
-            // 显示图片路径
-            mTvImageCompressPath.setText("压缩后图片路径：" + image.imagePath);
             // 开始裁剪
             mCropDelegate.cropImage(image, mOnImageCroppedCallback);
         }
@@ -146,11 +162,25 @@ public class Album4Activity extends AppCompatActivity {
     private CropDelegate.OnImageCroppedCallback mOnImageCroppedCallback = new CropDelegate.OnImageCroppedCallback() {
         @Override
         public void onImageCropped(PickImage image) {
-            // 显示图片路径
-            mTvImageCropPath.setText("裁剪后图片路径：" + image.imagePath);
-            // 显示图片
-            mIvImage.setImageBitmap(image.bitmap);
+            // 刷新图片显示列表
+            ArrayList<PickImage> list = new ArrayList<>(1);
+            list.add(image);
+            mUploadGridDelegate.onPhotoPicked(list);
         }
     };
+
+    public void mockUploadPhoto(View v){
+        if(mUploadGridDelegate.hasSelectPhoto()){
+            mProgressDialogDelegate.showLoadingDialog();
+            mRvPhoto.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mProgressDialogDelegate.hideLoadingDialog();
+                    FolderUtils.delete(FolderUtils.getAppFolderPath() + "album/");
+                    finish();
+                }
+            },1500);
+        }
+    }
 
 }

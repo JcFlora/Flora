@@ -1101,6 +1101,19 @@
         <activity
             android:name=".apps.scene.album.projects.Album4Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Album5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.preview.PreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.preview.projects.Preview1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.preview.projects.SingleEasyPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

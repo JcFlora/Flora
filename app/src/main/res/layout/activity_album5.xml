@@ -1,0 +1,30 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/app_page_padding"
+        android:paddingStart="@dimen/app_page_padding"
+        android:paddingTop="@dimen/app_page_padding"/>
+
+    <TextView
+        android:id="@+id/tv_upload_photo_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="（点击上传图片，最多可选择12张）"
+        android:textColorHint="@color/app_color_text_gray"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="模拟上传"
+        android:onClick="mockUploadPhoto"
+        android:layout_margin="30dp"/>
+
+</LinearLayout>

@@ -19,9 +19,6 @@ import com.jc.flora.apps.scene.album.model.PickImage;
  */
 public class Album3Activity extends AppCompatActivity {
 
-    private static final String CAPTURE_SAVE_NAME = "album_capture.jpg";
-    private static final String COMPRESS_SAVE_NAME = "album_compress.jpg";
-
     private TextView mTvImagePath, mTvImageCompressPath;
     private ImageView mIvImage;
     private GalleryDelegate mGalleryDelegate;
@@ -53,13 +50,11 @@ public class Album3Activity extends AppCompatActivity {
 
     private void initCaptureDelegate(){
         mCaptureDelegate = new CaptureDelegate();
-        mCaptureDelegate.init(CAPTURE_SAVE_NAME);
         mCaptureDelegate.addToActivity(this, "capture");
     }
 
     private void initCompressDelegate(){
         mCompressDelegate = new CompressDelegate();
-        mCompressDelegate.init(COMPRESS_SAVE_NAME);
         mCompressDelegate.addToActivity(this, "compress");
     }
 

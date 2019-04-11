@@ -21,7 +21,8 @@ public class GalleryDelegate extends Fragment {
 
     private Intent mFileChooserIntent = new Intent();
     private Intent mAlbumIntent = new Intent();
-    private PickImage mPickImage = new PickImage();
+
+    private PickImage mPickImage;
     private OnImagePickedCallback mOnImagePickedCallback;
 
     public void addToActivity(AppCompatActivity activity, String tag) {
@@ -45,11 +46,13 @@ public class GalleryDelegate extends Fragment {
 
     public void openFileChooser(OnImagePickedCallback callback){
         mOnImagePickedCallback = callback;
+        mPickImage = new PickImage();
         startActivityForResult(mFileChooserIntent, PICK_IMAGE);
     }
 
     public void openAlbum(OnImagePickedCallback callback){
         mOnImagePickedCallback = callback;
+        mPickImage = new PickImage();
         startActivityForResult(mAlbumIntent, PICK_IMAGE);
     }
 

@@ -18,8 +18,6 @@ import com.jc.flora.apps.scene.album.model.PickImage;
  */
 public class Album2Activity extends AppCompatActivity {
 
-    private static final String CAPTURE_SAVE_NAME = "album_capture.jpg";
-
     private TextView mTvImagePath;
     private ImageView mIvImage;
     private GalleryDelegate mGalleryDelegate;
@@ -48,7 +46,6 @@ public class Album2Activity extends AppCompatActivity {
 
     private void initCaptureDelegate(){
         mCaptureDelegate = new CaptureDelegate();
-        mCaptureDelegate.init(CAPTURE_SAVE_NAME);
         mCaptureDelegate.addToActivity(this, "capture");
     }
 

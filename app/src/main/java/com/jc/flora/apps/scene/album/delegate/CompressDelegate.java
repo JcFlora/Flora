@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 
 import com.jc.flora.apps.component.folder.FolderUtils;
 import com.jc.flora.apps.scene.album.model.PickImage;
@@ -17,22 +16,15 @@ import java.io.File;
 
 public class CompressDelegate extends Fragment {
 
-    private static final String COMPRESS_SAVE_PATH = FolderUtils.getAppFolderPath();
+    private static final String COMPRESS_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
+    private static final String COMPRESS_FILE_PRE = "compress_";
 
-    private PickImage mPickImage = new PickImage();
-    private String mCompressFileName = "album_compress.jpg";
     private OnImageCompressedCallback mOnImageCompressedCallback;
     private CompressImageTask mCompressImageTask;
 
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
-        }
-    }
-
-    public void init(String compressFileName){
-        if(!TextUtils.isEmpty(compressFileName)){
-            mCompressFileName = compressFileName;
         }
     }
 
@@ -47,12 +39,13 @@ public class CompressDelegate extends Fragment {
 
         @Override
         protected PickImage doInBackground(PickImage... pickImages) {
-            FolderUtils.delete(COMPRESS_SAVE_PATH + mCompressFileName);
-            FolderUtils.createFile(COMPRESS_SAVE_PATH, mCompressFileName);
-            mPickImage.imagePath = COMPRESS_SAVE_PATH + mCompressFileName;
-            mPickImage.bitmap = AlbumUtils.getCompressImage(pickImages[0].imagePath, mPickImage.imagePath);
-            mPickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(COMPRESS_SAVE_PATH, mCompressFileName));
-            return mPickImage;
+            String fileName =  COMPRESS_FILE_PRE + System.currentTimeMillis() +".jpg";
+            FolderUtils.createFile(COMPRESS_SAVE_PATH, fileName);
+            PickImage pickImage = new PickImage();
+            pickImage.imagePath = COMPRESS_SAVE_PATH + fileName;
+            pickImage.bitmap = AlbumUtils.getCompressImage(pickImages[0].imagePath, pickImage.imagePath);
+            pickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(COMPRESS_SAVE_PATH, fileName));
+            return pickImage;
         }
 
         @Override

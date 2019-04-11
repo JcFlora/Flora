@@ -1,4 +1,4 @@
-package com.jc.flora.apps.scene.album
+package com.jc.flora.apps.scene.preview
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,18 +7,18 @@ import android.support.v7.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
-import com.jc.flora.apps.scene.album.projects.*
+import com.jc.flora.apps.scene.preview.projects.Preview1Activity
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
  * Created by shijincheng on 2019/4/6.
  */
-class AlbumActivity : AppCompatActivity() {
+class PreviewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = "图片选择"
+        title = "大图预览"
         setContentView(R.layout.activity_projects)
         addProjects()
     }
@@ -38,47 +38,47 @@ class AlbumActivity : AppCompatActivity() {
     private val project1: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.1：使用系统相册"
-            project.targetActivity = Album1Activity::class.java
+            project.projectName = "单个简单预览"
+            project.targetActivity = Preview1Activity::class.java
             return project
         }
 
     private val project2: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.2：使用系统拍照"
-            project.targetActivity = Album2Activity::class.java
+            project.projectName = ""
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project3: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.3：添加图片压缩功能"
-            project.targetActivity = Album3Activity::class.java
+            project.projectName = ""
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.4：添加系统裁剪功能"
-            project.targetActivity = Album4Activity::class.java
+            project.projectName = ""
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.5：列表展示选择结果"
-            project.targetActivity = Album5Activity::class.java
+            project.projectName = ""
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.6："
+            project.projectName = ""
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -86,7 +86,7 @@ class AlbumActivity : AppCompatActivity() {
     private val project7: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.7："
+            project.projectName = ""
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -94,7 +94,7 @@ class AlbumActivity : AppCompatActivity() {
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.8："
+            project.projectName = ""
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
