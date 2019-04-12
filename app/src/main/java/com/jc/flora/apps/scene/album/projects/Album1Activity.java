@@ -53,7 +53,7 @@ public class Album1Activity extends AppCompatActivity {
             // 显示图片路径
             mTvImagePath.setText("相册选择图片路径：" + image.imagePath);
             // 显示图片
-            mIvImage.setImageURI(image.uri);
+            image.showImage(mIvImage);
         }
     };
 

@@ -129,7 +129,7 @@ public class Album3Activity extends AppCompatActivity {
             // 显示图片路径
             mTvImageCompressPath.setText("压缩后图片路径：" + image.imagePath);
             // 显示图片
-            mIvImage.setImageBitmap(image.bitmap);
+            image.showImage(mIvImage);
         }
     };
 

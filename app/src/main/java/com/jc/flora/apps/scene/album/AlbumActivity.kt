@@ -32,7 +32,8 @@ class AlbumActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8)
+                    project6, project7, project8, project9, project10,
+                    project11)
         }
 
     private val project1: Project
@@ -70,7 +71,7 @@ class AlbumActivity : AppCompatActivity() {
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.5：列表展示选择结果"
+            project.projectName = "图片选择0.5：列表展示选择结果+大图预览"
             project.targetActivity = Album5Activity::class.java
             return project
         }
@@ -78,23 +79,47 @@ class AlbumActivity : AppCompatActivity() {
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.6："
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "Matisse0.1：Matisse实现单选功能"
+            project.targetActivity = Matisse1Activity::class.java
             return project
         }
 
     private val project7: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.7："
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "Matisse0.2：Matisse实现拍照功能"
+            project.targetActivity = Matisse2Activity::class.java
             return project
         }
 
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = "图片选择0.8："
+            project.projectName = "Matisse0.3：Matisse实现多选功能"
+            project.targetActivity = Matisse3Activity::class.java
+            return project
+        }
+
+    private val project9: Project
+        get() {
+            val project = Project()
+            project.projectName = "Matisse0.4：自定义Matisse主题"
+            project.targetActivity = Matisse4Activity::class.java
+            return project
+        }
+
+    private val project10: Project
+        get() {
+            val project = Project()
+            project.projectName = "Matisse0.5：结合Luban实现批量压缩"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project11: Project
+        get() {
+            val project = Project()
+            project.projectName = "Matisse0.6：结合Ucrop实现批量裁剪"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

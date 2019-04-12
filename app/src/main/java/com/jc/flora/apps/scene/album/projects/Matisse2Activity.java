@@ -1,8 +1,6 @@
 package com.jc.flora.apps.scene.album.projects;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +9,9 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.folder.FolderUtils;
-import com.jc.flora.apps.scene.album.delegate.CaptureDelegate;
 import com.jc.flora.apps.scene.album.delegate.CompressDelegate;
 import com.jc.flora.apps.scene.album.delegate.CropDelegate;
-import com.jc.flora.apps.scene.album.delegate.GalleryDelegate;
+import com.jc.flora.apps.scene.album.delegate.MatisseDelegate;
 import com.jc.flora.apps.scene.album.delegate.UploadGridDelegate;
 import com.jc.flora.apps.scene.album.model.PickImage;
 import com.jc.flora.apps.scene.preview.projects.SingleEasyPreviewActivity;
@@ -23,29 +20,28 @@ import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate;
 import java.util.ArrayList;
 
 /**
- * Created by shijincheng on 2019/4/10.
+ * implementation 'com.zhihu.android:matisse:0.5.2-beta3'
+ * Created by shijincheng on 2019/4/11.
  */
-public class Album5Activity extends AppCompatActivity {
+public class Matisse2Activity extends AppCompatActivity {
 
     private RecyclerView mRvPhoto;
     /** 上传图片提示文字 */
     private TextView mTvUploadPhotoHint;
     private UploadGridDelegate mUploadGridDelegate;
-    private GalleryDelegate mGalleryDelegate;
-    private CaptureDelegate mCaptureDelegate;
     private CompressDelegate mCompressDelegate;
     private CropDelegate mCropDelegate;
+    private MatisseDelegate mMatisseDelegate;
     private ProgressDialogDelegate mProgressDialogDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("列表展示选择结果+大图预览");
-        setContentView(R.layout.activity_album5);
+        setTitle("Matisse实现拍照功能");
+        setContentView(R.layout.activity_matisse1);
         findViews();
         initUploadGridDelegate();
-        initGalleryDelegate();
-        initCaptureDelegate();
+        initMatisseDelegate();
         initCompressDelegate();
         initCropDelegate();
         initProgressDialogDelegate();
@@ -66,15 +62,11 @@ public class Album5Activity extends AppCompatActivity {
         mUploadGridDelegate.init();
     }
 
-    private void initGalleryDelegate(){
-        mGalleryDelegate = new GalleryDelegate();
-        mGalleryDelegate.init();
-        mGalleryDelegate.addToActivity(this, "gallery");
-    }
-
-    private void initCaptureDelegate(){
-        mCaptureDelegate = new CaptureDelegate();
-        mCaptureDelegate.addToActivity(this, "capture");
+    private void initMatisseDelegate(){
+        mMatisseDelegate = new MatisseDelegate();
+        mMatisseDelegate.setCaptureEnable(true);
+        mMatisseDelegate.setMultiMode(false);
+        mMatisseDelegate.addToActivity(this, "matisse");
     }
 
     private void initCompressDelegate(){
@@ -95,59 +87,23 @@ public class Album5Activity extends AppCompatActivity {
     private UploadGridDelegate.PreviewPhotoBridge mPreviewPhotoBridge = new UploadGridDelegate.PreviewPhotoBridge() {
         @Override
         public void previewPhoto(ArrayList<PickImage> photoList, int index) {
-            SingleEasyPreviewActivity.route(Album5Activity.this, photoList.get(index).uri);
+            SingleEasyPreviewActivity.route(Matisse2Activity.this, photoList.get(index).uri);
         }
     };
 
     private UploadGridDelegate.AddPhotoBridge mAddPhotoBridge = new UploadGridDelegate.AddPhotoBridge() {
         @Override
         public void startAddPhoto(int addCount) {
-            showListDialog();
+            // 开始选图
+            mMatisseDelegate.openAlbum(addCount, mOnImagePickedCallback);
         }
     };
 
-    private void showListDialog() {
-        final String[] ITEMS = {"照片", "相册", "拍照", "取消"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("选择照片");
-        builder.setItems(ITEMS, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                pickImage(which);
-            }
-        });
-        builder.setCancelable(true);
-        builder.show();
-    }
-
-    private void pickImage(int which){
-        switch (which){
-            case 0 :
-                mGalleryDelegate.openFileChooser(mOnImagePickedCallback);
-                break;
-            case 1 :
-                mGalleryDelegate.openAlbum(mOnImagePickedCallback);
-                break;
-            case 2 :
-                mCaptureDelegate.openCamera(mOnCapturedCallback);
-                break;
-        }
-    }
-
-    private GalleryDelegate.OnImagePickedCallback mOnImagePickedCallback = new GalleryDelegate.OnImagePickedCallback() {
+    private MatisseDelegate.OnImagePickedCallback mOnImagePickedCallback = new MatisseDelegate.OnImagePickedCallback() {
         @Override
-        public void onImagePicked(PickImage image) {
+        public void onImagePicked(ArrayList<PickImage> imageList) {
             // 开始压缩
-            mCompressDelegate.compressImage(image, mOnImageCompressedCallback);
-        }
-    };
-
-    private CaptureDelegate.OnCapturedCallback mOnCapturedCallback = new CaptureDelegate.OnCapturedCallback() {
-        @Override
-        public void onCaptured(PickImage image) {
-            // 开始压缩
-            mCompressDelegate.compressImage(image, mOnImageCompressedCallback);
+            mCompressDelegate.compressImage(imageList.get(0), mOnImageCompressedCallback);
         }
     };
 

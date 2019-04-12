@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 /**
  * Created by Shijincheng on 2019/4/11.
  */
@@ -44,10 +47,13 @@ public class SingleEasyPreviewActivity extends AppCompatActivity {
 
     private void initViews(){
         ImageView iv = new ImageView(this);
-        iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
         iv.setBackgroundColor(Color.WHITE);
         if(mUri != null){
-            iv.setImageURI(mUri);
+            Glide.with(iv.getContext())
+                    .asBitmap()
+                    .load(mUri)
+                    .apply(new RequestOptions().fitCenter())
+                    .into(iv);
         }else if(mResId > 0){
             iv.setImageResource(mResId);
         }

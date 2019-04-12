@@ -59,7 +59,7 @@ public class UploadGridAdapter extends RecyclerView.Adapter<UploadGridAdapter.Vi
             }
         });
         if (isPhoto(position)) {
-            holder.ivPhoto.setImageBitmap(mData.get(index).bitmap);
+            mData.get(index).showThumbnail(holder.ivPhoto);
             holder.btnDelete.setVisibility(View.VISIBLE);
             holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,0 +1,82 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg_matisse_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/rb_blue"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="主题："/>
+
+        <RadioButton
+            android:id="@id/rb_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="知乎蓝色"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/rb_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="夜间黑色"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/rb_pink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义粉"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/app_page_padding"
+        android:paddingStart="@dimen/app_page_padding"
+        android:paddingTop="@dimen/app_page_padding"/>
+
+    <TextView
+        android:id="@+id/tv_upload_photo_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="（点击添加图片，最多可选择12张）"
+        android:textColorHint="@color/app_color_text_gray"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:onClick="mockUploadPhoto"
+        android:text="模拟上传"/>
+
+</LinearLayout>

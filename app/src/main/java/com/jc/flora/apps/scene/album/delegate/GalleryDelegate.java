@@ -2,7 +2,6 @@ package com.jc.flora.apps.scene.album.delegate;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -73,7 +72,6 @@ public class GalleryDelegate extends Fragment {
             //4.4以下系统使用这个方法处理图片
             mPickImage.imagePath = AlbumUtils.handleImagePathBeforeKitKat(getContext(), uri);
         }
-        mPickImage.bitmap = BitmapFactory.decodeFile(mPickImage.imagePath);
         mPickImage.uri = uri;
         if(mOnImagePickedCallback != null){
             mOnImagePickedCallback.onImagePicked(mPickImage);

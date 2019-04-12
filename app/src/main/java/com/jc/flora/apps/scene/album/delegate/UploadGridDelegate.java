@@ -33,8 +33,8 @@ public class UploadGridDelegate {
     /** 图片列表 */
     private ArrayList<PickImage> mPhotoList = new ArrayList<>(MAX_UPLOAD);
 
-    private AddPhotoBridge mAddPhotoBridge;
     private PreviewPhotoBridge mPreviewPhotoBridge;
+    private AddPhotoBridge mAddPhotoBridge;
 
     public UploadGridDelegate(AppCompatActivity activity) {
         mActivity = activity;
@@ -48,12 +48,12 @@ public class UploadGridDelegate {
         mTvUploadPhotoHint = tvUploadPhotoHint;
     }
 
-    public void setAddPhotoBridge(AddPhotoBridge addPhotoBridge) {
-        mAddPhotoBridge = addPhotoBridge;
-    }
-
     public void setPreviewPhotoBridge(PreviewPhotoBridge previewPhotoBridge) {
         mPreviewPhotoBridge = previewPhotoBridge;
+    }
+
+    public void setAddPhotoBridge(AddPhotoBridge addPhotoBridge) {
+        mAddPhotoBridge = addPhotoBridge;
     }
 
     public void init() {

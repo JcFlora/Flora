@@ -1105,6 +1105,18 @@
             android:name=".apps.scene.album.projects.Album5Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.scene.album.projects.Matisse1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Matisse2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Matisse3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Matisse4Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.scene.preview.PreviewActivity"
             android:screenOrientation="portrait" />
         <activity

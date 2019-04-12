@@ -149,7 +149,7 @@ public class Album4Activity extends AppCompatActivity {
             // 显示图片路径
             mTvImageCropPath.setText("裁剪后图片路径：" + image.imagePath);
             // 显示图片
-            mIvImage.setImageBitmap(image.bitmap);
+            image.showImage(mIvImage);
         }
     };
 

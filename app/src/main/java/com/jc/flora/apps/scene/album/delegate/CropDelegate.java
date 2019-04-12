@@ -2,7 +2,6 @@ package com.jc.flora.apps.scene.album.delegate;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -69,7 +68,6 @@ public class CropDelegate extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == CROP_IMAGE && resultCode == Activity.RESULT_OK){
             if(mOnImageCroppedCallback != null){
-                mPickImage.bitmap = BitmapFactory.decodeFile(mPickImage.imagePath);
                 mOnImageCroppedCallback.onImageCropped(mPickImage);
             }
         }

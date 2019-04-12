@@ -2,7 +2,6 @@ package com.jc.flora.apps.scene.album.delegate;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +53,6 @@ public class CaptureDelegate extends Fragment {
 
     private void handleCapturePhoto(){
         if(mOnCapturedCallback != null){
-            mPickImage.bitmap = BitmapFactory.decodeFile(mPickImage.imagePath);
             mOnCapturedCallback.onCaptured(mPickImage);
         }
     }

@@ -100,7 +100,7 @@ public class Album2Activity extends AppCompatActivity {
             // 显示图片路径
             mTvImagePath.setText("相册选择图片路径：" + image.imagePath);
             // 显示图片
-            mIvImage.setImageBitmap(image.bitmap);
+            image.showImage(mIvImage);
         }
     };
 
@@ -110,7 +110,7 @@ public class Album2Activity extends AppCompatActivity {
             // 显示图片路径
             mTvImagePath.setText("拍照图片路径：" + image.imagePath);
             // 显示图片
-            mIvImage.setImageBitmap(image.bitmap);
+            image.showImage(mIvImage);
         }
     };
 

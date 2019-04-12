@@ -3,4 +3,7 @@
     <external-path
         name="images"
         path="flora"/>
+    <external-path
+        name="matisse"
+        path="Pictures"/>
 </paths>
