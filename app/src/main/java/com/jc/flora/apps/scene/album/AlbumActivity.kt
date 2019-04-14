@@ -33,7 +33,7 @@ class AlbumActivity : AppCompatActivity() {
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
-                    project11)
+                    project11, project12)
         }
 
     private val project1: Project
@@ -112,14 +112,22 @@ class AlbumActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "Matisse0.5：结合Luban实现批量压缩"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Matisse5Activity::class.java
             return project
         }
 
     private val project11: Project
         get() {
             val project = Project()
-            project.projectName = "Matisse0.6：结合Ucrop实现批量裁剪"
+            project.projectName = "Matisse0.6：结合Ucrop实现单个裁剪"
+            project.targetActivity = Matisse6Activity::class.java
+            return project
+        }
+
+    private val project12: Project
+        get() {
+            val project = Project()
+            project.projectName = "Matisse0.7：结合Ucrop实现批量裁剪"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

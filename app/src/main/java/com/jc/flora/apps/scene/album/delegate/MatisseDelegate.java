@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * 需配置7.0FileProvider
+ * implementation 'com.zhihu.android:matisse:0.5.2-beta3'
  * Created by Shijincheng on 2019/4/11.
  */
 
@@ -60,6 +61,13 @@ public class MatisseDelegate extends Fragment {
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
+            mCaptureStrategy = new CaptureStrategy(true,activity.getPackageName()+".fileProvider");
+        }
+    }
+
+    public void addToActivityNow(AppCompatActivity activity, String tag) {
+        if(activity != null){
+            activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitNowAllowingStateLoss();
             mCaptureStrategy = new CaptureStrategy(true,activity.getPackageName()+".fileProvider");
         }
     }

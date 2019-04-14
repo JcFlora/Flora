@@ -1117,6 +1117,15 @@
             android:name=".apps.scene.album.projects.Matisse4Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.scene.album.projects.Matisse5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.Matisse6Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.album.projects.SingleUCropActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.scene.preview.PreviewActivity"
             android:screenOrientation="portrait" />
         <activity
