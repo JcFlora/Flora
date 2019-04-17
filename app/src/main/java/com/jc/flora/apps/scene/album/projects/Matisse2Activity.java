@@ -38,7 +38,7 @@ public class Matisse2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Matisse实现拍照功能");
-        setContentView(R.layout.activity_matisse1);
+        setContentView(R.layout.activity_album_matisse1);
         findViews();
         initUploadGridDelegate();
         initMatisseDelegate();
@@ -104,6 +104,10 @@ public class Matisse2Activity extends AppCompatActivity {
         public void onImagePicked(ArrayList<PickImage> imageList) {
             // 开始压缩
             mCompressDelegate.compressImage(imageList.get(0), mOnImageCompressedCallback);
+        }
+
+        @Override
+        public void onCancel() {
         }
     };
 

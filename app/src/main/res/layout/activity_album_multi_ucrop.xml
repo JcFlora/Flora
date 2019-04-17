@@ -1,0 +1,34 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_big_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/app_page_padding"
+        android:paddingStart="@dimen/app_page_padding"
+        android:paddingTop="@dimen/app_page_padding"/>
+
+    <Button
+        android:id="@+id/btn_crop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="去裁剪"/>
+
+    <Button
+        android:id="@+id/btn_save_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存裁剪列表结果"/>
+
+</LinearLayout>

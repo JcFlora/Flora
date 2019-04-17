@@ -34,7 +34,7 @@ public class Matisse3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Matisse实现多选功能");
-        setContentView(R.layout.activity_matisse1);
+        setContentView(R.layout.activity_album_matisse1);
         findViews();
         initUploadGridDelegate();
         initMatisseDelegate();
@@ -88,6 +88,10 @@ public class Matisse3Activity extends AppCompatActivity {
         public void onImagePicked(ArrayList<PickImage> imageList) {
             // 刷新图片显示列表
             mUploadGridDelegate.onPhotoPicked(imageList);
+        }
+
+        @Override
+        public void onCancel() {
         }
     };
 

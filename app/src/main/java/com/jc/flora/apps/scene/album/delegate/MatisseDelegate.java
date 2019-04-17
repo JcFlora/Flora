@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 图片选择业务管理
  * 需配置7.0FileProvider
  * implementation 'com.zhihu.android:matisse:0.5.2-beta3'
  * Created by Shijincheng on 2019/4/11.
@@ -26,11 +27,14 @@ import java.util.List;
 public class MatisseDelegate extends Fragment {
 
     private static final int PICK_IMAGE = 101;
+    /** 缩略图显示比例 */
     private static final float THUMBNAIL_SCALE = 0.85f;
 
-    private ArrayList<PickImage> mPickImageList;
+    /** 图片选择回调 */
     private OnImagePickedCallback mOnImagePickedCallback;
+    /** 拍照的FileProvider策略 */
     private CaptureStrategy mCaptureStrategy;
+    /** Glide4图片显示引擎 */
     private Glide4Engine mGlide4Engine = new Glide4Engine();
 
     /** 拍照模式 */
@@ -72,9 +76,13 @@ public class MatisseDelegate extends Fragment {
         }
     }
 
+    /**
+     * 打开相册
+     * @param maxSelectable 最多选择图片数量
+     * @param callback 图片批量裁剪完的回调
+     */
     public void openAlbum(int maxSelectable, OnImagePickedCallback callback){
         mOnImagePickedCallback = callback;
-        mPickImageList = new ArrayList<>();
         Matisse.from(this)
                 .choose(MimeType.ofImage())
                 .capture(mCaptureEnable)
@@ -92,26 +100,21 @@ public class MatisseDelegate extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
+            // 将新拍的照片添加到系统相册
             addPhotoToGallery(data);
+            // 处理图片选择结果
             handlePickImageList(data);
+        }else{
+            // 处理取消选择的情况
+            handleCancel();
         }
     }
 
-    private void handlePickImageList(Intent data){
-        List<Uri> uriList = Matisse.obtainResult(data);
-        List<String> pathList = Matisse.obtainPathResult(data);
-        for (int i = 0, size = uriList.size(); i < size; i++) {
-            PickImage image = new PickImage();
-            image.uri = uriList.get(i);
-            image.imagePath = pathList.get(i);
-            mPickImageList.add(image);
-        }
-        if(mOnImagePickedCallback != null){
-            mOnImagePickedCallback.onImagePicked(mPickImageList);
-        }
-    }
-
-    public void addPhotoToGallery(Intent data) {
+    /**
+     * 将新拍的照片添加到系统相册（Matisse拍照默认不会添加到相册）
+     * @param data
+     */
+    private void addPhotoToGallery(Intent data) {
         List<String> pathList = Matisse.obtainPathResult(data);
         if(pathList.size() == 1) {
             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -120,8 +123,40 @@ public class MatisseDelegate extends Fragment {
         }
     }
 
+    /**
+     * 处理图片选择结果
+     * @param data
+     */
+    private void handlePickImageList(Intent data){
+        List<Uri> uriList = Matisse.obtainResult(data);
+        List<String> pathList = Matisse.obtainPathResult(data);
+        ArrayList<PickImage> imageList = new ArrayList<>(uriList.size());
+        for (int i = 0, size = uriList.size(); i < size; i++) {
+            PickImage image = new PickImage();
+            image.uri = uriList.get(i);
+            image.imagePath = pathList.get(i);
+            imageList.add(image);
+        }
+        if(mOnImagePickedCallback != null){
+            mOnImagePickedCallback.onImagePicked(imageList);
+        }
+    }
+
+    /**
+     * 处理取消选择的情况
+     */
+    private void handleCancel() {
+        if (mOnImagePickedCallback != null) {
+            mOnImagePickedCallback.onCancel();
+        }
+    }
+
+    /**
+     * 图片选择回调
+     */
     public interface OnImagePickedCallback {
         void onImagePicked(ArrayList<PickImage> imageList);
+        void onCancel();
     }
 
 }

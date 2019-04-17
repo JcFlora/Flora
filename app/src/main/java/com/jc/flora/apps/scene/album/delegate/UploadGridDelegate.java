@@ -33,7 +33,9 @@ public class UploadGridDelegate {
     /** 图片列表 */
     private ArrayList<PickImage> mPhotoList = new ArrayList<>(MAX_UPLOAD);
 
+    /** 查看大图的连接桥 */
     private PreviewPhotoBridge mPreviewPhotoBridge;
+    /** 添加图片的连接桥 */
     private AddPhotoBridge mAddPhotoBridge;
 
     public UploadGridDelegate(AppCompatActivity activity) {
@@ -60,12 +62,20 @@ public class UploadGridDelegate {
         initViews();
     }
 
-    public void onPhotoPicked(ArrayList<PickImage> lst){
-        mPhotoList.addAll(lst);
+    /**
+     * 图片选好之后，刷新图片列表
+     * @param list
+     */
+    public void onPhotoPicked(ArrayList<PickImage> list){
+        mPhotoList.addAll(list);
         mAdapter.notifyDataSetChanged();
         refreshUploadHint();
     }
 
+    /**
+     * 是否选择了图片，有图片返回true，没图片返回false，并且提示
+     * @return
+     */
     public boolean hasSelectPhoto() {
         boolean hasSelectPhoto = mPhotoList.size() > 0;
         if(!hasSelectPhoto){
@@ -74,10 +84,17 @@ public class UploadGridDelegate {
         return hasSelectPhoto;
     }
 
+    /**
+     * 获取选择的图片
+     * @return
+     */
     public ArrayList<PickImage> getPhotoList() {
         return mPhotoList;
     }
 
+    /**
+     * 初始化列表
+     */
     private void initViews(){
         mAdapter = new UploadGridAdapter(mPhotoList, MAX_UPLOAD);
         mAdapter.setOnItemClickListener(new UploadGridAdapter.OnItemClickListener() {
@@ -101,6 +118,10 @@ public class UploadGridDelegate {
         mRvUploadGrid.setAdapter(mAdapter);
     }
 
+    /**
+     * 显示删除图片对话框
+     * @param position 图片索引
+     */
     private void showRemovePicDialog(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setMessage("确定要删除这张图片吗？");
@@ -115,22 +136,35 @@ public class UploadGridDelegate {
         builder.show();
     }
 
+    /**
+     * 删除图片
+     * @param position
+     */
     private void removePic(int position) {
         mPhotoList.remove(position);
         mAdapter.notifyDataSetChanged();
         refreshUploadHint();
     }
 
+    /**
+     * 刷新上传提示文字
+     */
     private void refreshUploadHint() {
         mTvUploadPhotoHint.setVisibility(mAdapter.hasPickMax() ? View.GONE : View.VISIBLE);
     }
 
-    public interface AddPhotoBridge{
-        void startAddPhoto(int addCount);
-    }
-
+    /**
+     * 查看大图的连接桥
+     */
     public interface PreviewPhotoBridge{
         void previewPhoto(ArrayList<PickImage> photoList, int index);
+    }
+
+    /**
+     * 添加图片的连接桥
+     */
+    public interface AddPhotoBridge{
+        void startAddPhoto(int addCount);
     }
 
 }

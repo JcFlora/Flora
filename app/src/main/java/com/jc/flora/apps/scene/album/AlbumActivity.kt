@@ -8,7 +8,6 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.scene.album.projects.*
-import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -128,7 +127,7 @@ class AlbumActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "Matisse0.7：结合Ucrop实现批量裁剪"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = Matisse7Activity::class.java
             return project
         }
 

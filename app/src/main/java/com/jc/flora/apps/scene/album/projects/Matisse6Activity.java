@@ -11,7 +11,6 @@ import com.jc.flora.R;
 import com.jc.flora.apps.component.folder.FolderUtils;
 import com.jc.flora.apps.scene.album.delegate.LubanDelegate;
 import com.jc.flora.apps.scene.album.delegate.MatisseAndSingleUCropDelegate;
-import com.jc.flora.apps.scene.album.delegate.MatisseDelegate;
 import com.jc.flora.apps.scene.album.delegate.UploadGridDelegate;
 import com.jc.flora.apps.scene.album.model.PickImage;
 import com.jc.flora.apps.scene.preview.projects.SingleEasyPreviewActivity;
@@ -40,7 +39,7 @@ public class Matisse6Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("结合Ucrop实现单个裁剪");
-        setContentView(R.layout.activity_matisse1);
+        setContentView(R.layout.activity_album_matisse1);
         findViews();
         initUploadGridDelegate();
         initMatisseAndSingleUCropDelegate();

@@ -16,20 +16,31 @@ import top.zibin.luban.OnCompressListener;
 import top.zibin.luban.OnRenameListener;
 
 /**
+ * 图片压缩业务管理
  * implementation 'top.zibin:Luban:1.1.8'
  * Created by Shijincheng on 2019/4/13.
  */
 public class LubanDelegate extends Fragment {
 
+    /** 图片保存路径 */
     private static final String COMPRESS_SAVE_PATH = FolderUtils.getAppFolderPath() + "album";
+    /** 图片保存名称前缀 */
     private static final String COMPRESS_FILE_PRE = "compress_";
 
+    /** 所有图片压缩完的回调 */
     private OnLubanCompressedCallback mOnLubanCompressedCallback;
+    /** 图片列表 */
     private ArrayList<PickImage> mPickImageList;
+    /** 当前正在压缩的图片索引 */
     private int mCurrentComposeIndex = -1;
+    /** 压缩是否出错 */
     private boolean mHasError = false;
+    /** 图片个数 */
     private int mSize = 0;
 
+    /**
+     * 初始化图片保存路径
+     */
     public void init(){
         new File(COMPRESS_SAVE_PATH+"/").mkdirs();
     }
@@ -40,14 +51,19 @@ public class LubanDelegate extends Fragment {
         }
     }
 
+    /**
+     * 开始压缩图片
+     * @param imageList  原始图片列表
+     * @param callback   压缩完毕的回调
+     */
     public void compressImage(ArrayList<PickImage> imageList, OnLubanCompressedCallback callback) {
         if(imageList == null || imageList.isEmpty()){
             return;
         }
+        mCurrentComposeIndex = 0;
+        mOnLubanCompressedCallback = callback;
         mSize = imageList.size();
         mPickImageList = new ArrayList<>(mSize);
-        mOnLubanCompressedCallback = callback;
-        mCurrentComposeIndex = 0;
         ArrayList<String> pathList = new ArrayList<>(mSize);
         for (PickImage pickImage : imageList) {
             pathList.add(pickImage.imagePath);
@@ -55,6 +71,10 @@ public class LubanDelegate extends Fragment {
         compressImage(pathList);
     }
 
+    /**
+     * 开始压缩图片
+     * @param pathList 原始图片路径列表
+     */
     private void compressImage(final ArrayList<String> pathList) {
         Luban.with(getContext())
                 .load(pathList)
@@ -85,9 +105,13 @@ public class LubanDelegate extends Fragment {
                     public void onError(Throwable e) {
                         onCompressError();
                     }
-                }).launch();
+                })
+                .launch();
     }
 
+    /**
+     * 每一张图片压缩开始时的回调
+     */
     private void onCompressStart() {
         if(mCurrentComposeIndex == 0 && mOnLubanCompressedCallback != null){
             mOnLubanCompressedCallback.onStart();
@@ -95,6 +119,10 @@ public class LubanDelegate extends Fragment {
         mCurrentComposeIndex++;
     }
 
+    /**
+     * 每一张图片压缩成功后的回调
+     * @param file 压缩后的文件
+     */
     private void onCompressSuccess(File file) {
         PickImage pickImage = new PickImage();
         pickImage.imagePath = file.getAbsolutePath();
@@ -109,6 +137,9 @@ public class LubanDelegate extends Fragment {
         }
     }
 
+    /**
+     * 每一张图片压缩出错的回调
+     */
     private void onCompressError() {
         mHasError = true;
         if(mCurrentComposeIndex == mSize && mOnLubanCompressedCallback != null){
@@ -116,6 +147,9 @@ public class LubanDelegate extends Fragment {
         }
     }
 
+    /**
+     * 所有图片压缩完的回调
+     */
     public interface OnLubanCompressedCallback {
         void onStart();
         void onSuccess(ArrayList<PickImage> imageList);

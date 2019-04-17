@@ -38,7 +38,7 @@ public class Matisse5Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("结合Luban实现批量压缩");
-        setContentView(R.layout.activity_matisse1);
+        setContentView(R.layout.activity_album_matisse1);
         findViews();
         initUploadGridDelegate();
         initMatisseDelegate();
@@ -99,6 +99,10 @@ public class Matisse5Activity extends AppCompatActivity {
         public void onImagePicked(ArrayList<PickImage> imageList) {
             // 开始批量压缩
             mLubanDelegate.compressImage(imageList, mOnLubanCompressedCallback);
+        }
+
+        @Override
+        public void onCancel() {
         }
     };
 

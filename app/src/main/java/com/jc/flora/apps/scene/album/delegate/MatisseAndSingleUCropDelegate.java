@@ -1,5 +1,6 @@
 package com.jc.flora.apps.scene.album.delegate;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -11,41 +12,35 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 
-import static android.app.Activity.RESULT_OK;
-
-
 /**
  * implementation 'com.github.yalantis:ucrop:2.2.2'
  * Created by Shijincheng on 2019/4/14.
  */
 public class MatisseAndSingleUCropDelegate extends Fragment {
 
-    private PickImage mPickImage;
     private OnImageCroppedCallback mOnImageCroppedCallback;
-    private Intent mIntent = new Intent();
 
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
-            mIntent.setClass(activity, SingleUCropActivity.class);
         }
     }
 
     public void openAlbum(OnImageCroppedCallback callback) {
-        mPickImage = new PickImage();
         mOnImageCroppedCallback = callback;
-        startActivityForResult(mIntent, UCrop.REQUEST_CROP);
+        SingleUCropActivity.route(this, UCrop.REQUEST_CROP);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == Activity.RESULT_OK) {
             Uri resultUri = UCrop.getOutput(data);
-            mPickImage.imagePath = resultUri.getPath();
-            mPickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(mPickImage.imagePath));
+            PickImage image = new PickImage();
+            image.imagePath = resultUri.getPath();
+            image.uri = AlbumUtils.getUriFromFile(getContext(), new File(image.imagePath));
             if(mOnImageCroppedCallback != null){
-                mOnImageCroppedCallback.onImageCropped(mPickImage);
+                mOnImageCroppedCallback.onImageCropped(image);
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             if(mOnImageCroppedCallback != null){
