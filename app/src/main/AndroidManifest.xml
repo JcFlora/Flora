@@ -847,6 +847,9 @@
             android:name=".apps.ui.progress.projects.Progress1Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.ui.progress.projects.Progress2Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.ui.list.ListActivity"
             android:screenOrientation="portrait" />
         <activity

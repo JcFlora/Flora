@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/app_page_padding">
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size"/>
+
+    <com.jc.flora.apps.ui.progress.widget.RoundProgressBar
+        android:id="@+id/rpb"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android_custom:max="100"
+        android_custom:bgColor="@android:color/darker_gray"
+        android_custom:fgColor="@color/colorAccent"
+        android_custom:strokeWidth="2.5dp"
+        android_custom:showText="true"
+        android_custom:textColor="@color/colorAccent"
+        android_custom:textSize="16dp"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size"/>
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/sb_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:max="100"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size"/>
+
+</LinearLayout>

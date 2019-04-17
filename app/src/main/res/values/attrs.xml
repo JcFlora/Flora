@@ -6,4 +6,15 @@
     <attr name="x_out" format="float" />
     <attr name="y_in" format="float" />
     <attr name="y_out" format="float" />
+
+    <declare-styleable name="RoundProgressBar">
+        <attr name="bgColor" format="color"/>
+        <attr name="fgColor" format="color"/>
+        <attr name="strokeWidth" format="dimension"></attr>
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="showText" format="boolean"></attr>
+    </declare-styleable>
+
 </resources>
