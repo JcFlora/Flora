@@ -18,6 +18,9 @@ public class AudioStatusListener {
     /** 暂停一个音频时的回调 */
     public void onPause(){}
 
+    /** 停止一个音频时的回调 */
+    public void onStop(){}
+
     /** 播放进度回调 */
     public void onProgress(int progress){}
 

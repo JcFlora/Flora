@@ -14,18 +14,19 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.adapter.AudioListAdapter;
+import com.jc.flora.apps.component.audio.adapter.AudioListAdapter2;
 import com.jc.flora.apps.component.audio.model.MP3;
 import com.jc.flora.apps.component.audio.projects.AudioDetail22Activity;
 import com.jc.flora.apps.component.audio.service.Audio22Service;
+import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
 
 import java.util.ArrayList;
 
 /**
- * Created by shijincheng on 2018/1/7.
+ * Created by shijincheng on 2019/4/18.
  */
 
-public class AudioListPlayerDelegate22 {
+public class AudioListPlayerDelegate23 {
 
     // mp3列表
     private static final ArrayList<MP3> MP3_LIST = new ArrayList<MP3>() {
@@ -43,6 +44,8 @@ public class AudioListPlayerDelegate22 {
     private AudioDelegate22 mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
+    // 列表适配器
+    private AudioListAdapter2 mAdapter;
     // 播放条
     private View mLayoutAudioBar;
     // 当前mp3音频封面图
@@ -52,11 +55,15 @@ public class AudioListPlayerDelegate22 {
     // 播放进度条
     private SeekBar mSbProgress;
     // 播放按钮
-    private ImageView mBtnPlay;
+    private View mBtnPlay;
+    // 播放图标
+    private ImageView mIvPlay;
+    // 播放的圆形进度条
+    private RoundProgressBar mPbPlay;
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
-    public AudioListPlayerDelegate22(AppCompatActivity activity) {
+    public AudioListPlayerDelegate23(AppCompatActivity activity) {
         mActivity = activity;
     }
 
@@ -80,8 +87,16 @@ public class AudioListPlayerDelegate22 {
         mSbProgress = sbProgress;
     }
 
-    public void setBtnPlay(ImageView btnPlay) {
+    public void setBtnPlay(View btnPlay) {
         mBtnPlay = btnPlay;
+    }
+
+    public void setIvPlay(ImageView ivPlay) {
+        mIvPlay = ivPlay;
+    }
+
+    public void setPbPlay(RoundProgressBar pbPlay) {
+        mPbPlay = pbPlay;
     }
 
     public void init() {
@@ -100,9 +115,9 @@ public class AudioListPlayerDelegate22 {
 
     private void initViews() {
         // 设置mp3列表数据展示
-        AudioListAdapter adapter = new AudioListAdapter(MP3_LIST);
-        mRvAudioList.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mAdapter = new AudioListAdapter2(MP3_LIST);
+        mRvAudioList.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 mDelegate.selectAudio(position);
@@ -171,29 +186,35 @@ public class AudioListPlayerDelegate22 {
         @Override
         public void onSelect(int index, int maxProgress) {
             // 设置当前音频封面图
-            mIvCover.setImageResource(MP3_LIST.get(mDelegate.getCurrentMp3Index()).coverImgResId);
+            mIvCover.setImageResource(MP3_LIST.get(index).coverImgResId);
             // 设置当前音频名称
-            mTvName.setText(MP3_LIST.get(mDelegate.getCurrentMp3Index()).name);
+            mTvName.setText(MP3_LIST.get(index).name);
             // 设置当前音频播放最大进度值
             mSbProgress.setMax(maxProgress);
+            mPbPlay.setMax(maxProgress);
+            // 适配器同步索引和最大进度值
+            mAdapter.setCurrentPlayIndexAndMax(index, maxProgress);
         }
 
         @Override
         public void onPlay() {
             mIsPlaying = true;
-            mBtnPlay.setImageResource(R.drawable.audio_notifier_pause_big);
+            mIvPlay.setImageResource(R.drawable.audio_bar_pause);
         }
 
         @Override
         public void onPause() {
             mIsPlaying = false;
-            mBtnPlay.setImageResource(R.drawable.audio_notifier_play_big);
+            mIvPlay.setImageResource(R.drawable.audio_bar_play);
         }
 
         @Override
         public void onProgress(int progress) {
             // 设置当前进度值
             mSbProgress.setProgress(progress);
+            mPbPlay.setProgress(progress);
+            // 适配器同步当前进度值
+            mAdapter.setCurrentProgress(mDelegate.getCurrentMp3Index(), progress);
         }
 
     };

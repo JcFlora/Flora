@@ -95,6 +95,8 @@ public class ExoMediaPlayer extends BasePlayer {
         mExoPlayer.stop();
         mExoPlayer.release();
         mExoPlayer = null;
+        // 添加停止播放的回调
+        callbackWhenStop();
     }
 
     @Override

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_audio_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:padding="16dp"
+        android:clipToPadding="false"/>
+
+    <LinearLayout
+        android:id="@+id/layout_audio_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/app_divider_item_space_size"
+        android:background="#DDDDDD">
+
+        <ImageView
+            android:id="@+id/iv_audio_bar_cover"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription=""/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/app_divider_item_space_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_audio_bar_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="16dp"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/sb_audio_bar_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_audio_bar_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/app_divider_item_space_size">
+
+            <ImageView
+                android:id="@+id/iv_audio_bar_play"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/audio_bar_play"/>
+
+            <com.jc.flora.apps.ui.progress.widget.RoundProgressBar
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android_custom:bgColor="@android:color/darker_gray"
+                android_custom:strokeWidth="1.5dp"/>
+
+            <com.jc.flora.apps.ui.progress.widget.RoundProgressBar
+                android:id="@+id/pb_audio_bar_play"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android_custom:bgColor="@android:color/transparent"
+                android_custom:fgColor="#FA21F0"
+                android_custom:strokeWidth="1.5dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

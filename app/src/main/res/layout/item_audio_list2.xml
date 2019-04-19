@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/app_divider_item_space_size"
+    android:paddingTop="@dimen/app_divider_item_space_size">
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription=""/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/app_divider_item_space_size"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="金钥匙儿童科学创想画"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="未知作者"
+            android:textColor="#999999"
+            android:textSize="13dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/app_divider_item_space_size">
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/audio_item_ready"/>
+
+        <com.jc.flora.apps.ui.progress.widget.RoundProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android_custom:bgColor="@android:color/darker_gray"
+            android_custom:strokeWidth="1.5dp"/>
+
+        <com.jc.flora.apps.ui.progress.widget.RoundProgressBar
+            android:id="@+id/pb_play"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android_custom:bgColor="@android:color/transparent"
+            android_custom:fgColor="#FA21F0"
+            android_custom:strokeWidth="1.5dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

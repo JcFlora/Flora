@@ -161,19 +161,19 @@ public class RoundProgressBar extends View {
         mOval = null;
     }
 
-    public synchronized int getMaxProgress() {
+    public synchronized int getMax() {
         return mMax;
     }
 
     /**
      * 设置进度的最大值
-     * @param maxProgress
+     * @param max
      */
-    public synchronized void setMaxProgress(int maxProgress) {
-        if(maxProgress < 0){
-            maxProgress = 0;
+    public synchronized void setMax(int max) {
+        if(max < 0){
+            max = 0;
         }
-        mMax = maxProgress;
+        mMax = max;
     }
 
     /**

@@ -219,7 +219,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频2.3：列表添加播放状态显示"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList23Activity::class.java
             return project
         }
 

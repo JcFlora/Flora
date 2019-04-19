@@ -75,40 +75,40 @@ public class AudioPlayerDelegate14 {
         mActivity = activity;
     }
 
-    public void setIvCover(ImageView mIvCover) {
-        this.mIvCover = mIvCover;
+    public void setIvCover(ImageView ivCover) {
+        mIvCover = ivCover;
     }
 
-    public void setTvCurrentTime(TextView mTvCurrentTime) {
-        this.mTvCurrentTime = mTvCurrentTime;
+    public void setTvCurrentTime(TextView tvCurrentTime) {
+        mTvCurrentTime = tvCurrentTime;
     }
 
-    public void setSbProgress(SeekBar mSbProgress) {
-        this.mSbProgress = mSbProgress;
+    public void setSbProgress(SeekBar sbProgress) {
+        mSbProgress = sbProgress;
     }
 
-    public void setTvMaxTime(TextView mTvMaxTime) {
-        this.mTvMaxTime = mTvMaxTime;
+    public void setTvMaxTime(TextView tvMaxTime) {
+        mTvMaxTime = tvMaxTime;
     }
 
-    public void setBtnMode(ImageView mBtnMode) {
-        this.mBtnMode = mBtnMode;
+    public void setBtnMode(ImageView btnMode) {
+        mBtnMode = btnMode;
     }
 
-    public void setBtnPre(ImageView mBtnPre) {
-        this.mBtnPre = mBtnPre;
+    public void setBtnPre(ImageView btnPre) {
+        mBtnPre = btnPre;
     }
 
-    public void setBtnPlay(ImageView mBtnPlay) {
-        this.mBtnPlay = mBtnPlay;
+    public void setBtnPlay(ImageView btnPlay) {
+        mBtnPlay = btnPlay;
     }
 
-    public void setBtnNext(ImageView mBtnNext) {
-        this.mBtnNext = mBtnNext;
+    public void setBtnNext(ImageView btnNext) {
+        mBtnNext = btnNext;
     }
 
-    public void setBtnSelect(ImageView mBtnSelect) {
-        this.mBtnSelect = mBtnSelect;
+    public void setBtnSelect(ImageView btnSelect) {
+        mBtnSelect = btnSelect;
     }
 
     public void init() {

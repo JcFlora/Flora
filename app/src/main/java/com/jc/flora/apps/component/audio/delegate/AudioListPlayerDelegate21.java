@@ -26,8 +26,6 @@ import java.util.ArrayList;
 
 public class AudioListPlayerDelegate21 {
 
-    // 播放模式名称列表
-    private static final String[] MODE_ITEMS = {"列表循环", "单曲循环", "随机播放"};
     // mp3列表
     private static final ArrayList<MP3> MP3_LIST = new ArrayList<MP3>() {
         {
@@ -69,20 +67,20 @@ public class AudioListPlayerDelegate21 {
         mRvAudioList = rvAudioList;
     }
 
-    public void setIvCover(ImageView mIvCover) {
-        this.mIvCover = mIvCover;
+    public void setIvCover(ImageView ivCover) {
+        mIvCover = ivCover;
     }
 
     public void setTvName(TextView tvName) {
         mTvName = tvName;
     }
 
-    public void setSbProgress(SeekBar mSbProgress) {
-        this.mSbProgress = mSbProgress;
+    public void setSbProgress(SeekBar sbProgress) {
+        mSbProgress = sbProgress;
     }
 
-    public void setBtnPlay(ImageView mBtnPlay) {
-        this.mBtnPlay = mBtnPlay;
+    public void setBtnPlay(ImageView btnPlay) {
+        mBtnPlay = btnPlay;
     }
 
     public void init() {
@@ -168,10 +166,6 @@ public class AudioListPlayerDelegate21 {
 
     // 之前的界面刷新功能改成监听回调实现，实现控制反转，由播放状态本身进行控制
     private AudioStatusListener mAudioStatusListener = new AudioStatusListener() {
-
-        @Override
-        public void onModeSelect(int index) {
-        }
 
         @Override
         public void onSelect(int index, int maxProgress) {

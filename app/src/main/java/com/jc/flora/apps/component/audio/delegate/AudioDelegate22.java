@@ -150,6 +150,7 @@ public class AudioDelegate22 extends Binder {
      * 复位（从头开始播放）
      */
     public void resetAudio() {
+        release();
         recreate();
         start();
     }
@@ -220,6 +221,10 @@ public class AudioDelegate22 extends Binder {
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
+            // 添加停止播放的回调
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onStop();
+            }
             mProgressRefreshHandler.removeCallbacksAndMessages(null);
         }
     }

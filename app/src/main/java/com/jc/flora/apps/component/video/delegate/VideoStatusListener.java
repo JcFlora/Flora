@@ -50,10 +50,4 @@ public class VideoStatusListener {
     /** 播放出错时的回调 */
     public void onError(){}
 
-//    /** 全屏时的回调 */
-//    public void onFullScreen(){}
-//
-//    /** 半屏时的回调 */
-//    public void onHalfScreen(){}
-
 }
