@@ -36,7 +36,8 @@ class AudioActivity : AppCompatActivity() {
                     project11, project12, project13, project14, project15,
                     project16, project17, project18, project19, project20,
                     project21, project22, project23, project24, project25,
-                    project26, project27)
+                    project26, project27, project28, project29, project30,
+                    project31, project32, project33, project34)
         }
 
     private val project1: Project
@@ -227,7 +228,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频2.4：添加快进快退15秒功能"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList24Activity::class.java
             return project
         }
 
@@ -251,6 +252,62 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频2.7：播放在线音频"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project28: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.8：添加loading和缓冲回调处理"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project29: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频2.9：添加错误回调与无网络检测功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project30: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频3.0：添加移动网络检测与音频容量显示功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project31: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频3.1：抽离ExoPlayer播放引擎"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project32: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频3.2：使用IjkPlayer播放引擎"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project33: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频3.3：实现离线播放功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project34: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频3.4：实现音质切换功能"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

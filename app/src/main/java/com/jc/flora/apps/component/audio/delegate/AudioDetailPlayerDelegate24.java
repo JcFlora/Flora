@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.service.Audio22Service;
+import com.jc.flora.apps.component.audio.service.Audio24Service;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 import java.text.SimpleDateFormat;
@@ -23,10 +23,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Created by shijincheng on 2018/1/7.
+ * Created by shijincheng on 2019/4/19.
  */
 
-public class AudioDetailPlayerDelegate22 {
+public class AudioDetailPlayerDelegate24 {
 
     // 进度条下面的当前进度文字，将毫秒化为mm:ss格式
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
@@ -47,7 +47,7 @@ public class AudioDetailPlayerDelegate22 {
 
     private AppCompatActivity mActivity;
 
-    private AudioDelegate22 mDelegate;
+    private AudioDelegate24 mDelegate;
     // 当前mp3音频封面图
     private ImageView mIvCover;
     // 当前播放进度时间显示
@@ -66,12 +66,17 @@ public class AudioDetailPlayerDelegate22 {
     private ImageView mBtnNext;
     // 下一首按钮
     private ImageView mBtnSelect;
+    // 快退15秒按钮
+    private View mBtnRewind;
+    // 快进15秒按钮
+    private View mBtnForward;
+
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
     // 下一个播放模式
     private AudioPlayMode mNextMode = AudioPlayMode.SINGLE;
 
-    public AudioDetailPlayerDelegate22(AppCompatActivity activity) {
+    public AudioDetailPlayerDelegate24(AppCompatActivity activity) {
         mActivity = activity;
     }
 
@@ -109,6 +114,14 @@ public class AudioDetailPlayerDelegate22 {
 
     public void setBtnSelect(ImageView btnSelect) {
         mBtnSelect = btnSelect;
+    }
+
+    public void setBtnRewind(View btnRewind) {
+        mBtnRewind = btnRewind;
+    }
+
+    public void setBtnForward(View btnForward) {
+        mBtnForward = btnForward;
     }
 
     public void init() {
@@ -175,10 +188,22 @@ public class AudioDetailPlayerDelegate22 {
                 showMp3ListDialog();
             }
         });
+        mBtnRewind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDelegate.rewind();
+            }
+        });
+        mBtnForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDelegate.forward();
+            }
+        });
     }
 
     private void initDelegate() {
-        Intent intent = new Intent(mActivity, Audio22Service.class);
+        Intent intent = new Intent(mActivity, Audio24Service.class);
         mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 
@@ -187,7 +212,7 @@ public class AudioDetailPlayerDelegate22 {
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mDelegate = (AudioDelegate22) service;
+            mDelegate = (AudioDelegate24) service;
             mDelegate.addAudioStatusListener(mAudioStatusListener);
             mDelegate.syncMp3List();
         }
