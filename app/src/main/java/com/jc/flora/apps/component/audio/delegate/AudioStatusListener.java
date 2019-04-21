@@ -9,6 +9,9 @@ public class AudioStatusListener {
     /** 切换播放模式时的回调 */
     public void onModeSelect(int index){}
 
+    /** 切换播放速度时的回调 */
+    public void onSpeedSelect(int index){}
+
     /** 选择或切换一个音频时的回调 */
     public void onSelect(int index, int maxProgress){}
 

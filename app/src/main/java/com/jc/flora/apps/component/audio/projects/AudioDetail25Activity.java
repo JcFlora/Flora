@@ -9,15 +9,16 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioDetailPlayerDelegate24;
+import com.jc.flora.apps.component.audio.delegate.AudioDetailPlayerDelegate25;
 import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate18;
 
 /**
- * Created by Samurai on 2019/4/19.
+ * Created by Samurai on 2019/4/20.
  */
-public class AudioDetail24Activity extends AppCompatActivity {
+public class AudioDetail25Activity extends AppCompatActivity {
 
     private AudioVolumeDelegate18 mVolumeDelegate;
-    private AudioDetailPlayerDelegate24 mDelegate;
+    private AudioDetailPlayerDelegate25 mDelegate;
     // 音量进度条
     private SeekBar mSbVolume;
     // 当前mp3音频封面图
@@ -42,12 +43,14 @@ public class AudioDetail24Activity extends AppCompatActivity {
     private View mBtnRewind;
     // 快进15秒按钮
     private View mBtnForward;
+    // 倍速按钮
+    private TextView mBtnSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("添加快进快退15秒功能");
-        setContentView(R.layout.activity_audio_detail24);
+        setTitle("添加倍速播放功能");
+        setContentView(R.layout.activity_audio_detail25);
         findViews();
         initDelegate();
     }
@@ -65,6 +68,7 @@ public class AudioDetail24Activity extends AppCompatActivity {
         mBtnSelect = (ImageView) findViewById(R.id.btn_select);
         mBtnRewind = findViewById(R.id.btn_rewind);
         mBtnForward = findViewById(R.id.btn_forward);
+        mBtnSpeed = (TextView) findViewById(R.id.btn_speed);
     }
 
     private void initDelegate(){
@@ -72,7 +76,7 @@ public class AudioDetail24Activity extends AppCompatActivity {
         mVolumeDelegate.setSbVolume(mSbVolume);
         mVolumeDelegate.init();
 
-        mDelegate = new AudioDetailPlayerDelegate24(this);
+        mDelegate = new AudioDetailPlayerDelegate25(this);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);
@@ -84,6 +88,7 @@ public class AudioDetail24Activity extends AppCompatActivity {
         mDelegate.setBtnSelect(mBtnSelect);
         mDelegate.setBtnRewind(mBtnRewind);
         mDelegate.setBtnForward(mBtnForward);
+        mDelegate.setBtnSpeed(mBtnSpeed);
         mDelegate.init();
     }
 

@@ -236,7 +236,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频2.5：添加倍速播放功能"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList25Activity::class.java
             return project
         }
 

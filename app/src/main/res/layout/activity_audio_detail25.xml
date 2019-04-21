@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/audio_bg"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/audio_bg"
+    android:orientation="vertical">
 
     <Space
         android:layout_width="match_parent"
@@ -67,6 +67,19 @@
             android:layout_height="wrap_content"
             android:contentDescription="@null"
             android:src="@drawable/audio_loop"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/btn_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.0X"
+            android:textColor="@color/app_color_text_white"
+            android:textSize="@dimen/app_text_size_20dp"/>
 
         <Space
             android:layout_width="0dp"

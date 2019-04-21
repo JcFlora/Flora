@@ -54,6 +54,8 @@ public class AudioDelegate25 extends Binder {
 
     // 播放模式
     private AudioPlayMode mPlayMode = AudioPlayMode.LOOP;
+    // 播放速度
+    private AudioPlaySpeed mPlaySpeed = AudioPlaySpeed.X_10;
 
     public AudioDelegate25(Context ctx) {
         mContext = ctx;
@@ -89,6 +91,8 @@ public class AudioDelegate25 extends Binder {
             l.onProgress(mCurrentPosition);
             // 同步播放模式
             l.onModeSelect(mPlayMode.value());
+            // 同步播放速度
+            l.onSpeedSelect(mPlaySpeed.index());
         }
     }
 
@@ -265,6 +269,7 @@ public class AudioDelegate25 extends Binder {
                     }
                 }
             });
+            setSpeed(mPlaySpeed);
         }
         try {
             DataSpec dataSpec = new DataSpec(RawResourceDataSource.buildRawResourceUri(mMp3List.get(mCurrentMp3Index).resId));
@@ -381,11 +386,18 @@ public class AudioDelegate25 extends Binder {
 
     /**
      * 倍速播放功能
-     * @param speed
+     * @param audioPlaySpeed
      */
-    public void setSpeed(float speed) {
-        PlaybackParameters parameters = new PlaybackParameters(speed, 1f);
-        mExoPlayer.setPlaybackParameters(parameters);
+    public void setSpeed(AudioPlaySpeed audioPlaySpeed) {
+        mPlaySpeed = audioPlaySpeed;
+        if(mExoPlayer != null){
+            PlaybackParameters parameters = new PlaybackParameters(audioPlaySpeed.value(), 1f);
+            mExoPlayer.setPlaybackParameters(parameters);
+        }
+        // 设置播放速度时回调
+        for (AudioStatusListener l : mAudioStatusListeners) {
+            l.onSpeedSelect(audioPlaySpeed.index());
+        }
     }
 
 }
