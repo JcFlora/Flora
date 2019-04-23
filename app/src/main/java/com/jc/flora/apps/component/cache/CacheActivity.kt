@@ -10,6 +10,7 @@ import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.component.cache.projects.Cacher1Activity
 import com.jc.flora.apps.component.cache.projects.Cacher2Activity
 import com.jc.flora.apps.component.cache.projects.Spreader1Activity
+import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -32,7 +33,8 @@ class CacheActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5, project6)
+            return arrayListOf(project1, project2, project3, project4, project5,
+                    project6, project7)
         }
 
     private val project1: Project
@@ -80,6 +82,14 @@ class CacheActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "带版本号的sp缓存"
             project.targetActivity = Spreader1Activity::class.java
+            return project
+        }
+
+    private val project7: Project
+        get() {
+            val project = Project()
+            project.projectName = "Glide的图片缓存"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 

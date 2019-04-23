@@ -37,7 +37,8 @@ class AudioActivity : AppCompatActivity() {
                     project16, project17, project18, project19, project20,
                     project21, project22, project23, project24, project25,
                     project26, project27, project28, project29, project30,
-                    project31, project32, project33, project34)
+                    project31, project32, project33, project34, project35,
+                    project36)
         }
 
     private val project1: Project
@@ -243,15 +244,15 @@ class AudioActivity : AppCompatActivity() {
     private val project26: Project
         get() {
             val project = Project()
-            project.projectName = "音频2.6：添加定时停止功能"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "音频2.6：播放在线音频"
+            project.targetActivity = AudioList26Activity::class.java
             return project
         }
 
     private val project27: Project
         get() {
             val project = Project()
-            project.projectName = "音频2.7：播放在线音频"
+            project.projectName = "音频2.7：添加loading和缓冲回调处理"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -259,7 +260,7 @@ class AudioActivity : AppCompatActivity() {
     private val project28: Project
         get() {
             val project = Project()
-            project.projectName = "音频2.8：添加loading和缓冲回调处理"
+            project.projectName = "音频2.8：模拟支付拦截和url异步获取拦截"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -308,6 +309,22 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频3.4：实现音质切换功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project35: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频3.5：添加定时停止功能"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project36: Project
+        get() {
+            val project = Project()
+            project.projectName = "音频3.6：封装为Aoide框架"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

@@ -157,24 +157,6 @@ public class ExoMediaPlayer extends BasePlayer {
 
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-//            //todo
-//            if(playWhenReady && playbackState == ExoPlayer.STATE_ENDED){
-//                // 添加播放完成的回调
-//                for (VideoStatusListener l : mVideoStatusListeners) {
-//                    l.onComplete();
-//                }
-//            }
-
-            if(!isPreparing){
-//                if(playWhenReady){
-//                    updateStatus(IPlayer.STATE_STARTED);
-//                    submitPlayerEvent(OnPlayerEventListener.PLAYER_EVENT_ON_RESUME, null);
-//                }else{
-//                    updateStatus(IPlayer.STATE_PAUSED);
-//                    submitPlayerEvent(OnPlayerEventListener.PLAYER_EVENT_ON_PAUSE, null);
-//                }
-            }
-
             if(isPreparing){
                 switch (playbackState){
                     case ExoPlayer.STATE_READY:
@@ -183,7 +165,6 @@ public class ExoMediaPlayer extends BasePlayer {
                         break;
                 }
             }
-
             if(isBuffering){
                 switch (playbackState){
                     case ExoPlayer.STATE_READY:
@@ -193,7 +174,6 @@ public class ExoMediaPlayer extends BasePlayer {
                         break;
                 }
             }
-
             if(!isPreparing){
                 switch (playbackState){
                     case ExoPlayer.STATE_BUFFERING:
@@ -207,7 +187,6 @@ public class ExoMediaPlayer extends BasePlayer {
                         break;
                 }
             }
-
         }
 
         @Override

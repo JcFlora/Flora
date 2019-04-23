@@ -41,6 +41,7 @@ public class MP4 {
     public Uri getVideoUri(Context context){
         if(resId > 0){
             String videoPath = "android.resource://" + context.getPackageName() + "/" + resId;
+            // 这个本地Uri不适用于ExoPlayer
             return Uri.parse(videoPath);
         }else if(!TextUtils.isEmpty(videoUrl)){
             return Uri.parse(videoUrl);
