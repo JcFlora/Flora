@@ -39,8 +39,8 @@ public class ExoMediaPlayer extends BasePlayer {
 
     private SimpleExoPlayer mExoPlayer;
 
-    private boolean isPreparing = true;
-    private boolean isBuffering = false;
+    private boolean mIsPreparing = true;
+    private boolean mIsBuffering = false;
     private DefaultBandwidthMeter mBandwidthMeter;
 
     @Override
@@ -90,8 +90,8 @@ public class ExoMediaPlayer extends BasePlayer {
 
     @Override
     public void release() {
-        isPreparing = true;
-        isBuffering = false;
+        mIsPreparing = true;
+        mIsBuffering = false;
         mExoPlayer.stop();
         mExoPlayer.release();
         mExoPlayer = null;
@@ -106,7 +106,7 @@ public class ExoMediaPlayer extends BasePlayer {
 
     @Override
     public void setDataSource(Context context, Uri uri) {
-        isPreparing = true;
+        mIsPreparing = true;
         mExoPlayer.prepare(getMediaSource(context.getApplicationContext(), uri));
         mExoPlayer.setPlayWhenReady(false);
     }
@@ -157,27 +157,27 @@ public class ExoMediaPlayer extends BasePlayer {
 
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-            if(isPreparing){
+            if(mIsPreparing){
                 switch (playbackState){
                     case ExoPlayer.STATE_READY:
-                        isPreparing = false;
+                        mIsPreparing = false;
                         callbackWhenPrepareEnd();
                         break;
                 }
             }
-            if(isBuffering){
+            if(mIsBuffering){
                 switch (playbackState){
                     case ExoPlayer.STATE_READY:
                     case ExoPlayer.STATE_ENDED:
-                        isBuffering = false;
+                        mIsBuffering = false;
                         callbackWhenBufferingEnd();
                         break;
                 }
             }
-            if(!isPreparing){
+            if(!mIsPreparing){
                 switch (playbackState){
                     case ExoPlayer.STATE_BUFFERING:
-                        isBuffering = true;
+                        mIsBuffering = true;
                         callbackWhenBufferingStart();
                         break;
                     case ExoPlayer.STATE_ENDED:

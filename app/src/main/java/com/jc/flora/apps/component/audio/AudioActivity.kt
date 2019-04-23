@@ -253,7 +253,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频2.7：添加loading和缓冲回调处理"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList27Activity::class.java
             return project
         }
 

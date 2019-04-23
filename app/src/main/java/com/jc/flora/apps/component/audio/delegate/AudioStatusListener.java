@@ -35,4 +35,19 @@ public class AudioStatusListener {
         return false;
     }
 
+    /** 音频准备开始时的回调 */
+    public void onPrepareStart(int index){}
+
+    /** 音频准备结束时的回调 */
+    public void onPrepareEnd(){}
+
+    /** 音频缓冲进度变化的回调 */
+    public void onBufferingUpdate(int percent){}
+
+    /** 音频缓冲开始时的回调 */
+    public void onBufferingStart(){}
+
+    /** 音频缓冲结束时的回调 */
+    public void onBufferingEnd(){}
+
 }
