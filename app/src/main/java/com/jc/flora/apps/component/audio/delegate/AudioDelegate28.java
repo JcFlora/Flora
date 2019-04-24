@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Samurai on 2019/4/23.
+ * Created by Samurai on 2019/4/24.
  */
-public class AudioDelegate27 extends Binder {
+public class AudioDelegate28 extends Binder {
 
     /** 快进快退时间间隔：15秒 */
     private static final int FORWARD_POSITION = 15_000;
@@ -59,7 +59,7 @@ public class AudioDelegate27 extends Binder {
     // 是否正在缓冲
     private boolean mIsBuffering = false;
 
-    public AudioDelegate27(Context ctx) {
+    public AudioDelegate28(Context ctx) {
         mContext = ctx;
     }
 
@@ -70,6 +70,12 @@ public class AudioDelegate27 extends Binder {
      */
     public void setMp3List(ArrayList<MP3> mp3List) {
         mMp3List = mp3List;
+        // 添加切换拦截的回调
+        for (AudioStatusListener l : mAudioStatusListeners) {
+            if (l.interceptSelect(mMp3List, 0)) {
+                return;
+            }
+        }
         mCurrentMp3Index = 0;
         recreate();
     }
@@ -84,11 +90,13 @@ public class AudioDelegate27 extends Binder {
         for (AudioStatusListener l : mAudioStatusListeners) {
             // 同步当前切换
             l.onSelect(mCurrentMp3Index, getMaxProgress());
-            // 同步播放状态
-            if (mExoPlayer.getPlayWhenReady()) {
-                l.onPlay();
-            } else {
-                l.onPause();
+            if(mExoPlayer != null){
+                // 同步播放状态
+                if (mExoPlayer.getPlayWhenReady()) {
+                    l.onPlay();
+                } else {
+                    l.onPause();
+                }
             }
             // 同步播放位置
             l.onProgress(mCurrentPosition);
@@ -134,7 +142,7 @@ public class AudioDelegate27 extends Binder {
      * 播放音频（继续播放）
      */
     public void playAudio() {
-        if (!mExoPlayer.getPlayWhenReady()) {
+        if (mExoPlayer != null && !mExoPlayer.getPlayWhenReady()) {
             // 添加拦截
             for (AudioStatusListener l : mAudioStatusListeners) {
                 if (l.onPlayIntercepted()) {
@@ -152,7 +160,7 @@ public class AudioDelegate27 extends Binder {
      * 暂停播放
      */
     public void pauseAudio() {
-        if (mExoPlayer.getPlayWhenReady()) {
+        if (mExoPlayer != null && mExoPlayer.getPlayWhenReady()) {
             mExoPlayer.setPlayWhenReady(false);
             for (AudioStatusListener l : mAudioStatusListeners) {
                 l.onPause();
@@ -176,16 +184,26 @@ public class AudioDelegate27 extends Binder {
      * @param index 切换的音频索引
      */
     public void selectAudio(int index) {
+        int nextIndex;
         if (index < 0) {
             // 第一首的上一首切换成最后一首
-            mCurrentMp3Index = mMp3List.size() - 1;
+            nextIndex = mMp3List.size() - 1;
         } else if (index >= mMp3List.size()) {
             // 最后一首的下一首切换成第一首
-            mCurrentMp3Index = 0;
+            nextIndex = 0;
         } else {
-            mCurrentMp3Index = index;
+            nextIndex = index;
         }
-        resetAudio();
+        release();
+        // 添加切换拦截的回调
+        for (AudioStatusListener l : mAudioStatusListeners) {
+            if (l.interceptSelect(mMp3List, nextIndex)) {
+                return;
+            }
+        }
+        mCurrentMp3Index = nextIndex;
+        recreate();
+        start();
     }
 
     /**
@@ -236,6 +254,8 @@ public class AudioDelegate27 extends Binder {
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
+            // 每次重新播放，都需要手动再次获取url
+            mMp3List.get(mCurrentMp3Index).audioUrl = "";
             // 添加停止播放的回调
             for (AudioStatusListener l : mAudioStatusListeners) {
                 l.onStop();
@@ -396,6 +416,9 @@ public class AudioDelegate27 extends Binder {
      * 获取歌曲长度
      **/
     public int getMaxProgress() {
+        if(mExoPlayer == null){
+            return 0;
+        }
         return (int) mExoPlayer.getDuration();
     }
 
@@ -411,7 +434,9 @@ public class AudioDelegate27 extends Binder {
      * 播放指定位置
      */
     public void seekToPosition(int msec) {
-        mExoPlayer.seekTo(msec);
+        if(mExoPlayer != null){
+            mExoPlayer.seekTo(msec);
+        }
     }
 
     /**
@@ -422,7 +447,9 @@ public class AudioDelegate27 extends Binder {
         if (rewindPosition < 0) {
             rewindPosition = 0;
         }
-        mExoPlayer.seekTo(rewindPosition);
+        if(mExoPlayer != null){
+            mExoPlayer.seekTo(rewindPosition);
+        }
     }
 
     /**
@@ -433,7 +460,9 @@ public class AudioDelegate27 extends Binder {
         if (forwardPosition > getMaxProgress()) {
             forwardPosition = getMaxProgress();
         }
-        mExoPlayer.seekTo(forwardPosition);
+        if(mExoPlayer != null){
+            mExoPlayer.seekTo(forwardPosition);
+        }
     }
 
     /**
@@ -450,6 +479,18 @@ public class AudioDelegate27 extends Binder {
         // 设置播放速度时回调
         for (AudioStatusListener l : mAudioStatusListeners) {
             l.onSpeedSelect(audioPlaySpeed.index());
+        }
+    }
+
+    /**
+     * 通知被拦截后的回调
+     * @param index
+     * @param flag
+     */
+    public void notifySelectIntercepted(int index, int flag){
+        // 调用被拦截后的回调
+        for (AudioStatusListener l : mAudioStatusListeners) {
+            l.onSelectIntercepted(mMp3List, index, flag);
         }
     }
 

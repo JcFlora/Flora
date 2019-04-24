@@ -191,6 +191,12 @@ public class AudioListPlayerDelegate22 {
         }
 
         @Override
+        public void onStop() {
+            mIsPlaying = false;
+            mBtnPlay.setImageResource(R.drawable.audio_notifier_play_big);
+        }
+
+        @Override
         public void onProgress(int progress) {
             // 设置当前进度值
             mSbProgress.setProgress(progress);

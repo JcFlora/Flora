@@ -6,7 +6,6 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -198,6 +197,10 @@ public class AudioDelegate20 extends Binder {
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
+            // 添加停止播放的回调
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onStop();
+            }
             mProgressRefreshHandler.removeCallbacksAndMessages(null);
         }
     }

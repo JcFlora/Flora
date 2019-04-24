@@ -276,6 +276,12 @@ public class AudioDetailPlayerDelegate26 {
         }
 
         @Override
+        public void onStop() {
+            mIsPlaying = false;
+            mBtnPlay.setImageResource(R.drawable.audio_play);
+        }
+
+        @Override
         public void onProgress(int progress) {
             // 设置当前进度值
             mSbProgress.setProgress(progress);
@@ -286,7 +292,7 @@ public class AudioDetailPlayerDelegate26 {
     };
 
     private void showMp3ListDialog() {
-        final String[] ITEMS = {"话说明朝", "话说明朝", "话说明朝", "话说明朝", "话说明朝"};
+        final String[] ITEMS = {"话说明朝", "百思女神秀", "欢乐江湖", "万万妹想到", "爆笑相声", "每天一个心理知识", "世界名人英文演讲", "悦读心时光"};
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setTitle("选择歌曲");
         builder.setItems(ITEMS, new DialogInterface.OnClickListener() {

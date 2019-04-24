@@ -261,7 +261,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频2.8：模拟支付拦截和url异步获取拦截"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList28Activity::class.java
             return project
         }
 

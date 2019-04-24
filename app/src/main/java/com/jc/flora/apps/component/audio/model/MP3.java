@@ -19,6 +19,9 @@ public class MP3 {
     public String audioAlbum;
     public String audioUrl;
     public String audioCapacity = "";
+    public String id = "";
+    // 模拟支付拦截时用来判断是否免费，如果不免费，会触发支付回调
+    public boolean isFree;
     public String audioLocalPath = "";
 
     public MP3(String name, int resId) {
@@ -43,6 +46,13 @@ public class MP3 {
         this.audioCapacity = audioCapacity;
     }
 
+    public MP3(String name, String audioAlbum, String id, Boolean isFree) {
+        this.name = name;
+        this.audioAlbum = audioAlbum;
+        this.id = id;
+        this.isFree = isFree;
+    }
+
     public Uri getAudioUri(Context context){
         if(resId > 0){
             String audioPath = "android.resource://" + context.getPackageName() + "/" + resId;
@@ -60,6 +70,14 @@ public class MP3 {
         }else if(!TextUtils.isEmpty(audioAlbum)){
             Glide.with(ivAlbum).load(audioAlbum).into(ivAlbum);
         }
+    }
+
+    /**
+     * 是否能播放
+     * @return
+     */
+    public boolean couldPlay(){
+        return isFree && !TextUtils.isEmpty(audioUrl);
     }
 
 }

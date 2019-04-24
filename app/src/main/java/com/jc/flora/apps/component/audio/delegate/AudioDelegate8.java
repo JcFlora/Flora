@@ -146,6 +146,10 @@ public class AudioDelegate8 extends Binder {
             mMediaPlayer.stop();
             mMediaPlayer.release();
             mMediaPlayer = null;
+            // 添加停止播放的回调
+            if(mAudioStatusListener != null){
+                mAudioStatusListener.onStop();
+            }
             // 添加：去除掉之前的消息发送
             mProgressRefreshHandler.removeCallbacksAndMessages(null);
         }

@@ -1,5 +1,9 @@
 package com.jc.flora.apps.component.audio.delegate;
 
+import com.jc.flora.apps.component.audio.model.MP3;
+
+import java.util.ArrayList;
+
 /**
  * 音频播放状态监听器
  * Created by Samurai on 2017/10/9.
@@ -49,5 +53,23 @@ public class AudioStatusListener {
 
     /** 音频缓冲结束时的回调 */
     public void onBufferingEnd(){}
+
+    /**
+     * 在选择前进行拦截，返回true表示拦截，false表示不拦截
+     * @param mp3List
+     * @param index
+     * @return 是否拦截，默认不拦截
+     */
+    public boolean interceptSelect(ArrayList<MP3> mp3List, int index){
+        return false;
+    }
+
+    /**
+     * 被拦截后的回调
+     * @param mp3List
+     * @param index
+     * @param flag
+     */
+    public void onSelectIntercepted(ArrayList<MP3> mp3List, int index, int flag){}
 
 }

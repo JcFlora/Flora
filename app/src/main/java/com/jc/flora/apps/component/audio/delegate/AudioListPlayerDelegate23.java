@@ -209,6 +209,12 @@ public class AudioListPlayerDelegate23 {
         }
 
         @Override
+        public void onStop() {
+            mIsPlaying = false;
+            mIvPlay.setImageResource(R.drawable.audio_bar_play);
+        }
+
+        @Override
         public void onProgress(int progress) {
             // 设置当前进度值
             mSbProgress.setProgress(progress);

@@ -16,35 +16,36 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.adapter.AudioListAdapter3;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.projects.AudioDetail26Activity;
-import com.jc.flora.apps.component.audio.service.Audio26Service;
+import com.jc.flora.apps.component.audio.projects.AudioDetail28Activity;
+import com.jc.flora.apps.component.audio.service.Audio28Service;
+import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate;
 import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
 
 import java.util.ArrayList;
 
 /**
- * Created by shijincheng on 2019/4/22.
+ * Created by shijincheng on 2019/4/24.
  */
 
-public class AudioListPlayerDelegate26 {
+public class AudioListPlayerDelegate28 {
 
     // mp3列表
     private static final ArrayList<MP3> MP3_LIST = new ArrayList<MP3>() {
         {
-            add(new MP3("话说明朝", "http://imagev2.xmcdn.com/group29/M0A/EF/E3/wKgJWVk9_IzwKhYSAALu_VmdTNU780.jpg", "http://fdfs.xmcdn.com/group33/M08/D9/53/wKgJTFmlRnbh_TYKAI7ECmC5Ar0312.mp3"));
-            add(new MP3("百思女神秀", "http://imagev2.xmcdn.com/group24/M03/B0/DF/wKgJMFiv-vDTK5vMAAF7QprBHfM982.jpg", "http://audio.xmcdn.com/group28/M08/53/44/wKgJXFlolI-h7V3tAJv65WyL-2w446.mp3"));
-            add(new MP3("欢乐江湖", "http://imagev2.xmcdn.com/group31/M08/C0/C1/wKgJSVl6t6yz7Uc_AAPh7XreoIY059.jpg", "http://audio.xmcdn.com/group60/M06/D4/23/wKgLeVy2irnRvgn8AIajOcTEqmw907.mp3"));
-            add(new MP3("万万妹想到", "http://imagev2.xmcdn.com/group46/M06/1D/E6/wKgKj1tzoYvT2vTaAAG4z2Hwi0o546.jpg", "http://aod.tx.xmcdn.com/group58/M0B/0F/24/wKgLc1y5nOzgvS3PAKoJOL7U_s4990.mp3"));
-            add(new MP3("爆笑相声", "http://fdfs.xmcdn.com/group34/M05/CD/8A/wKgJYVntnamR9f32AAfwumDq4eM178_mobile_large.jpg", "http://audio.xmcdn.com/group42/M08/93/BA/wKgJ81qY_HPC8A5_AGtb0aEwncA343.mp3"));
-            add(new MP3("每天一个心理知识", "http://fdfs.xmcdn.com/group41/M02/09/B6/wKgJ8lqTzluhjBw7AAGHo1SIL8A073_mobile_large.jpg", "http://aod.tx.xmcdn.com/group58/M01/5B/AA/wKgLc1y9ZZSwIEI_ABX7_5NHUIE189.mp3"));
-            add(new MP3("世界名人英文演讲", "http://imagev2.xmcdn.com/group44/M06/47/DA/wKgKkVsPo6uB84WPABR_5iGVCX8204.png", "http://audio.xmcdn.com/group59/M07/60/DD/wKgLely9mLuDau_4ACwyApwo5rI031.mp3"));
-            add(new MP3("悦读心时光", "http://imagev2.xmcdn.com/group21/M06/42/D0/wKgJLVs10eTi3kEcAAFR5Cec3Bc569.jpg", "http://aod.tx.xmcdn.com/group56/M05/11/3A/wKgLdlxQY2OC8NZcAEssQdU-UDA049.mp3"));
+            add(new MP3("话说明朝", "http://imagev2.xmcdn.com/group29/M0A/EF/E3/wKgJWVk9_IzwKhYSAALu_VmdTNU780.jpg", "http://fdfs.xmcdn.com/group33/M08/D9/53/wKgJTFmlRnbh_TYKAI7ECmC5Ar0312.mp3", true));
+            add(new MP3("百思女神秀", "http://imagev2.xmcdn.com/group24/M03/B0/DF/wKgJMFiv-vDTK5vMAAF7QprBHfM982.jpg", "http://audio.xmcdn.com/group28/M08/53/44/wKgJXFlolI-h7V3tAJv65WyL-2w446.mp3", true));
+            add(new MP3("欢乐江湖", "http://imagev2.xmcdn.com/group31/M08/C0/C1/wKgJSVl6t6yz7Uc_AAPh7XreoIY059.jpg", "http://audio.xmcdn.com/group60/M06/D4/23/wKgLeVy2irnRvgn8AIajOcTEqmw907.mp3", false));
+            add(new MP3("万万妹想到", "http://imagev2.xmcdn.com/group46/M06/1D/E6/wKgKj1tzoYvT2vTaAAG4z2Hwi0o546.jpg", "http://aod.tx.xmcdn.com/group58/M0B/0F/24/wKgLc1y5nOzgvS3PAKoJOL7U_s4990.mp3", false));
+            add(new MP3("爆笑相声", "http://fdfs.xmcdn.com/group34/M05/CD/8A/wKgJYVntnamR9f32AAfwumDq4eM178_mobile_large.jpg", "http://audio.xmcdn.com/group42/M08/93/BA/wKgJ81qY_HPC8A5_AGtb0aEwncA343.mp3", false));
+            add(new MP3("每天一个心理知识", "http://fdfs.xmcdn.com/group41/M02/09/B6/wKgJ8lqTzluhjBw7AAGHo1SIL8A073_mobile_large.jpg", "http://aod.tx.xmcdn.com/group58/M01/5B/AA/wKgLc1y9ZZSwIEI_ABX7_5NHUIE189.mp3", false));
+            add(new MP3("世界名人英文演讲", "http://imagev2.xmcdn.com/group44/M06/47/DA/wKgKkVsPo6uB84WPABR_5iGVCX8204.png", "http://audio.xmcdn.com/group59/M07/60/DD/wKgLely9mLuDau_4ACwyApwo5rI031.mp3", false));
+            add(new MP3("悦读心时光", "http://imagev2.xmcdn.com/group21/M06/42/D0/wKgJLVs10eTi3kEcAAFR5Cec3Bc569.jpg", "http://aod.tx.xmcdn.com/group56/M05/11/3A/wKgLdlxQY2OC8NZcAEssQdU-UDA049.mp3", false));
         }
     };
 
     private AppCompatActivity mActivity;
 
-    private AudioDelegate26 mDelegate;
+    private AudioDelegate28 mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 列表适配器
@@ -66,8 +67,11 @@ public class AudioListPlayerDelegate26 {
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
-    public AudioListPlayerDelegate26(AppCompatActivity activity) {
+    private ProgressDialogDelegate mProgressDialogDelegate;
+
+    public AudioListPlayerDelegate28(AppCompatActivity activity) {
         mActivity = activity;
+        mProgressDialogDelegate = new ProgressDialogDelegate(activity);
     }
 
     public void setLayoutAudioBar(View layoutAudioBar) {
@@ -164,7 +168,7 @@ public class AudioListPlayerDelegate26 {
     }
 
     private void initDelegate() {
-        Intent intent = new Intent(mActivity, Audio26Service.class);
+        Intent intent = new Intent(mActivity, Audio28Service.class);
         mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 
@@ -173,7 +177,7 @@ public class AudioListPlayerDelegate26 {
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mDelegate = (AudioDelegate26) service;
+            mDelegate = (AudioDelegate28) service;
             mDelegate.addAudioStatusListener(mAudioStatusListener);
             mDelegate.setMp3List(MP3_LIST);
         }
@@ -197,6 +201,7 @@ public class AudioListPlayerDelegate26 {
             mPbPlay.setMax(maxProgress);
             // 适配器同步索引和最大进度值
             mAdapter.setCurrentPlayIndexAndMax(index, maxProgress);
+            mProgressDialogDelegate.hideLoadingDialog();
         }
 
         @Override
@@ -226,10 +231,14 @@ public class AudioListPlayerDelegate26 {
             mAdapter.setCurrentProgress(mDelegate.getCurrentMp3Index(), progress);
         }
 
+        @Override
+        public void onSelectIntercepted(ArrayList<MP3> mp3List, int index) {
+            mProgressDialogDelegate.showLoadingDialog();
+        }
     };
 
     private void gotoAudioDetail(){
-        mActivity.startActivity(new Intent(mActivity, AudioDetail26Activity.class));
+        mActivity.startActivity(new Intent(mActivity, AudioDetail28Activity.class));
     }
 
 }

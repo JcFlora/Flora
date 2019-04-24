@@ -188,6 +188,12 @@ public class Audio11Activity extends AppCompatActivity {
         }
 
         @Override
+        public void onStop() {
+            mIsPlaying = false;
+            mBtnPlay.setImageResource(R.drawable.audio_play);
+        }
+
+        @Override
         public void onProgress(int progress) {
             // 设置当前进度值
             mSbProgress.setProgress(progress);

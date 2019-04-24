@@ -180,6 +180,10 @@ public class AudioDelegate16 extends Binder {
             mMediaPlayer.stop();
             mMediaPlayer.release();
             mMediaPlayer = null;
+            // 添加停止播放的回调
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onStop();
+            }
             mProgressRefreshHandler.removeCallbacksAndMessages(null);
         }
     }
