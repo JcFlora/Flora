@@ -10,11 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.RemoteViews;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.projects.Audio14Activity;
 
 /**
  * <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -30,13 +30,16 @@ public class AudioNotifierDelegate14 {
     public static final String EXTRA_PRE = "pre";
 
     private Service mService;
+    private Class<? extends AppCompatActivity> mActivityClass;
+
     private NotificationManager mNotificationManager;
-    private AudioDelegate13 mAudioDelegate;
+    private BaseAudioDelegate mAudioDelegate;
     // 是否是亮色主题
     private boolean mIsLightNotificationTheme;
 
-    public AudioNotifierDelegate14(Service service, AudioDelegate13 audioDelegate) {
+    public AudioNotifierDelegate14(Service service,Class<? extends AppCompatActivity> activityClass, BaseAudioDelegate audioDelegate) {
         mService = service;
+        mActivityClass = activityClass;
         mAudioDelegate = audioDelegate;
         initNotificationManager();
         addAudioStatusListener();
@@ -118,7 +121,7 @@ public class AudioNotifierDelegate14 {
             mNotificationManager.createNotificationChannel(channel);
         }
         mIsLightNotificationTheme = NotifierUtil.isLightNotificationTheme(mService);
-        Intent intent = new Intent(mService, Audio14Activity.class);
+        Intent intent = new Intent(mService, mActivityClass);
         intent.putExtra("notification", true);
         intent.setAction(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

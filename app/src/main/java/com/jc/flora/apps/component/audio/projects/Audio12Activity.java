@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate12;
+import com.jc.flora.apps.component.audio.service.Audio12Service;
 
 /**
  * Created by Samurai on 2017/10/10.
@@ -56,7 +57,7 @@ public class Audio12Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioPlayerDelegate12(this);
+        mDelegate = new AudioPlayerDelegate12(this, Audio12Service.class);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);

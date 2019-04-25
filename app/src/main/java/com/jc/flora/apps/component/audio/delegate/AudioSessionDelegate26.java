@@ -39,11 +39,11 @@ public class AudioSessionDelegate26 {
             | PlaybackStateCompat.ACTION_SEEK_TO;
 
     private Service mService;
-    private AudioDelegate26 mAudioDelegate;
+    private BaseAudioDelegate mAudioDelegate;
     private MediaSessionCompat mMediaSession;
     private int mPlaybackState = PlaybackStateCompat.STATE_PAUSED;
 
-    public AudioSessionDelegate26(Service service, AudioDelegate26 audioDelegate) {
+    public AudioSessionDelegate26(Service service, BaseAudioDelegate audioDelegate) {
         mService = service;
         mAudioDelegate = audioDelegate;
         addAudioStatusListener();

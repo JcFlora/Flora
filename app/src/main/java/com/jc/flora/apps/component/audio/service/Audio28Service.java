@@ -6,19 +6,21 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.jc.flora.apps.component.audio.delegate.AudioDelegate28;
-import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate28;
-import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate28;
-import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate28;
-import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate28;
+import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate16;
+import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate17;
+import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate26;
+import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate26;
 import com.jc.flora.apps.component.audio.delegate.AudioSourceInterceptDelegate28;
+import com.jc.flora.apps.component.audio.delegate.BaseAudioDelegate;
+import com.jc.flora.apps.component.audio.projects.AudioDetail28Activity;
 
 public class Audio28Service extends Service {
 
-    private AudioDelegate28 mAudioDelegate;
-    private AudioNotifierDelegate28 mNotifierDelegate;
-    private AudioSessionDelegate28 mSessionDelegate;
-    private AudioFocusDelegate28 mFocusDelegate;
-    private AudioNoisyDelegate28 mNoisyDelegate;
+    private BaseAudioDelegate mAudioDelegate;
+    private AudioNotifierDelegate26 mNotifierDelegate;
+    private AudioSessionDelegate26 mSessionDelegate;
+    private AudioFocusDelegate16 mFocusDelegate;
+    private AudioNoisyDelegate17 mNoisyDelegate;
     private AudioSourceInterceptDelegate28 mSourceInterceptDelegate;
 
     /**
@@ -41,10 +43,10 @@ public class Audio28Service extends Service {
     public void onCreate() {
         super.onCreate();
         mAudioDelegate = new AudioDelegate28(this);
-        mNotifierDelegate = new AudioNotifierDelegate28(this, mAudioDelegate);
-        mSessionDelegate = new AudioSessionDelegate28(this, mAudioDelegate);
-        mFocusDelegate = new AudioFocusDelegate28(this, mAudioDelegate);
-        mNoisyDelegate = new AudioNoisyDelegate28(this, mAudioDelegate);
+        mNotifierDelegate = new AudioNotifierDelegate26(this, AudioDetail28Activity.class, mAudioDelegate);
+        mSessionDelegate = new AudioSessionDelegate26(this, mAudioDelegate);
+        mFocusDelegate = new AudioFocusDelegate16(this, mAudioDelegate);
+        mNoisyDelegate = new AudioNoisyDelegate17(this, mAudioDelegate);
         mSourceInterceptDelegate = new AudioSourceInterceptDelegate28(mAudioDelegate);
     }
 

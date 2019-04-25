@@ -2,7 +2,6 @@ package com.jc.flora.apps.component.audio.delegate;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -32,7 +31,7 @@ import java.util.Random;
 /**
  * Created by Samurai on 2019/4/19.
  */
-public class AudioDelegate25 extends Binder {
+public class AudioDelegate25 extends BaseAudioDelegate {
 
     /** 快进快退时间间隔：15秒 */
     private static final int FORWARD_POSITION = 15_000;

@@ -8,9 +8,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioDetailPlayerDelegate24;
 import com.jc.flora.apps.component.audio.delegate.AudioDetailPlayerDelegate25;
 import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate18;
+import com.jc.flora.apps.component.audio.service.Audio25Service;
 
 /**
  * Created by Samurai on 2019/4/20.
@@ -76,7 +76,7 @@ public class AudioDetail25Activity extends AppCompatActivity {
         mVolumeDelegate.setSbVolume(mSbVolume);
         mVolumeDelegate.init();
 
-        mDelegate = new AudioDetailPlayerDelegate25(this);
+        mDelegate = new AudioDetailPlayerDelegate25(this, Audio25Service.class);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);

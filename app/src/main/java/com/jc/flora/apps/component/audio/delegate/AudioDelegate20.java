@@ -2,7 +2,6 @@ package com.jc.flora.apps.component.audio.delegate;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -31,7 +30,7 @@ import java.util.Random;
 /**
  * Created by Samurai on 2018/1/7.
  */
-public class AudioDelegate20 extends Binder {
+public class AudioDelegate20 extends BaseAudioDelegate {
 
     // mp3列表
     private ArrayList<MP3> mMp3List;

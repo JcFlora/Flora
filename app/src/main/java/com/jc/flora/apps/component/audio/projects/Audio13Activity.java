@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate13;
+import com.jc.flora.apps.component.audio.service.Audio13Service;
 
 /**
  * Created by Samurai on 2017/10/15.
@@ -56,7 +57,7 @@ public class Audio13Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioPlayerDelegate13(this);
+        mDelegate = new AudioPlayerDelegate13(this, Audio13Service.class);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);

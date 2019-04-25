@@ -1,6 +1,7 @@
 package com.jc.flora.apps.component.audio.delegate;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -16,8 +17,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.adapter.AudioListAdapter3;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.projects.AudioDetail26Activity;
-import com.jc.flora.apps.component.audio.service.Audio26Service;
 import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
 
 import java.util.ArrayList;
@@ -43,8 +42,10 @@ public class AudioListPlayerDelegate26 {
     };
 
     private AppCompatActivity mActivity;
+    private Class<? extends Service> mServiceClass;
+    private Class<? extends AppCompatActivity> mDetailActivityClass;
 
-    private AudioDelegate26 mDelegate;
+    private BaseAudioDelegate mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 列表适配器
@@ -66,8 +67,10 @@ public class AudioListPlayerDelegate26 {
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
-    public AudioListPlayerDelegate26(AppCompatActivity activity) {
+    public AudioListPlayerDelegate26(AppCompatActivity activity, Class<? extends Service> serviceClass, Class<? extends AppCompatActivity> detailActivityClass) {
         mActivity = activity;
+        mServiceClass = serviceClass;
+        mDetailActivityClass = detailActivityClass;
     }
 
     public void setLayoutAudioBar(View layoutAudioBar) {
@@ -164,7 +167,7 @@ public class AudioListPlayerDelegate26 {
     }
 
     private void initDelegate() {
-        Intent intent = new Intent(mActivity, Audio26Service.class);
+        Intent intent = new Intent(mActivity, mServiceClass);
         mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 
@@ -229,7 +232,9 @@ public class AudioListPlayerDelegate26 {
     };
 
     private void gotoAudioDetail(){
-        mActivity.startActivity(new Intent(mActivity, AudioDetail26Activity.class));
+        if(mDetailActivityClass != null){
+            mActivity.startActivity(new Intent(mActivity, mDetailActivityClass));
+        }
     }
 
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioDetailPlayerDelegate24;
 import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate18;
+import com.jc.flora.apps.component.audio.service.Audio24Service;
 
 /**
  * Created by Samurai on 2019/4/19.
@@ -72,7 +73,7 @@ public class AudioDetail24Activity extends AppCompatActivity {
         mVolumeDelegate.setSbVolume(mSbVolume);
         mVolumeDelegate.init();
 
-        mDelegate = new AudioDetailPlayerDelegate24(this);
+        mDelegate = new AudioDetailPlayerDelegate24(this, Audio24Service.class);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);

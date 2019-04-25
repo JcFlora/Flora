@@ -1,6 +1,7 @@
 package com.jc.flora.apps.component.audio.delegate;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.service.Audio24Service;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 import java.text.SimpleDateFormat;
@@ -46,8 +46,9 @@ public class AudioDetailPlayerDelegate24 {
     };
 
     private AppCompatActivity mActivity;
+    private Class<? extends Service> mServiceClass;
 
-    private AudioDelegate24 mDelegate;
+    private BaseAudioDelegate mDelegate;
     // 当前mp3音频封面图
     private ImageView mIvCover;
     // 当前播放进度时间显示
@@ -76,8 +77,9 @@ public class AudioDetailPlayerDelegate24 {
     // 下一个播放模式
     private AudioPlayMode mNextMode = AudioPlayMode.SINGLE;
 
-    public AudioDetailPlayerDelegate24(AppCompatActivity activity) {
+    public AudioDetailPlayerDelegate24(AppCompatActivity activity, Class<? extends Service> serviceClass) {
         mActivity = activity;
+        mServiceClass = serviceClass;
     }
 
     public void setIvCover(ImageView ivCover) {
@@ -203,7 +205,7 @@ public class AudioDetailPlayerDelegate24 {
     }
 
     private void initDelegate() {
-        Intent intent = new Intent(mActivity, Audio24Service.class);
+        Intent intent = new Intent(mActivity, mServiceClass);
         mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 
@@ -212,7 +214,7 @@ public class AudioDetailPlayerDelegate24 {
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mDelegate = (AudioDelegate24) service;
+            mDelegate = (BaseAudioDelegate) service;
             mDelegate.addAudioStatusListener(mAudioStatusListener);
             mDelegate.syncMp3List();
         }

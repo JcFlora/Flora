@@ -268,8 +268,8 @@ class AudioActivity : AppCompatActivity() {
     private val project29: Project
         get() {
             val project = Project()
-            project.projectName = "音频2.9：添加错误回调与无网络检测功能"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "音频2.9：添加无网络拦截与错误回调"
+            project.targetActivity = AudioList29Activity::class.java
             return project
         }
 

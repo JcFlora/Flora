@@ -7,8 +7,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate17;
+import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate13;
 import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate18;
+import com.jc.flora.apps.component.audio.service.Audio17Service;
 
 /**
  * Created by Samurai on 2017/10/22.
@@ -16,7 +17,7 @@ import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate18;
 public class Audio18Activity extends AppCompatActivity {
 
     private AudioVolumeDelegate18 mVolumeDelegate;
-    private AudioPlayerDelegate17 mDelegate;
+    private AudioPlayerDelegate13 mDelegate;
     // 音量进度条
     private SeekBar mSbVolume;
     // 当前mp3音频封面图
@@ -65,7 +66,7 @@ public class Audio18Activity extends AppCompatActivity {
         mVolumeDelegate.setSbVolume(mSbVolume);
         mVolumeDelegate.init();
 
-        mDelegate = new AudioPlayerDelegate17(this);
+        mDelegate = new AudioPlayerDelegate13(this, Audio17Service.class);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);

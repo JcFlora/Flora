@@ -7,15 +7,16 @@ import android.os.IBinder;
 import com.jc.flora.apps.component.audio.delegate.AudioDelegate16;
 import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate16;
 import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate17;
-import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate16;
-import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate17;
-import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate16;
+import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate14;
+import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate15;
+import com.jc.flora.apps.component.audio.delegate.BaseAudioDelegate;
+import com.jc.flora.apps.component.audio.projects.Audio17Activity;
 
 public class Audio17Service extends Service {
 
-    private AudioDelegate16 mAudioDelegate;
-    private AudioNotifierDelegate17 mNotifierDelegate;
-    private AudioSessionDelegate16 mSessionDelegate;
+    private BaseAudioDelegate mAudioDelegate;
+    private AudioNotifierDelegate14 mNotifierDelegate;
+    private AudioSessionDelegate15 mSessionDelegate;
     private AudioFocusDelegate16 mFocusDelegate;
     private AudioNoisyDelegate17 mNoisyDelegate;
 
@@ -23,8 +24,8 @@ public class Audio17Service extends Service {
     public void onCreate() {
         super.onCreate();
         mAudioDelegate = new AudioDelegate16(this);
-        mNotifierDelegate = new AudioNotifierDelegate17(this, mAudioDelegate);
-        mSessionDelegate = new AudioSessionDelegate16(this, mAudioDelegate);
+        mNotifierDelegate = new AudioNotifierDelegate14(this, Audio17Activity.class, mAudioDelegate);
+        mSessionDelegate = new AudioSessionDelegate15(this, mAudioDelegate);
         mFocusDelegate = new AudioFocusDelegate16(this, mAudioDelegate);
         mNoisyDelegate = new AudioNoisyDelegate17(this, mAudioDelegate);
     }

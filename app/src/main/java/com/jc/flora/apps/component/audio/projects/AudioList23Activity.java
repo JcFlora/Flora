@@ -71,7 +71,7 @@ public class AudioList23Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioListPlayerDelegate23(this);
+        mDelegate = new AudioListPlayerDelegate23(this, Audio22Service.class, AudioDetail22Activity.class);
         mDelegate.setRvAudioList(mRvAudioList);
         mDelegate.setLayoutAudioBar(mLayoutAudioBar);
         mDelegate.setIvCover(mIvAudioBarCover);

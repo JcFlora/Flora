@@ -11,7 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate24;
+import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate23;
 import com.jc.flora.apps.component.audio.service.Audio24Service;
 import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
 
@@ -20,7 +20,7 @@ import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
  */
 public class AudioList24Activity extends AppCompatActivity {
 
-    private AudioListPlayerDelegate24 mDelegate;
+    private AudioListPlayerDelegate23 mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 播放条
@@ -71,7 +71,7 @@ public class AudioList24Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioListPlayerDelegate24(this);
+        mDelegate = new AudioListPlayerDelegate23(this, Audio24Service.class, AudioDetail24Activity.class);
         mDelegate.setRvAudioList(mRvAudioList);
         mDelegate.setLayoutAudioBar(mLayoutAudioBar);
         mDelegate.setIvCover(mIvAudioBarCover);

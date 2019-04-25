@@ -1,6 +1,7 @@
 package com.jc.flora.apps.component.audio.delegate;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -16,8 +17,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.adapter.AudioListAdapter2;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.projects.AudioDetail22Activity;
-import com.jc.flora.apps.component.audio.service.Audio22Service;
 import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
 
 import java.util.ArrayList;
@@ -40,8 +39,10 @@ public class AudioListPlayerDelegate23 {
     };
 
     private AppCompatActivity mActivity;
+    private Class<? extends Service> mServiceClass;
+    private Class<? extends AppCompatActivity> mDetailActivityClass;
 
-    private AudioDelegate22 mDelegate;
+    private BaseAudioDelegate mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 列表适配器
@@ -63,8 +64,10 @@ public class AudioListPlayerDelegate23 {
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
-    public AudioListPlayerDelegate23(AppCompatActivity activity) {
+    public AudioListPlayerDelegate23(AppCompatActivity activity, Class<? extends Service> serviceClass, Class<? extends AppCompatActivity> detailActivityClass) {
         mActivity = activity;
+        mServiceClass = serviceClass;
+        mDetailActivityClass = detailActivityClass;
     }
 
     public void setLayoutAudioBar(View layoutAudioBar) {
@@ -161,7 +164,7 @@ public class AudioListPlayerDelegate23 {
     }
 
     private void initDelegate() {
-        Intent intent = new Intent(mActivity, Audio22Service.class);
+        Intent intent = new Intent(mActivity, mServiceClass);
         mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 
@@ -170,7 +173,7 @@ public class AudioListPlayerDelegate23 {
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mDelegate = (AudioDelegate22) service;
+            mDelegate = (BaseAudioDelegate) service;
             mDelegate.addAudioStatusListener(mAudioStatusListener);
             mDelegate.setMp3List(MP3_LIST);
         }
@@ -226,7 +229,9 @@ public class AudioListPlayerDelegate23 {
     };
 
     private void gotoAudioDetail(){
-        mActivity.startActivity(new Intent(mActivity, AudioDetail22Activity.class));
+        if(mDetailActivityClass != null){
+            mActivity.startActivity(new Intent(mActivity, mDetailActivityClass));
+        }
     }
 
 }

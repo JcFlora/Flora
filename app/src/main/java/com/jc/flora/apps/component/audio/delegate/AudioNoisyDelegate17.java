@@ -14,10 +14,10 @@ import android.media.AudioManager;
 public class AudioNoisyDelegate17 {
 
     private Service mService;
-    private AudioDelegate16 mAudioDelegate;
+    private BaseAudioDelegate mAudioDelegate;
     private boolean mIsReceiverRegistered = false;
 
-    public AudioNoisyDelegate17(Service service, AudioDelegate16 audioDelegate) {
+    public AudioNoisyDelegate17(Service service, BaseAudioDelegate audioDelegate) {
         mService = service;
         mAudioDelegate = audioDelegate;
         addAudioStatusListener();

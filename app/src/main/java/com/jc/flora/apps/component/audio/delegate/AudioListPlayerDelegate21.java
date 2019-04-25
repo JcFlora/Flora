@@ -1,6 +1,7 @@
 package com.jc.flora.apps.component.audio.delegate;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -16,7 +17,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.adapter.AudioListAdapter;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.service.Audio21Service;
 
 import java.util.ArrayList;
 
@@ -38,8 +38,10 @@ public class AudioListPlayerDelegate21 {
     };
 
     private AppCompatActivity mActivity;
+    private Class<? extends Service> mServiceClass;
+    private Class<? extends AppCompatActivity> mDetailActivityClass;
 
-    private AudioDelegate20 mDelegate;
+    private BaseAudioDelegate mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 播放条
@@ -55,8 +57,10 @@ public class AudioListPlayerDelegate21 {
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
-    public AudioListPlayerDelegate21(AppCompatActivity activity) {
+    public AudioListPlayerDelegate21(AppCompatActivity activity, Class<? extends Service> serviceClass, Class<? extends AppCompatActivity> detailActivityClass) {
         mActivity = activity;
+        mServiceClass = serviceClass;
+        mDetailActivityClass = detailActivityClass;
     }
 
     public void setLayoutAudioBar(View layoutAudioBar) {
@@ -145,7 +149,7 @@ public class AudioListPlayerDelegate21 {
     }
 
     private void initDelegate() {
-        Intent intent = new Intent(mActivity, Audio21Service.class);
+        Intent intent = new Intent(mActivity, mServiceClass);
         mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 
@@ -154,7 +158,7 @@ public class AudioListPlayerDelegate21 {
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mDelegate = (AudioDelegate20) service;
+            mDelegate = (BaseAudioDelegate) service;
             mDelegate.addAudioStatusListener(mAudioStatusListener);
             mDelegate.setMp3List(MP3_LIST);
         }
@@ -204,6 +208,9 @@ public class AudioListPlayerDelegate21 {
     };
 
     private void gotoAudioDetail(){
+        if(mDetailActivityClass != null){
+            mActivity.startActivity(new Intent(mActivity, mDetailActivityClass));
+        }
     }
 
 }

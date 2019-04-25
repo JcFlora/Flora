@@ -6,18 +6,20 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.jc.flora.apps.component.audio.delegate.AudioDelegate22;
-import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate22;
-import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate22;
-import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate22;
-import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate22;
+import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate16;
+import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate17;
+import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate14;
+import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate15;
+import com.jc.flora.apps.component.audio.delegate.BaseAudioDelegate;
+import com.jc.flora.apps.component.audio.projects.AudioDetail22Activity;
 
 public class Audio22Service extends Service {
 
-    private AudioDelegate22 mAudioDelegate;
-    private AudioNotifierDelegate22 mNotifierDelegate;
-    private AudioSessionDelegate22 mSessionDelegate;
-    private AudioFocusDelegate22 mFocusDelegate;
-    private AudioNoisyDelegate22 mNoisyDelegate;
+    private BaseAudioDelegate mAudioDelegate;
+    private AudioNotifierDelegate14 mNotifierDelegate;
+    private AudioSessionDelegate15 mSessionDelegate;
+    private AudioFocusDelegate16 mFocusDelegate;
+    private AudioNoisyDelegate17 mNoisyDelegate;
 
     /**
      * 启动当前Service，需要在bind之前调用
@@ -39,10 +41,10 @@ public class Audio22Service extends Service {
     public void onCreate() {
         super.onCreate();
         mAudioDelegate = new AudioDelegate22(this);
-        mNotifierDelegate = new AudioNotifierDelegate22(this, mAudioDelegate);
-        mSessionDelegate = new AudioSessionDelegate22(this, mAudioDelegate);
-        mFocusDelegate = new AudioFocusDelegate22(this, mAudioDelegate);
-        mNoisyDelegate = new AudioNoisyDelegate22(this, mAudioDelegate);
+        mNotifierDelegate = new AudioNotifierDelegate14(this, AudioDetail22Activity.class, mAudioDelegate);
+        mSessionDelegate = new AudioSessionDelegate15(this, mAudioDelegate);
+        mFocusDelegate = new AudioFocusDelegate16(this, mAudioDelegate);
+        mNoisyDelegate = new AudioNoisyDelegate17(this, mAudioDelegate);
     }
 
     @Override

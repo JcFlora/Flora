@@ -5,28 +5,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.jc.flora.apps.component.audio.delegate.AudioDelegate26;
+import com.jc.flora.apps.component.audio.delegate.AudioDelegate29;
 import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate16;
 import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate17;
 import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate26;
 import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate26;
+import com.jc.flora.apps.component.audio.delegate.AudioSourceInterceptDelegate29;
 import com.jc.flora.apps.component.audio.delegate.BaseAudioDelegate;
-import com.jc.flora.apps.component.audio.projects.AudioDetail26Activity;
+import com.jc.flora.apps.component.audio.projects.AudioDetail29Activity;
 
-public class Audio26Service extends Service {
+public class Audio29Service extends Service {
 
     private BaseAudioDelegate mAudioDelegate;
     private AudioNotifierDelegate26 mNotifierDelegate;
     private AudioSessionDelegate26 mSessionDelegate;
     private AudioFocusDelegate16 mFocusDelegate;
     private AudioNoisyDelegate17 mNoisyDelegate;
+    private AudioSourceInterceptDelegate29 mSourceInterceptDelegate;
 
     /**
      * 启动当前Service，需要在bind之前调用
      * @param context
      */
     public static void start(Context context){
-        context.startService(new Intent(context, Audio26Service.class));
+        context.startService(new Intent(context, Audio29Service.class));
     }
 
     /**
@@ -34,17 +36,18 @@ public class Audio26Service extends Service {
      * @param context
      */
     public static void stop(Context context){
-        context.stopService(new Intent(context, Audio26Service.class));
+        context.stopService(new Intent(context, Audio29Service.class));
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mAudioDelegate = new AudioDelegate26(this);
-        mNotifierDelegate = new AudioNotifierDelegate26(this, AudioDetail26Activity.class, mAudioDelegate);
+        mAudioDelegate = new AudioDelegate29(this);
+        mNotifierDelegate = new AudioNotifierDelegate26(this, AudioDetail29Activity.class, mAudioDelegate);
         mSessionDelegate = new AudioSessionDelegate26(this, mAudioDelegate);
         mFocusDelegate = new AudioFocusDelegate16(this, mAudioDelegate);
         mNoisyDelegate = new AudioNoisyDelegate17(this, mAudioDelegate);
+        mSourceInterceptDelegate = new AudioSourceInterceptDelegate29(this, mAudioDelegate);
     }
 
     @Override
@@ -59,6 +62,7 @@ public class Audio26Service extends Service {
         mSessionDelegate.release();
         mFocusDelegate.release();
         mNoisyDelegate.release();
+        mSourceInterceptDelegate.release();
         mAudioDelegate.release();
     }
 

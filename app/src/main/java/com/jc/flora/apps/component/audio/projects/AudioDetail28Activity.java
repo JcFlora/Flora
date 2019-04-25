@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioDetailPlayerDelegate28;
 import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate18;
+import com.jc.flora.apps.component.audio.service.Audio28Service;
 
 /**
  * Created by Samurai on 2019/4/24.
@@ -79,7 +80,7 @@ public class AudioDetail28Activity extends AppCompatActivity {
         mVolumeDelegate.setSbVolume(mSbVolume);
         mVolumeDelegate.init();
 
-        mDelegate = new AudioDetailPlayerDelegate28(this);
+        mDelegate = new AudioDetailPlayerDelegate28(this, Audio28Service.class);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);

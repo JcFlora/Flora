@@ -7,14 +7,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate16;
+import com.jc.flora.apps.component.audio.delegate.AudioPlayerDelegate13;
+import com.jc.flora.apps.component.audio.service.Audio16Service;
 
 /**
  * Created by Samurai on 2017/10/16.
  */
 public class Audio16Activity extends AppCompatActivity {
 
-    private AudioPlayerDelegate16 mDelegate;
+    private AudioPlayerDelegate13 mDelegate;
     // 当前mp3音频封面图
     private ImageView mIvCover;
     // 当前播放进度时间显示
@@ -56,7 +57,7 @@ public class Audio16Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioPlayerDelegate16(this);
+        mDelegate = new AudioPlayerDelegate13(this, Audio16Service.class);
         mDelegate.setIvCover(mIvCover);
         mDelegate.setTvCurrentTime(mTvCurrentTime);
         mDelegate.setSbProgress(mSbProgress);

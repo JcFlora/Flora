@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate21;
+import com.jc.flora.apps.component.audio.service.Audio21Service;
 
 /**
  * Created by Samurai on 2019/3/21.
@@ -57,7 +58,7 @@ public class AudioList21Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioListPlayerDelegate21(this);
+        mDelegate = new AudioListPlayerDelegate21(this, Audio21Service.class, null);
         mDelegate.setRvAudioList(mRvAudioList);
         mDelegate.setLayoutAudioBar(mLayoutAudioBar);
         mDelegate.setIvCover(mIvAudioBarCover);

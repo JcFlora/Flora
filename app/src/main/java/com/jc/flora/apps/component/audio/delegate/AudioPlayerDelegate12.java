@@ -1,6 +1,7 @@
 package com.jc.flora.apps.component.audio.delegate;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.audio.service.Audio12Service;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 import java.text.SimpleDateFormat;
@@ -46,6 +46,7 @@ public class AudioPlayerDelegate12 {
     };
 
     private AppCompatActivity mActivity;
+    private Class<? extends Service> mServiceClass;
 
     private AudioDelegate12 mDelegate;
     // 当前mp3音频封面图
@@ -71,8 +72,9 @@ public class AudioPlayerDelegate12 {
     // 下一个播放模式
     private AudioPlayMode mNextMode = AudioPlayMode.SINGLE;
 
-    public AudioPlayerDelegate12(AppCompatActivity activity) {
+    public AudioPlayerDelegate12(AppCompatActivity activity, Class<? extends Service> serviceClass) {
         mActivity = activity;
+        mServiceClass = serviceClass;
     }
 
     public void setIvCover(ImageView ivCover) {
@@ -177,7 +179,7 @@ public class AudioPlayerDelegate12 {
     }
 
     private void initDelegate() {
-        Intent intent = new Intent(mActivity, Audio12Service.class);
+        Intent intent = new Intent(mActivity, mServiceClass);
         mActivity.bindService(intent, mConnection, Activity.BIND_AUTO_CREATE);
     }
 

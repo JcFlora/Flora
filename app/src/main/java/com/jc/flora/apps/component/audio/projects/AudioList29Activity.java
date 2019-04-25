@@ -11,16 +11,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate26;
-import com.jc.flora.apps.component.audio.service.Audio27Service;
+import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate29;
+import com.jc.flora.apps.component.audio.service.Audio29Service;
 import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
 
 /**
- * Created by Samurai on 2019/4/23.
+ * Created by Samurai on 2019/4/24.
  */
-public class AudioList27Activity extends AppCompatActivity {
+public class AudioList29Activity extends AppCompatActivity {
 
-    private AudioListPlayerDelegate26 mDelegate;
+    private AudioListPlayerDelegate29 mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 播放条
@@ -42,7 +42,7 @@ public class AudioList27Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         startAudioService();
-        setTitle("添加loading和缓冲回调处理");
+        setTitle("添加无网络拦截与错误回调");
         setContentView(R.layout.activity_audio_list23);
         findViews();
         initViews();
@@ -51,7 +51,7 @@ public class AudioList27Activity extends AppCompatActivity {
 
     private void startAudioService(){
         // 实际项目中请在Application的onCreate方法中调用此方法
-        Audio27Service.start(this);
+        Audio29Service.start(this);
     }
 
     private void findViews(){
@@ -71,7 +71,7 @@ public class AudioList27Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioListPlayerDelegate26(this, Audio27Service.class, AudioDetail27Activity.class);
+        mDelegate = new AudioListPlayerDelegate29(this, Audio29Service.class, AudioDetail29Activity.class);
         mDelegate.setRvAudioList(mRvAudioList);
         mDelegate.setLayoutAudioBar(mLayoutAudioBar);
         mDelegate.setIvCover(mIvAudioBarCover);
@@ -92,7 +92,7 @@ public class AudioList27Activity extends AppCompatActivity {
 
     private void stopAudioService(){
         // 实际项目中请在应用退出时调用此方法
-        Audio27Service.stop(this);
+        Audio29Service.stop(this);
     }
 
 }

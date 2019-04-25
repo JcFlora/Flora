@@ -70,6 +70,9 @@ public class AudioStatusListener {
      * @param index
      * @param flag
      */
-    public void onSelectIntercepted(ArrayList<MP3> mp3List, int index, int flag){}
+    public void onIntercepted(ArrayList<MP3> mp3List, int index, int flag){}
+
+    /** 播放出错时的回调 */
+    public void onError(){}
 
 }

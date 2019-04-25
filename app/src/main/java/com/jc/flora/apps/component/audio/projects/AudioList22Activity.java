@@ -11,7 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate22;
+import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate21;
 import com.jc.flora.apps.component.audio.service.Audio22Service;
 
 /**
@@ -19,7 +19,7 @@ import com.jc.flora.apps.component.audio.service.Audio22Service;
  */
 public class AudioList22Activity extends AppCompatActivity {
 
-    private AudioListPlayerDelegate22 mDelegate;
+    private AudioListPlayerDelegate21 mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 播放条
@@ -64,7 +64,7 @@ public class AudioList22Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioListPlayerDelegate22(this);
+        mDelegate = new AudioListPlayerDelegate21(this, Audio22Service.class, AudioDetail22Activity.class);
         mDelegate.setRvAudioList(mRvAudioList);
         mDelegate.setLayoutAudioBar(mLayoutAudioBar);
         mDelegate.setIvCover(mIvAudioBarCover);
