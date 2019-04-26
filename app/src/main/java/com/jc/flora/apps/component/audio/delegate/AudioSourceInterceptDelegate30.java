@@ -95,4 +95,8 @@ public class AudioSourceInterceptDelegate30 {
         sUserAgreeMobile = false;
     }
 
+    public static boolean canPlayInMobileNet(){
+        return IGNORE_MOBILE_CHECK || sUserAgreeMobile;
+    }
+
 }

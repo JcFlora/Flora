@@ -123,7 +123,6 @@ public abstract class BasePlayer {
     }
 
     protected void callbackWhenError(){
-
         // 添加播放出错的回调
         for (VideoStatusListener l : mVideoStatusListeners) {
             l.onError();

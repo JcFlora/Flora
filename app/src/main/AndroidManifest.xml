@@ -874,6 +874,12 @@
             android:name=".apps.component.audio.projects.AudioDetail30Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.component.audio.projects.AudioList31Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.audio.projects.AudioDetail31Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.record.RecordActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -1230,6 +1236,8 @@
         <service android:name=".apps.component.audio.service.Audio28Service" />
         <service android:name=".apps.component.audio.service.Audio29Service" />
         <service android:name=".apps.component.audio.service.Audio30Service" />
+        <service android:name=".apps.component.audio.service.Audio31Service" />
+
         <service android:name=".apps.ui.dialog.projects.TestService" />
 
         <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >

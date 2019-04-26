@@ -285,7 +285,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频3.1：抽离ExoPlayer播放引擎"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList31Activity::class.java
             return project
         }
 

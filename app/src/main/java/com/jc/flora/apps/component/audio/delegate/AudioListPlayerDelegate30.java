@@ -304,7 +304,7 @@ public class AudioListPlayerDelegate30 {
         }
     }
 
-    private void showAskUseMobileDialog(ArrayList<MP3> mp3List, int index){
+    private void showAskUseMobileDialog(ArrayList<MP3> mp3List, final int index){
         String audioCapacity = mp3List.get(index).audioCapacity;
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setTitle("检测到移动网络");
@@ -312,9 +312,9 @@ public class AudioListPlayerDelegate30 {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                AudioSourceInterceptDelegate30.sUserAgreeMobile = true;
-                mDelegate.selectAudio(mDelegate.getCurrentMp3Index());
                 dialog.dismiss();
+                AudioSourceInterceptDelegate30.sUserAgreeMobile = true;
+                mDelegate.selectAudio(index);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

@@ -1,13 +1,13 @@
-package com.jc.flora.apps.component.video.player;
+package com.jc.flora.apps.component.audio.player;
 
 import android.content.Context;
 import android.net.Uri;
-import android.view.Surface;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
@@ -28,14 +28,15 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.jc.flora.apps.component.audio.delegate.AudioEventListener;
+import com.jc.flora.apps.component.audio.delegate.AudioPlaySpeed;
 
 /**
- * Created by Shijincheng on 2019/4/3.
+ * Created by Shijincheng on 2019/4/26.
  */
 
-public class ExoMediaPlayer extends BasePlayer {
+public class ExoAudioPlayer extends BaseAudioPlayer {
 
-    private final String TAG = "ExoMediaPlayer";
+    private final String TAG = "ExoAudioPlayer";
 
     private SimpleExoPlayer mExoPlayer;
 
@@ -67,7 +68,8 @@ public class ExoMediaPlayer extends BasePlayer {
 
     @Override
     public int getCurrentPosition() {
-        return (int) mExoPlayer.getCurrentPosition();
+        int position = (int) mExoPlayer.getCurrentPosition();
+        return position < 0 ? 0 : position;
     }
 
     @Override
@@ -86,6 +88,11 @@ public class ExoMediaPlayer extends BasePlayer {
     }
 
     @Override
+    public void stop() {
+        mExoPlayer.stop();
+    }
+
+    @Override
     public void seekTo(int msc) {
         mExoPlayer.seekTo(msc);
     }
@@ -101,9 +108,18 @@ public class ExoMediaPlayer extends BasePlayer {
         callbackWhenStop();
     }
 
-    @Override
-    public void setSurface(Surface surface) {
-        mExoPlayer.setVideoSurface(surface);
+    /**
+     * 倍速播放功能
+     *
+     * @param audioPlaySpeed
+     */
+    public void setSpeed(AudioPlaySpeed audioPlaySpeed) {
+        if (available()) {
+            PlaybackParameters parameters = new PlaybackParameters(audioPlaySpeed.value(), 1f);
+            mExoPlayer.setPlaybackParameters(parameters);
+        }
+        // 设置播放速度时回调
+        callbackWhenSpeedSelect(audioPlaySpeed.index());
     }
 
     @Override
@@ -137,14 +153,13 @@ public class ExoMediaPlayer extends BasePlayer {
         }
     }
 
-    private AudioEventListener mAudioEventListener = new AudioEventListener(){
-
+    private AudioEventListener mAudioEventListener = new AudioEventListener() {
         @Override
         public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
             long duration = mExoPlayer.getDuration();
-            if(mExoPlayer.isLoading() && duration > 0){
+            if (mExoPlayer.isLoading() && duration > 0) {
                 if(mOnPreparedListener != null){
-                    mOnPreparedListener.onPrepared(ExoMediaPlayer.this);
+                    mOnPreparedListener.onPrepared(ExoAudioPlayer.this);
                 }
             }
         }
@@ -159,33 +174,37 @@ public class ExoMediaPlayer extends BasePlayer {
 
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-            if(mIsPreparing){
-                switch (playbackState){
+            if (mIsPreparing) {
+                switch (playbackState) {
                     case ExoPlayer.STATE_READY:
                         mIsPreparing = false;
+                        // 添加准备结束的回调
                         callbackWhenPrepareEnd();
                         break;
                 }
             }
-            if(mIsBuffering){
-                switch (playbackState){
+            if (mIsBuffering) {
+                switch (playbackState) {
                     case ExoPlayer.STATE_READY:
                     case ExoPlayer.STATE_ENDED:
                         mIsBuffering = false;
+                        // 添加缓冲结束的回调
                         callbackWhenBufferingEnd();
                         break;
                 }
             }
-            if(!mIsPreparing){
-                switch (playbackState){
+            if (!mIsPreparing) {
+                switch (playbackState) {
                     case ExoPlayer.STATE_BUFFERING:
                         mIsBuffering = true;
+                        // 添加缓冲开始的回调
                         callbackWhenBufferingStart();
                         break;
                     case ExoPlayer.STATE_ENDED:
-                        callbackWhenComplete();
-                        mExoPlayer.setPlayWhenReady(false);
-                        mExoPlayer.seekTo(0);
+                        // 播放完成自动播放下一首
+                        if(mPlayNextBridge != null){
+                            mPlayNextBridge.playNextAudio();
+                        }
                         break;
                 }
             }
@@ -195,6 +214,8 @@ public class ExoMediaPlayer extends BasePlayer {
         public void onPlayerError(ExoPlaybackException error) {
             // 添加播放出错的回调
             callbackWhenError();
+            // 出错之后，要恢复初始状态
+            release();
         }
     };
 

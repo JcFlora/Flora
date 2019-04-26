@@ -391,9 +391,22 @@ public class AudioDetailPlayerDelegate30 {
         builder.setTitle("选择歌曲");
         builder.setItems(ITEMS, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, final int which) {
                 dialog.dismiss();
-                mDelegate.selectAudio(which);
+                if(AudioSourceInterceptDelegate30.canPlayInMobileNet()){
+                    mDelegate.selectAudio(which);
+                }else{
+                    // 这里为什么要延迟50ms？
+                    // 因为上面拦截移动网络时，会判断mActivity.hasWindowFocus()，正在展示Dialog的Activity会一直返回false
+                    // 所以要等Dialog完全关闭后，再去播放选择的歌曲，这样mActivity.hasWindowFocus()才能返回预期的结果
+                    mBtnSelect.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mDelegate.selectAudio(which);
+                        }
+                    },50);
+                }
+
             }
         });
         builder.setCancelable(true);
@@ -414,7 +427,7 @@ public class AudioDetailPlayerDelegate30 {
         builder.show();
     }
 
-    private void showAskUseMobileDialog(ArrayList<MP3> mp3List, int index){
+    private void showAskUseMobileDialog(ArrayList<MP3> mp3List, final int index){
         String audioCapacity = mp3List.get(index).audioCapacity;
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setTitle("检测到移动网络");
@@ -422,9 +435,9 @@ public class AudioDetailPlayerDelegate30 {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                AudioSourceInterceptDelegate30.sUserAgreeMobile = true;
-                mDelegate.selectAudio(mDelegate.getCurrentMp3Index());
                 dialog.dismiss();
+                AudioSourceInterceptDelegate30.sUserAgreeMobile = true;
+                mDelegate.selectAudio(index);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

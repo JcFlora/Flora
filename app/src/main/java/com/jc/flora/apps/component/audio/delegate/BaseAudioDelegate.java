@@ -3,6 +3,7 @@ package com.jc.flora.apps.component.audio.delegate;
 import android.os.Binder;
 
 import com.jc.flora.apps.component.audio.model.MP3;
+import com.jc.flora.apps.component.audio.player.AudioPlayerFactory;
 
 import java.util.ArrayList;
 
@@ -169,5 +170,12 @@ public class BaseAudioDelegate extends Binder {
      * @param flag
      */
     public void notifyIntercepted(int index, int flag){}
+
+    /**
+     * 3.1增加
+     * 设置播放器的类型
+     * @param type
+     */
+    public void setPlayerType(AudioPlayerFactory.PlayerType type) {}
 
 }

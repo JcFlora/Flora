@@ -54,6 +54,7 @@ public class VideoDelegate24 extends Fragment {
 
     public void setPlayerType(PlayerFactory.PlayerType type) {
         mPlayer = PlayerFactory.get(type);
+        mPlayer.setOnPreparedListener(mOnPreparedListener);
     }
 
     public void setTextureView(TextureView textureView) {
@@ -270,7 +271,6 @@ public class VideoDelegate24 extends Fragment {
         mPlayer.init(getContext());
         mPlayer.setSurface(mSurface);
         Uri uri = mMp4List.get(mCurrentMp4Index).getVideoUri(getContext());
-        mPlayer.setOnPreparedListener(mOnPreparedListener);
         mPlayer.setDataSource(getContext(), uri);
         if(mAutoStart && mIsInForeground){
             // 添加准备开始的回调
