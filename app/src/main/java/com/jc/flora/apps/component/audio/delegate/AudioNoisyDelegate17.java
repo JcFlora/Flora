@@ -37,6 +37,11 @@ public class AudioNoisyDelegate17 {
         public void onPause() {
             unregisterAudioNoisyReceiver();
         }
+
+        @Override
+        public void onStop() {
+            unregisterAudioNoisyReceiver();
+        }
     };
 
     /**

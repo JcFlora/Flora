@@ -39,14 +39,33 @@ public class AudioDetailPlayerDelegate26 {
     // mp3列表
     private static final ArrayList<MP3> MP3_LIST = new ArrayList<MP3>() {
         {
-            add(new MP3("话说明朝", "http://imagev2.xmcdn.com/group29/M0A/EF/E3/wKgJWVk9_IzwKhYSAALu_VmdTNU780.jpg", "http://fdfs.xmcdn.com/group33/M08/D9/53/wKgJTFmlRnbh_TYKAI7ECmC5Ar0312.mp3"));
-            add(new MP3("百思女神秀", "http://imagev2.xmcdn.com/group24/M03/B0/DF/wKgJMFiv-vDTK5vMAAF7QprBHfM982.jpg", "http://audio.xmcdn.com/group28/M08/53/44/wKgJXFlolI-h7V3tAJv65WyL-2w446.mp3"));
-            add(new MP3("欢乐江湖", "http://imagev2.xmcdn.com/group31/M08/C0/C1/wKgJSVl6t6yz7Uc_AAPh7XreoIY059.jpg", "http://audio.xmcdn.com/group60/M06/D4/23/wKgLeVy2irnRvgn8AIajOcTEqmw907.mp3"));
-            add(new MP3("万万妹想到", "http://imagev2.xmcdn.com/group46/M06/1D/E6/wKgKj1tzoYvT2vTaAAG4z2Hwi0o546.jpg", "http://aod.tx.xmcdn.com/group58/M0B/0F/24/wKgLc1y5nOzgvS3PAKoJOL7U_s4990.mp3"));
-            add(new MP3("爆笑相声", "http://fdfs.xmcdn.com/group34/M05/CD/8A/wKgJYVntnamR9f32AAfwumDq4eM178_mobile_large.jpg", "http://audio.xmcdn.com/group42/M08/93/BA/wKgJ81qY_HPC8A5_AGtb0aEwncA343.mp3"));
-            add(new MP3("每天一个心理知识", "http://fdfs.xmcdn.com/group41/M02/09/B6/wKgJ8lqTzluhjBw7AAGHo1SIL8A073_mobile_large.jpg", "http://aod.tx.xmcdn.com/group58/M01/5B/AA/wKgLc1y9ZZSwIEI_ABX7_5NHUIE189.mp3"));
-            add(new MP3("世界名人英文演讲", "http://imagev2.xmcdn.com/group44/M06/47/DA/wKgKkVsPo6uB84WPABR_5iGVCX8204.png", "http://audio.xmcdn.com/group59/M07/60/DD/wKgLely9mLuDau_4ACwyApwo5rI031.mp3"));
-            add(new MP3("悦读心时光", "http://imagev2.xmcdn.com/group21/M06/42/D0/wKgJLVs10eTi3kEcAAFR5Cec3Bc569.jpg", "http://aod.tx.xmcdn.com/group56/M05/11/3A/wKgLdlxQY2OC8NZcAEssQdU-UDA049.mp3"));
+            add(new MP3(
+                    "话说明朝",
+                    "http://imagev2.xmcdn.com/group29/M0A/EF/E3/wKgJWVk9_IzwKhYSAALu_VmdTNU780.jpg",
+                    "http://fdfs.xmcdn.com/group33/M08/D9/53/wKgJTFmlRnbh_TYKAI7ECmC5Ar0312.mp3"));
+            add(new MP3(
+                    "百思女神秀",
+                    "http://imagev2.xmcdn.com/group24/M03/B0/DF/wKgJMFiv-vDTK5vMAAF7QprBHfM982.jpg",
+                    "http://audio.xmcdn.com/group28/M08/53/44/wKgJXFlolI-h7V3tAJv65WyL-2w446.mp3"));
+            add(new MP3("欢乐江湖",
+                    "http://imagev2.xmcdn.com/group31/M08/C0/C1/wKgJSVl6t6yz7Uc_AAPh7XreoIY059.jpg",
+                    "http://audio.xmcdn.com/group60/M06/D4/23/wKgLeVy2irnRvgn8AIajOcTEqmw907.mp3"));
+            add(new MP3(
+                    "万万妹想到",
+                    "http://imagev2.xmcdn.com/group46/M06/1D/E6/wKgKj1tzoYvT2vTaAAG4z2Hwi0o546.jpg",
+                    "http://aod.tx.xmcdn.com/group58/M0B/0F/24/wKgLc1y5nOzgvS3PAKoJOL7U_s4990.mp3"));
+            add(new MP3("爆笑相声",
+                    "http://fdfs.xmcdn.com/group34/M05/CD/8A/wKgJYVntnamR9f32AAfwumDq4eM178_mobile_large.jpg",
+                    "http://audio.xmcdn.com/group42/M08/93/BA/wKgJ81qY_HPC8A5_AGtb0aEwncA343.mp3"));
+            add(new MP3("每天一个心理知识",
+                    "http://fdfs.xmcdn.com/group41/M02/09/B6/wKgJ8lqTzluhjBw7AAGHo1SIL8A073_mobile_large.jpg",
+                    "http://aod.tx.xmcdn.com/group58/M01/5B/AA/wKgLc1y9ZZSwIEI_ABX7_5NHUIE189.mp3"));
+            add(new MP3("世界名人英文演讲",
+                    "http://imagev2.xmcdn.com/group44/M06/47/DA/wKgKkVsPo6uB84WPABR_5iGVCX8204.png",
+                    "http://audio.xmcdn.com/group59/M07/60/DD/wKgLely9mLuDau_4ACwyApwo5rI031.mp3"));
+            add(new MP3("悦读心时光",
+                    "http://imagev2.xmcdn.com/group21/M06/42/D0/wKgJLVs10eTi3kEcAAFR5Cec3Bc569.jpg",
+                    "http://aod.tx.xmcdn.com/group56/M05/11/3A/wKgLdlxQY2OC8NZcAEssQdU-UDA049.mp3"));
         }
     };
 

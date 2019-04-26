@@ -48,6 +48,8 @@ public class AudioDelegate27 extends BaseAudioDelegate {
     private int mCurrentPosition = -1;
     // 音频播放状态监听器集合
     private ArrayList<AudioStatusListener> mAudioStatusListeners = new ArrayList<>();
+    // 音频数据源拦截器集合
+    private ArrayList<AudioSourceInterceptor> mAudioSourceInterceptors = new ArrayList<>();
 
     // 播放模式
     private AudioPlayMode mPlayMode = AudioPlayMode.LOOP;
@@ -77,17 +79,20 @@ public class AudioDelegate27 extends BaseAudioDelegate {
      * 同步mp3列表
      */
     public void syncMp3List() {
-        if (mMp3List == null || getMaxProgress() <= 0) {
+        if (mMp3List == null || getMaxProgress() < 0) {
             return;
         }
         for (AudioStatusListener l : mAudioStatusListeners) {
             // 同步当前切换
             l.onSelect(mCurrentMp3Index, getMaxProgress());
             // 同步播放状态
-            if (mExoPlayer.getPlayWhenReady()) {
-                l.onPlay();
-            } else {
-                l.onPause();
+            if(mExoPlayer != null){
+                // 同步播放状态
+                if (mExoPlayer.getPlayWhenReady()) {
+                    l.onPlay();
+                } else {
+                    l.onPause();
+                }
             }
             // 同步播放位置
             l.onProgress(mCurrentPosition);
@@ -130,13 +135,18 @@ public class AudioDelegate27 extends BaseAudioDelegate {
     }
 
     /**
-     * 播放音频（继续播放）
+     * 播放音频（继续播放or重新播放）
      */
-    public void playAudio() {
+    public void playAudio(){
+        if(mExoPlayer == null){
+            // 如果走到这里，说明状态异常，需要还原到初始状态重新播放
+            selectAudio(mCurrentMp3Index);
+            return;
+        }
         if (!mExoPlayer.getPlayWhenReady()) {
             // 添加拦截
-            for (AudioStatusListener l : mAudioStatusListeners) {
-                if (l.onPlayIntercepted()) {
+            for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+                if(i.interceptPlay()){
                     return;
                 }
             }
@@ -151,7 +161,7 @@ public class AudioDelegate27 extends BaseAudioDelegate {
      * 暂停播放
      */
     public void pauseAudio() {
-        if (mExoPlayer.getPlayWhenReady()) {
+        if (mExoPlayer != null && mExoPlayer.getPlayWhenReady()) {
             mExoPlayer.setPlayWhenReady(false);
             for (AudioStatusListener l : mAudioStatusListeners) {
                 l.onPause();
@@ -361,15 +371,17 @@ public class AudioDelegate27 extends BaseAudioDelegate {
      * 播放音频
      */
     public void start() {
-        // 添加拦截
-        for (AudioStatusListener l : mAudioStatusListeners) {
-            if (l.onPlayIntercepted()) {
-                return;
+        if(mExoPlayer != null){
+            // 添加拦截
+            for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+                if(i.interceptPlay()){
+                    return;
+                }
             }
-        }
-        mExoPlayer.setPlayWhenReady(true);
-        for (AudioStatusListener l : mAudioStatusListeners) {
-            l.onPlay();
+            mExoPlayer.setPlayWhenReady(true);
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onPlay();
+            }
         }
     }
 
@@ -395,6 +407,9 @@ public class AudioDelegate27 extends BaseAudioDelegate {
      * 获取歌曲长度
      **/
     public int getMaxProgress() {
+        if(mExoPlayer == null){
+            return 0;
+        }
         return (int) mExoPlayer.getDuration();
     }
 
@@ -402,6 +417,9 @@ public class AudioDelegate27 extends BaseAudioDelegate {
      * 获取播放位置
      */
     public int getCurrentPosition() {
+        if(mExoPlayer == null){
+            return 0;
+        }
         int position = (int) mExoPlayer.getCurrentPosition();
         return position < 0 ? 0 : position;
     }
@@ -410,7 +428,26 @@ public class AudioDelegate27 extends BaseAudioDelegate {
      * 播放指定位置
      */
     public void seekToPosition(int msec) {
-        mExoPlayer.seekTo(msec);
+        if(mExoPlayer != null){
+            mExoPlayer.seekTo(msec);
+        }
+    }
+
+
+    /**
+     * 添加音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void addAudioSourceInterceptor(AudioSourceInterceptor i) {
+        mAudioSourceInterceptors.add(i);
+    }
+
+    /**
+     * 移除音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void removeAudioSourceInterceptor(AudioSourceInterceptor i) {
+        mAudioSourceInterceptors.remove(i);
     }
 
     /**
@@ -421,7 +458,9 @@ public class AudioDelegate27 extends BaseAudioDelegate {
         if (rewindPosition < 0) {
             rewindPosition = 0;
         }
-        mExoPlayer.seekTo(rewindPosition);
+        if(mExoPlayer != null){
+            mExoPlayer.seekTo(rewindPosition);
+        }
     }
 
     /**
@@ -432,7 +471,9 @@ public class AudioDelegate27 extends BaseAudioDelegate {
         if (forwardPosition > getMaxProgress()) {
             forwardPosition = getMaxProgress();
         }
-        mExoPlayer.seekTo(forwardPosition);
+        if(mExoPlayer != null){
+            mExoPlayer.seekTo(forwardPosition);
+        }
     }
 
     /**

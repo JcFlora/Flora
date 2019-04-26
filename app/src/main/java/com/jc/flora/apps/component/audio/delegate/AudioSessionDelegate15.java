@@ -84,6 +84,12 @@ public class AudioSessionDelegate15 {
         }
 
         @Override
+        public void onStop() {
+            mPlaybackState = PlaybackStateCompat.STATE_STOPPED;
+            updatePlaybackState();
+        }
+
+        @Override
         public void onProgress(int progress) {
             updatePlaybackState();
         }

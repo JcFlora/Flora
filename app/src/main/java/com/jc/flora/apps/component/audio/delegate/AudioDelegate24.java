@@ -49,6 +49,8 @@ public class AudioDelegate24 extends BaseAudioDelegate {
     private int mCurrentPosition = -1;
     // 音频播放状态监听器集合
     private ArrayList<AudioStatusListener> mAudioStatusListeners = new ArrayList<>();
+    // 音频数据源拦截器集合
+    private ArrayList<AudioSourceInterceptor> mAudioSourceInterceptors = new ArrayList<>();
 
     // 播放模式
     private AudioPlayMode mPlayMode = AudioPlayMode.LOOP;
@@ -124,8 +126,8 @@ public class AudioDelegate24 extends BaseAudioDelegate {
     public void playAudio(){
         if (!mExoPlayer.getPlayWhenReady()) {
             // 添加拦截
-            for (AudioStatusListener l : mAudioStatusListeners) {
-                if(l.onPlayIntercepted()){
+            for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+                if(i.interceptPlay()){
                     return;
                 }
             }
@@ -306,8 +308,8 @@ public class AudioDelegate24 extends BaseAudioDelegate {
      */
     public void start() {
         // 添加拦截
-        for (AudioStatusListener l : mAudioStatusListeners) {
-            if(l.onPlayIntercepted()){
+        for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+            if(i.interceptPlay()){
                 return;
             }
         }
@@ -353,6 +355,23 @@ public class AudioDelegate24 extends BaseAudioDelegate {
      */
     public void seekToPosition(int msec) {
         mExoPlayer.seekTo(msec);
+    }
+
+
+    /**
+     * 添加音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void addAudioSourceInterceptor(AudioSourceInterceptor i) {
+        mAudioSourceInterceptors.add(i);
+    }
+
+    /**
+     * 移除音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void removeAudioSourceInterceptor(AudioSourceInterceptor i) {
+        mAudioSourceInterceptors.remove(i);
     }
 
     /**

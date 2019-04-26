@@ -277,7 +277,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频3.0：添加移动网络检测与音频容量显示功能"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList30Activity::class.java
             return project
         }
 

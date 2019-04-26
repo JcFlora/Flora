@@ -18,10 +18,10 @@ public class MP3 {
     public int coverImgResId;
     public String audioAlbum;
     public String audioUrl;
-    public String audioCapacity = "";
     public String id = "";
     // 模拟支付拦截时用来判断是否免费，如果不免费，会触发支付回调
     public boolean isFree;
+    public String audioCapacity = "";
     public String audioLocalPath = "";
 
     public MP3(String name, int resId) {
@@ -41,16 +41,16 @@ public class MP3 {
         this.audioUrl = audioUrl;
     }
 
-    public MP3(String name, String audioAlbum, String audioUrl, String audioCapacity) {
-        this(name, audioAlbum, audioUrl);
-        this.audioCapacity = audioCapacity;
-    }
-
     public MP3(String name, String audioAlbum, String id, Boolean isFree) {
         this.name = name;
         this.audioAlbum = audioAlbum;
         this.id = id;
         this.isFree = isFree;
+    }
+
+    public MP3(String name, String audioAlbum, String id, Boolean isFree, String audioCapacity) {
+        this(name, audioAlbum, id, isFree);
+        this.audioCapacity = audioCapacity;
     }
 
     public Uri getAudioUri(Context context){

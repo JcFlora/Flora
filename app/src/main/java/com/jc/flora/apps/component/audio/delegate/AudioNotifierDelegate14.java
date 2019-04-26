@@ -82,6 +82,12 @@ public class AudioNotifierDelegate14 {
             mService.stopForeground(false);
             mNotificationManager.notify(NOTIFICATION_ID, buildNotification(mAudioDelegate.getCurrentMp3(), false));
         }
+
+        @Override
+        public void onStop() {
+            mService.stopForeground(false);
+            mNotificationManager.notify(NOTIFICATION_ID, buildNotification(mAudioDelegate.getCurrentMp3(), false));
+        }
     };
 
     private BroadcastReceiver mAudioNotifierReceiver = new BroadcastReceiver() {

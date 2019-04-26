@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Created by shijincheng on 2019/4/23.
+ * Created by shijincheng on 2019/4/25.
  */
 
-public class AudioDetailPlayerDelegate27 {
+public class AudioDetailPlayerDelegate30 {
 
     // 进度条下面的当前进度文字，将毫秒化为mm:ss格式
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
@@ -43,30 +43,46 @@ public class AudioDetailPlayerDelegate27 {
             add(new MP3(
                     "话说明朝",
                     "http://imagev2.xmcdn.com/group29/M0A/EF/E3/wKgJWVk9_IzwKhYSAALu_VmdTNU780.jpg",
-                    "http://fdfs.xmcdn.com/group33/M08/D9/53/wKgJTFmlRnbh_TYKAI7ECmC5Ar0312.mp3"));
+                    "http://fdfs.xmcdn.com/group33/M08/D9/53/wKgJTFmlRnbh_TYKAI7ECmC5Ar0312.mp3",
+                    true,
+                    "8.9MB"));
             add(new MP3(
                     "百思女神秀",
                     "http://imagev2.xmcdn.com/group24/M03/B0/DF/wKgJMFiv-vDTK5vMAAF7QprBHfM982.jpg",
-                    "http://audio.xmcdn.com/group28/M08/53/44/wKgJXFlolI-h7V3tAJv65WyL-2w446.mp3"));
+                    "http://audio.xmcdn.com/group28/M08/53/44/wKgJXFlolI-h7V3tAJv65WyL-2w446.mp3",
+                    true,
+                    "9.7MB"));
             add(new MP3("欢乐江湖",
                     "http://imagev2.xmcdn.com/group31/M08/C0/C1/wKgJSVl6t6yz7Uc_AAPh7XreoIY059.jpg",
-                    "http://audio.xmcdn.com/group60/M06/D4/23/wKgLeVy2irnRvgn8AIajOcTEqmw907.mp3"));
+                    "http://audio.xmcdn.com/group60/M06/D4/23/wKgLeVy2irnRvgn8AIajOcTEqmw907.mp3",
+                    false,
+                    "8.4MB"));
             add(new MP3(
                     "万万妹想到",
                     "http://imagev2.xmcdn.com/group46/M06/1D/E6/wKgKj1tzoYvT2vTaAAG4z2Hwi0o546.jpg",
-                    "http://aod.tx.xmcdn.com/group58/M0B/0F/24/wKgLc1y5nOzgvS3PAKoJOL7U_s4990.mp3"));
+                    "http://aod.tx.xmcdn.com/group58/M0B/0F/24/wKgLc1y5nOzgvS3PAKoJOL7U_s4990.mp3",
+                    false,
+                    "10.6MB"));
             add(new MP3("爆笑相声",
                     "http://fdfs.xmcdn.com/group34/M05/CD/8A/wKgJYVntnamR9f32AAfwumDq4eM178_mobile_large.jpg",
-                    "http://audio.xmcdn.com/group42/M08/93/BA/wKgJ81qY_HPC8A5_AGtb0aEwncA343.mp3"));
+                    "http://audio.xmcdn.com/group42/M08/93/BA/wKgJ81qY_HPC8A5_AGtb0aEwncA343.mp3",
+                    false,
+                    "6.7MB"));
             add(new MP3("每天一个心理知识",
                     "http://fdfs.xmcdn.com/group41/M02/09/B6/wKgJ8lqTzluhjBw7AAGHo1SIL8A073_mobile_large.jpg",
-                    "http://aod.tx.xmcdn.com/group58/M01/5B/AA/wKgLc1y9ZZSwIEI_ABX7_5NHUIE189.mp3"));
+                    "http://aod.tx.xmcdn.com/group58/M01/5B/AA/wKgLc1y9ZZSwIEI_ABX7_5NHUIE189.mp3",
+                    false,
+                    "1.4MB"));
             add(new MP3("世界名人英文演讲",
                     "http://imagev2.xmcdn.com/group44/M06/47/DA/wKgKkVsPo6uB84WPABR_5iGVCX8204.png",
-                    "http://audio.xmcdn.com/group59/M07/60/DD/wKgLely9mLuDau_4ACwyApwo5rI031.mp3"));
+                    "http://audio.xmcdn.com/group59/M07/60/DD/wKgLely9mLuDau_4ACwyApwo5rI031.mp3",
+                    false,
+                    "2.8MB"));
             add(new MP3("悦读心时光",
                     "http://imagev2.xmcdn.com/group21/M06/42/D0/wKgJLVs10eTi3kEcAAFR5Cec3Bc569.jpg",
-                    "http://aod.tx.xmcdn.com/group56/M05/11/3A/wKgLdlxQY2OC8NZcAEssQdU-UDA049.mp3"));
+                    "http://aod.tx.xmcdn.com/group56/M05/11/3A/wKgLdlxQY2OC8NZcAEssQdU-UDA049.mp3",
+                    false,
+                    "4.7MB"));
         }
     };
 
@@ -106,7 +122,7 @@ public class AudioDetailPlayerDelegate27 {
     // 下一个播放模式
     private AudioPlayMode mNextMode = AudioPlayMode.SINGLE;
 
-    public AudioDetailPlayerDelegate27(AppCompatActivity activity, Class<? extends Service> serviceClass) {
+    public AudioDetailPlayerDelegate30(AppCompatActivity activity, Class<? extends Service> serviceClass) {
         mActivity = activity;
         mServiceClass = serviceClass;
     }
@@ -342,6 +358,31 @@ public class AudioDetailPlayerDelegate27 {
         public void onBufferingEnd() {
             mPbLoading.setVisibility(View.INVISIBLE);
         }
+
+        @Override
+        public void onIntercepted(ArrayList<MP3> mp3List, int index, int flag) {
+            switch (flag) {
+                case AudioSourceInterceptDelegate30.FLAG_GET_URI_BY_ID:
+                    mPbLoading.setVisibility(View.VISIBLE);
+                    break;
+                case AudioSourceInterceptDelegate30.FLAG_NO_NET:
+                    ToastDelegate.show(mActivity, "无网络");
+                    break;
+                case AudioSourceInterceptDelegate30.FLAG_MOBILE_NET:
+                    // 注意这里一定要判断hasWindowFocus，因为下面这个弹窗是模态的，
+                    // 如果不判断，会导致所有监听的页面都会弹一个弹窗
+                    if(mActivity.hasWindowFocus()){
+                        showAskUseMobileDialog(mp3List, index);
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public void onError() {
+            mPbLoading.setVisibility(View.GONE);
+            ToastDelegate.show(mActivity, "播放错误，请稍后再试");
+        }
     };
 
     private void showMp3ListDialog() {
@@ -367,6 +408,29 @@ public class AudioDetailPlayerDelegate27 {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 mDelegate.setSpeed(AudioPlaySpeed.speedOf(which));
+            }
+        });
+        builder.setCancelable(true);
+        builder.show();
+    }
+
+    private void showAskUseMobileDialog(ArrayList<MP3> mp3List, int index){
+        String audioCapacity = mp3List.get(index).audioCapacity;
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setTitle("检测到移动网络");
+        builder.setMessage("播放需要消耗" + audioCapacity + "，你确定要播放嘛?");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AudioSourceInterceptDelegate30.sUserAgreeMobile = true;
+                mDelegate.selectAudio(mDelegate.getCurrentMp3Index());
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
         builder.setCancelable(true);

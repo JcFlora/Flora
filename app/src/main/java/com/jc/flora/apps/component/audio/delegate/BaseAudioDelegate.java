@@ -122,6 +122,22 @@ public class BaseAudioDelegate extends Binder {
     public void seekToPosition(int msec) {}
 
     /**
+     * 1.6增加
+     * 添加音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void addAudioSourceInterceptor(AudioSourceInterceptor i) {
+    }
+
+    /**
+     * 1.6增加
+     * 移除音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void removeAudioSourceInterceptor(AudioSourceInterceptor i) {
+    }
+
+    /**
      * 2.2增加
      * 同步mp3列表
      */

@@ -48,6 +48,8 @@ public class AudioDelegate28 extends BaseAudioDelegate {
     private int mCurrentPosition = -1;
     // 音频播放状态监听器集合
     private ArrayList<AudioStatusListener> mAudioStatusListeners = new ArrayList<>();
+    // 音频数据源拦截器集合
+    private ArrayList<AudioSourceInterceptor> mAudioSourceInterceptors = new ArrayList<>();
 
     // 播放模式
     private AudioPlayMode mPlayMode = AudioPlayMode.LOOP;
@@ -70,8 +72,8 @@ public class AudioDelegate28 extends BaseAudioDelegate {
     public void setMp3List(ArrayList<MP3> mp3List) {
         mMp3List = mp3List;
         // 添加切换拦截的回调
-        for (AudioStatusListener l : mAudioStatusListeners) {
-            if (l.interceptSelect(mMp3List, 0)) {
+        for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+            if(i.interceptSelect(mMp3List, 0)){
                 return;
             }
         }
@@ -83,7 +85,7 @@ public class AudioDelegate28 extends BaseAudioDelegate {
      * 同步mp3列表
      */
     public void syncMp3List() {
-        if (mMp3List == null || getMaxProgress() <= 0) {
+        if (mMp3List == null || getMaxProgress() < 0) {
             return;
         }
         for (AudioStatusListener l : mAudioStatusListeners) {
@@ -138,13 +140,18 @@ public class AudioDelegate28 extends BaseAudioDelegate {
     }
 
     /**
-     * 播放音频（继续播放）
+     * 播放音频（继续播放or重新播放）
      */
-    public void playAudio() {
-        if (mExoPlayer != null && !mExoPlayer.getPlayWhenReady()) {
+    public void playAudio(){
+        if(mExoPlayer == null){
+            // 如果走到这里，说明状态异常，需要还原到初始状态重新播放
+            selectAudio(mCurrentMp3Index);
+            return;
+        }
+        if (!mExoPlayer.getPlayWhenReady()) {
             // 添加拦截
-            for (AudioStatusListener l : mAudioStatusListeners) {
-                if (l.onPlayIntercepted()) {
+            for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+                if(i.interceptPlay()){
                     return;
                 }
             }
@@ -195,8 +202,8 @@ public class AudioDelegate28 extends BaseAudioDelegate {
         }
         release();
         // 添加切换拦截的回调
-        for (AudioStatusListener l : mAudioStatusListeners) {
-            if (l.interceptSelect(mMp3List, nextIndex)) {
+        for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+            if(i.interceptSelect(mMp3List, nextIndex)){
                 return;
             }
         }
@@ -381,15 +388,17 @@ public class AudioDelegate28 extends BaseAudioDelegate {
      * 播放音频
      */
     public void start() {
-        // 添加拦截
-        for (AudioStatusListener l : mAudioStatusListeners) {
-            if (l.onPlayIntercepted()) {
-                return;
+        if(mExoPlayer != null){
+            // 添加拦截
+            for (AudioSourceInterceptor i : mAudioSourceInterceptors) {
+                if(i.interceptPlay()){
+                    return;
+                }
             }
-        }
-        mExoPlayer.setPlayWhenReady(true);
-        for (AudioStatusListener l : mAudioStatusListeners) {
-            l.onPlay();
+            mExoPlayer.setPlayWhenReady(true);
+            for (AudioStatusListener l : mAudioStatusListeners) {
+                l.onPlay();
+            }
         }
     }
 
@@ -425,6 +434,9 @@ public class AudioDelegate28 extends BaseAudioDelegate {
      * 获取播放位置
      */
     public int getCurrentPosition() {
+        if(mExoPlayer == null){
+            return 0;
+        }
         int position = (int) mExoPlayer.getCurrentPosition();
         return position < 0 ? 0 : position;
     }
@@ -436,6 +448,23 @@ public class AudioDelegate28 extends BaseAudioDelegate {
         if(mExoPlayer != null){
             mExoPlayer.seekTo(msec);
         }
+    }
+
+
+    /**
+     * 添加音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void addAudioSourceInterceptor(AudioSourceInterceptor i) {
+        mAudioSourceInterceptors.add(i);
+    }
+
+    /**
+     * 移除音频数据源拦截器
+     * @param i 音频数据源拦截器
+     */
+    public void removeAudioSourceInterceptor(AudioSourceInterceptor i) {
+        mAudioSourceInterceptors.remove(i);
     }
 
     /**

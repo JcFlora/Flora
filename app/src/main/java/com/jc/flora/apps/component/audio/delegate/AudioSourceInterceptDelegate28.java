@@ -26,14 +26,10 @@ public class AudioSourceInterceptDelegate28 {
 
     public AudioSourceInterceptDelegate28(BaseAudioDelegate audioDelegate) {
         mAudioDelegate = audioDelegate;
-        addAudioStatusListener();
+        mAudioDelegate.addAudioSourceInterceptor(mAudioSourceInterceptor);
     }
 
-    private void addAudioStatusListener(){
-        mAudioDelegate.addAudioStatusListener(mAudioStatusListener);
-    }
-
-    private AudioStatusListener mAudioStatusListener = new AudioStatusListener(){
+    private AudioSourceInterceptor mAudioSourceInterceptor = new AudioSourceInterceptor(){
         @Override
         public boolean interceptSelect(final ArrayList<MP3> mp3List, final int index) {
             boolean intercept = !mp3List.get(index).couldPlay();
@@ -59,7 +55,7 @@ public class AudioSourceInterceptDelegate28 {
     };
 
     public void release() {
-        mAudioDelegate.removeAudioStatusListener(mAudioStatusListener);
+        mAudioDelegate.removeAudioSourceInterceptor(mAudioSourceInterceptor);
         mHandler.removeCallbacksAndMessages(null);
     }
 

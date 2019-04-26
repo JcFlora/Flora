@@ -12,7 +12,7 @@ public class AudioFocusDelegate16 {
 
     private BaseAudioDelegate mAudioDelegate;
     private AudioManager mAudioManager;
-    private boolean isPausedByFocusLossTransient;
+    private boolean mIsPausedByFocusLossTransient;
     private int mVolumeWhenFocusLossTransientCanDuck;
     // 状态标记，标识是否正在播放，用来控制焦点处理
     private boolean mIsPlaying;
@@ -20,16 +20,14 @@ public class AudioFocusDelegate16 {
     public AudioFocusDelegate16(Service service, BaseAudioDelegate audioDelegate) {
         mAudioDelegate = audioDelegate;
         mAudioManager = (AudioManager) service.getSystemService(Context.AUDIO_SERVICE);
-        addAudioStatusListener();
+        mAudioDelegate.addAudioStatusListener(mAudioStatusListener);
+        mAudioDelegate.addAudioSourceInterceptor(mAudioSourceInterceptor);
     }
 
     public void release() {
         mAudioDelegate.removeAudioStatusListener(mAudioStatusListener);
+        mAudioDelegate.removeAudioSourceInterceptor(mAudioSourceInterceptor);
         mAudioManager.abandonAudioFocus(mFocusChangeListener);
-    }
-
-    private void addAudioStatusListener() {
-        mAudioDelegate.addAudioStatusListener(mAudioStatusListener);
     }
 
     private AudioStatusListener mAudioStatusListener = new AudioStatusListener(){
@@ -43,8 +41,11 @@ public class AudioFocusDelegate16 {
             mIsPlaying = false;
         }
 
+    };
+
+    private AudioSourceInterceptor mAudioSourceInterceptor = new AudioSourceInterceptor(){
         @Override
-        public boolean onPlayIntercepted() {
+        public boolean interceptPlay() {
             return !requestAudioFocus();
         }
     };
@@ -61,7 +62,7 @@ public class AudioFocusDelegate16 {
             switch (focusChange) {
                 // 重新获得焦点
                 case AudioManager.AUDIOFOCUS_GAIN:
-                    if (!mIsPlaying && isPausedByFocusLossTransient) {
+                    if (!mIsPlaying && mIsPausedByFocusLossTransient) {
                         // 通话结束，恢复播放
                         mAudioDelegate.playAudio();
                     }
@@ -71,7 +72,7 @@ public class AudioFocusDelegate16 {
                         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mVolumeWhenFocusLossTransientCanDuck,
                                 AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
                     }
-                    isPausedByFocusLossTransient = false;
+                    mIsPausedByFocusLossTransient = false;
                     mVolumeWhenFocusLossTransientCanDuck = 0;
                     break;
                 // 永久丢失焦点，如被其他播放器抢占
@@ -84,7 +85,7 @@ public class AudioFocusDelegate16 {
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                     if (mIsPlaying) {
                         forceStop();
-                        isPausedByFocusLossTransient = true;
+                        mIsPausedByFocusLossTransient = true;
                     }
                     break;
                 // 瞬间丢失焦点，如通知

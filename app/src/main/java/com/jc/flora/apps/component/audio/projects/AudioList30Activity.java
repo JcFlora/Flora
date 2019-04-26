@@ -11,16 +11,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate29;
-import com.jc.flora.apps.component.audio.service.Audio29Service;
+import com.jc.flora.apps.component.audio.delegate.AudioListPlayerDelegate30;
+import com.jc.flora.apps.component.audio.service.Audio30Service;
 import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;
 
 /**
- * Created by Samurai on 2019/4/24.
+ * Created by Samurai on 2019/4/25.
  */
-public class AudioList29Activity extends AppCompatActivity {
+public class AudioList30Activity extends AppCompatActivity {
 
-    private AudioListPlayerDelegate29 mDelegate;
+    private AudioListPlayerDelegate30 mDelegate;
     // mp3列表
     private RecyclerView mRvAudioList;
     // 播放条
@@ -51,7 +51,7 @@ public class AudioList29Activity extends AppCompatActivity {
 
     private void startAudioService(){
         // 实际项目中请在Application的onCreate方法中调用此方法
-        Audio29Service.start(this);
+        Audio30Service.start(this);
     }
 
     private void findViews(){
@@ -71,7 +71,7 @@ public class AudioList29Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mDelegate = new AudioListPlayerDelegate29(this, Audio29Service.class, AudioDetail29Activity.class);
+        mDelegate = new AudioListPlayerDelegate30(this, Audio30Service.class, AudioDetail30Activity.class);
         mDelegate.setRvAudioList(mRvAudioList);
         mDelegate.setLayoutAudioBar(mLayoutAudioBar);
         mDelegate.setIvCover(mIvAudioBarCover);
@@ -92,7 +92,7 @@ public class AudioList29Activity extends AppCompatActivity {
 
     private void stopAudioService(){
         // 实际项目中请在应用退出时调用此方法
-        Audio29Service.stop(this);
+        Audio30Service.stop(this);
     }
 
 }

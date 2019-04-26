@@ -31,14 +31,6 @@ public class AudioStatusListener {
     /** 播放进度回调 */
     public void onProgress(int progress){}
 
-    /**
-     * 在播放前进行拦截，返回true表示拦截，false表示不拦截
-     * @return 是否拦截，默认不拦截
-     */
-    public boolean onPlayIntercepted(){
-        return false;
-    }
-
     /** 音频准备开始时的回调 */
     public void onPrepareStart(int index){}
 
@@ -54,22 +46,7 @@ public class AudioStatusListener {
     /** 音频缓冲结束时的回调 */
     public void onBufferingEnd(){}
 
-    /**
-     * 在选择前进行拦截，返回true表示拦截，false表示不拦截
-     * @param mp3List
-     * @param index
-     * @return 是否拦截，默认不拦截
-     */
-    public boolean interceptSelect(ArrayList<MP3> mp3List, int index){
-        return false;
-    }
-
-    /**
-     * 被拦截后的回调
-     * @param mp3List
-     * @param index
-     * @param flag
-     */
+    /** 被拦截后的回调 */
     public void onIntercepted(ArrayList<MP3> mp3List, int index, int flag){}
 
     /** 播放出错时的回调 */
