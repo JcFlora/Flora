@@ -45,7 +45,7 @@ public class AudioDelegate27 extends BaseAudioDelegate {
     // 当前播放的mp3文件索引
     private int mCurrentMp3Index = 0;
     // 当前播放位置
-    private int mCurrentPosition = -1;
+    private int mCurrentPosition = 1;
     // 音频播放状态监听器集合
     private ArrayList<AudioStatusListener> mAudioStatusListeners = new ArrayList<>();
     // 音频数据源拦截器集合
@@ -95,7 +95,7 @@ public class AudioDelegate27 extends BaseAudioDelegate {
                 }
             }
             // 同步播放位置
-            l.onProgress(mCurrentPosition);
+            l.onProgress(getCurrentPosition());
             // 同步播放模式
             l.onModeSelect(mPlayMode.value());
             // 同步播放速度
@@ -289,7 +289,7 @@ public class AudioDelegate27 extends BaseAudioDelegate {
                     l.onPrepareEnd();
                 }
                 // 初始化播放位置
-                mCurrentPosition = -1;
+                mCurrentPosition = 1;
                 // 开始不停地刷新播放进度
                 mProgressRefreshHandler.sendEmptyMessage(0);
             }
@@ -418,7 +418,7 @@ public class AudioDelegate27 extends BaseAudioDelegate {
      */
     public int getCurrentPosition() {
         if(mExoPlayer == null){
-            return 0;
+            return mCurrentPosition;
         }
         int position = (int) mExoPlayer.getCurrentPosition();
         return position < 0 ? 0 : position;

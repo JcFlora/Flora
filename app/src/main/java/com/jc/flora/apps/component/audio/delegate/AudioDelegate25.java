@@ -89,7 +89,7 @@ public class AudioDelegate25 extends BaseAudioDelegate {
                 l.onPause();
             }
             // 同步播放位置
-            l.onProgress(mCurrentPosition);
+            l.onProgress(getCurrentPosition());
             // 同步播放模式
             l.onModeSelect(mPlayMode.value());
             // 同步播放速度

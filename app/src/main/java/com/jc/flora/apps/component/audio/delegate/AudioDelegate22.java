@@ -83,7 +83,7 @@ public class AudioDelegate22 extends BaseAudioDelegate {
                 l.onPause();
             }
             // 同步播放位置
-            l.onProgress(mCurrentPosition);
+            l.onProgress(getCurrentPosition());
             // 同步播放模式
             l.onModeSelect(mPlayMode.value());
         }

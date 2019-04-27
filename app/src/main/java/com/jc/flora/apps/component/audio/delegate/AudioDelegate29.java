@@ -46,7 +46,7 @@ public class AudioDelegate29 extends BaseAudioDelegate {
     // 当前播放的mp3文件索引
     private int mCurrentMp3Index = 0;
     // 当前播放位置
-    private int mCurrentPosition = -1;
+    private int mCurrentPosition = 1;
     // 音频播放状态监听器集合
     private ArrayList<AudioStatusListener> mAudioStatusListeners = new ArrayList<>();
     // 音频数据源拦截器集合
@@ -60,6 +60,8 @@ public class AudioDelegate29 extends BaseAudioDelegate {
     private boolean mIsPreparing = true;
     // 是否正在缓冲
     private boolean mIsBuffering = false;
+    // 进入Error状态时候的播放位置
+    private int mPositionOnError = -1;
 
     public AudioDelegate29(Context ctx) {
         mContext = ctx;
@@ -79,6 +81,7 @@ public class AudioDelegate29 extends BaseAudioDelegate {
             }
         }
         mCurrentMp3Index = 0;
+        mPositionOnError = -1;
         recreate();
     }
 
@@ -101,7 +104,7 @@ public class AudioDelegate29 extends BaseAudioDelegate {
                 }
             }
             // 同步播放位置
-            l.onProgress(mCurrentPosition);
+            l.onProgress(getCurrentPosition());
             // 同步播放模式
             l.onModeSelect(mPlayMode.value());
             // 同步播放速度
@@ -208,6 +211,9 @@ public class AudioDelegate29 extends BaseAudioDelegate {
                 return;
             }
         }
+        if(nextIndex != mCurrentMp3Index){
+            mPositionOnError = -1;
+        }
         mCurrentMp3Index = nextIndex;
         recreate();
         start();
@@ -306,8 +312,12 @@ public class AudioDelegate29 extends BaseAudioDelegate {
                 for (AudioStatusListener l : mAudioStatusListeners) {
                     l.onPrepareEnd();
                 }
+                if(mPositionOnError > 0){
+                    mExoPlayer.seekTo(mPositionOnError);
+                    mPositionOnError = -1;
+                }
                 // 初始化播放位置
-                mCurrentPosition = -1;
+                mCurrentPosition = 1;
                 // 开始不停地刷新播放进度
                 mProgressRefreshHandler.sendEmptyMessage(0);
             }
@@ -371,6 +381,7 @@ public class AudioDelegate29 extends BaseAudioDelegate {
             for (AudioStatusListener l : mAudioStatusListeners) {
                 l.onError();
             }
+            mPositionOnError = getCurrentPosition();
             // 出错之后，要恢复初始状态
             release();
         }
@@ -446,7 +457,7 @@ public class AudioDelegate29 extends BaseAudioDelegate {
      */
     public int getCurrentPosition() {
         if(mExoPlayer == null){
-            return 0;
+            return mCurrentPosition;
         }
         int position = (int) mExoPlayer.getCurrentPosition();
         return position < 0 ? 0 : position;

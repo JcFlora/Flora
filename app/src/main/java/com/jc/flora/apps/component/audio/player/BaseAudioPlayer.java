@@ -19,15 +19,15 @@ public abstract class BaseAudioPlayer {
     // 准备状态的监听器
     protected OnPreparedListener mOnPreparedListener;
 
-    /** 播放下一首连接桥 */
-    protected PlayNextBridge mPlayNextBridge;
+    /** 播放状态连接桥 */
+    protected StatusBridge mStatusBridge;
 
     public void setOnPreparedListener(OnPreparedListener onPreparedListener) {
         mOnPreparedListener = onPreparedListener;
     }
 
-    public void setPlayNextBridge(PlayNextBridge playNextBridge) {
-        mPlayNextBridge = playNextBridge;
+    public void setStatusBridge(StatusBridge statusBridge) {
+        mStatusBridge = statusBridge;
     }
 
     // 音频播放状态监听器集合
@@ -93,10 +93,10 @@ public abstract class BaseAudioPlayer {
 
     public abstract void setDataSource(Context context, Uri uri);
 
-    public void syncMp3List(int mp3Index, int progress, int modeIndex, int speedIndex){
+    public void syncMp3List(int mp3Index, int maxProgress, int progress, int modeIndex, int speedIndex){
         for (AudioStatusListener l : mAudioStatusListeners) {
             // 同步当前切换
-            l.onSelect(mp3Index, getDuration());
+            l.onSelect(mp3Index, maxProgress);
             if(available()){
                 // 同步播放状态
                 if (isPlaying()) {

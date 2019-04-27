@@ -202,8 +202,8 @@ public class ExoAudioPlayer extends BaseAudioPlayer {
                         break;
                     case ExoPlayer.STATE_ENDED:
                         // 播放完成自动播放下一首
-                        if(mPlayNextBridge != null){
-                            mPlayNextBridge.playNextAudio();
+                        if(mStatusBridge != null){
+                            mStatusBridge.playNextAudio();
                         }
                         break;
                 }
@@ -214,6 +214,10 @@ public class ExoAudioPlayer extends BaseAudioPlayer {
         public void onPlayerError(ExoPlaybackException error) {
             // 添加播放出错的回调
             callbackWhenError();
+            // 保存状态数据
+            if(mStatusBridge != null){
+                mStatusBridge.saveStatusWhenError();
+            }
             // 出错之后，要恢复初始状态
             release();
         }

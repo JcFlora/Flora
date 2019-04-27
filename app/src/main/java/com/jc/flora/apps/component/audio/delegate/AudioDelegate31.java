@@ -10,7 +10,7 @@ import com.jc.flora.apps.component.audio.model.MP3;
 import com.jc.flora.apps.component.audio.player.AudioPlayerFactory;
 import com.jc.flora.apps.component.audio.player.BaseAudioPlayer;
 import com.jc.flora.apps.component.audio.player.OnPreparedListener;
-import com.jc.flora.apps.component.audio.player.PlayNextBridge;
+import com.jc.flora.apps.component.audio.player.StatusBridge;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,7 +33,9 @@ public class AudioDelegate31 extends BaseAudioDelegate {
     // 当前播放的mp3文件索引
     private int mCurrentMp3Index = 0;
     // 当前播放位置
-    private int mCurrentPosition = -1;
+    private int mCurrentPosition = 1;
+    // 进入Error状态时候的播放位置
+    private int mPositionOnError = -1;
 
     // 播放模式
     private AudioPlayMode mPlayMode = AudioPlayMode.LOOP;
@@ -47,10 +49,14 @@ public class AudioDelegate31 extends BaseAudioDelegate {
     public void setPlayerType(AudioPlayerFactory.PlayerType type) {
         mPlayer = AudioPlayerFactory.get(type);
         mPlayer.setOnPreparedListener(mOnPreparedListener);
-        mPlayer.setPlayNextBridge(new PlayNextBridge() {
+        mPlayer.setStatusBridge(new StatusBridge() {
             @Override
             public void playNextAudio() {
                 nextAudio();
+            }
+            @Override
+            public void saveStatusWhenError() {
+                mPositionOnError = getCurrentPosition();
             }
         });
     }
@@ -68,6 +74,7 @@ public class AudioDelegate31 extends BaseAudioDelegate {
             return;
         }
         mCurrentMp3Index = 0;
+        mPositionOnError = -1;
         if(!isFirstSetData){
             release();
         }
@@ -81,7 +88,11 @@ public class AudioDelegate31 extends BaseAudioDelegate {
         if (mMp3List == null || getMaxProgress() < 0) {
             return;
         }
-        mPlayer.syncMp3List(mCurrentMp3Index, mCurrentPosition, mPlayMode.value(), mPlaySpeed.index());
+        mPlayer.syncMp3List(mCurrentMp3Index,
+                getMaxProgress(),
+                getCurrentPosition(),
+                mPlayMode.value(),
+                mPlaySpeed.index());
     }
 
     /**
@@ -174,6 +185,9 @@ public class AudioDelegate31 extends BaseAudioDelegate {
         if(mPlayer.interceptSelect(mMp3List, nextIndex)){
             return;
         }
+        if(nextIndex != mCurrentMp3Index){
+            mPositionOnError = -1;
+        }
         mCurrentMp3Index = nextIndex;
         recreate();
         start();
@@ -224,9 +238,9 @@ public class AudioDelegate31 extends BaseAudioDelegate {
      */
     public void release() {
         if (mPlayer.available()) {
+            mPlayer.release();
             // 每次重新播放，都需要手动再次获取url
             mMp3List.get(mCurrentMp3Index).audioUrl = "";
-            mPlayer.release();
         }
         mProgressRefreshHandler.removeCallbacksAndMessages(null);
     }
@@ -253,13 +267,17 @@ public class AudioDelegate31 extends BaseAudioDelegate {
             mPlayer.callbackWhenSelect(mCurrentMp3Index);
             // 添加准备结束的回调
             mPlayer.callbackWhenPrepareEnd();
+            if(mPositionOnError > 0){
+                mPlayer.seekTo(mPositionOnError);
+                mPositionOnError = -1;
+            }
             initProgress();
         }
     };
 
     private void initProgress() {
         // 初始化播放位置
-        mCurrentPosition = -1;
+        mCurrentPosition = 1;
         // 开始不停地刷新播放进度
         mProgressRefreshHandler.sendEmptyMessage(0);
     }
@@ -329,7 +347,7 @@ public class AudioDelegate31 extends BaseAudioDelegate {
      */
     public int getCurrentPosition() {
         if(!mPlayer.available()){
-            return 0;
+            return mCurrentPosition;
         }
         return mPlayer.getCurrentPosition();
     }
