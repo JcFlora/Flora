@@ -17,20 +17,16 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
+import com.jc.flora.apps.component.time.TimeUtils;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by shijincheng on 2019/4/25.
  */
-
 public class AudioDetailPlayerDelegate30 {
 
-    // 进度条下面的当前进度文字，将毫秒化为mm:ss格式
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
     // 播放模式名称列表
     private static final String[] MODE_ITEMS = {"列表循环", "单曲循环", "随机播放"};
     // 播放模式图标
@@ -304,7 +300,7 @@ public class AudioDetailPlayerDelegate30 {
             // 设置当前音频播放最大进度值
             mSbProgress.setMax(maxProgress);
             // 设置当前音频总时间
-            mTvMaxTime.setText(FORMAT.format(maxProgress));
+            mTvMaxTime.setText(TimeUtils.getTimeSmartFormat(maxProgress));
         }
 
         @Override
@@ -330,7 +326,7 @@ public class AudioDetailPlayerDelegate30 {
             // 设置当前进度值
             mSbProgress.setProgress(progress);
             // 设置时间
-            mTvCurrentTime.setText(FORMAT.format(progress));
+            mTvCurrentTime.setText(TimeUtils.getTimeSmartFormat(progress));
         }
 
         @Override
