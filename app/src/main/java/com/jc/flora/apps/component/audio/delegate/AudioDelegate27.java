@@ -95,7 +95,7 @@ public class AudioDelegate27 extends BaseAudioDelegate {
                 }
             }
             // 同步播放位置
-            l.onProgress(getCurrentPosition());
+            l.onProgress(mExoPlayer == null ? 0 : getCurrentPosition());
             // 同步播放模式
             l.onModeSelect(mPlayMode.value());
             // 同步播放速度

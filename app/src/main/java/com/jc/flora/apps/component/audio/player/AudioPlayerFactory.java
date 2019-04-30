@@ -12,7 +12,7 @@ public class AudioPlayerFactory {
                 return new ExoAudioPlayer();
             case IJK:
             default:
-                return new ExoAudioPlayer();
+                return new IjkAudioPlayer();
         }
     }
 

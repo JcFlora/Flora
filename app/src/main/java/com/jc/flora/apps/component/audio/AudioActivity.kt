@@ -293,7 +293,7 @@ class AudioActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "音频3.2：使用IjkPlayer播放引擎"
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = AudioList32Activity::class.java
             return project
         }
 

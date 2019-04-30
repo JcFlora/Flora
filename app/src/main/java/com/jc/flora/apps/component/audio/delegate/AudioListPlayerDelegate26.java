@@ -195,7 +195,7 @@ public class AudioListPlayerDelegate26 {
         // 连接Service时回调，保存控制播放组件
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mDelegate = (AudioDelegate26) service;
+            mDelegate = (BaseAudioDelegate) service;
             mDelegate.addAudioStatusListener(mAudioStatusListener);
             mDelegate.setMp3List(MP3_LIST);
         }

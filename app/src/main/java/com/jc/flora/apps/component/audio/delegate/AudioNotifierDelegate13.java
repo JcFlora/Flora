@@ -24,9 +24,10 @@ import com.jc.flora.apps.component.audio.model.MP3;
 public class AudioNotifierDelegate13 {
 
     private static final int NOTIFICATION_ID = 0x111;
-    public static final String EXTRA_PLAY = "play";
-    public static final String EXTRA_PAUSE = "pause";
-    public static final String EXTRA_NEXT = "next";
+    private static final String EXTRA_PLAY = "play";
+    private static final String EXTRA_PAUSE = "pause";
+    private static final String EXTRA_NEXT = "next";
+    private static final String EXTRA_CLOSE = "close";
 
     private Service mService;
     private Class<? extends AppCompatActivity> mActivityClass;
@@ -58,6 +59,7 @@ public class AudioNotifierDelegate13 {
         intentFilter.addAction(EXTRA_PLAY);
         intentFilter.addAction(EXTRA_PAUSE);
         intentFilter.addAction(EXTRA_NEXT);
+        intentFilter.addAction(EXTRA_CLOSE);
         mService.registerReceiver(mAudioNotifierReceiver, intentFilter);
     }
 
@@ -104,6 +106,10 @@ public class AudioNotifierDelegate13 {
                 case EXTRA_NEXT:
                     mAudioDelegate.nextAudio();
                     break;
+                case EXTRA_CLOSE:
+                    mAudioDelegate.pauseAudio();
+                    mNotificationManager.cancelAll();
+                    break;
                 default:
                     break;
             }
@@ -138,7 +144,7 @@ public class AudioNotifierDelegate13 {
 
     private RemoteViews getRemoteViews(MP3 mp3, boolean isPlaying) {
         // 创建通知栏显示的视图
-        RemoteViews remoteViews = new RemoteViews(mService.getPackageName(), R.layout.layout_audio12_notifier);
+        RemoteViews remoteViews = new RemoteViews(mService.getPackageName(), R.layout.layout_audio13_notifier);
         // 设置mp3封面图
         remoteViews.setImageViewResource(R.id.iv_cover, mp3.coverImgResId);
         // 设置mp3名称
@@ -151,6 +157,8 @@ public class AudioNotifierDelegate13 {
         }
         // 设置下一首按钮
         setNextButton(remoteViews);
+        // 设置关闭按钮
+        setCloseButton(remoteViews);
         return remoteViews;
     }
 
@@ -164,6 +172,10 @@ public class AudioNotifierDelegate13 {
 
     private void setNextButton(RemoteViews remoteViews) {
         setButton(remoteViews, R.id.btn_next, getNextIconRes(), EXTRA_NEXT, 2);
+    }
+
+    private void setCloseButton(RemoteViews remoteViews) {
+        setButton(remoteViews, R.id.btn_close, getCloseIconRes(), EXTRA_CLOSE, 4);
     }
 
     private void setButton(RemoteViews remoteViews, int btnId, int iconRes, String action, int requestId) {
@@ -186,6 +198,11 @@ public class AudioNotifierDelegate13 {
     private int getNextIconRes() {
         return mIsLightNotificationTheme ?
                 R.drawable.audio_notifier_next_dark : R.drawable.audio_notifier_next_light;
+    }
+
+    private int getCloseIconRes() {
+        return mIsLightNotificationTheme ?
+                R.drawable.audio_notifier_close_dark : R.drawable.audio_notifier_close_dark;
     }
 
 }

@@ -8,6 +8,7 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
+import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
 import com.jc.flora.apps.component.cache.utils.GlideUtils;
 
@@ -136,8 +137,11 @@ public class AudioSessionDelegate26 {
             mMediaSession.setMetadata(null);
             return;
         }
+        Bitmap bitmap = BitmapFactory.decodeResource(mService.getResources(), R.drawable.audio_bg);
         File imageFile =  GlideUtils.getCacheFile(mService, mp3.audioAlbum);
-        Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+        if(imageFile != null){
+            bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+        }
         MediaMetadataCompat.Builder metaData = new MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, mp3.name)
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, "未知")

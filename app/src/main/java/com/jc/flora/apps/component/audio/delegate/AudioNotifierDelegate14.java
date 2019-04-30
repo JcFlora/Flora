@@ -24,10 +24,11 @@ import com.jc.flora.apps.component.audio.model.MP3;
 public class AudioNotifierDelegate14 {
 
     private static final int NOTIFICATION_ID = 0x111;
-    public static final String EXTRA_PLAY = "play";
-    public static final String EXTRA_PAUSE = "pause";
-    public static final String EXTRA_NEXT = "next";
-    public static final String EXTRA_PRE = "pre";
+    private static final String EXTRA_PLAY = "play";
+    private static final String EXTRA_PAUSE = "pause";
+    private static final String EXTRA_NEXT = "next";
+    private static final String EXTRA_PRE = "pre";
+    private static final String EXTRA_CLOSE = "close";
 
     private Service mService;
     private Class<? extends AppCompatActivity> mActivityClass;
@@ -60,6 +61,7 @@ public class AudioNotifierDelegate14 {
         intentFilter.addAction(EXTRA_PAUSE);
         intentFilter.addAction(EXTRA_NEXT);
         intentFilter.addAction(EXTRA_PRE);
+        intentFilter.addAction(EXTRA_CLOSE);
         mService.registerReceiver(mAudioNotifierReceiver, intentFilter);
     }
 
@@ -109,6 +111,10 @@ public class AudioNotifierDelegate14 {
                 case EXTRA_PRE:
                     mAudioDelegate.preAudio();
                     break;
+                case EXTRA_CLOSE:
+                    mAudioDelegate.pauseAudio();
+                    mNotificationManager.cancelAll();
+                    break;
                 default:
                     break;
             }
@@ -142,27 +148,9 @@ public class AudioNotifierDelegate14 {
         return builder.build();
     }
 
-    private RemoteViews getRemoteViews(MP3 mp3, boolean isPlaying) {
-        // 创建通知栏显示的视图
-        RemoteViews remoteViews = new RemoteViews(mService.getPackageName(), R.layout.layout_audio12_notifier);
-        // 设置mp3封面图
-        remoteViews.setImageViewResource(R.id.iv_cover, mp3.coverImgResId);
-        // 设置mp3名称
-        remoteViews.setTextViewText(R.id.tv_title, mp3.name);
-        // 设置播放／暂停按钮
-        if (isPlaying) {
-            setPauseButton(remoteViews);
-        } else {
-            setPlayButton(remoteViews);
-        }
-        // 设置下一首按钮
-        setNextButton(remoteViews);
-        return remoteViews;
-    }
-
     private RemoteViews getBigRemoteViews(MP3 mp3, boolean isPlaying) {
         // 创建通知栏显示的视图
-        RemoteViews remoteViews = new RemoteViews(mService.getPackageName(), R.layout.layout_audio13_notifier);
+        RemoteViews remoteViews = new RemoteViews(mService.getPackageName(), R.layout.layout_audio14_notifier);
         // 设置mp3封面图
         remoteViews.setImageViewResource(R.id.iv_cover, mp3.coverImgResId);
         // 设置mp3名称
@@ -177,6 +165,28 @@ public class AudioNotifierDelegate14 {
         setBigNextButton(remoteViews);
         // 设置上一首按钮
         setBigPreButton(remoteViews);
+        // 设置关闭按钮
+        setCloseButton(remoteViews);
+        return remoteViews;
+    }
+
+    private RemoteViews getRemoteViews(MP3 mp3, boolean isPlaying) {
+        // 创建通知栏显示的视图
+        RemoteViews remoteViews = new RemoteViews(mService.getPackageName(), R.layout.layout_audio13_notifier);
+        // 设置mp3封面图
+        remoteViews.setImageViewResource(R.id.iv_cover, mp3.coverImgResId);
+        // 设置mp3名称
+        remoteViews.setTextViewText(R.id.tv_title, mp3.name);
+        // 设置播放／暂停按钮
+        if (isPlaying) {
+            setPauseButton(remoteViews);
+        } else {
+            setPlayButton(remoteViews);
+        }
+        // 设置下一首按钮
+        setNextButton(remoteViews);
+        // 设置关闭按钮
+        setCloseButton(remoteViews);
         return remoteViews;
     }
 
@@ -208,6 +218,10 @@ public class AudioNotifierDelegate14 {
         setButton(remoteViews, R.id.btn_pre, R.drawable.audio_notifier_pre_big, EXTRA_PRE, 3);
     }
 
+    private void setCloseButton(RemoteViews remoteViews) {
+        setButton(remoteViews, R.id.btn_close, getCloseIconRes(), EXTRA_CLOSE, 4);
+    }
+
     private void setButton(RemoteViews remoteViews, int btnId, int iconRes, String action, int requestId) {
         Intent nextIntent = new Intent(action);
         PendingIntent nextPendingIntent = PendingIntent.getBroadcast(mService, requestId, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -228,6 +242,11 @@ public class AudioNotifierDelegate14 {
     private int getNextIconRes() {
         return mIsLightNotificationTheme ?
                 R.drawable.audio_notifier_next_dark : R.drawable.audio_notifier_next_light;
+    }
+
+    private int getCloseIconRes() {
+        return mIsLightNotificationTheme ?
+                R.drawable.audio_notifier_close_dark : R.drawable.audio_notifier_close_dark;
     }
 
 }
