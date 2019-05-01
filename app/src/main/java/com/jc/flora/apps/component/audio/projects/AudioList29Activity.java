@@ -42,7 +42,7 @@ public class AudioList29Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         startAudioService();
-        setTitle("添加移动网络检测与音频容量显示功能");
+        setTitle("添加无网络拦截与错误回调");
         setContentView(R.layout.activity_audio_list23);
         findViews();
         initViews();

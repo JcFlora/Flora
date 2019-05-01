@@ -354,10 +354,10 @@ public class AudioDetailPlayerDelegate29 {
         @Override
         public void onIntercepted(ArrayList<MP3> mp3List, int index, int flag) {
             switch (flag) {
-                case AudioSourceInterceptDelegate29.FLAG_GET_URI_BY_ID:
+                case AudioSourceInterceptDelegate.FLAG_GET_URI_BY_ID:
                     mPbLoading.setVisibility(View.VISIBLE);
                     break;
-                case AudioSourceInterceptDelegate29.FLAG_NO_NET:
+                case AudioNetInterceptDelegate.FLAG_NO_NET:
                     ToastDelegate.show(mActivity, "无网络");
                     break;
             }

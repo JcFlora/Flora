@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.jc.flora.apps.component.audio.delegate.AudioDelegate29;
-import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate16;
-import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate17;
+import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate;
+import com.jc.flora.apps.component.audio.delegate.AudioMobileNetInterceptDelegate;
+import com.jc.flora.apps.component.audio.delegate.AudioNetInterceptDelegate;
+import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate;
 import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate26;
 import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate26;
-import com.jc.flora.apps.component.audio.delegate.AudioSourceInterceptDelegate30;
+import com.jc.flora.apps.component.audio.delegate.AudioSourceInterceptDelegate;
 import com.jc.flora.apps.component.audio.delegate.BaseAudioDelegate;
 import com.jc.flora.apps.component.audio.projects.AudioDetail30Activity;
 
@@ -19,9 +21,11 @@ public class Audio30Service extends Service {
     private BaseAudioDelegate mAudioDelegate;
     private AudioNotifierDelegate26 mNotifierDelegate;
     private AudioSessionDelegate26 mSessionDelegate;
-    private AudioFocusDelegate16 mFocusDelegate;
-    private AudioNoisyDelegate17 mNoisyDelegate;
-    private AudioSourceInterceptDelegate30 mSourceInterceptDelegate;
+    private AudioFocusDelegate mFocusDelegate;
+    private AudioNoisyDelegate mNoisyDelegate;
+    private AudioNetInterceptDelegate mNetInterceptDelegate;
+    private AudioMobileNetInterceptDelegate mMobileNetInterceptDelegate;
+    private AudioSourceInterceptDelegate mSourceInterceptDelegate;
 
     /**
      * 启动当前Service，需要在bind之前调用
@@ -45,9 +49,11 @@ public class Audio30Service extends Service {
         mAudioDelegate = new AudioDelegate29(this);
         mNotifierDelegate = new AudioNotifierDelegate26(this, AudioDetail30Activity.class, mAudioDelegate);
         mSessionDelegate = new AudioSessionDelegate26(this, mAudioDelegate);
-        mFocusDelegate = new AudioFocusDelegate16(this, mAudioDelegate);
-        mNoisyDelegate = new AudioNoisyDelegate17(this, mAudioDelegate);
-        mSourceInterceptDelegate = new AudioSourceInterceptDelegate30(this, mAudioDelegate);
+        mFocusDelegate = new AudioFocusDelegate(this, mAudioDelegate);
+        mNoisyDelegate = new AudioNoisyDelegate(this, mAudioDelegate);
+        mNetInterceptDelegate = new AudioNetInterceptDelegate(this, mAudioDelegate);
+        mMobileNetInterceptDelegate = new AudioMobileNetInterceptDelegate(this, mAudioDelegate);
+        mSourceInterceptDelegate = new AudioSourceInterceptDelegate(mAudioDelegate);
     }
 
     @Override
@@ -62,6 +68,8 @@ public class Audio30Service extends Service {
         mSessionDelegate.release();
         mFocusDelegate.release();
         mNoisyDelegate.release();
+        mNetInterceptDelegate.release();
+        mMobileNetInterceptDelegate.release();
         mSourceInterceptDelegate.release();
         mAudioDelegate.release();
     }

@@ -1,36 +1,29 @@
 package com.jc.flora.apps.component.audio.delegate;
 
-import android.app.Service;
 import android.os.Handler;
 
 import com.jc.flora.apps.component.audio.model.MP3;
-import com.jc.flora.apps.component.deviceinfo.NetworkUtils;
 
 import java.util.ArrayList;
 
 /**
- * 音频数据源拦截器（支付拦截+异步获取url拦截+无网络拦截）
+ * 音频数据源拦截器（支付拦截+异步获取url拦截）
  * Created by Shijincheng on 2019/4/24.
  */
-
-public class AudioSourceInterceptDelegate29 {
+public class AudioSourceInterceptDelegate {
 
     /** 获取真实URI的回调标记 */
     public static final int FLAG_GET_URI_BY_ID = 0x1357;
     /** 触发支付的回调标记 */
     public static final int FLAG_GO_TO_PAY = 0x2468;
-    /** 无网络的回调标记 */
-    public static final int FLAG_NO_NET = 0x2222;
 
-    private Service mService;
     private BaseAudioDelegate mAudioDelegate;
     /** 用于模拟支付和异步获取url的Handler */
     private Handler mHandler = new Handler();
     /** 是否正在拦截 */
     private boolean mIsBusying;
 
-    public AudioSourceInterceptDelegate29(Service service, BaseAudioDelegate audioDelegate) {
-        mService = service;
+    public AudioSourceInterceptDelegate(BaseAudioDelegate audioDelegate) {
         mAudioDelegate = audioDelegate;
         mAudioDelegate.addAudioSourceInterceptor(mAudioSourceInterceptor);
     }
@@ -38,12 +31,6 @@ public class AudioSourceInterceptDelegate29 {
     private AudioSourceInterceptor mAudioSourceInterceptor = new AudioSourceInterceptor(){
         @Override
         public boolean interceptSelect(final ArrayList<MP3> mp3List, final int index) {
-            // 检测网络状态
-            int networkState = NetworkUtils.getNetworkState(mService);
-            if(networkState < 0){
-                mAudioDelegate.notifyIntercepted(index, FLAG_NO_NET);
-                return true;
-            }
             boolean intercept = !mp3List.get(index).couldPlay();
             if(intercept && !mIsBusying){
                 mIsBusying = true;
@@ -63,18 +50,6 @@ public class AudioSourceInterceptDelegate29 {
                 mAudioDelegate.notifyIntercepted(index, FLAG_GET_URI_BY_ID);
             }
             return intercept;
-        }
-
-        @Override
-        public boolean interceptPlay() {
-            // 检测网络状态
-            int networkState = NetworkUtils.getNetworkState(mService);
-            if(networkState < 0){
-                mAudioDelegate.notifyIntercepted(mAudioDelegate.getCurrentMp3Index(), FLAG_NO_NET);
-                return true;
-            }else{
-                return false;
-            }
         }
     };
 

@@ -12,7 +12,7 @@ import android.widget.SeekBar;
  * Created by shijincheng on 2017/10/22.
  */
 
-public class AudioVolumeDelegate18 {
+public class AudioVolumeDelegate {
 
     private static final String VOLUME_CHANGED_ACTION = "android.media.VOLUME_CHANGED_ACTION";
 
@@ -22,7 +22,7 @@ public class AudioVolumeDelegate18 {
 
     private AudioManager mAudioManager;
 
-    public AudioVolumeDelegate18(AppCompatActivity activity) {
+    public AudioVolumeDelegate(AppCompatActivity activity) {
         mActivity = activity;
     }
 

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.delegate.AudioDetailPlayerDelegate22;
-import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate18;
+import com.jc.flora.apps.component.audio.delegate.AudioVolumeDelegate;
 import com.jc.flora.apps.component.audio.service.Audio22Service;
 
 /**
@@ -16,7 +16,7 @@ import com.jc.flora.apps.component.audio.service.Audio22Service;
  */
 public class AudioDetail22Activity extends AppCompatActivity {
 
-    private AudioVolumeDelegate18 mVolumeDelegate;
+    private AudioVolumeDelegate mVolumeDelegate;
     private AudioDetailPlayerDelegate22 mDelegate;
     // 音量进度条
     private SeekBar mSbVolume;
@@ -62,7 +62,7 @@ public class AudioDetail22Activity extends AppCompatActivity {
     }
 
     private void initDelegate(){
-        mVolumeDelegate = new AudioVolumeDelegate18(this);
+        mVolumeDelegate = new AudioVolumeDelegate(this);
         mVolumeDelegate.setSbVolume(mSbVolume);
         mVolumeDelegate.init();
 

@@ -358,13 +358,13 @@ public class AudioDetailPlayerDelegate30 {
         @Override
         public void onIntercepted(ArrayList<MP3> mp3List, int index, int flag) {
             switch (flag) {
-                case AudioSourceInterceptDelegate30.FLAG_GET_URI_BY_ID:
+                case AudioSourceInterceptDelegate.FLAG_GET_URI_BY_ID:
                     mPbLoading.setVisibility(View.VISIBLE);
                     break;
-                case AudioSourceInterceptDelegate30.FLAG_NO_NET:
+                case AudioNetInterceptDelegate.FLAG_NO_NET:
                     ToastDelegate.show(mActivity, "无网络");
                     break;
-                case AudioSourceInterceptDelegate30.FLAG_MOBILE_NET:
+                case AudioMobileNetInterceptDelegate.FLAG_MOBILE_NET:
                     // 注意这里一定要判断hasWindowFocus，因为下面这个弹窗是模态的，
                     // 如果不判断，会导致所有监听的页面都会弹一个弹窗
                     if(mActivity.hasWindowFocus()){
@@ -389,7 +389,7 @@ public class AudioDetailPlayerDelegate30 {
             @Override
             public void onClick(DialogInterface dialog, final int which) {
                 dialog.dismiss();
-                if(AudioSourceInterceptDelegate30.canPlayInMobileNet()){
+                if(AudioMobileNetInterceptDelegate.canPlayInMobileNet()){
                     mDelegate.selectAudio(which);
                 }else{
                     // 这里为什么要延迟50ms？
@@ -432,7 +432,7 @@ public class AudioDetailPlayerDelegate30 {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                AudioSourceInterceptDelegate30.sUserAgreeMobile = true;
+                AudioMobileNetInterceptDelegate.sUserAgreeMobile = true;
                 mDelegate.selectAudio(index);
             }
         });

@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.jc.flora.apps.component.audio.delegate.AudioDelegate25;
-import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate16;
-import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate17;
+import com.jc.flora.apps.component.audio.delegate.AudioFocusDelegate;
+import com.jc.flora.apps.component.audio.delegate.AudioNoisyDelegate;
 import com.jc.flora.apps.component.audio.delegate.AudioNotifierDelegate14;
 import com.jc.flora.apps.component.audio.delegate.AudioSessionDelegate15;
 import com.jc.flora.apps.component.audio.delegate.BaseAudioDelegate;
@@ -18,8 +18,8 @@ public class Audio25Service extends Service {
     private BaseAudioDelegate mAudioDelegate;
     private AudioNotifierDelegate14 mNotifierDelegate;
     private AudioSessionDelegate15 mSessionDelegate;
-    private AudioFocusDelegate16 mFocusDelegate;
-    private AudioNoisyDelegate17 mNoisyDelegate;
+    private AudioFocusDelegate mFocusDelegate;
+    private AudioNoisyDelegate mNoisyDelegate;
 
     /**
      * 启动当前Service，需要在bind之前调用
@@ -43,8 +43,8 @@ public class Audio25Service extends Service {
         mAudioDelegate = new AudioDelegate25(this);
         mNotifierDelegate = new AudioNotifierDelegate14(this, AudioDetail25Activity.class, mAudioDelegate);
         mSessionDelegate = new AudioSessionDelegate15(this, mAudioDelegate);
-        mFocusDelegate = new AudioFocusDelegate16(this, mAudioDelegate);
-        mNoisyDelegate = new AudioNoisyDelegate17(this, mAudioDelegate);
+        mFocusDelegate = new AudioFocusDelegate(this, mAudioDelegate);
+        mNoisyDelegate = new AudioNoisyDelegate(this, mAudioDelegate);
     }
 
     @Override

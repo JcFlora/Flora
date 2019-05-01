@@ -8,7 +8,7 @@ import android.media.AudioManager;
  * Created by shijincheng on 2017/10/16.
  */
 
-public class AudioFocusDelegate16 {
+public class AudioFocusDelegate {
 
     private BaseAudioDelegate mAudioDelegate;
     private AudioManager mAudioManager;
@@ -17,7 +17,7 @@ public class AudioFocusDelegate16 {
     // 状态标记，标识是否正在播放，用来控制焦点处理
     private boolean mIsPlaying;
 
-    public AudioFocusDelegate16(Service service, BaseAudioDelegate audioDelegate) {
+    public AudioFocusDelegate(Service service, BaseAudioDelegate audioDelegate) {
         mAudioDelegate = audioDelegate;
         mAudioManager = (AudioManager) service.getSystemService(Context.AUDIO_SERVICE);
         mAudioDelegate.addAudioStatusListener(mAudioStatusListener);

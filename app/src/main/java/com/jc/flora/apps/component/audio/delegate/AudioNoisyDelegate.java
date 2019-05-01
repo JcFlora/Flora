@@ -11,13 +11,13 @@ import android.media.AudioManager;
  * Created by shijincheng on 2017/10/17.
  */
 
-public class AudioNoisyDelegate17 {
+public class AudioNoisyDelegate {
 
     private Service mService;
     private BaseAudioDelegate mAudioDelegate;
     private boolean mIsReceiverRegistered = false;
 
-    public AudioNoisyDelegate17(Service service, BaseAudioDelegate audioDelegate) {
+    public AudioNoisyDelegate(Service service, BaseAudioDelegate audioDelegate) {
         mService = service;
         mAudioDelegate = audioDelegate;
         addAudioStatusListener();
