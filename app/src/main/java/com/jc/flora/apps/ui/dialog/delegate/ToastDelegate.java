@@ -1,5 +1,6 @@
 package com.jc.flora.apps.ui.dialog.delegate;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.widget.Toast;
@@ -19,6 +20,28 @@ public class ToastDelegate {
             sToast = Toast.makeText(context.getApplicationContext(), text, DURATION);
         } else {
             sToast.setText(text);
+        }
+        sToast.show();
+    }
+
+    public static void show(Context context, int resId) {
+        if (sToast == null) {
+            sToast = Toast.makeText(context.getApplicationContext(), resId, DURATION);
+        } else {
+            sToast.setText(resId);
+        }
+        sToast.show();
+    }
+
+    public static void showIfInForeground(Activity activity, int resId) {
+        //todo 有问题
+        if(!activity.hasWindowFocus()){
+            return;
+        }
+        if (sToast == null) {
+            sToast = Toast.makeText(activity.getApplicationContext(), resId, DURATION);
+        } else {
+            sToast.setText(resId);
         }
         sToast.show();
     }

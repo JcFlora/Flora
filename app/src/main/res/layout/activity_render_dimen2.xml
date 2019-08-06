@@ -35,8 +35,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="@dimen/app_card_corner_radius"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="false"
                 tools:targetApi="lollipop">
 
                 <LinearLayout
@@ -108,8 +108,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 app:cardCornerRadius="@dimen/app_card_corner_radius"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="false"
                 tools:targetApi="lollipop">
 
                 <LinearLayout
@@ -196,8 +196,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 app:cardCornerRadius="@dimen/app_card_corner_radius"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="false"
                 tools:targetApi="lollipop">
 
                 <LinearLayout
@@ -326,8 +326,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 app:cardCornerRadius="@dimen/app_card_corner_radius"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="false"
                 tools:targetApi="lollipop">
 
                 <LinearLayout
@@ -471,8 +471,8 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 app:cardCornerRadius="@dimen/app_card_corner_radius"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="false"
                 tools:targetApi="lollipop">
 
                 <LinearLayout

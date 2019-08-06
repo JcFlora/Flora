@@ -10,8 +10,8 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_marginBottom="15dp"
     app:cardCornerRadius="8dp"
-    app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="false"
     tools:targetApi="lollipop">
 
     <LinearLayout

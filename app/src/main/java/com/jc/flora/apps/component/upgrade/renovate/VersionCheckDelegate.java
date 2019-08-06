@@ -209,7 +209,7 @@ public class VersionCheckDelegate {
         File file = new File(response.getFilePathName());
         String type = "application/vnd.android.package-archive";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.setDataAndType(FileProvider.getUriForFile(mActivity, mActivity.getPackageName() + ".provider", file), type);
+            intent.setDataAndType(FileProvider.getUriForFile(mActivity, mActivity.getPackageName() + ".fileProvider", file), type);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         } else {
             intent.setDataAndType(Uri.fromFile(file), type);

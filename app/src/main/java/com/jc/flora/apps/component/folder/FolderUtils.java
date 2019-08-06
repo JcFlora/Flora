@@ -33,6 +33,9 @@ public class FolderUtils {
     /** 当前应用总文件夹的路径名，若使用隐藏文件夹，文件夹名以.开头 */
     private static final String APP_FOLDER_SDCARD_PATH_NAME = "flora/";
 
+    /** 公共图片目录，一般用于将图片保存到手机并添加到相册 */
+    private static final String PUBLIC_PICTURES_PATH_NAME = "Pictures/";
+
     private static final long K_BYTES = 1000;
     private static final long M_BYTES = K_BYTES * 1000;
     private static final long G_BYTES = M_BYTES * 1000;
@@ -68,6 +71,14 @@ public class FolderUtils {
      */
     public static String getAppFolderPath() {
         return getSdcardPath() + APP_FOLDER_SDCARD_PATH_NAME;
+    }
+
+    /**
+     * 获取公共图片目录
+     * @return
+     */
+    public static String getPublicPicturesPath() {
+        return getSdcardPath() + PUBLIC_PICTURES_PATH_NAME;
     }
 
     /**
@@ -487,7 +498,7 @@ public class FolderUtils {
         if(!srcFile.exists() || destFile.exists()){
             return false;
         }
-        if(!createDir(destDirPath)){
+        if(!exists(destDirPath) && !createDir(destDirPath)){
             return false;
         }
         copy(srcFile, destFile);

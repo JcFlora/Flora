@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.jc.flora.apps.component.folder.FolderUtils;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -83,7 +87,13 @@ public class VersionDownloadUtil {
 	private void installApk() {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setDataAndType(FolderUtils.getUriByFilePath(mFilePathName), INSTALL_TYPE);
+		File file = new File(mFilePathName);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			intent.setDataAndType(FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileProvider", file), INSTALL_TYPE);
+			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+		} else {
+			intent.setDataAndType(Uri.fromFile(file), INSTALL_TYPE);
+		}
 		mContext.startActivity(intent);
 		if(mContext instanceof Activity){
 			((Activity)mContext).finish();

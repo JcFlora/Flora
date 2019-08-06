@@ -16,6 +16,18 @@
         android:text="询问进度变化对话框"
         android:onClick="showProgressChangeDialog"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示Gif加载框"
+        android:onClick="showGifLoadingDialog"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭Gif加载框"
+        android:onClick="stopGifLoadingDialog"/>
+
     <!--<Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

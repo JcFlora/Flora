@@ -68,10 +68,10 @@ public class AudioDelegate31 extends BaseAudioDelegate {
      */
     public void setMp3List(ArrayList<MP3> mp3List) {
         boolean isFirstSetData = (mMp3List == null);
-        mMp3List = mp3List;
         if(!isFirstSetData){
             release();
         }
+        mMp3List = mp3List;
         // 添加切换拦截
         if(mPlayer.interceptSelect(mMp3List, 0)){
             return;

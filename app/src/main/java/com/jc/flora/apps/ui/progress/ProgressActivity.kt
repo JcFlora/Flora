@@ -49,15 +49,15 @@ class ProgressActivity : AppCompatActivity() {
             project.targetActivity = Progress2Activity::class.java
             return project
         }
-//
+
 //    private val project3: Project
 //        get() {
 //            val project = Project()
-//            project.projectName = "渐变背景"
-//            project.targetActivity = ShapeGradientActivity::class.java
+//            project.projectName = "使用Gif动画实现loading加载"
+//            project.targetActivity = Progress3Activity::class.java
 //            return project
 //        }
-//
+
 //    private val project4: Project
 //        get() {
 //            val project = Project()
