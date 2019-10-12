@@ -69,7 +69,8 @@ public class AppUpgradeInfo {
 
     public static AppUpgradeInfo createTestInfo(){
         AppUpgradeInfo info = new AppUpgradeInfo();
-        info.url = "http://trinea.cn/app/dev-tools.apk";
+//        info.url = "http://trinea.cn/app/dev-tools.apk";
+        info.url = "http://www.ppmbook.com/apk/phoenix_book_v1.1.0_test.apk";
         info.versionName = "1.0";
         info.type = TYPE_RECOMMEND_UPGRADE;
         info.versionCode = 2;

@@ -55,7 +55,7 @@ public class ScaleDownShowBehavior extends FloatingActionButton.Behavior {
                 .scaleX(1.0f)
                 .scaleY(1.0f)
                 .alpha(1.0f)
-                .setDuration(800)
+                .setDuration(300)
                 .setListener(viewPropertyAnimatorListener)
                 .setInterpolator(INTERPOLATOR)
                 .start();
@@ -67,7 +67,7 @@ public class ScaleDownShowBehavior extends FloatingActionButton.Behavior {
                 .scaleX(0.0f)
                 .scaleY(0.0f)
                 .alpha(0.0f)
-                .setDuration(800)
+                .setDuration(300)
                 .setInterpolator(INTERPOLATOR)
                 .setListener(viewPropertyAnimatorListener)
                 .start();

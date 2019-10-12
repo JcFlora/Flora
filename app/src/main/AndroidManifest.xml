@@ -319,6 +319,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/FloraTheme" />
         <activity
+            android:name=".apps.ui.stable.projects.Stable10Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FloraTheme" />
+        <activity
+            android:name=".apps.ui.stable.projects.Stable11Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FloraTheme" />
+        <activity
+            android:name=".apps.ui.stable.projects.Stable12Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FloraTheme" />
+        <activity
             android:name=".apps.component.image.ImageLoadActivity"
             android:screenOrientation="portrait" />
         <activity

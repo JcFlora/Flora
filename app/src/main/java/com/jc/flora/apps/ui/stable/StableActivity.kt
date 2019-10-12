@@ -32,7 +32,8 @@ class StableActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6,project7, project8, project9, project10)
+                    project6,project7, project8, project9, project10,
+                    project11, project12, project13)
         }
 
     private val project1: Project
@@ -108,6 +109,30 @@ class StableActivity : AppCompatActivity() {
         }
 
     private val project10: Project
+        get() {
+            val project = Project()
+            project.projectName = "底部浮动浮窗（监听ScrollView滑动+动画）"
+            project.targetActivity = Stable10Activity::class.java
+            return project
+        }
+
+    private val project11: Project
+        get() {
+            val project = Project()
+            project.projectName = "底部浮动浮窗（监听RecyclerView滑动+动画）"
+            project.targetActivity = Stable11Activity::class.java
+            return project
+        }
+
+    private val project12: Project
+        get() {
+            val project = Project()
+            project.projectName = "底部浮动浮窗（使用AppBarLayout）"
+            project.targetActivity = Stable12Activity::class.java
+            return project
+        }
+
+    private val project13: Project
         get() {
             val project = Project()
             project.projectName = "动态切换横屏"

@@ -21,15 +21,15 @@ import com.jc.flora.launcher.NotFoundActivity;
 import java.util.ArrayList;
 
 /**
- * Created by shijincheng on 2017/3/6.
+ * Created by shijincheng on 2019/9/17.
  */
-public class Stable6Activity extends AppCompatActivity {
+public class Stable11Activity extends AppCompatActivity {
 
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
     private Toolbar mToolbar;
     private RecyclerView mRvContent;
-    private LinearLayoutManager mLayoutManager;
+    private View mVBottomBar;
 
     // 动画移动的距离
     private float mViewY;
@@ -39,7 +39,7 @@ public class Stable6Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stable5);
+        setContentView(R.layout.activity_stable11);
         findViews();
         initViews();
     }
@@ -47,13 +47,14 @@ public class Stable6Activity extends AppCompatActivity {
     private void findViews() {
         mToolbar = (Toolbar) findViewById(R.id.tb_title);
         mRvContent = (RecyclerView) findViewById(R.id.rv_content);
+        mVBottomBar = findViewById(R.id.tv_bottom_bar);
     }
 
     private void initViews() {
-        mToolbar.setTitle("浮动标题（监听滑动+动画）");
+        mToolbar.setTitle("底部浮动浮窗（监听RecyclerView滑动+动画）");
         mToolbar.setTitleTextColor(Color.WHITE);
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRvContent.setLayoutManager(mLayoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mRvContent.setLayoutManager(layoutManager);
         ProjectsAdapter mAdapter = new ProjectsAdapter(this, getData());
         mRvContent.setAdapter(mAdapter);
         mRvContent.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -77,31 +78,24 @@ public class Stable6Activity extends AppCompatActivity {
     }
 
     private void onScrolledVertically(int dy) {
-        if (mToolbar.getVisibility() == View.VISIBLE && mViewY == 0) {
-            mViewY = mToolbar.getHeight();
+        if (mVBottomBar.getVisibility() == View.VISIBLE && mViewY == 0) {
+            mViewY = ((View)mVBottomBar.getParent()).getHeight();
         }
         if(!mRvContent.canScrollVertically(-1)){
             show();
             return;
         }
         //dy大于0是向上滚动 小于0是向下滚动
-        if (dy > 1 && getScrollYDistance() > 200 && !mIsAnimate && mToolbar.getVisibility() == View.VISIBLE) {
+        if (dy > 1 && !mIsAnimate && mVBottomBar.getVisibility() == View.VISIBLE) {
             hide();
-        } else if (dy < -1 && !mIsAnimate && mToolbar.getVisibility() == View.GONE) {
+        } else if (dy < -1 && !mIsAnimate && mVBottomBar.getVisibility() == View.GONE) {
             show();
         }
     }
 
-    public int getScrollYDistance() {
-        int position = mLayoutManager.findFirstVisibleItemPosition();
-        View firstVisibleChildView = mLayoutManager.findViewByPosition(position);
-        int itemHeight = firstVisibleChildView.getHeight();
-        return (position) * itemHeight - firstVisibleChildView.getTop();
-    }
-
     //隐藏时的动画
     private void hide() {
-        ViewPropertyAnimator animator = mToolbar.animate().translationY(-mViewY).setInterpolator(INTERPOLATOR).setDuration(300);
+        ViewPropertyAnimator animator = mVBottomBar.animate().translationY(mViewY).setInterpolator(INTERPOLATOR).setDuration(300);
         animator.setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -109,7 +103,7 @@ public class Stable6Activity extends AppCompatActivity {
             }
             @Override
             public void onAnimationEnd(Animator animator) {
-                mToolbar.setVisibility(View.GONE);
+                mVBottomBar.setVisibility(View.GONE);
                 mIsAnimate = false;
             }
             @Override
@@ -122,11 +116,11 @@ public class Stable6Activity extends AppCompatActivity {
 
     //显示时的动画
     private void show() {
-        ViewPropertyAnimator animator = mToolbar.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(300);
+        ViewPropertyAnimator animator = mVBottomBar.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(600);
         animator.setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {
-                mToolbar.setVisibility(View.VISIBLE);
+                mVBottomBar.setVisibility(View.VISIBLE);
                 mIsAnimate = true;
             }
             @Override
@@ -139,6 +133,23 @@ public class Stable6Activity extends AppCompatActivity {
             }
         });
         animator.start();
+    }
+
+    private void onScrolledVertically2(int dy) {
+        boolean mIsHideAfterScroll = false;
+        if(mVBottomBar.getTag() != null){
+            mIsHideAfterScroll = (boolean)mVBottomBar.getTag();
+        }
+        //上滑 并且 正在显示播放条
+        if (dy > 0 && !mIsHideAfterScroll) {
+            //将Y属性变为播放条容器高度 (相当于隐藏了)
+            mVBottomBar.animate().translationY(((View)mVBottomBar.getParent()).getHeight());
+            mVBottomBar.setTag(true);
+        } else if (dy < 0 && mIsHideAfterScroll) {
+            //将Y属性变为0  (相当于显示了)
+            mVBottomBar.animate().translationY(0);
+            mVBottomBar.setTag(false);
+        }
     }
 
 }

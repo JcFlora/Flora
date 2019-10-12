@@ -204,7 +204,7 @@ public class VersionCheckDelegate {
     }
 
     private void installApk(final AppUpgradeInfo response) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         File file = new File(response.getFilePathName());
         String type = "application/vnd.android.package-archive";

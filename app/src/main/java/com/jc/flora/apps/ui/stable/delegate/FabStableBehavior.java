@@ -52,7 +52,7 @@ public class FabStableBehavior extends CoordinatorLayout.Behavior<View> {
 
     // 隐藏时的动画
     private void hide(final View view) {
-        ViewPropertyAnimator animator = view.animate().translationY(mViewY).setInterpolator(INTERPOLATOR).setDuration(600);
+        ViewPropertyAnimator animator = view.animate().translationY(mViewY).setInterpolator(INTERPOLATOR).setDuration(300);
         animator.setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -73,7 +73,7 @@ public class FabStableBehavior extends CoordinatorLayout.Behavior<View> {
 
     // 显示时的动画
     private void show(final View view) {
-        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(600);
+        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(300);
         animator.setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {

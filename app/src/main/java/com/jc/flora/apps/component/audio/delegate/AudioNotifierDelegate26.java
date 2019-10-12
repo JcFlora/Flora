@@ -201,7 +201,7 @@ public class AudioNotifierDelegate26 {
 //        remoteViews.setImageViewResource(R.id.iv_cover, mp3.coverImgResId);
         NotificationTarget notificationTarget = new NotificationTarget(mService, R.id.iv_cover, remoteViews, notification, NOTIFICATION_ID);
         RequestOptions options = new RequestOptions()
-                .override(500, 500)
+//                .override(500, 500)
                 .centerCrop();
         Glide.with(mService)
                 .asBitmap()

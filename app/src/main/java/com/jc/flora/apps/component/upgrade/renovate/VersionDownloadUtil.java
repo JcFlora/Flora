@@ -71,7 +71,7 @@ public class VersionDownloadUtil {
 				case MSG_DOWNLOAD_LOADING:
 					mListener.onDownloadProgressChanged(mDownloadThread.getDownloadProgress());
 					break;
-				case MSG_DOWNLOAD_FINISH:				
+				case MSG_DOWNLOAD_FINISH:
 					installApk();
 					break;
 				case MSG_DOWNLOAD_ERROR:
@@ -85,7 +85,7 @@ public class VersionDownloadUtil {
 	};
 
 	private void installApk() {
-		Intent intent = new Intent(Intent.ACTION_VIEW);
+		Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		File file = new File(mFilePathName);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
