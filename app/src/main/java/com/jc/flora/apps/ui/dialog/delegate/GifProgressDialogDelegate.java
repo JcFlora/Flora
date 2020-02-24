@@ -40,7 +40,9 @@ public class GifProgressDialogDelegate {
     }
 
     public void hide(){
-        mGifDrawable.stop();
+        if(mGifDrawable != null){
+            mGifDrawable.stop();
+        }
         mDialog.dismiss();
     }
 
