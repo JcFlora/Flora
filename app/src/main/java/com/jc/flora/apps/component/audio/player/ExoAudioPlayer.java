@@ -151,6 +151,19 @@ public class ExoAudioPlayer extends BaseAudioPlayer {
                 return new ExtractorMediaSource(uri,
                         dataSourceFactory, extractorsFactory, null, null);
         }
+        // 更新到最新版本要改成下面的代码
+//        switch (contentType) {
+//            case C.TYPE_DASH:
+//                return new DashMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
+//            case C.TYPE_SS:
+//                return new SsMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
+//            case C.TYPE_HLS:
+//                return new HlsMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
+//            case C.TYPE_OTHER:
+//            default:
+//                // This is the MediaSource representing the media to be played.
+//                return new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
+//        }
     }
 
     private AudioEventListener mAudioEventListener = new AudioEventListener() {

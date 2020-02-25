@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 
+//    implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
     implementation 'com.google.android.exoplayer:exoplayer:r2.4.3'
     implementation 'com.google.android.exoplayer:exoplayer-core:r2.4.3'
     implementation 'com.google.android.exoplayer:exoplayer-dash:r2.4.3'
@@ -80,7 +81,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.mostafagazar:customshapeimageview:1.0.4'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
-    implementation 'com.contrarywind:Android-PickerView:4.1.7'
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
     implementation ('org.simpleframework:simple-xml:2.7.1') {
         exclude group: 'xpp3', module: 'xpp3'
