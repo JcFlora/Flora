@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 
-public class GestureCover10 extends BaseGestureCover{
+public class GestureCover10 extends BaseVideoGestureCover{
 
     private int mWidth, mHeight;
 
@@ -170,10 +170,6 @@ public class GestureCover10 extends BaseGestureCover{
         mSeekGestureDelegate.onEndGesture();
         mBrightnessGestureDelegate.onEndGesture();
         mVolumeGestureDelegate.onEndGesture();
-    }
-
-    public interface OnSingleTapUpListener{
-        void onSingleTapUp();
     }
 
 }

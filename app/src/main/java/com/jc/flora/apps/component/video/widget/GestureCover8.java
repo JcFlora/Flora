@@ -15,7 +15,7 @@ import com.jc.flora.R;
 /**
  * Created by Samurai on 2019/3/25.
  */
-public class GestureCover8 extends BaseGestureCover{
+public class GestureCover8 extends BaseVideoGestureCover{
 
     private int mWidth, mHeight;
 
@@ -124,10 +124,6 @@ public class GestureCover8 extends BaseGestureCover{
     @Override
     public void onEndGesture() {
         mSeekGestureDelegate.onEndGesture();
-    }
-
-    public interface OnSingleTapUpListener{
-        void onSingleTapUp();
     }
 
 }

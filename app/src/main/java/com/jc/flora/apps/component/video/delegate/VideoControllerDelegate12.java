@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.vi.fidelity.Fidelity;
-import com.jc.flora.apps.component.video.widget.GestureCover10;
+import com.jc.flora.apps.component.video.widget.BaseVideoGestureCover;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -45,7 +45,7 @@ public class VideoControllerDelegate12 extends Fragment {
     // 全屏/小屏切换
     private ImageView mBtnSwitchScreen;
     // 手势控制浮层
-    private GestureCover10 mGestureCover;
+    private BaseVideoGestureCover mGestureCover;
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
@@ -79,7 +79,7 @@ public class VideoControllerDelegate12 extends Fragment {
         mBtnSwitchScreen = btnSwitchScreen;
     }
 
-    public void setGestureCover(GestureCover10 gestureCover) {
+    public void setGestureCover(BaseVideoGestureCover gestureCover) {
         mGestureCover = gestureCover;
     }
 
@@ -145,7 +145,7 @@ public class VideoControllerDelegate12 extends Fragment {
                 return false;
             }
         });
-        mGestureCover.setOnSingleTapUpListener(new GestureCover10.OnSingleTapUpListener() {
+        mGestureCover.setOnSingleTapUpListener(new BaseVideoGestureCover.OnSingleTapUpListener() {
             @Override
             public void onSingleTapUp() {
                 if (mLayoutController.getVisibility() == View.VISIBLE) {

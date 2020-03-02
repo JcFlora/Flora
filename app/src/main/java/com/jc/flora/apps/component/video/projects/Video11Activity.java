@@ -12,10 +12,10 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate10;
+import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate8;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate7;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate7;
-import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate10;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate8;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
 
 /**
@@ -34,8 +34,8 @@ public class Video11Activity extends AppCompatActivity {
     private View mLayoutAlbumCover;
 
     private VideoDelegate7 mVideoDelegate;
-    private VideoControllerDelegate10 mControllerDelegate;
-    private VideoGestureCoverDelegate10 mGestureCoverDelegate;
+    private VideoControllerDelegate8 mControllerDelegate;
+    private VideoGestureCoverDelegate8 mGestureCoverDelegate;
     private VideoFullScreenDelegate7 mFullScreenDelegate;
 
     @Override
@@ -84,7 +84,7 @@ public class Video11Activity extends AppCompatActivity {
     }
 
     private void initControllerDelegate(){
-        mControllerDelegate = new VideoControllerDelegate10();
+        mControllerDelegate = new VideoControllerDelegate8();
         mControllerDelegate.setLayoutVideo(mLayoutVideo);
         mControllerDelegate.setVideoView(mVideoView);
         mControllerDelegate.setLayoutController(mLayoutController);
@@ -99,7 +99,7 @@ public class Video11Activity extends AppCompatActivity {
     }
 
     private void initGestureCoverDelegate(){
-        mGestureCoverDelegate = new VideoGestureCoverDelegate10();
+        mGestureCoverDelegate = new VideoGestureCoverDelegate8();
         mGestureCoverDelegate.setGestureCover(mGestureCover);
         mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
         mGestureCoverDelegate.init();

@@ -23,6 +23,7 @@ import com.jc.flora.apps.component.video.adapter.VideoAdapter;
 import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate14;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate13;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate8;
 import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate15;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
@@ -53,11 +54,13 @@ public class Video17Activity extends AppCompatActivity {
     private RecyclerView mRvVideo;
     private View mLayoutVideoRender;
     private ImageView mBtnSwitchScreen;
+    private GestureCover10 mGestureCover;
 
     private VideoDelegate13 mVideoDelegate;
     private VideoControllerDelegate14 mControllerDelegate;
     private VideoListPlayDelegate15 mListPlayDelegate;
     private VideoFullScreenDelegate17 mFullScreenDelegate;
+    private VideoGestureCoverDelegate8 mGestureCoverDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,7 @@ public class Video17Activity extends AppCompatActivity {
         initViews();
         initVideoDelegate();
         initControllerDelegate();
+        initGestureCoverDelegate();
         initVideoListPlayDelegate();
         initFullScreenDelegate();
     }
@@ -102,7 +106,7 @@ public class Video17Activity extends AppCompatActivity {
         TextView tvCurrentTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_current_time);
         SeekBar sbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
         TextView tvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
-        GestureCover10 gestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
+        mGestureCover = mLayoutVideoRender.findViewById(R.id.layout_gesture_cover);
 
         mControllerDelegate = new VideoControllerDelegate14();
         mControllerDelegate.setLayoutVideo(layoutVideo);
@@ -112,9 +116,16 @@ public class Video17Activity extends AppCompatActivity {
         mControllerDelegate.setSbProgress(sbProgress);
         mControllerDelegate.setTvMaxTime(tvMaxTime);
         mControllerDelegate.setBtnSwitchScreen(mBtnSwitchScreen);
-        mControllerDelegate.setGestureCover(gestureCover);
+        mControllerDelegate.setGestureCover(mGestureCover);
         mControllerDelegate.setVideoDelegate(mVideoDelegate);
         mControllerDelegate.addToActivity(this,"videoControllerDelegate");
+    }
+
+    private void initGestureCoverDelegate(){
+        mGestureCoverDelegate = new VideoGestureCoverDelegate8();
+        mGestureCoverDelegate.setGestureCover(mGestureCover);
+        mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
+        mGestureCoverDelegate.init();
     }
 
     private void initVideoListPlayDelegate(){
