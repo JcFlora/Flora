@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Surface;
 import android.view.TextureView;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
  * Created by Shijincheng on 2019/3/24.
  */
 
-public class VideoDelegate12 extends Fragment {
+public class VideoDelegate12 extends BaseVideoDelegate {
 
     // 视频视图
     private TextureView mTextureView;

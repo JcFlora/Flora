@@ -45,7 +45,7 @@ public class VideoControllerDelegate14 extends Fragment {
     // 状态标记，标识是否正在播放，用来控制播放按钮
     private boolean mIsPlaying;
 
-    private VideoDelegate13 mVideoDelegate;
+    private BaseVideoDelegate mVideoDelegate;
 
     public void setLayoutVideo(View layoutVideo) {
         mLayoutVideo = layoutVideo;
@@ -79,7 +79,7 @@ public class VideoControllerDelegate14 extends Fragment {
         mGestureCover = gestureCover;
     }
 
-    public void setVideoDelegate(VideoDelegate13 videoDelegate) {
+    public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         mVideoDelegate = videoDelegate;
     }
 

@@ -10,13 +10,13 @@ import com.jc.flora.apps.component.video.widget.SeekGestureDelegate;
 public class VideoGestureCoverDelegate10 {
 
     private GestureCover10 mGestureCover;
-    private VideoDelegate7 mVideoDelegate;
+    private BaseVideoDelegate mVideoDelegate;
 
     public void setGestureCover(GestureCover10 gestureCover) {
         mGestureCover = gestureCover;
     }
 
-    public void setVideoDelegate(VideoDelegate7 videoDelegate) {
+    public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         mVideoDelegate = videoDelegate;
     }
 

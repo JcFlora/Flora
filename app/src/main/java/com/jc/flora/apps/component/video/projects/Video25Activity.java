@@ -20,14 +20,14 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.video.adapter.VideoAdapter;
-import com.jc.flora.apps.component.video.delegate.VideoCompleteCoverDelegate24;
-import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate24;
+import com.jc.flora.apps.component.video.delegate.VideoCompleteCoverDelegate21;
+import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate20;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate24;
-import com.jc.flora.apps.component.video.delegate.VideoErrorCoverDelegate24;
+import com.jc.flora.apps.component.video.delegate.VideoErrorCoverDelegate23;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
-import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate24;
-import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate24;
-import com.jc.flora.apps.component.video.delegate.VideoLoadingCoverDelegate24;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate10;
+import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate15;
+import com.jc.flora.apps.component.video.delegate.VideoLoadingCoverDelegate20;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.player.PlayerFactory;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
@@ -93,13 +93,13 @@ public class Video25Activity extends AppCompatActivity {
     private GestureCover10 mGestureCover;
 
     private VideoDelegate24 mVideoDelegate;
-    private VideoControllerDelegate24 mControllerDelegate;
-    private VideoListPlayDelegate24 mListPlayDelegate;
+    private VideoControllerDelegate20 mControllerDelegate;
+    private VideoListPlayDelegate15 mListPlayDelegate;
     private VideoFullScreenDelegate17 mFullScreenDelegate;
-    private VideoGestureCoverDelegate24 mGestureCoverDelegate;
-    private VideoLoadingCoverDelegate24 mLoadingCoverDelegate;
-    private VideoCompleteCoverDelegate24 mCompleteCoverDelegate;
-    private VideoErrorCoverDelegate24 mErrorCoverDelegate;
+    private VideoGestureCoverDelegate10 mGestureCoverDelegate;
+    private VideoLoadingCoverDelegate20 mLoadingCoverDelegate;
+    private VideoCompleteCoverDelegate21 mCompleteCoverDelegate;
+    private VideoErrorCoverDelegate23 mErrorCoverDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +151,7 @@ public class Video25Activity extends AppCompatActivity {
         SeekBar sbProgress = (SeekBar) mLayoutVideoRender.findViewById(R.id.sb_progress);
         TextView tvMaxTime = (TextView) mLayoutVideoRender.findViewById(R.id.tv_max_time);
 
-        mControllerDelegate = new VideoControllerDelegate24();
+        mControllerDelegate = new VideoControllerDelegate20();
         mControllerDelegate.setLayoutVideo(layoutVideo);
         mControllerDelegate.setLayoutController(layoutController);
         mControllerDelegate.setBtnPlay(btnPlay);
@@ -167,14 +167,14 @@ public class Video25Activity extends AppCompatActivity {
     private void initGestureCoverDelegate(){
         mGestureCover.setGestureEnable(false);
 
-        mGestureCoverDelegate = new VideoGestureCoverDelegate24();
+        mGestureCoverDelegate = new VideoGestureCoverDelegate10();
         mGestureCoverDelegate.setGestureCover(mGestureCover);
         mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
         mGestureCoverDelegate.init();
     }
 
     private void initVideoListPlayDelegate(){
-        mListPlayDelegate = new VideoListPlayDelegate24(mRvVideo);
+        mListPlayDelegate = new VideoListPlayDelegate15(mRvVideo);
         mListPlayDelegate.setLayoutVideoRender(mLayoutVideoRender);
         mListPlayDelegate.setVideoDelegate(mVideoDelegate);
 
@@ -237,7 +237,7 @@ public class Video25Activity extends AppCompatActivity {
         View prepareCover = mLayoutVideoRender.findViewById(R.id.layout_prepare_cover);
         ImageView ivPrepareAlbum = mLayoutVideoRender.findViewById(R.id.iv_prepare_album);
 
-        mLoadingCoverDelegate = new VideoLoadingCoverDelegate24();
+        mLoadingCoverDelegate = new VideoLoadingCoverDelegate20();
         mLoadingCoverDelegate.setMp4List(MP4_LIST);
         mLoadingCoverDelegate.setPrepareCover(prepareCover);
         mLoadingCoverDelegate.setLoadingCover(loadingCover);
@@ -250,7 +250,7 @@ public class Video25Activity extends AppCompatActivity {
         View completeCover = mLayoutVideoRender.findViewById(R.id.layout_complete_cover);
         View btnReplay = mLayoutVideoRender.findViewById(R.id.btn_replay);
 
-        mCompleteCoverDelegate = new VideoCompleteCoverDelegate24();
+        mCompleteCoverDelegate = new VideoCompleteCoverDelegate21();
         mCompleteCoverDelegate.setCompleteCover(completeCover);
         mCompleteCoverDelegate.setBtnReplay(btnReplay);
         mCompleteCoverDelegate.setVideoDelegate(mVideoDelegate);
@@ -262,7 +262,7 @@ public class Video25Activity extends AppCompatActivity {
         TextView tvErrorInfo = mLayoutVideoRender.findViewById(R.id.tv_error_info);
         TextView btnRetry = mLayoutVideoRender.findViewById(R.id.btn_retry);
 
-        mErrorCoverDelegate = new VideoErrorCoverDelegate24();
+        mErrorCoverDelegate = new VideoErrorCoverDelegate23();
         mErrorCoverDelegate.setMp4List(MP4_LIST);
         mErrorCoverDelegate.setErrorCover(errorCover);
         mErrorCoverDelegate.setTvErrorInfo(tvErrorInfo);

@@ -10,7 +10,7 @@ public class VideoCompleteCoverDelegate21 {
 
     private View mCompleteCover;
     private View mBtnReplay;
-    private VideoDelegate20 mVideoDelegate;
+    private BaseVideoDelegate mVideoDelegate;
 
     public void setCompleteCover(View completeCover) {
         mCompleteCover = completeCover;
@@ -20,7 +20,7 @@ public class VideoCompleteCoverDelegate21 {
         mBtnReplay = btnReplay;
     }
 
-    public void setVideoDelegate(VideoDelegate20 videoDelegate) {
+    public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         mVideoDelegate = videoDelegate;
     }
 
@@ -29,6 +29,7 @@ public class VideoCompleteCoverDelegate21 {
             @Override
             public void onClick(View v) {
                 mVideoDelegate.playVideo();
+//                mVideoDelegate.selectVideo(mVideoDelegate.getCurrentMp4Index());
             }
         });
         mVideoDelegate.addVideoStatusListener(new VideoStatusListener(){

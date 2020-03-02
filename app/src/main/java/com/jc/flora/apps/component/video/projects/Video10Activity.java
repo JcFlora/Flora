@@ -65,7 +65,7 @@ public class Video10Activity extends AppCompatActivity {
     }
 
     private void initViews(){
-        mToolbar.setTitle("添加亮度控制手势浮层");
+        mToolbar.setTitle("添加音量控制手势浮层");
         mToolbar.setTitleTextColor(Color.WHITE);
     }
 

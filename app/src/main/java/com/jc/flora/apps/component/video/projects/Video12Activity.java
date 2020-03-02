@@ -15,7 +15,7 @@ import com.jc.flora.R;
 import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate12;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate12;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate7;
-import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate12;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate10;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
 
 /**
@@ -35,7 +35,7 @@ public class Video12Activity extends AppCompatActivity {
 
     private VideoDelegate12 mVideoDelegate;
     private VideoControllerDelegate12 mControllerDelegate;
-    private VideoGestureCoverDelegate12 mGestureCoverDelegate;
+    private VideoGestureCoverDelegate10 mGestureCoverDelegate;
     private VideoFullScreenDelegate7 mFullScreenDelegate;
 
     @Override
@@ -98,7 +98,7 @@ public class Video12Activity extends AppCompatActivity {
     }
 
     private void initGestureCoverDelegate(){
-        mGestureCoverDelegate = new VideoGestureCoverDelegate12();
+        mGestureCoverDelegate = new VideoGestureCoverDelegate10();
         mGestureCoverDelegate.setGestureCover(mGestureCover);
         mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
         mGestureCoverDelegate.init();

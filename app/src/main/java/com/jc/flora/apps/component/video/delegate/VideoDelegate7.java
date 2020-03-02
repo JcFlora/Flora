@@ -8,7 +8,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.VideoView;
 
@@ -22,7 +21,7 @@ import java.util.HashMap;
  * Created by Shijincheng on 2019/3/24.
  */
 
-public class VideoDelegate7 extends Fragment {
+public class VideoDelegate7 extends BaseVideoDelegate {
 
     // 视频视图
     private VideoView mVideoView;

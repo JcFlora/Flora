@@ -14,7 +14,7 @@ public class VideoErrorCoverDelegate22 {
     private View mErrorCover;
     private TextView mTvErrorInfo;
     private View mBtnRetry;
-    private VideoDelegate22 mVideoDelegate;
+    private BaseVideoDelegate mVideoDelegate;
 
     public void setErrorCover(View errorCover) {
         mErrorCover = errorCover;
@@ -28,7 +28,7 @@ public class VideoErrorCoverDelegate22 {
         mBtnRetry = btnRetry;
     }
 
-    public void setVideoDelegate(VideoDelegate22 videoDelegate) {
+    public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         mVideoDelegate = videoDelegate;
     }
 

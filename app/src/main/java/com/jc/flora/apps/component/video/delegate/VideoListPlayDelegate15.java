@@ -15,7 +15,7 @@ public class VideoListPlayDelegate15 {
     /** 视频渲染视图 */
     private View mLayoutVideoRender;
 
-    private VideoDelegate13 mVideoDelegate;
+    private BaseVideoDelegate mVideoDelegate;
 
     /** 当前播放视频的位置 */
     private int mCurrentPlayPosition = -1;
@@ -28,7 +28,7 @@ public class VideoListPlayDelegate15 {
         mLayoutVideoRender = layoutVideoRender;
     }
 
-    public void setVideoDelegate(VideoDelegate13 videoDelegate) {
+    public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         this.mVideoDelegate = videoDelegate;
     }
 

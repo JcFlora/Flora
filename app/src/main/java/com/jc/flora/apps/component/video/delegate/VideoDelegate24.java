@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Surface;
 import android.view.TextureView;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
  * Created by Shijincheng on 2019/4/3.
  */
 
-public class VideoDelegate24 extends Fragment {
+public class VideoDelegate24 extends BaseVideoDelegate {
 
     private static final String TAG = "VideoDelegate24";
 

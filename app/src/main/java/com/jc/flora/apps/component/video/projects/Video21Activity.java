@@ -24,8 +24,8 @@ import com.jc.flora.apps.component.video.delegate.VideoCompleteCoverDelegate21;
 import com.jc.flora.apps.component.video.delegate.VideoControllerDelegate20;
 import com.jc.flora.apps.component.video.delegate.VideoDelegate20;
 import com.jc.flora.apps.component.video.delegate.VideoFullScreenDelegate17;
-import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate20;
-import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate20;
+import com.jc.flora.apps.component.video.delegate.VideoGestureCoverDelegate10;
+import com.jc.flora.apps.component.video.delegate.VideoListPlayDelegate15;
 import com.jc.flora.apps.component.video.delegate.VideoLoadingCoverDelegate20;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.GestureCover10;
@@ -84,9 +84,9 @@ public class Video21Activity extends AppCompatActivity {
 
     private VideoDelegate20 mVideoDelegate;
     private VideoControllerDelegate20 mControllerDelegate;
-    private VideoListPlayDelegate20 mListPlayDelegate;
+    private VideoListPlayDelegate15 mListPlayDelegate;
     private VideoFullScreenDelegate17 mFullScreenDelegate;
-    private VideoGestureCoverDelegate20 mGestureCoverDelegate;
+    private VideoGestureCoverDelegate10 mGestureCoverDelegate;
     private VideoLoadingCoverDelegate20 mLoadingCoverDelegate;
     private VideoCompleteCoverDelegate21 mCompleteCoverDelegate;
 
@@ -154,14 +154,14 @@ public class Video21Activity extends AppCompatActivity {
     private void initGestureCoverDelegate(){
         mGestureCover.setGestureEnable(false);
 
-        mGestureCoverDelegate = new VideoGestureCoverDelegate20();
+        mGestureCoverDelegate = new VideoGestureCoverDelegate10();
         mGestureCoverDelegate.setGestureCover(mGestureCover);
         mGestureCoverDelegate.setVideoDelegate(mVideoDelegate);
         mGestureCoverDelegate.init();
     }
 
     private void initVideoListPlayDelegate(){
-        mListPlayDelegate = new VideoListPlayDelegate20(mRvVideo);
+        mListPlayDelegate = new VideoListPlayDelegate15(mRvVideo);
         mListPlayDelegate.setLayoutVideoRender(mLayoutVideoRender);
         mListPlayDelegate.setVideoDelegate(mVideoDelegate);
 

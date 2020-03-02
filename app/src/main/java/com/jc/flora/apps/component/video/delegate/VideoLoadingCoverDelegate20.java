@@ -19,7 +19,7 @@ public class VideoLoadingCoverDelegate20 {
     private View mLoadingCover;
     private View mPrepareCover;
     private ImageView mIvPrepareAlbum;
-    private VideoDelegate20 mVideoDelegate;
+    private BaseVideoDelegate mVideoDelegate;
 
     /**
      * 设置播放的mp4列表
@@ -41,7 +41,7 @@ public class VideoLoadingCoverDelegate20 {
         mIvPrepareAlbum = ivPrepareAlbum;
     }
 
-    public void setVideoDelegate(VideoDelegate20 videoDelegate) {
+    public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         mVideoDelegate = videoDelegate;
     }
 

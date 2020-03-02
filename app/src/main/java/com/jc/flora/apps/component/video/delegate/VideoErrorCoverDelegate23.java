@@ -23,7 +23,7 @@ public class VideoErrorCoverDelegate23 {
     private View mErrorCover;
     private TextView mTvErrorInfo;
     private TextView mBtnRetry;
-    private VideoDelegate22 mVideoDelegate;
+    private BaseVideoDelegate mVideoDelegate;
 
     private boolean mUserAgreeMobile = false;
 
@@ -47,7 +47,7 @@ public class VideoErrorCoverDelegate23 {
         mBtnRetry = btnRetry;
     }
 
-    public void setVideoDelegate(VideoDelegate22 videoDelegate) {
+    public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         mVideoDelegate = videoDelegate;
     }
 
