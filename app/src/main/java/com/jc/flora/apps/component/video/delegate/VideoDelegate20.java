@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
@@ -64,12 +63,6 @@ public class VideoDelegate20 extends BaseVideoDelegate {
         mVideoStatusListeners.add(l);
     }
 
-    public void addToActivity(AppCompatActivity activity, String tag) {
-        if(activity != null){
-            activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
-        }
-    }
-
     /**
      * 设置播放的mp4列表
      * @param mp4List 播放的mp4列表
@@ -107,14 +100,6 @@ public class VideoDelegate20 extends BaseVideoDelegate {
                 l.onPause();
             }
         }
-    }
-
-    /**
-     * 切换视频（从头开始播放）
-     * @param index 切换的视频索引
-     */
-    public void selectVideo(int index) {
-        selectVideo(index, false);
     }
 
     /**

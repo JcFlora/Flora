@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
@@ -53,12 +52,6 @@ public class VideoDelegate12 extends BaseVideoDelegate {
      */
     public void addVideoStatusListener(VideoStatusListener l) {
         mVideoStatusListeners.add(l);
-    }
-
-    public void addToActivity(AppCompatActivity activity, String tag) {
-        if(activity != null){
-            activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
-        }
     }
 
     /**

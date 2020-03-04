@@ -36,7 +36,8 @@ class VideoActivity : AppCompatActivity() {
                     project11, project12, project13, project14, project15,
                     project16, project17, project18, project19, project20,
                     project21, project22, project23, project24, project25,
-                    project26, project27, project28, project29, project30)
+                    project26, project27, project28, project29, project30,
+                    project31)
         }
 
     private val project1: Project
@@ -250,15 +251,15 @@ class VideoActivity : AppCompatActivity() {
     private val project27: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.7：实现倍速播放"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频2.7：锁定/解锁全屏点击功能"
+            project.targetActivity = Video27Activity::class.java
             return project
         }
 
     private val project28: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.8：列表+详情双页同步播放"
+            project.projectName = "视频2.8：实现倍速播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -266,7 +267,7 @@ class VideoActivity : AppCompatActivity() {
     private val project29: Project
         get() {
             val project = Project()
-            project.projectName = "视频2.9：添加共享元素转场动画"
+            project.projectName = "视频2.9：列表+详情双页同步播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -274,7 +275,15 @@ class VideoActivity : AppCompatActivity() {
     private val project30: Project
         get() {
             val project = Project()
-            project.projectName = "视频3.0：详情页滚动时独立浮动小窗播放"
+            project.projectName = "视频3.0：添加共享元素转场动画"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project31: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频3.1：详情页滚动时独立浮动小窗播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
