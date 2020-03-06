@@ -179,7 +179,7 @@ public class VideoControllerDelegate8 extends Fragment {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 // 手指开始滑动时，SeekBar近似常显
-                showController(3600000);
+                showController(3600_000);
             }
 
             @Override
@@ -194,7 +194,7 @@ public class VideoControllerDelegate8 extends Fragment {
         mVideoDelegate.addVideoStatusListener(new VideoStatusListener() {
 
             @Override
-            public void onSelect(int index, int maxProgress) {
+            public void onSelectEnd(int index, int maxProgress) {
                 // 初始化播放最大进度值
                 mSbProgress.setMax(maxProgress);
                 // 初始化总时间
@@ -238,7 +238,7 @@ public class VideoControllerDelegate8 extends Fragment {
         mLayoutController.setVisibility(View.GONE);
     }
 
-    private void showController(){
+    public void showController(){
         showController(3000);
     }
 

@@ -140,7 +140,7 @@ public class VideoDelegate7 extends BaseVideoDelegate {
 
     private void setMaxProgress() {
         for (VideoStatusListener l : mVideoStatusListeners) {
-            l.onSelect(0, mVideoView.getDuration());
+            l.onSelectEnd(0, mVideoView.getDuration());
         }
     }
 

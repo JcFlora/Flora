@@ -20,6 +20,7 @@ public class MP4 {
     public String videoUrl;
     public String videoCapacity = "";
     public String videoLocalPath = "";
+    public int trailerPosition = -1;
 
     public MP4(String name, int resId, int coverImgResId) {
         this.name = name;
@@ -36,6 +37,14 @@ public class MP4 {
     public MP4(String name, String videoAlbum, String videoUrl, String videoCapacity) {
         this(name, videoAlbum, videoUrl);
         this.videoCapacity = videoCapacity;
+    }
+
+    public MP4(String name, String videoAlbum, String videoUrl, String videoCapacity, int trailerPosition) {
+        this.name = name;
+        this.videoAlbum = videoAlbum;
+        this.videoUrl = videoUrl;
+        this.videoCapacity = videoCapacity;
+        this.trailerPosition = trailerPosition;
     }
 
     public Uri getVideoUri(Context context){
@@ -55,6 +64,10 @@ public class MP4 {
         }else if(!TextUtils.isEmpty(videoAlbum)){
             Glide.with(ivAlbum).load(videoAlbum).into(ivAlbum);
         }
+    }
+
+    public boolean isTrailerMode() {
+        return trailerPosition > 0;
     }
 
 }

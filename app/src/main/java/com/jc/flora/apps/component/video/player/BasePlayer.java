@@ -66,6 +66,13 @@ public abstract class BasePlayer {
         return false;
     }
 
+    public void callbackWhenSelectStart(int index){
+        // 添加选择或切换开始时的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onSelectStart(index);
+        }
+    }
+
     public void callbackWhenPrepareStart(int index){
         // 添加准备开始的回调
         for (VideoStatusListener l : mVideoStatusListeners) {
@@ -73,10 +80,10 @@ public abstract class BasePlayer {
         }
     }
 
-    public void callbackWhenSelect(int index){
-        // 添加选择或切换的回调
+    public void callbackWhenSelectEnd(int index){
+        // 添加选择或切换结束的回调
         for (VideoStatusListener l : mVideoStatusListeners) {
-            l.onSelect(index, getDuration());
+            l.onSelectEnd(index, getDuration());
         }
     }
 

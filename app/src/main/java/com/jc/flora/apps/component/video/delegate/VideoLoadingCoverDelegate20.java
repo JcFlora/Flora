@@ -49,8 +49,12 @@ public class VideoLoadingCoverDelegate20 {
         mVideoDelegate.addVideoStatusListener(new VideoStatusListener(){
 
             @Override
-            public void onPrepareStart(int index) {
+            public void onSelectStart(int index) {
                 mMp4List.get(index).loadAlbum(mIvPrepareAlbum);
+            }
+
+            @Override
+            public void onPrepareStart(int index) {
                 mPrepareCover.setVisibility(View.VISIBLE);
             }
 

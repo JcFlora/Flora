@@ -23,7 +23,7 @@ public class VideoGestureCoverDelegate8 {
     public void init(){
         mVideoDelegate.addVideoStatusListener(new VideoStatusListener(){
             @Override
-            public void onSelect(int index, int maxProgress) {
+            public void onSelectEnd(int index, int maxProgress) {
                 mGestureCover.setDuration(maxProgress);
             }
 

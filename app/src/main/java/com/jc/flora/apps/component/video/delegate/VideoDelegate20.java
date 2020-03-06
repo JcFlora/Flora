@@ -117,6 +117,9 @@ public class VideoDelegate20 extends BaseVideoDelegate {
         }else{
             mCurrentMp4Index = index;
         }
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onSelectStart(mCurrentMp4Index);
+        }
         mNeedNewSurface = needNewSurface;
         resetVideo();
     }
@@ -327,7 +330,7 @@ public class VideoDelegate20 extends BaseVideoDelegate {
 
     private void setMaxProgress(){
         for (VideoStatusListener l : mVideoStatusListeners) {
-            l.onSelect(mCurrentMp4Index, mMediaPlayer.getDuration());
+            l.onSelectEnd(mCurrentMp4Index, mMediaPlayer.getDuration());
         }
     }
 

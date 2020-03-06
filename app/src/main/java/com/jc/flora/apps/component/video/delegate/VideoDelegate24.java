@@ -121,6 +121,7 @@ public class VideoDelegate24 extends BaseVideoDelegate {
         }else{
             mCurrentMp4Index = index;
         }
+        mPlayer.callbackWhenSelectStart(mCurrentMp4Index);
         mNeedNewSurface = needNewSurface;
         resetVideo();
     }
@@ -265,7 +266,7 @@ public class VideoDelegate24 extends BaseVideoDelegate {
     private OnPreparedListener mOnPreparedListener = new OnPreparedListener() {
         @Override
         public void onPrepared(BasePlayer player) {
-            mPlayer.callbackWhenSelect(mCurrentMp4Index);
+            mPlayer.callbackWhenSelectEnd(mCurrentMp4Index);
             if (mAutoStart && mIsInForeground) {
                 playVideo();
                 // 添加准备结束的回调

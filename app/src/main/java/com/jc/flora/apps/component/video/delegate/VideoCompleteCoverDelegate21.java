@@ -35,12 +35,17 @@ public class VideoCompleteCoverDelegate21 {
         mVideoDelegate.addVideoStatusListener(new VideoStatusListener(){
 
             @Override
+            public void onSelectStart(int index) {
+                mCompleteCover.setVisibility(View.GONE);
+            }
+
+            @Override
             public void onPrepareStart(int index) {
                 mCompleteCover.setVisibility(View.GONE);
             }
 
             @Override
-            public void onSelect(int index, int maxProgress) {
+            public void onSelectEnd(int index, int maxProgress) {
                 mCompleteCover.setVisibility(View.GONE);
             }
 
@@ -53,6 +58,7 @@ public class VideoCompleteCoverDelegate21 {
             public void onComplete() {
                 mCompleteCover.setVisibility(View.VISIBLE);
             }
+
         });
     }
 

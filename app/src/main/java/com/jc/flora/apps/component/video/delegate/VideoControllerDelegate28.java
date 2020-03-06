@@ -11,20 +11,25 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.BaseVideoGestureCover;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
  * 注意，对应Activity需要配置android:configChanges="keyboardHidden|orientation|screenSize"
- * Created by Shijincheng on 2019/3/31.
+ * Created by Shijincheng on 2020/3/5.
  */
 
-public class VideoControllerDelegate20 extends Fragment {
+public class VideoControllerDelegate28 extends Fragment {
 
     //进度条下面的当前进度文字，将毫秒化为mm:ss格式
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
+
+    // 添加mp4列表，用于判断是否开启试听模式
+    private ArrayList<MP4> mMp4List;
 
     // 视频父布局
     private View mLayoutVideo;
@@ -46,6 +51,12 @@ public class VideoControllerDelegate20 extends Fragment {
     private boolean mIsPlaying;
 
     private BaseVideoDelegate mVideoDelegate;
+
+    private OnTrailerEndCallback mOnTrailerEndCallback;
+
+    public void setMp4List(ArrayList<MP4> mp4List) {
+        mMp4List = mp4List;
+    }
 
     public void setLayoutVideo(View layoutVideo) {
         mLayoutVideo = layoutVideo;
@@ -81,6 +92,10 @@ public class VideoControllerDelegate20 extends Fragment {
 
     public void setVideoDelegate(BaseVideoDelegate videoDelegate) {
         mVideoDelegate = videoDelegate;
+    }
+
+    public void setOnTrailerEndCallback(OnTrailerEndCallback onTrailerEndCallback) {
+        mOnTrailerEndCallback = onTrailerEndCallback;
     }
 
     public void addToActivity(AppCompatActivity activity, String tag) {
@@ -160,6 +175,7 @@ public class VideoControllerDelegate20 extends Fragment {
                 if(fromUser){
                     mVideoDelegate.seekTo(progress);
                 }
+                interceptTrailer(progress);
             }
 
             @Override
@@ -248,11 +264,28 @@ public class VideoControllerDelegate20 extends Fragment {
         mLayoutVideo.postDelayed(mFadeOut, timeout);
     }
 
+    private void interceptTrailer(int progress) {
+        MP4 currentMp4 = mMp4List.get(mVideoDelegate.getCurrentMp4Index());
+        boolean isTrailerMode = mMp4List != null && !mMp4List.isEmpty() && currentMp4.isTrailerMode();
+        if(isTrailerMode && progress >= currentMp4.trailerPosition){
+            mVideoDelegate.pauseVideo();
+            mVideoDelegate.seekTo(currentMp4.trailerPosition);
+            mSbProgress.setProgress(currentMp4.trailerPosition);
+            if(mOnTrailerEndCallback != null){
+                mOnTrailerEndCallback.onTrailerEnd();
+            }
+        }
+    }
+
     private final Runnable mFadeOut = new Runnable() {
         @Override
         public void run() {
             hideController();
         }
     };
+
+    public interface OnTrailerEndCallback {
+        void onTrailerEnd();
+    }
 
 }
