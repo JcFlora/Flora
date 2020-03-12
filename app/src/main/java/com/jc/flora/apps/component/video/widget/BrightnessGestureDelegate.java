@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 public class BrightnessGestureDelegate {
 
+    private static final float SCALE_TIMES = 0.5f;
+
     private View mLayoutBrightnessBox;
     private TextView mTvBrightnessText;
     private float mBrightness = -1;
@@ -35,6 +37,7 @@ public class BrightnessGestureDelegate {
         if (activity == null) {
             return;
         }
+        percent *= SCALE_TIMES;
         if (mBrightness < 0) {
             mBrightness = activity.getWindow().getAttributes().screenBrightness;
             if (mBrightness <= 0.00f){

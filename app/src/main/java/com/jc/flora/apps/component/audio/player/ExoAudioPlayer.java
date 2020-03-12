@@ -27,7 +27,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.jc.flora.apps.component.audio.delegate.AudioEventListener;
+import com.jc.flora.apps.component.audio.delegate.ExoEventListener;
 import com.jc.flora.apps.component.audio.delegate.AudioPlaySpeed;
 
 /**
@@ -69,7 +69,7 @@ public class ExoAudioPlayer extends BaseAudioPlayer {
     @Override
     public int getCurrentPosition() {
         int position = (int) mExoPlayer.getCurrentPosition();
-        return position < 0 ? 0 : position;
+        return Math.max(position, 0);
     }
 
     @Override
@@ -166,7 +166,7 @@ public class ExoAudioPlayer extends BaseAudioPlayer {
 //        }
     }
 
-    private AudioEventListener mAudioEventListener = new AudioEventListener() {
+    private ExoEventListener mAudioEventListener = new ExoEventListener() {
         @Override
         public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
             long duration = mExoPlayer.getDuration();

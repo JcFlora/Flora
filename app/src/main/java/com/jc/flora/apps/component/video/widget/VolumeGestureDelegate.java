@@ -14,6 +14,8 @@ import com.jc.flora.R;
 
 public class VolumeGestureDelegate {
 
+    private static final float SCALE_TIMES = 0.5f;
+
     private View mLayoutVolumeBox;
     private ImageView mIvVolumeIcon;
     private TextView mTvVolumeText;
@@ -56,6 +58,7 @@ public class VolumeGestureDelegate {
     }
 
     public void onRightVerticalSlide(float percent){
+        percent *= SCALE_TIMES;
         int index = (int) (percent * mMaxVolume) + volume;
         if (index > mMaxVolume)
             index = mMaxVolume;

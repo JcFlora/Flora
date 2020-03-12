@@ -215,7 +215,7 @@ public class AudioDelegate20 extends BaseAudioDelegate {
             TrackSelection.Factory selectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
             TrackSelector trackSelector = new DefaultTrackSelector(selectionFactory);
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(mContext, trackSelector);
-            mExoPlayer.addListener(new AudioEventListener(){
+            mExoPlayer.addListener(new ExoEventListener(){
                 @Override
                 public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
                     long duration = mExoPlayer.getDuration();

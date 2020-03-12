@@ -27,7 +27,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.jc.flora.apps.component.audio.delegate.AudioEventListener;
+import com.jc.flora.apps.component.audio.delegate.ExoEventListener;
 
 /**
  * Created by Shijincheng on 2019/4/3.
@@ -52,7 +52,7 @@ public class ExoMediaPlayer extends BasePlayer {
         TrackSelector trackSelector = new DefaultTrackSelector(selectionFactory);
         mExoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
         mExoPlayer.setAudioStreamType(C.STREAM_TYPE_MUSIC);
-        mExoPlayer.addListener(mAudioEventListener);
+        mExoPlayer.addListener(mExoEventListener);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class ExoMediaPlayer extends BasePlayer {
 //        }
     }
 
-    private AudioEventListener mAudioEventListener = new AudioEventListener(){
+    private ExoEventListener mExoEventListener = new ExoEventListener(){
 
         @Override
         public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {

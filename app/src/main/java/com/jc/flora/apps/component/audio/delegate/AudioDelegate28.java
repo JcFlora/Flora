@@ -292,7 +292,7 @@ public class AudioDelegate28 extends BaseAudioDelegate {
         }
     }
 
-    private AudioEventListener mAudioEventListener = new AudioEventListener() {
+    private ExoEventListener mAudioEventListener = new ExoEventListener() {
         @Override
         public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
             long duration = mExoPlayer.getDuration();

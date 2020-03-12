@@ -73,7 +73,7 @@ dependencies {
 
     implementation 'ly.count.android:sdk:16.12.2'
     implementation 'com.ogaclejapan.arclayout:library:1.1.0@aar'
-    implementation ('com.github.bumptech.glide:glide:4.8.0') {
+    implementation ('com.github.bumptech.glide:glide:4.9.0') {
         exclude group: "com.android.support"
     }
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -90,6 +90,8 @@ dependencies {
     }
     implementation 'com.google.zxing:core:3.3.3'
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    // 官方的so只支持http，不支持https，需要自己编译so才能支持https，这里不使用官方的so
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
     implementation 'com.zhihu.android:matisse:0.5.2-beta3'
     implementation 'top.zibin:Luban:1.1.8'
     implementation 'com.github.yalantis:ucrop:2.2.2'

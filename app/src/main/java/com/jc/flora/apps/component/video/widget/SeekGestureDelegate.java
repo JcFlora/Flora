@@ -14,6 +14,9 @@ import java.util.Locale;
 
 public class SeekGestureDelegate {
 
+    private static final int FIXED_DELTA_MAX = 120_000;
+    private static final boolean FIXED_MODE = true;
+
     //进度条下面的当前进度文字，将毫秒化为mm:ss格式
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
@@ -75,7 +78,7 @@ public class SeekGestureDelegate {
         mHorizontalMove = true;
         long position = mCurrentPosition;
         long duration = mDuration;
-        long deltaMax = Math.min(mDuration/2, duration - position);
+        long deltaMax = FIXED_MODE ? FIXED_DELTA_MAX : Math.min(mDuration/2, duration - position);
         long delta = (long) (deltaMax * percent);
         mNewPosition = delta + position;
         if (mNewPosition > duration) {
