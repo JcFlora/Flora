@@ -46,7 +46,7 @@ class QrcodeActivity : AppCompatActivity() {
     private val project2: Project
         get() {
             val project = Project()
-            project.projectName = "扫描二维码"
+            project.projectName = "从图库识别二维码"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -54,7 +54,7 @@ class QrcodeActivity : AppCompatActivity() {
     private val project3: Project
         get() {
             val project = Project()
-            project.projectName = ""
+            project.projectName = "扫描二维码"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
