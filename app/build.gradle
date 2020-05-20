@@ -89,6 +89,7 @@ dependencies {
         exclude group: 'stax', module: 'stax'
     }
     implementation 'com.google.zxing:core:3.3.3'
+    implementation 'cn.bingoogolapple:bga-qrcode-zxing:1.3.7'
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     // 官方的so只支持http，不支持https，需要自己编译so才能支持https，这里不使用官方的so
 //    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'

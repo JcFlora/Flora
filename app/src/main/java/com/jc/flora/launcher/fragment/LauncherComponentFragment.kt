@@ -16,6 +16,7 @@ import com.jc.flora.apps.component.folder.FolderActivity
 import com.jc.flora.apps.component.hybrid.HybridActivity
 import com.jc.flora.apps.component.image.ImageLoadActivity
 import com.jc.flora.apps.component.ndk.NdkActivity
+import com.jc.flora.apps.component.permit.PermitActivity
 import com.jc.flora.apps.component.record.RecordActivity
 import com.jc.flora.apps.component.render.RenderActivity
 import com.jc.flora.apps.component.request.NetRequestActivity
@@ -65,7 +66,7 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("屏幕适配", R.mipmap.ic_vi, ViActivity::class.java),
                     LauncherApp("设计规范", R.mipmap.ic_render, RenderActivity::class.java),
                     LauncherApp("日志管理", R.mipmap.ic_log, NotFoundActivity::class.java),
-                    LauncherApp("权限控制", R.mipmap.ic_security, NotFoundActivity::class.java),
+                    LauncherApp("权限控制", R.mipmap.ic_security, PermitActivity::class.java),
 
                     LauncherApp("文件处理", R.mipmap.ic_folder, FolderActivity::class.java),
                     LauncherApp("时间处理", R.mipmap.ic_time, NotFoundActivity::class.java),

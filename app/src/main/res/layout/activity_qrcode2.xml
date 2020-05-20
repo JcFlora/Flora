@@ -1,0 +1,34 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="从相册选择需要识别的二维码图片，显示到ImageView"
+        android:onClick="openAlbum"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="识别二维码"
+        android:onClick="fetchQrcodeText"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="从相册选择需要识别的二维码图片，直接识别"
+        android:onClick="openAlbum2"
+        android:textAllCaps="false"/>
+
+    <ImageView
+        android:id="@+id/iv_qrcode"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>

@@ -1160,6 +1160,12 @@
             android:name=".apps.scene.qrcode.projects.Qrcode1Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.scene.qrcode.projects.Qrcode2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.qrcode.projects.Qrcode3Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.signal.SignalActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -1232,6 +1238,21 @@
             android:name=".apps.scene.preview.projects.SingleEasyPreviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".apps.component.permit.PermitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.permit.projects.Permit1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.permit.projects.Permit2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.permit.projects.Permit3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.permit.projects.Permit4Activity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

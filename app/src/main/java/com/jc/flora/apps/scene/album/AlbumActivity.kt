@@ -8,6 +8,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
 import com.jc.flora.apps.scene.album.projects.*
+import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**
@@ -32,7 +33,7 @@ class AlbumActivity : AppCompatActivity() {
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
-                    project11, project12)
+                    project11, project12, project13, project14)
         }
 
     private val project1: Project
@@ -128,6 +129,22 @@ class AlbumActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "Matisse0.7：结合Ucrop实现批量裁剪"
             project.targetActivity = Matisse7Activity::class.java
+            return project
+        }
+
+    private val project13: Project
+        get() {
+            val project = Project()
+            project.projectName = "Matisse0.8：整合摄像头权限管理"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project14: Project
+        get() {
+            val project = Project()
+            project.projectName = "Matisse0.9：模拟头像上传功能"
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
