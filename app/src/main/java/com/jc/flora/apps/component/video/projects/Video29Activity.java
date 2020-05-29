@@ -345,4 +345,10 @@ public class Video29Activity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    @Override
+    protected void onDestroy() {
+        mFocusDelegate.release();
+        super.onDestroy();
+    }
+
 }
