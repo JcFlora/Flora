@@ -185,10 +185,10 @@ public class VideoDelegate6 extends Fragment {
             @Override
             public void onClick(View v) {
                 int screenOrientation = getActivity().getRequestedOrientation();
-                boolean isLandscape = screenOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                boolean isLandscape = screenOrientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
                 getActivity().setRequestedOrientation(isLandscape ?
                         ActivityInfo.SCREEN_ORIENTATION_PORTRAIT :
-                        ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                        ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
                 showController();
             }
         });
@@ -344,7 +344,7 @@ public class VideoDelegate6 extends Fragment {
 
     public boolean onBackPressed(){
         int screenOrientation = getActivity().getRequestedOrientation();
-        boolean isLandscape = screenOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+        boolean isLandscape = screenOrientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
         if(isLandscape){
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
