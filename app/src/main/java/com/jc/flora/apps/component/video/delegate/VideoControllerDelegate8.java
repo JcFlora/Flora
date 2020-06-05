@@ -184,7 +184,7 @@ public class VideoControllerDelegate8 extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // 手指停止滑动时，SeekBar常显
+                // 手指停止滑动时，SeekBar短暂显示
                 showController();
             }
         });
