@@ -19,9 +19,6 @@ import com.jc.flora.apps.scene.login.lander.LoginStatusSyncExecutor;
  */
 public class Login12TestActivity extends AppCompatActivity {
 
-    /** 模拟登录状态，实际项目中使用User对象实现 */
-    public static boolean sIsLogin;
-
     private TextView mTvLoginStatus;
     private Button mBtnCheckLogin;
     private Button mBtnGotoNext;
@@ -63,23 +60,19 @@ public class Login12TestActivity extends AppCompatActivity {
         mBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Login12Activity.sIsLogin = false;
                 mLoginStatusSyncExecutor.logout();
             }
         });
-        refreshUiByLoginStatus(sIsLogin);
+        refreshUiByLoginStatus(Login12Activity.sIsLogin);
     }
 
     private void initDelegate(){
         // 初始化Lander框架，实际项目中，在Application的onCreate方法中调用
         Lander.init(Login4Activity.class, new LoginInfoDataSource() {
             @Override
-            public void writeLoginStatus(boolean isLogin) {
-                sIsLogin = isLogin;
-            }
-
-            @Override
             public boolean readLoginStatus() {
-                return sIsLogin;
+                return Login12Activity.sIsLogin;
             }
         });
         // 获取登录状态同步器

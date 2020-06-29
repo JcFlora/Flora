@@ -161,11 +161,9 @@ public class LoginStatusSyncExecutor extends Fragment {
     }
 
     /**
-     * 模拟注销功能，实际项目中使用User对象实现
+     * 注销功能
      */
     public void logout(){
-        // 通过数据源写入登录状态
-        sLoginInfoDataSource.writeLoginStatus(false);
         // 发送本地广播，通知所有页面登出成功
         sendLogoutBroadcast(getContext(), true);
         // 触发动作响应，通知当前页面登出成功
@@ -274,7 +272,6 @@ public class LoginStatusSyncExecutor extends Fragment {
             if (intent != null && mLoginStatusListener != null && LOGIN_FEEDBACK.equals(intent.getAction())) {
                 boolean isLoginSuccess = intent.getBooleanExtra(LOGIN_SUCCESS, false);
                 if (isLoginSuccess) {
-                    sLoginInfoDataSource.writeLoginStatus(true);
                     mLoginStatusListener.onLoginSuccess();
                 }
                 boolean isLogoutSuccess = intent.getBooleanExtra(LOGOUT_SUCCESS, false);

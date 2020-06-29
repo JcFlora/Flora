@@ -20,6 +20,9 @@ import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
  */
 public class Login12Activity extends AppCompatActivity {
 
+    /** 模拟登录状态，实际项目中使用User对象实现 */
+    public static boolean sIsLogin;
+
     // 手机号输入控件
     private EditText mEtPhoneNumber;
     // 密码输入控件
@@ -93,6 +96,8 @@ public class Login12Activity extends AppCompatActivity {
             @Override
             public void onResponse(LoginResponse response) {
                 if(response.success){
+                    // 这里模拟接口成功后保存用户登录状态
+                    sIsLogin = true;
                     Lander.loginSuccess(Login12Activity.this);
                 }else{
                     ToastDelegate.show(Login12Activity.this, response.msg);

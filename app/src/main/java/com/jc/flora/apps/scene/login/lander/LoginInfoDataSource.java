@@ -5,6 +5,5 @@ package com.jc.flora.apps.scene.login.lander;
  * Created by shijincheng on 2020/6/29.
  */
 public interface LoginInfoDataSource {
-    void writeLoginStatus(boolean isLogin);
     boolean readLoginStatus();
 }

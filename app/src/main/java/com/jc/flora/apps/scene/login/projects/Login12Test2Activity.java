@@ -7,12 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.scene.login.delegate.LoginStatusDelegate;
 import com.jc.flora.apps.scene.login.lander.Lander;
 import com.jc.flora.apps.scene.login.lander.LoginActionCallback;
 import com.jc.flora.apps.scene.login.lander.LoginStatusListener;
 import com.jc.flora.apps.scene.login.lander.LoginStatusSyncExecutor;
-import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
  * Created by shijincheng on 2020/6/28.
@@ -59,11 +57,11 @@ public class Login12Test2Activity extends AppCompatActivity {
         mBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Login12Activity.sIsLogin = false;
                 mLoginStatusSyncExecutor.logout();
-                ToastDelegate.show(Login12Test2Activity.this, "注销账号");
             }
         });
-        refreshUiByLoginStatus(Login12TestActivity.sIsLogin);
+        refreshUiByLoginStatus(Login12Activity.sIsLogin);
     }
 
     private void initDelegate(){
