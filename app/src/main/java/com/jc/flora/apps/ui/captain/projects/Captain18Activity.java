@@ -10,7 +10,7 @@ import com.jc.flora.apps.ui.captain.delegate.CaptainFragment;
 import com.jc.flora.apps.ui.captain.delegate.FragmentDelegate16;
 import com.jc.flora.apps.ui.captain.delegate.IndicatorDelegate18;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
-import com.jc.flora.apps.scene.login.delegate.LoginDelegate;
+import com.jc.flora.apps.scene.login.delegate.LoginActionDelegate;
 
 /**
  * Created by shijincheng on 2017/5/2.
@@ -32,7 +32,7 @@ public class Captain18Activity extends AppCompatActivity {
     private FragmentDelegate16 mFragmentDelegate;
     private IndicatorDelegate18 mIndicatorDelegate;
     private LinearLayout mLayoutCaptainIndicators;
-    private LoginDelegate mLoginDelegate;
+    private LoginActionDelegate mLoginDelegate;
 
     private LinearLayout mLayoutCaptainBar;
 
@@ -54,7 +54,7 @@ public class Captain18Activity extends AppCompatActivity {
     }
 
     private void initLoginDelegate(){
-        mLoginDelegate = new LoginDelegate();
+        mLoginDelegate = new LoginActionDelegate();
         mLoginDelegate.addToActivity(this,"loginDelegate");
     }
 
@@ -94,7 +94,7 @@ public class Captain18Activity extends AppCompatActivity {
                 @Override
                 public void onTabIndicatorCheckedChanged(int checkedPosition) {
                     if (checkedPosition == LOGIN_INDEX) {
-                        mLoginDelegate.loginIntercept(mLoginCallback);
+                        mLoginDelegate.loginIntercept(mLoginActionCallback);
                     } else {
                         mFragmentDelegate.onTabIndicatorCheckedChanged(checkedPosition);
                     }
@@ -105,7 +105,7 @@ public class Captain18Activity extends AppCompatActivity {
                 }
             };
 
-    private LoginDelegate.LoginCallback mLoginCallback = new LoginDelegate.LoginCallback() {
+    private LoginActionDelegate.LoginActionCallback mLoginActionCallback = new LoginActionDelegate.LoginActionCallback() {
         @Override
         public void isLoggedIn() {
             mFragmentDelegate.onTabIndicatorCheckedChanged(LOGIN_INDEX);

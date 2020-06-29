@@ -9,18 +9,19 @@ import android.support.v7.app.AppCompatActivity;
 import com.jc.flora.apps.scene.login.projects.Login4Activity;
 
 /**
+ * 登录动作拦截器
  * Created by shijincheng on 2017/5/22.
  */
-public class LoginDelegate extends Fragment{
+public class LoginActionDelegate extends Fragment{
 
     private static final Class LOGIN_ACTIVITY_CLASS = Login4Activity.class;
     private static final int GOTO_LOGIN_REQUEST_CODE = 1;
-    public static final int LOGIN_SUCCESS_RESULT_CODE = 1;
-    public static final int LOGIN_CANCEL_RESULT_CODE = 2;
+    public static final int LOGIN_SUCCESS_RESULT_CODE = Login4Activity.LOGIN_SUCCESS_RESULT_CODE;
+    public static final int LOGIN_CANCEL_RESULT_CODE = Login4Activity.LOGIN_CANCEL_RESULT_CODE;
 
     private boolean mIsLogin;
     private Intent mIntent;
-    private LoginCallback mLoginCallback;
+    private LoginActionCallback mLoginActionCallback;
 
     private boolean mWillInterceptOnActivityCreated = false;
 
@@ -44,8 +45,8 @@ public class LoginDelegate extends Fragment{
         }
     }
 
-    public void loginIntercept(LoginCallback loginCallback){
-        mLoginCallback = loginCallback;
+    public void loginIntercept(LoginActionCallback loginActionCallback){
+        mLoginActionCallback = loginActionCallback;
         if(getHost() == null){
             mWillInterceptOnActivityCreated = true;
             return;
@@ -55,8 +56,8 @@ public class LoginDelegate extends Fragment{
 
     private void loginIntercept(){
         if(mIsLogin){
-            if(mLoginCallback != null){
-                mLoginCallback.isLoggedIn();
+            if(mLoginActionCallback != null){
+                mLoginActionCallback.isLoggedIn();
             }
         }else{
             startActivityForResult(mIntent, GOTO_LOGIN_REQUEST_CODE);
@@ -74,21 +75,27 @@ public class LoginDelegate extends Fragment{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(mLoginCallback == null || requestCode != GOTO_LOGIN_REQUEST_CODE){
+        if(mLoginActionCallback == null || requestCode != GOTO_LOGIN_REQUEST_CODE){
             return;
         }
         if(resultCode == LOGIN_SUCCESS_RESULT_CODE){
             mIsLogin = true;
-            mLoginCallback.onLoginSuccess();
+            mLoginActionCallback.onLoginSuccess();
         }else if(resultCode == LOGIN_CANCEL_RESULT_CODE){
-            mLoginCallback.onLoginCancel();
+            mLoginActionCallback.onLoginCancel();
         }
     }
 
-    public interface LoginCallback{
+    public interface LoginActionCallback {
         void isLoggedIn();
         void onLoginSuccess();
         void onLoginCancel();
+    }
+
+    public static class LoginActionCallbackAdapter implements LoginActionCallback {
+        public void isLoggedIn(){}
+        public void onLoginSuccess(){}
+        public void onLoginCancel(){}
     }
 
 }

@@ -10,7 +10,7 @@ import com.jc.flora.R;
 import com.jc.flora.apps.ui.captain.delegate.FragmentDelegate13;
 import com.jc.flora.apps.ui.captain.delegate.IndicatorDelegate15;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
-import com.jc.flora.apps.scene.login.delegate.LoginDelegate;
+import com.jc.flora.apps.scene.login.delegate.LoginActionDelegate;
 
 /**
  * Created by shijincheng on 2017/5/2.
@@ -33,7 +33,7 @@ public class Captain15Activity extends AppCompatActivity {
     private IndicatorDelegate15 mIndicatorDelegate;
     private ViewPager mVpContainer;
     private LinearLayout mLayoutCaptainIndicators;
-    private LoginDelegate mLoginDelegate;
+    private LoginActionDelegate mLoginDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class Captain15Activity extends AppCompatActivity {
     }
 
     private void initLoginDelegate(){
-        mLoginDelegate = new LoginDelegate();
+        mLoginDelegate = new LoginActionDelegate();
         mLoginDelegate.addToActivity(this,"loginDelegate");
     }
 
@@ -94,14 +94,14 @@ public class Captain15Activity extends AppCompatActivity {
                 @Override
                 public void onTabIndicatorCheckedChanged(int checkedPosition) {
                     if (checkedPosition == LOGIN_INDEX) {
-                        mLoginDelegate.loginIntercept(mLoginCallback);
+                        mLoginDelegate.loginIntercept(mLoginActionCallback);
                     } else {
                         mFragmentDelegate.onTabIndicatorCheckedChanged(checkedPosition);
                     }
                 }
             };
 
-    private LoginDelegate.LoginCallback mLoginCallback = new LoginDelegate.LoginCallback() {
+    private LoginActionDelegate.LoginActionCallback mLoginActionCallback = new LoginActionDelegate.LoginActionCallback() {
         @Override
         public void isLoggedIn() {
             mFragmentDelegate.onTabIndicatorCheckedChanged(LOGIN_INDEX);

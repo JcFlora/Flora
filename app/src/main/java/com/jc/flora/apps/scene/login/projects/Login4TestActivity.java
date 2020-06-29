@@ -18,7 +18,7 @@ public class Login4TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("测试登录结果回调");
+        setTitle("添加单页面登录结果回调");
         setContentView(R.layout.activity_login4_test);
     }
 

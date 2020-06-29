@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.distribute.delegate.Distribute7Delegate;
-import com.jc.flora.apps.scene.login.delegate.LoginDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**

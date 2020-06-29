@@ -600,7 +600,19 @@
             android:name=".apps.scene.login.projects.Login10Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.scene.login.projects.Login12Activity"
+            android:name=".apps.scene.login.projects.Login11TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.login.projects.Login11Test2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.login.projects.Login12TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.login.projects.Login12Test2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.login.projects.Login13Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.scene.guider.GuiderActivity"

@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
                     project11, project12, project13, project14, project15,
-                    project16)
+                    project16, project17, project18, project19)
         }
 
     private val project1: Project
@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "登录0.4：添加登录结果回调"
+            project.projectName = "登录0.4：添加单页面登录结果回调"
             project.targetActivity = Login4TestActivity::class.java
             return project
         }
@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "登录0.5：登录检测+登录拦截器"
+            project.projectName = "登录0.5：单页面登录检测+使用登录动作拦截器"
             project.targetActivity = Login5TestActivity::class.java
             return project
         }
@@ -117,31 +117,31 @@ class LoginActivity : AppCompatActivity() {
     private val project11: Project
         get() {
             val project = Project()
-            project.projectName = "登录1.1：邮箱自动补全"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "登录1.1：使用登录状态监听器实现多页面登录状态同步"
+            project.targetActivity = Login11TestActivity::class.java
             return project
         }
 
     private val project12: Project
         get() {
             val project = Project()
-            project.projectName = "登录1.2：使用官方TextInputLayout实现"
-            project.targetActivity = Login12Activity::class.java
+            project.projectName = "登录1.2：合并单页面登录拦截和多页面登录状态同步，并封装为Lander框架"
+            project.targetActivity = Login12TestActivity::class.java
             return project
         }
 
     private val project13: Project
         get() {
             val project = Project()
-            project.projectName = "登录1.3：仿哔哩哔哩登录"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "登录1.3：使用官方TextInputLayout实现"
+            project.targetActivity = Login13Activity::class.java
             return project
         }
 
     private val project14: Project
         get() {
             val project = Project()
-            project.projectName = "登录1.4：仿QQ登录"
+            project.projectName = "登录1.4：邮箱自动补全"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -149,7 +149,7 @@ class LoginActivity : AppCompatActivity() {
     private val project15: Project
         get() {
             val project = Project()
-            project.projectName = "登录1.5：QQ第三方登录"
+            project.projectName = "登录1.5："
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -157,7 +157,31 @@ class LoginActivity : AppCompatActivity() {
     private val project16: Project
         get() {
             val project = Project()
-            project.projectName = "登录1.6：隔离出LoginUiDelegate"
+            project.projectName = "登录1.6：QQ第三方登录"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project17: Project
+        get() {
+            val project = Project()
+            project.projectName = "登录1.7：仿QQ登录"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project18: Project
+        get() {
+            val project = Project()
+            project.projectName = "登录1.8：仿哔哩哔哩登录"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project19: Project
+        get() {
+            val project = Project()
+            project.projectName = "登录1.9：隔离出LoginUiDelegate"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

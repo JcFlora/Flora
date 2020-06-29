@@ -12,13 +12,15 @@ import com.jc.flora.apps.scene.login.api.LoginMockApi;
 import com.jc.flora.apps.scene.login.api.LoginResponse;
 import com.jc.flora.apps.scene.login.delegate.PhoneNumberInputDelegate;
 import com.jc.flora.apps.scene.login.delegate.PwdInputDelegate;
-import com.jc.flora.apps.scene.login.lander.Lander;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**
- * Created by shijincheng on 2020/6/29.
+ * Created by shijincheng on 2017/8/23.
  */
-public class Login12Activity extends AppCompatActivity {
+public class Login13Activity extends AppCompatActivity {
+
+    public static final int LOGIN_SUCCESS_RESULT_CODE = 1;
+    public static final int LOGIN_CANCEL_RESULT_CODE = 2;
 
     // 手机号输入控件
     private EditText mEtPhoneNumber;
@@ -39,8 +41,8 @@ public class Login12Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("合并单页面登录拦截和多页面登录状态同步，并封装为Lander框架");
-        setContentView(R.layout.activity_login1);
+        setTitle("使用官方TextInputLayout实现");
+        setContentView(R.layout.activity_login13);
         findViews();
         initViews();
         initDelegate();
@@ -64,13 +66,13 @@ public class Login12Activity extends AppCompatActivity {
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login12Activity.this,"功能暂未实现");
+                ToastDelegate.show(Login13Activity.this,"功能暂未实现");
             }
         });
         mBtnResetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login12Activity.this,"功能暂未实现");
+                ToastDelegate.show(Login13Activity.this,"功能暂未实现");
             }
         });
     }
@@ -93,9 +95,10 @@ public class Login12Activity extends AppCompatActivity {
             @Override
             public void onResponse(LoginResponse response) {
                 if(response.success){
-                    Lander.loginSuccess(Login12Activity.this);
+                    setResult(LOGIN_SUCCESS_RESULT_CODE);
+                    finish();
                 }else{
-                    ToastDelegate.show(Login12Activity.this, response.msg);
+                    ToastDelegate.show(Login13Activity.this, response.msg);
                 }
             }
         }).sendRequest(phoneNumber, pwd);
@@ -103,7 +106,8 @@ public class Login12Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Lander.onBackPressed(this);
+        setResult(LOGIN_CANCEL_RESULT_CODE);
+        super.onBackPressed();
     }
 
 }

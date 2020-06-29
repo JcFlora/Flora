@@ -2,6 +2,7 @@ package com.jc.flora.apps.component.video.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ public class BrightnessGestureDelegate {
         if (mBrightness < 0) {
             mBrightness = activity.getWindow().getAttributes().screenBrightness;
             if (mBrightness <= 0.00f){
-                mBrightness = 0.50f;
+                mBrightness = getSystemBrightness() / 255f;
             }else if (mBrightness < 0.01f){
                 mBrightness = 0.01f;
             }
@@ -61,6 +62,16 @@ public class BrightnessGestureDelegate {
     public void onEndGesture() {
         mBrightness = -1f;
         setBrightnessBoxState(false);
+    }
+
+    private int getSystemBrightness() {
+        int systemBrightness = 0;
+        try {
+            systemBrightness = Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        return systemBrightness;
     }
 
     private Activity getActivity(){

@@ -275,7 +275,7 @@ class VideoActivity : AppCompatActivity() {
     private val project30: Project
         get() {
             val project = Project()
-            project.projectName = "视频3.0：实现倍速播放"
+            project.projectName = "视频3.0：简繁双控制层显示"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -283,7 +283,7 @@ class VideoActivity : AppCompatActivity() {
     private val project31: Project
         get() {
             val project = Project()
-            project.projectName = "视频3.1：列表+详情双页同步播放"
+            project.projectName = "视频3.1：按视频实际尺寸适配"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -291,7 +291,7 @@ class VideoActivity : AppCompatActivity() {
     private val project32: Project
         get() {
             val project = Project()
-            project.projectName = "视频3.2：添加共享元素转场动画"
+            project.projectName = "视频3.2：实现倍速播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -299,7 +299,23 @@ class VideoActivity : AppCompatActivity() {
     private val project33: Project
         get() {
             val project = Project()
-            project.projectName = "视频3.3：详情页滚动时独立浮动小窗播放"
+            project.projectName = "视频3.3：列表+详情双页同步播放"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project34: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频3.4：添加共享元素转场动画"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project35: Project
+        get() {
+            val project = Project()
+            project.projectName = "视频3.5：详情页滚动时独立浮动小窗播放"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
