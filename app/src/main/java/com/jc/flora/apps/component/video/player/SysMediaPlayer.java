@@ -77,6 +77,7 @@ public class SysMediaPlayer extends BasePlayer {
     public void setDataSource(Context context, Uri uri) {
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setOnPreparedListener(mMediaPreparedListener);
+        mMediaPlayer.setOnVideoSizeChangedListener(mMediaVideoSizeChangedListener);
         mMediaPlayer.setOnBufferingUpdateListener(mOnBufferingUpdateListener);
         mMediaPlayer.setOnInfoListener(mOnInfoListener);
         mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
@@ -100,6 +101,15 @@ public class SysMediaPlayer extends BasePlayer {
         public void onPrepared(MediaPlayer mp) {
             if(mOnPreparedListener != null){
                 mOnPreparedListener.onPrepared(SysMediaPlayer.this);
+            }
+        }
+    };
+
+    private MediaPlayer.OnVideoSizeChangedListener mMediaVideoSizeChangedListener = new MediaPlayer.OnVideoSizeChangedListener() {
+        @Override
+        public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+            if(mOnVideoSizeChangedListener != null){
+                mOnVideoSizeChangedListener.onVideoSizeChanged(width, height);
             }
         }
     };

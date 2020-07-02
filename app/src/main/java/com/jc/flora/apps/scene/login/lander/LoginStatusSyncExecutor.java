@@ -90,6 +90,36 @@ public class LoginStatusSyncExecutor extends Fragment {
     }
 
     /**
+     * 创建登录状态同步器
+     * @param activity
+     * @param tag
+     * @return
+     */
+    static LoginStatusSyncExecutor createExecutor(AppCompatActivity activity, String tag){
+        LoginStatusSyncExecutor executor = (LoginStatusSyncExecutor) activity.getSupportFragmentManager().findFragmentByTag(tag);
+        if(executor == null){
+            executor = new LoginStatusSyncExecutor();
+            executor.addToActivity(activity, tag);
+        }
+        return executor;
+    }
+
+    /**
+     * 创建登录状态同步器
+     * @param fragment
+     * @param tag
+     * @return
+     */
+    static LoginStatusSyncExecutor createExecutor(Fragment fragment, String tag){
+        LoginStatusSyncExecutor executor = (LoginStatusSyncExecutor) fragment.getChildFragmentManager().findFragmentByTag(tag);
+        if(executor == null){
+            executor = new LoginStatusSyncExecutor();
+            executor.addToFragment(fragment, tag);
+        }
+        return executor;
+    }
+
+    /**
      * 添加到Activity
      *
      * @param activity

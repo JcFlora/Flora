@@ -105,6 +105,7 @@ public class IjkPlayer extends BasePlayer {
     public void setDataSource(Context context, Uri uri) {
         mIjkPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mIjkPlayer.setOnPreparedListener(mMediaPreparedListener);
+        mIjkPlayer.setOnVideoSizeChangedListener(mMediaVideoSizeChangedListener);
         mIjkPlayer.setOnBufferingUpdateListener(mOnBufferingUpdateListener);
         mIjkPlayer.setOnInfoListener(mOnInfoListener);
         mIjkPlayer.setOnCompletionListener(mOnCompletionListener);
@@ -128,6 +129,16 @@ public class IjkPlayer extends BasePlayer {
         public void onPrepared(IMediaPlayer mp) {
             if(mOnPreparedListener != null){
                 mOnPreparedListener.onPrepared(IjkPlayer.this);
+            }
+        }
+    };
+
+    private IMediaPlayer.OnVideoSizeChangedListener mMediaVideoSizeChangedListener = new IMediaPlayer.OnVideoSizeChangedListener() {
+        @Override
+        public void onVideoSizeChanged(IMediaPlayer mp, int width, int height,
+                                       int sarNum, int sarDen) {
+            if(mOnVideoSizeChangedListener != null){
+                mOnVideoSizeChangedListener.onVideoSizeChanged(width, height);
             }
         }
     };

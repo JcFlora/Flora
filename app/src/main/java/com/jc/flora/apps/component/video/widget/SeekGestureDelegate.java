@@ -5,6 +5,8 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 
+import com.jc.flora.apps.component.time.TimeUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -16,9 +18,6 @@ public class SeekGestureDelegate {
 
     private static final int FIXED_DELTA_MAX = 120_000;
     private static final boolean FIXED_MODE = true;
-
-    //进度条下面的当前进度文字，将毫秒化为mm:ss格式
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
     private View mLayoutSeekBox;
     private TextView mTvStepTime;
@@ -92,7 +91,7 @@ public class SeekGestureDelegate {
             setFastForwardState(true);
             String text = showDelta > 0 ? ("+" + showDelta) : "" + showDelta;
             mTvStepTime.setText(text + "s");
-            String progressText = FORMAT.format(mNewPosition)+"/" + FORMAT.format(duration);
+            String progressText = TimeUtils.getTimeSmartFormat(mNewPosition) + "/" + TimeUtils.getTimeSmartFormat(duration);
             mTvProgressTime.setText(progressText);
         }
     }

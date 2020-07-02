@@ -275,15 +275,15 @@ class VideoActivity : AppCompatActivity() {
     private val project30: Project
         get() {
             val project = Project()
-            project.projectName = "视频3.0：简繁双控制层显示"
-            project.targetActivity = NotFoundActivity::class.java
+            project.projectName = "视频3.0：视频尺寸自适应适配"
+            project.targetActivity = Video30Activity::class.java
             return project
         }
 
     private val project31: Project
         get() {
             val project = Project()
-            project.projectName = "视频3.1：按视频实际尺寸适配"
+            project.projectName = "视频3.1：简繁双控制层显示"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

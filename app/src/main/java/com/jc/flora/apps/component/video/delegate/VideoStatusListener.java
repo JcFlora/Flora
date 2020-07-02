@@ -11,6 +11,9 @@ public class VideoStatusListener {
     /** 视频准备开始时的回调 */
     public void onPrepareStart(int index){}
 
+    /** 视频返回视频尺寸时的回调 */
+    public void onVideoSizeChanged(int width, int height) {}
+
     /** 选择或切换一个视频时的回调 */
     public void onSelectEnd(int index, int maxProgress){}
 

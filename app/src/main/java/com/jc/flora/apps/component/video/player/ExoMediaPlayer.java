@@ -110,6 +110,7 @@ public class ExoMediaPlayer extends BasePlayer {
     public void setDataSource(Context context, Uri uri) {
         mIsPreparing = true;
         mExoPlayer.prepare(getMediaSource(context.getApplicationContext(), uri));
+        mExoPlayer.setVideoListener(mVideoListener);
         mExoPlayer.setPlayWhenReady(false);
     }
 
@@ -149,6 +150,19 @@ public class ExoMediaPlayer extends BasePlayer {
 //                return new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
 //        }
     }
+
+    private SimpleExoPlayer.VideoListener mVideoListener = new SimpleExoPlayer.VideoListener() {
+        @Override
+        public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
+            if(mOnVideoSizeChangedListener != null){
+                mOnVideoSizeChangedListener.onVideoSizeChanged(width, height);
+            }
+        }
+
+        @Override
+        public void onRenderedFirstFrame() {
+        }
+    };
 
     private ExoEventListener mExoEventListener = new ExoEventListener(){
 

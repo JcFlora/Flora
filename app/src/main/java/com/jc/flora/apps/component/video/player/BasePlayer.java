@@ -17,11 +17,18 @@ public abstract class BasePlayer {
     // 准备状态的监听器
     protected OnPreparedListener mOnPreparedListener;
 
+    // 视频尺寸的监听器
+    protected OnVideoSizeChangedListener mOnVideoSizeChangedListener;
+
     // 视频播放状态监听器集合
     private ArrayList<VideoStatusListener> mVideoStatusListeners = new ArrayList<>();
 
     public void setOnPreparedListener(OnPreparedListener onPreparedListener) {
         mOnPreparedListener = onPreparedListener;
+    }
+
+    public void setOnVideoSizeChangedListener(OnVideoSizeChangedListener onVideoSizeChangedListener) {
+        mOnVideoSizeChangedListener = onVideoSizeChangedListener;
     }
 
     /**
@@ -70,6 +77,13 @@ public abstract class BasePlayer {
         // 添加选择或切换开始时的回调
         for (VideoStatusListener l : mVideoStatusListeners) {
             l.onSelectStart(index);
+        }
+    }
+
+    public void callbackWhenVideoSizeChanged(int width, int height){
+        // 添加返回视频尺寸时的回调
+        for (VideoStatusListener l : mVideoStatusListeners) {
+            l.onVideoSizeChanged(width, height);
         }
     }
 

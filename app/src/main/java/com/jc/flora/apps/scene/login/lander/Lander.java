@@ -28,9 +28,7 @@ public final class Lander {
      * @return
      */
     public static LoginStatusSyncExecutor createExecutor(AppCompatActivity activity, String tag){
-        LoginStatusSyncExecutor executor = new LoginStatusSyncExecutor();
-        executor.addToActivity(activity, tag);
-        return executor;
+        return LoginStatusSyncExecutor.createExecutor(activity, tag);
     }
 
     /**
@@ -40,9 +38,7 @@ public final class Lander {
      * @return
      */
     public static LoginStatusSyncExecutor createExecutor(Fragment fragment, String tag){
-        LoginStatusSyncExecutor executor = new LoginStatusSyncExecutor();
-        executor.addToFragment(fragment, tag);
-        return executor;
+        return LoginStatusSyncExecutor.createExecutor(fragment, tag);
     }
 
     /**

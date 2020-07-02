@@ -28,8 +28,8 @@ public class BrightnessGestureDelegate {
     }
 
     public void setBrightnessBoxState(boolean state) {
-        if(mLayoutBrightnessBox !=null){
-            mLayoutBrightnessBox.setVisibility(state? View.VISIBLE: View.GONE);
+        if (mLayoutBrightnessBox != null) {
+            mLayoutBrightnessBox.setVisibility(state ? View.VISIBLE : View.GONE);
         }
     }
 

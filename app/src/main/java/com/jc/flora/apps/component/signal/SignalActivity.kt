@@ -34,7 +34,7 @@ class SignalActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8)
+                    project6, project7, project8, project9)
         }
 
     private val project1: Project
@@ -64,7 +64,7 @@ class SignalActivity : AppCompatActivity() {
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "通信0.4：本地广播实现Activity组件通信"
+            project.projectName = "通信0.4：通过所属Activity读写数据实现Fragment的数据通信"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -72,7 +72,7 @@ class SignalActivity : AppCompatActivity() {
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "通信0.5：封装本地广播为无痕广播"
+            project.projectName = "通信0.5：本地广播实现Activity组件通信"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -80,7 +80,7 @@ class SignalActivity : AppCompatActivity() {
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "通信0.6：本地广播实现和Service组件通信"
+            project.projectName = "通信0.6：封装本地广播为无痕广播"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -88,7 +88,7 @@ class SignalActivity : AppCompatActivity() {
     private val project7: Project
         get() {
             val project = Project()
-            project.projectName = "通信0.7：使用全局Handler实现组件通信"
+            project.projectName = "通信0.7：本地广播实现和Service组件通信"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -96,7 +96,15 @@ class SignalActivity : AppCompatActivity() {
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = "通信0.8：使用EventBus3"
+            project.projectName = "通信0.8：使用全局Handler实现组件通信"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project9: Project
+        get() {
+            val project = Project()
+            project.projectName = "通信0.9：使用EventBus3"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
