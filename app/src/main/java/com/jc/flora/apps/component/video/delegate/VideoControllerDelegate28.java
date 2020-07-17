@@ -11,12 +11,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.time.TimeUtils;
 import com.jc.flora.apps.component.video.model.MP4;
 import com.jc.flora.apps.component.video.widget.BaseVideoGestureCover;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * 注意，对应Activity需要配置android:configChanges="keyboardHidden|orientation|screenSize"
@@ -25,10 +24,7 @@ import java.util.Locale;
 
 public class VideoControllerDelegate28 extends Fragment {
 
-    //进度条下面的当前进度文字，将毫秒化为mm:ss格式
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
-
-    // 添加mp4列表，用于判断是否开启试听模式
+    // 添加mp4列表，用于判断是否开启试看模式
     private ArrayList<MP4> mMp4List;
 
     // 视频父布局
@@ -99,7 +95,7 @@ public class VideoControllerDelegate28 extends Fragment {
     }
 
     public void addToActivity(AppCompatActivity activity, String tag) {
-        if(activity != null){
+        if (activity != null) {
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
         }
     }
@@ -127,7 +123,7 @@ public class VideoControllerDelegate28 extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     if (mLayoutController.getVisibility() == View.VISIBLE) {
                         hideController();
-                    }else{
+                    } else {
                         showController();
                     }
                 }
@@ -159,7 +155,7 @@ public class VideoControllerDelegate28 extends Fragment {
             public void onSingleTapUp() {
                 if (mLayoutController.getVisibility() == View.VISIBLE) {
                     hideController();
-                }else{
+                } else {
                     showController();
                 }
             }
@@ -172,7 +168,7 @@ public class VideoControllerDelegate28 extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //这里很重要，如果不判断是否来自用户操作进度条，会不断执行下面语句块里面的逻辑，然后就会卡顿卡顿
-                if(fromUser){
+                if (fromUser) {
                     mVideoDelegate.seekTo(progress);
                 }
                 interceptTrailer(progress);
@@ -208,7 +204,7 @@ public class VideoControllerDelegate28 extends Fragment {
                 // 初始化播放最大进度值
                 mSbProgress.setMax(maxProgress);
                 // 初始化总时间
-                mTvMaxTime.setText(FORMAT.format(maxProgress));
+                mTvMaxTime.setText(TimeUtils.getTimeSmartFormat(maxProgress));
             }
 
             @Override
@@ -244,21 +240,21 @@ public class VideoControllerDelegate28 extends Fragment {
             @Override
             public void onProgress(int progress) {
                 mSbProgress.setProgress(progress);
-                mTvCurrentTime.setText(FORMAT.format(progress));
+                mTvCurrentTime.setText(TimeUtils.getTimeSmartFormat(progress));
             }
 
         });
     }
 
-    private void hideController(){
+    private void hideController() {
         mLayoutController.setVisibility(View.GONE);
     }
 
-    public void showController(){
+    public void showController() {
         showController(3000);
     }
 
-    private void showController(int timeout){
+    private void showController(int timeout) {
         mLayoutController.setVisibility(View.VISIBLE);
         mLayoutVideo.removeCallbacks(mFadeOut);
         mLayoutVideo.postDelayed(mFadeOut, timeout);
@@ -267,11 +263,11 @@ public class VideoControllerDelegate28 extends Fragment {
     private void interceptTrailer(int progress) {
         MP4 currentMp4 = mMp4List.get(mVideoDelegate.getCurrentMp4Index());
         boolean isTrailerMode = mMp4List != null && !mMp4List.isEmpty() && currentMp4.isTrailerMode();
-        if(isTrailerMode && progress >= currentMp4.trailerPosition){
+        if (isTrailerMode && progress >= currentMp4.trailerPosition) {
             mVideoDelegate.pauseVideo();
             mVideoDelegate.seekTo(currentMp4.trailerPosition);
             mSbProgress.setProgress(currentMp4.trailerPosition);
-            if(mOnTrailerEndCallback != null){
+            if (mOnTrailerEndCallback != null) {
                 mOnTrailerEndCallback.onTrailerEnd();
             }
         }

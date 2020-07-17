@@ -12,11 +12,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.time.TimeUtils;
 import com.jc.flora.apps.component.vi.fidelity.Fidelity;
 import com.jc.flora.apps.component.video.widget.BaseVideoGestureCover;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 /**
  * 注意，对应Activity需要配置android:configChanges="keyboardHidden|orientation|screenSize"
@@ -27,8 +25,6 @@ public class VideoControllerDelegate13 extends Fragment {
 
     /** 视频在720p高保真下的高度，实际开发中，这个值一般通过视频的宽高度比例设置为固定值 */
     private static final double VIDEO_HEIGHT = 720d * 434 / 800;
-    //进度条下面的当前进度文字，将毫秒化为mm:ss格式
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
     // 视频父布局
     private View mLayoutVideo;
@@ -190,7 +186,7 @@ public class VideoControllerDelegate13 extends Fragment {
                 // 初始化播放最大进度值
                 mSbProgress.setMax(maxProgress);
                 // 初始化总时间
-                mTvMaxTime.setText(FORMAT.format(maxProgress));
+                mTvMaxTime.setText(TimeUtils.getTimeSmartFormat(maxProgress));
                 // 初始化当前进度
                 mSbProgress.setProgress(0);
                 // 初始化当前时间
@@ -224,7 +220,7 @@ public class VideoControllerDelegate13 extends Fragment {
             @Override
             public void onProgress(int progress) {
                 mSbProgress.setProgress(progress);
-                mTvCurrentTime.setText(FORMAT.format(progress));
+                mTvCurrentTime.setText(TimeUtils.getTimeSmartFormat(progress));
             }
 
         });

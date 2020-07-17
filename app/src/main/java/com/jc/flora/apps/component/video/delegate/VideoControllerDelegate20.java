@@ -11,10 +11,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.component.time.TimeUtils;
 import com.jc.flora.apps.component.video.widget.BaseVideoGestureCover;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 /**
  * 注意，对应Activity需要配置android:configChanges="keyboardHidden|orientation|screenSize"
@@ -22,9 +20,6 @@ import java.util.Locale;
  */
 
 public class VideoControllerDelegate20 extends Fragment {
-
-    //进度条下面的当前进度文字，将毫秒化为mm:ss格式
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
     // 视频父布局
     private View mLayoutVideo;
@@ -192,7 +187,7 @@ public class VideoControllerDelegate20 extends Fragment {
                 // 初始化播放最大进度值
                 mSbProgress.setMax(maxProgress);
                 // 初始化总时间
-                mTvMaxTime.setText(FORMAT.format(maxProgress));
+                mTvMaxTime.setText(TimeUtils.getTimeSmartFormat(maxProgress));
             }
 
             @Override
@@ -228,7 +223,7 @@ public class VideoControllerDelegate20 extends Fragment {
             @Override
             public void onProgress(int progress) {
                 mSbProgress.setProgress(progress);
-                mTvCurrentTime.setText(FORMAT.format(progress));
+                mTvCurrentTime.setText(TimeUtils.getTimeSmartFormat(progress));
             }
 
         });
