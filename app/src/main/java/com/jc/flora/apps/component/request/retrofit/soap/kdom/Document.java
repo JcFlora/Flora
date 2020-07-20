@@ -18,7 +18,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE. */
 
-
 package com.jc.flora.apps.component.request.retrofit.soap.kdom;
 
 import org.xmlpull.v1.XmlPullParser;

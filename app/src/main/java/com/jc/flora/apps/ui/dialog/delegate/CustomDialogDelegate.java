@@ -1,7 +1,7 @@
 package com.jc.flora.apps.ui.dialog.delegate;
 
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;

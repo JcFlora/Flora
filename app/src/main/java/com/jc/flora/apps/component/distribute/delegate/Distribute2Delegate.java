@@ -1,16 +1,11 @@
 package com.jc.flora.apps.component.distribute.delegate;
 
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.volley.Response;
 import com.jc.flora.R;
-import com.jc.flora.apps.component.request.volley.L;
-import com.jc.flora.apps.scene.login.api.GetVerCodeMockApi;
-import com.jc.flora.apps.scene.login.api.GetVerCodeResponse;
-import com.jc.flora.apps.scene.login.delegate.PhoneNumberInputDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 /**

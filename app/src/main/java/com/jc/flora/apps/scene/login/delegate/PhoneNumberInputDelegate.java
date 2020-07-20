@@ -1,6 +1,6 @@
 package com.jc.flora.apps.scene.login.delegate;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.EditText;
 
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;

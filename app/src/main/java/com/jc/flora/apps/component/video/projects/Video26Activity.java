@@ -2,11 +2,11 @@ package com.jc.flora.apps.component.video.projects;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
@@ -18,6 +18,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.video.adapter.VideoAdapter;
 import com.jc.flora.apps.component.video.delegate.VideoCompleteCoverDelegate21;
@@ -185,7 +186,7 @@ public class Video26Activity extends AppCompatActivity {
                 return mListPlayDelegate.addVideoRender(container, position);
             }
         });
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 mListPlayDelegate.playAudioAtPosition(position);

@@ -1,9 +1,8 @@
 package com.jc.flora.apps.component.request.volley;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Response;
-import com.jc.flora.apps.component.request.NetResponse;
 
 import java.text.MessageFormat;
 

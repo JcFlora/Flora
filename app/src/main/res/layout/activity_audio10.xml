@@ -53,7 +53,7 @@
         android:onClick="nextAudio"
         android:text="下一首" />
 
-    <android.support.v7.widget.AppCompatSeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/sb_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

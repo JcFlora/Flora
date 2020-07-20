@@ -1,11 +1,11 @@
 package com.jc.flora.apps.ui.banner.delegate;
 
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.Space;
+import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 
 import com.jc.flora.apps.ui.banner.widget.BannerView21;
 

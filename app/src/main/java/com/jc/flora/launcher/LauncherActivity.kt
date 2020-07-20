@@ -1,8 +1,8 @@
 package com.jc.flora.launcher
 
 import android.os.Bundle
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.LinearLayout
 import com.jc.flora.R
 import com.jc.flora.apps.component.exit.delegate.DoubleClickDelegate

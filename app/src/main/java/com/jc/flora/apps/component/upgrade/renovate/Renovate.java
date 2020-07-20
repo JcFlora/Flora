@@ -1,6 +1,6 @@
 package com.jc.flora.apps.component.upgrade.renovate;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 版本升级器外观

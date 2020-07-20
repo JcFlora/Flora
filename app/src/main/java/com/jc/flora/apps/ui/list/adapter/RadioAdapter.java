@@ -1,7 +1,7 @@
 package com.jc.flora.apps.ui.list.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatRadioButton;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -1,14 +1,11 @@
 package com.jc.flora.apps.component.request.volley;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
-
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 /**
  * Api基类

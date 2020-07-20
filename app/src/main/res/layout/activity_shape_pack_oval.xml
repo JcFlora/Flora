@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -46,7 +46,7 @@
             </RelativeLayout>
         </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -85,7 +85,7 @@
             </RelativeLayout>
         </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -126,7 +126,7 @@
             </RelativeLayout>
         </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -167,4 +167,4 @@
         </com.jc.flora.apps.ui.shape.widget.PackOvalLayout>
 
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

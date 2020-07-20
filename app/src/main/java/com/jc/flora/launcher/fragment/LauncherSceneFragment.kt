@@ -1,9 +1,9 @@
 package com.jc.flora.launcher.fragment
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +42,7 @@ class LauncherSceneFragment : CaptainFragment() {
     }
 
     private fun addApps() {
-        rvApps?.layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.VERTICAL, false)
+        rvApps?.layoutManager = GridLayoutManager(activity, 4, androidx.recyclerview.widget.GridLayoutManager.VERTICAL, false)
         rvApps?.adapter = LauncherAppsAdapter(activity as AppCompatActivity?, mApps)
     }
 

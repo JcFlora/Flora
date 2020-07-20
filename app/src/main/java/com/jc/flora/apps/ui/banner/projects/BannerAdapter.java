@@ -1,6 +1,6 @@
 package com.jc.flora.apps.ui.banner.projects;
 
-import android.support.v4.view.PagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 

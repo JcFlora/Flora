@@ -1,6 +1,6 @@
 package com.jc.flora.apps.scene.login.delegate;
 
-import android.support.v7.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.widget.CompoundButton;

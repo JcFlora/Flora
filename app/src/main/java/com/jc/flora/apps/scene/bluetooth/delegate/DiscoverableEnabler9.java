@@ -1,8 +1,8 @@
 package com.jc.flora.apps.scene.bluetooth.delegate;
 
 import android.bluetooth.BluetoothAdapter;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
 

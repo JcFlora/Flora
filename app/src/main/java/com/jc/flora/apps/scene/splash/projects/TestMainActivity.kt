@@ -1,8 +1,7 @@
 package com.jc.flora.apps.scene.splash.projects
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 
 import org.w3c.dom.Text

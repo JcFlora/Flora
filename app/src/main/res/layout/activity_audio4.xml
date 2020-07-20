@@ -21,7 +21,7 @@
         android:onClick="resetAudio"
         android:text="重新播放" />
 
-    <android.support.v7.widget.AppCompatSeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/sb_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

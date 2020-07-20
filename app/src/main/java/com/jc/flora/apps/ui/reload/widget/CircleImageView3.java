@@ -1,9 +1,5 @@
 package com.jc.flora.apps.ui.reload.widget;
 
-/**
- * Created by Samurai on 2017/5/28.
- */
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,9 +8,14 @@ import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.AppCompatImageView;
+import android.view.View;
 
+import androidx.core.view.ViewCompat;
+import androidx.appcompat.widget.AppCompatImageView;
+
+/**
+ * Created by Samurai on 2017/5/28.
+ */
 /**
  * Private class created to work around issues with AnimationListeners being
  * called before the animation is actually complete and support shadows on older
@@ -50,7 +51,7 @@ class CircleImageView3 extends AppCompatImageView {
         } else {
             OvalShape oval = new OvalShadow(mShadowRadius, diameter);
             circle = new ShapeDrawable(oval);
-            ViewCompat.setLayerType(this, ViewCompat.LAYER_TYPE_SOFTWARE, circle.getPaint());
+            setLayerType(View.LAYER_TYPE_SOFTWARE, circle.getPaint());
             circle.getPaint().setShadowLayer(mShadowRadius, shadowXOffset, shadowYOffset,
                     KEY_SHADOW_COLOR);
             final int padding = mShadowRadius;

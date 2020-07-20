@@ -3,7 +3,7 @@ package com.jc.flora.apps.ui.banner.delegate;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 

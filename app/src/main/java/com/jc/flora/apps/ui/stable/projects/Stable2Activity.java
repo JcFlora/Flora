@@ -1,7 +1,7 @@
 package com.jc.flora.apps.ui.stable.projects;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.stable.delegate.StableDelegate;

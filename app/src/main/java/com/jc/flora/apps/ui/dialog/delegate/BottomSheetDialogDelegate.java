@@ -1,8 +1,8 @@
 package com.jc.flora.apps.ui.dialog.delegate;
 
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -62,7 +62,7 @@ public class BottomSheetDialogDelegate {
             mDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, dialogHeight);
         }
         // 设置是否支持滑动退出
-        View bottomSheet = mDialog.findViewById(android.support.design.R.id.design_bottom_sheet);
+        View bottomSheet = mDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
         if(bottomSheet != null){
             BottomSheetBehavior.from(bottomSheet).setHideable(HIDE_WHEN_SWIPED_DOWN);
         }

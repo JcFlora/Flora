@@ -1,7 +1,7 @@
 package com.jc.flora.apps.ui.captain.delegate;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import com.jc.flora.R;

@@ -1,7 +1,7 @@
 package com.jc.flora.apps.component.router.delegate;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Shijincheng on 2019/1/15.

@@ -24,7 +24,7 @@
             android:contentDescription="@null"
             android:src="@drawable/audio_volume"/>
 
-        <android.support.v7.widget.AppCompatSeekBar
+        <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/sb_volume"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"/>
 
-        <android.support.v7.widget.AppCompatSeekBar
+        <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/sb_progress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

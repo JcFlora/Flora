@@ -1,6 +1,6 @@
 package com.jc.flora.apps.component.video.adapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.vi.fidelity.Fidelity;
 import com.jc.flora.apps.component.video.model.MP4;

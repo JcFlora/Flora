@@ -2,9 +2,9 @@ package com.jc.flora.apps.ui.banner.delegate;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Samurai on 2017/4/30.

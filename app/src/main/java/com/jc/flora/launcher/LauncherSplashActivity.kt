@@ -1,7 +1,7 @@
 package com.jc.flora.launcher
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.KeyEvent
 import com.jc.flora.apps.scene.splash.delegate.Splash2Delegate
 import com.jc.flora.apps.ui.stable.delegate.StableDelegate

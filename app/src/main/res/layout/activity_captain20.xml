@@ -5,7 +5,7 @@
     android:clipChildren="false"
     android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,7 +16,7 @@
         android:layout_height="1px"
         android:background="#bebebe" />
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/layout_captain_indicators"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bottom_bar_height"

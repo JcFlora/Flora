@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
@@ -32,7 +32,7 @@
         android:contentDescription=""
         android:src="@drawable/banner1"/>
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:text="适配字体30px"/>
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 

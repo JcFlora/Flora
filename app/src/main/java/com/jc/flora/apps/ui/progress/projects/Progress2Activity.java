@@ -1,8 +1,8 @@
 package com.jc.flora.apps.ui.progress.projects;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatSeekBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSeekBar;
 import android.widget.SeekBar;
 
 import com.jc.flora.R;

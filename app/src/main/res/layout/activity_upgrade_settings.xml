@@ -10,7 +10,7 @@
         android:text="检测升级"
         android:onClick="checkUpgrade"/>
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/s_auto_check_upgrade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

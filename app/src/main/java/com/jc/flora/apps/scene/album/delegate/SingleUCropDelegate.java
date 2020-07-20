@@ -1,7 +1,7 @@
 package com.jc.flora.apps.scene.album.delegate;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import com.jc.flora.R;

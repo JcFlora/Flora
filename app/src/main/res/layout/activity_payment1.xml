@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/sv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -18,7 +18,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -48,7 +48,7 @@
 
             </LinearLayout>
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -71,11 +71,11 @@
                 android:layout_height="@dimen/app_divider_line_size"
                 android:background="@color/app_color_divider_content" />
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_goto_pay"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_accent_button_height"
@@ -87,6 +87,6 @@
                 android:textSize="@dimen/app_text_size_20dp" />
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

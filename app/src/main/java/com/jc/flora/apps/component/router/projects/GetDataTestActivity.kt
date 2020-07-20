@@ -1,6 +1,6 @@
 package com.jc.flora.apps.component.router.projects
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 

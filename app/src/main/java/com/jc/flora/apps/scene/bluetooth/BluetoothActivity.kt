@@ -1,9 +1,9 @@
 package com.jc.flora.apps.scene.bluetooth
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
@@ -30,8 +30,8 @@ class BluetoothActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
-        rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val rvProjects: androidx.recyclerview.widget.RecyclerView = findViewById(R.id.rv_projects)
+        rvProjects.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }
 

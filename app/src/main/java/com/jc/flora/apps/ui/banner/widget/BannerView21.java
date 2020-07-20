@@ -155,6 +155,9 @@ public class BannerView21 extends RelativeLayout {
         if(mBannerDataDelivery != null){
             mImageLength = mBannerDataDelivery.getCount();
         }
+        if (mImageLength == 0) {
+            return;
+        }
         if (mImageLength == 1) {
             mVpBanner.setPagingEnabled(false);
         }
@@ -184,6 +187,9 @@ public class BannerView21 extends RelativeLayout {
     }
 
     private void setAdapter() {
+        if (mImageLength == 0) {
+            return;
+        }
         BannerLoopPagerAdapter adapter = new BannerLoopPagerAdapter(mViews);
         mVpBanner.setAdapter(adapter);
         if (mImageLength == 1) {

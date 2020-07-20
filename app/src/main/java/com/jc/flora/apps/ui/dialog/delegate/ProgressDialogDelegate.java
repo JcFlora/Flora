@@ -1,7 +1,7 @@
 package com.jc.flora.apps.ui.dialog.delegate;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by shijincheng on 2017/3/18.

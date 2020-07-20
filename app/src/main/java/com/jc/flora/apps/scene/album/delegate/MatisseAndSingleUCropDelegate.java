@@ -3,8 +3,8 @@ package com.jc.flora.apps.scene.album.delegate;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.jc.flora.apps.scene.album.model.PickImage;
 import com.jc.flora.apps.scene.album.projects.SingleUCropActivity;

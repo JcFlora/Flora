@@ -3,7 +3,7 @@ package com.jc.flora.apps.component.audio.delegate;
 import android.app.Notification;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

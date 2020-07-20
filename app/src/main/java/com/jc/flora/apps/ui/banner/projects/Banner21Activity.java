@@ -1,8 +1,9 @@
 package com.jc.flora.apps.ui.banner.projects;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;

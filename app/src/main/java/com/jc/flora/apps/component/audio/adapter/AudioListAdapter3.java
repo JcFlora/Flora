@@ -1,12 +1,12 @@
 package com.jc.flora.apps.component.audio.adapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.model.MP3;
 import com.jc.flora.apps.ui.progress.widget.RoundProgressBar;

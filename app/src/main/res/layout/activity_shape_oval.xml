@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="@dimen/app_page_padding">
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="@dimen/app_accent_button_height"
         android:background="@drawable/shape_bg_oval"
@@ -15,11 +15,11 @@
         android:textColor="@color/app_color_text_white"
         android:textSize="@dimen/app_text_size_18dp" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_oval"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/app_accent_button_height"
@@ -29,11 +29,11 @@
         android:textColor="@color/app_color_text_white"
         android:textSize="@dimen/app_text_size_18dp" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:background="@drawable/shape_bg_oval"
@@ -43,11 +43,11 @@
         android:textColor="@color/app_color_text_white"
         android:textSize="@dimen/app_text_size_18dp" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_round"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -57,7 +57,7 @@
         android:textColor="@color/app_color_text_white"
         android:textSize="@dimen/app_text_size_18dp" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 

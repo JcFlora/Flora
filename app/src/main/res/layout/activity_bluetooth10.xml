@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/s_bluetooth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="关闭"
         android:textColor="@android:color/black"/>
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/s_discoverable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                 android:text="已配对的设备"
                 android:textColor="@color/colorAccent"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_bonded_devices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -80,7 +80,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_unbonded_devices"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

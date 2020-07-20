@@ -121,7 +121,7 @@
                 android:src="@drawable/login_et_clear"
                 android:visibility="gone" />
 
-            <android.support.v7.widget.AppCompatCheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/cb_pwd_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="720px">
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_banner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dot_selected"/>
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="20px"
                 android:layout_height="1px" />
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dot_unselected"/>
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="20px"
                 android:layout_height="1px" />
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/dot_unselected"/>
 
-            <android.support.v4.widget.Space
+            <androidx.legacy.widget.Space
                 android:layout_width="20px"
                 android:layout_height="1px" />
 

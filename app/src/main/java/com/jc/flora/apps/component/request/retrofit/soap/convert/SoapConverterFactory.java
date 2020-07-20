@@ -1,6 +1,6 @@
 package com.jc.flora.apps.component.request.retrofit.soap.convert;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
@@ -25,7 +25,7 @@ public class SoapConverterFactory extends Converter.Factory {
     public static final int JSON = 2;
     public static final int XML = 3;
 
-    private @ResponseType int mResponseType = 1;
+    private @ResponseType int mResponseType = STRING;
 
     public static SoapConverterFactory create(@ResponseType int responseType) {
         return new SoapConverterFactory(responseType);

@@ -1,15 +1,15 @@
 package com.jc.flora.apps.component.statistics.projects;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
 import ly.count.android.sdk.Countly;
 
 /**
- * compile 'ly.count.android:sdk:16.12.2'
+ * implementation 'ly.count.android:sdk:16.12.2'
  * Created by shijincheng on 2017/1/20.
  */
 public class Statistics1Activity extends AppCompatActivity {

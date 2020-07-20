@@ -2,7 +2,7 @@ package com.jc.flora.apps.component.router.delegate;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.jc.flora.apps.component.router.projects.GetDataTestActivity;
 import com.jc.flora.apps.component.router.projects.ReceiveDataTestActivity;

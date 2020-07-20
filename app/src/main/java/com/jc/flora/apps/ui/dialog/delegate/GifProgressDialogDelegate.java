@@ -1,9 +1,9 @@
 package com.jc.flora.apps.ui.dialog.delegate;
 
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.DrawableRes;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
+import androidx.annotation.DrawableRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;

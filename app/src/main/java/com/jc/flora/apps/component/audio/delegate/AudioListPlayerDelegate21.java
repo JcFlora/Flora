@@ -6,14 +6,15 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jc.flora.R;
 import com.jc.flora.apps.component.audio.adapter.AudioListAdapter;
 import com.jc.flora.apps.component.audio.model.MP3;
@@ -105,7 +106,7 @@ public class AudioListPlayerDelegate21 {
         // 设置mp3列表数据展示
         AudioListAdapter adapter = new AudioListAdapter(MP3_LIST);
         mRvAudioList.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 mDelegate.selectAudio(position);

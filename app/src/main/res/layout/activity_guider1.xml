@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#FDFDFE">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_guider"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_light" />
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="20px"
             android:layout_height="1px" />
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_default" />
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="20px"
             android:layout_height="1px" />
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_default" />
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="20px"
             android:layout_height="1px" />
 
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_default" />
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="20px"
             android:layout_height="1px" />
 

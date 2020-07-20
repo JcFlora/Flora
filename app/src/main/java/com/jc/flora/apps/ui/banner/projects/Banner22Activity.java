@@ -1,8 +1,8 @@
 package com.jc.flora.apps.ui.banner.projects;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.banner.delegate.BannerDelegate22;
@@ -13,7 +13,6 @@ import com.jc.flora.apps.ui.banner.widget.BannerView21;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
 import java.util.ArrayList;
-
 
 /**
  * Created by Samurai on 2017/8/22.

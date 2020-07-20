@@ -1,8 +1,8 @@
 package com.jc.flora.apps.scene.login.projects;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatCheckBox;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;

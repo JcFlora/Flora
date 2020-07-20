@@ -2,7 +2,7 @@ package com.jc.flora.apps.ui.shape.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 

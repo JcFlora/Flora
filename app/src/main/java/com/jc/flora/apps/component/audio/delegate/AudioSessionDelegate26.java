@@ -16,10 +16,10 @@ import java.io.File;
 
 /**
  *
- * implementation "com.android.support:support-media-compat:$SUPPORT_VERSION"
+ * implementation "androidx.media:media:1.1.0"
  *
  * 在低版本上，需要在manifest配置文件中添加
- *  <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >
+ *  <receiver android:name="androidx.media.session.MediaButtonReceiver" >
  *      <intent-filter>
  *          <action android:name="android.intent.action.MEDIA_BUTTON" />
  *      </intent-filter>

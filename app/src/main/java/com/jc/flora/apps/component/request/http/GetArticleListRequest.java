@@ -9,7 +9,6 @@ import java.text.MessageFormat;
 /**
  * Created by Shijincheng on 2018/4/16.
  */
-
 public abstract class GetArticleListRequest extends AbsAsyncTask<NetResponse>{
 
     private static final String HOST = "https://gank.io/api/";

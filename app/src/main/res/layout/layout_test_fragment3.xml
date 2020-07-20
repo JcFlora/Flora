@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/sv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,9 +20,9 @@
                 android:background="@drawable/bg_long"/>
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_toolbar_height"

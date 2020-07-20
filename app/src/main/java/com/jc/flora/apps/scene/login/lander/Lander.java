@@ -1,8 +1,8 @@
 package com.jc.flora.apps.scene.login.lander;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 登录器外观类，提供全局配置

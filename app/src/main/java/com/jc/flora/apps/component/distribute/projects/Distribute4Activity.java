@@ -1,14 +1,13 @@
 package com.jc.flora.apps.component.distribute.projects;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.component.distribute.delegate.Distribute1Delegate;
-import com.jc.flora.apps.component.distribute.delegate.Distribute3Delegate;
 import com.jc.flora.apps.component.distribute.delegate.Distribute4Delegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
