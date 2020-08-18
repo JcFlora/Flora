@@ -1,7 +1,6 @@
-package com.jc.flora.apps.scene.login.projects;
+package com.jc.flora.apps.scene.identity.projects;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,13 +11,15 @@ import com.jc.flora.apps.scene.login.api.LoginMockApi;
 import com.jc.flora.apps.scene.login.api.LoginResponse;
 import com.jc.flora.apps.scene.login.delegate.PhoneNumberInputDelegate;
 import com.jc.flora.apps.scene.login.delegate.PwdInputDelegate;
-import com.jc.flora.apps.scene.login.lander.Lander;
+import com.jc.flora.apps.scene.identity.lander.Lander;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
- * Created by shijincheng on 2020/6/29.
+ * Created by shijincheng on 2020/7/21.
  */
-public class Login12Activity extends AppCompatActivity {
+public class TestLogin3Activity extends AppCompatActivity {
 
     /** 模拟登录状态，实际项目中使用User对象实现 */
     public static boolean sIsLogin;
@@ -67,13 +68,13 @@ public class Login12Activity extends AppCompatActivity {
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login12Activity.this,"功能暂未实现");
+                ToastDelegate.show(TestLogin3Activity.this,"功能暂未实现");
             }
         });
         mBtnResetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login12Activity.this,"功能暂未实现");
+                ToastDelegate.show(TestLogin3Activity.this,"功能暂未实现");
             }
         });
     }
@@ -98,9 +99,9 @@ public class Login12Activity extends AppCompatActivity {
                 if(response.success){
                     // 这里模拟接口成功后保存用户登录状态
                     sIsLogin = true;
-                    Lander.loginSuccess(Login12Activity.this);
+                    Lander.loginSuccess(TestLogin3Activity.this);
                 }else{
-                    ToastDelegate.show(Login12Activity.this, response.msg);
+                    ToastDelegate.show(TestLogin3Activity.this, response.msg);
                 }
             }
         }).sendRequest(phoneNumber, pwd);

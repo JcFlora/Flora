@@ -1,4 +1,4 @@
-package com.jc.flora.apps.scene.login.delegate;
+package com.jc.flora.apps.scene.identity.delegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jc.flora.apps.scene.login.projects.Login4Activity;
+import com.jc.flora.apps.scene.identity.projects.TestLogin1Activity;
 
 /**
  * 登录动作拦截器
@@ -14,10 +14,10 @@ import com.jc.flora.apps.scene.login.projects.Login4Activity;
  */
 public class LoginActionDelegate extends Fragment{
 
-    private static final Class LOGIN_ACTIVITY_CLASS = Login4Activity.class;
+    private static final Class LOGIN_ACTIVITY_CLASS = TestLogin1Activity.class;
     private static final int GOTO_LOGIN_REQUEST_CODE = 1;
-    public static final int LOGIN_SUCCESS_RESULT_CODE = Login4Activity.LOGIN_SUCCESS_RESULT_CODE;
-    public static final int LOGIN_CANCEL_RESULT_CODE = Login4Activity.LOGIN_CANCEL_RESULT_CODE;
+    public static final int LOGIN_SUCCESS_RESULT_CODE = TestLogin1Activity.LOGIN_SUCCESS_RESULT_CODE;
+    public static final int LOGIN_CANCEL_RESULT_CODE = TestLogin1Activity.LOGIN_CANCEL_RESULT_CODE;
 
     private boolean mIsLogin;
     private Intent mIntent;

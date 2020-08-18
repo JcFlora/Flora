@@ -1,4 +1,4 @@
-package com.jc.flora.apps.scene.login.lander;
+package com.jc.flora.apps.scene.identity.lander;
 
 /**
  * 登录动作响应

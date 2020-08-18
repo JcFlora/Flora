@@ -30,8 +30,8 @@ class BluetoothActivity : AppCompatActivity() {
     }
 
     private fun addProjects() {
-        val rvProjects: androidx.recyclerview.widget.RecyclerView = findViewById(R.id.rv_projects)
-        rvProjects.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
+        val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
+        rvProjects.layoutManager = LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }
 

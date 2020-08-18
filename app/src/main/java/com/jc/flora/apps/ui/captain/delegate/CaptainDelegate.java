@@ -8,7 +8,7 @@ import com.jc.flora.R;
 import com.jc.flora.apps.ui.captain.projects.Captain16TestFragment;
 import com.jc.flora.apps.ui.captain.projects.Captain17TestFragment;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
-import com.jc.flora.apps.scene.login.delegate.LoginActionDelegate;
+import com.jc.flora.apps.scene.identity.delegate.LoginActionDelegate;
 
 /**
  * Created by Samurai on 2017/5/27.

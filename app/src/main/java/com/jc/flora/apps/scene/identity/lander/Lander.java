@@ -1,4 +1,4 @@
-package com.jc.flora.apps.scene.login.lander;
+package com.jc.flora.apps.scene.identity.lander;
 
 import android.app.Activity;
 import androidx.fragment.app.Fragment;

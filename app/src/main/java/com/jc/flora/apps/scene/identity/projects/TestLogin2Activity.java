@@ -1,26 +1,25 @@
-package com.jc.flora.apps.scene.login.projects;
+package com.jc.flora.apps.scene.identity.projects;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.identity.delegate.LoginStatusDelegate;
 import com.jc.flora.apps.scene.login.api.LoginMockApi;
 import com.jc.flora.apps.scene.login.api.LoginResponse;
-import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 import com.jc.flora.apps.scene.login.delegate.PhoneNumberInputDelegate;
 import com.jc.flora.apps.scene.login.delegate.PwdInputDelegate;
+import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * Created by shijincheng on 2017/5/19.
+ * Created by shijincheng on 2020/7/21.
  */
-public class Login4Activity extends AppCompatActivity {
-
-    public static final int LOGIN_SUCCESS_RESULT_CODE = 1;
-    public static final int LOGIN_CANCEL_RESULT_CODE = 2;
+public class TestLogin2Activity extends AppCompatActivity {
 
     // 手机号输入控件
     private EditText mEtPhoneNumber;
@@ -41,7 +40,7 @@ public class Login4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("添加登录结果回调");
+        setTitle("使用登录状态监听器实现多页面登录状态同步");
         setContentView(R.layout.activity_login1);
         findViews();
         initViews();
@@ -66,13 +65,13 @@ public class Login4Activity extends AppCompatActivity {
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login4Activity.this,"功能暂未实现");
+                ToastDelegate.show(TestLogin2Activity.this,"功能暂未实现");
             }
         });
         mBtnResetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastDelegate.show(Login4Activity.this,"功能暂未实现");
+                ToastDelegate.show(TestLogin2Activity.this,"功能暂未实现");
             }
         });
     }
@@ -95,10 +94,9 @@ public class Login4Activity extends AppCompatActivity {
             @Override
             public void onResponse(LoginResponse response) {
                 if(response.success){
-                    setResult(LOGIN_SUCCESS_RESULT_CODE);
-                    finish();
+                    LoginStatusDelegate.loginSuccess(TestLogin2Activity.this);
                 }else{
-                    ToastDelegate.show(Login4Activity.this, response.msg);
+                    ToastDelegate.show(TestLogin2Activity.this, response.msg);
                 }
             }
         }).sendRequest(phoneNumber, pwd);
@@ -106,8 +104,7 @@ public class Login4Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        setResult(LOGIN_CANCEL_RESULT_CODE);
-        super.onBackPressed();
+        LoginStatusDelegate.loginCancel(TestLogin2Activity.this);
     }
 
 }

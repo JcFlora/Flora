@@ -1,29 +1,30 @@
-package com.jc.flora.apps.scene.login.projects;
+package com.jc.flora.apps.scene.identity.projects;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import com.jc.flora.R;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
- * Created by shijincheng on 2017/3/1.
+ * Created by shijincheng on 2020/7/21.
  */
-public class Login4TestActivity extends AppCompatActivity {
+public class Identity1Activity extends AppCompatActivity {
 
     private static final int GOTO_LOGIN_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("添加单页面登录结果回调");
-        setContentView(R.layout.activity_login4_test);
+        setTitle("普通用户登录验证");
+        setContentView(R.layout.activity_identity1);
     }
 
     public void gotoLogin(View v){
-        startActivityForResult(new Intent(this, Login4Activity.class), GOTO_LOGIN_REQUEST_CODE);
+        startActivityForResult(new Intent(this, TestLogin1Activity.class), GOTO_LOGIN_REQUEST_CODE);
     }
 
     @Override
@@ -32,9 +33,9 @@ public class Login4TestActivity extends AppCompatActivity {
         if(requestCode != GOTO_LOGIN_REQUEST_CODE){
             return;
         }
-        if(resultCode == Login4Activity.LOGIN_SUCCESS_RESULT_CODE){
+        if(resultCode == TestLogin1Activity.LOGIN_SUCCESS_RESULT_CODE){
             ToastDelegate.show(this, "登录成功");
-        }else if(resultCode == Login4Activity.LOGIN_CANCEL_RESULT_CODE){
+        }else if(resultCode == TestLogin1Activity.LOGIN_CANCEL_RESULT_CODE){
             ToastDelegate.show(this, "取消登录");
         }
     }

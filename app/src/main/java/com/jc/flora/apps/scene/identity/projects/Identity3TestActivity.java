@@ -1,39 +1,41 @@
-package com.jc.flora.apps.scene.login.projects;
+package com.jc.flora.apps.scene.identity.projects;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.identity.delegate.LoginStatusDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
-import com.jc.flora.apps.scene.login.delegate.LoginActionDelegate;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * Created by shijincheng on 2017/3/1.
+ * Created by shijincheng on 2020/6/28.
  */
-public class Login5TestActivity extends AppCompatActivity {
+public class Identity3TestActivity extends AppCompatActivity {
 
     private TextView mTvLoginStatus;
     private Button mBtnCheckLogin;
+    private Button mBtnGotoPrev;
     private Button mBtnLogout;
-    private LoginActionDelegate mLoginDelegate;
+    private LoginStatusDelegate mLoginStatusDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("单页面登录检测+使用登录动作拦截器");
-        setContentView(R.layout.activity_login5_test);
+        setTitle("测试页面");
+        setContentView(R.layout.activity_identity3_test);
         findViews();
         initViews();
         initDelegate();
-        loginIntercept();
     }
 
     private void findViews(){
         mTvLoginStatus = (TextView) findViewById(R.id.tv_login_status);
         mBtnCheckLogin = (Button) findViewById(R.id.btn_check_login);
+        mBtnGotoPrev = (Button) findViewById(R.id.btn_goto_prev);
         mBtnLogout = (Button) findViewById(R.id.btn_logout);
     }
 
@@ -41,40 +43,39 @@ public class Login5TestActivity extends AppCompatActivity {
         mBtnCheckLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginIntercept();
+                mLoginStatusDelegate.loginIntercept();
+            }
+        });
+        mBtnGotoPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         mBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLoginDelegate.setLogin(false);
-                ToastDelegate.show(Login5TestActivity.this, "注销账号");
-                refreshUiByLoginStatus(false);
+                mLoginStatusDelegate.logout();
+                ToastDelegate.show(Identity3TestActivity.this, "注销账号");
             }
         });
+        refreshUiByLoginStatus(LoginStatusDelegate.isLogin());
     }
 
     private void initDelegate(){
-        mLoginDelegate = new LoginActionDelegate();
-        mLoginDelegate.addToActivity(this,"loginDelegate");
-    }
-
-    private void loginIntercept(){
-        mLoginDelegate.loginIntercept(new LoginActionDelegate.LoginActionCallback() {
-            @Override
-            public void isLoggedIn() {
-                refreshUiByLoginStatus(true);
-            }
+        mLoginStatusDelegate = new LoginStatusDelegate();
+        mLoginStatusDelegate.setLoginStatusListener(new LoginStatusDelegate.LoginStatusListener() {
             @Override
             public void onLoginSuccess() {
-                ToastDelegate.show(Login5TestActivity.this, "登录成功");
                 refreshUiByLoginStatus(true);
             }
+
             @Override
-            public void onLoginCancel() {
-                ToastDelegate.show(Login5TestActivity.this, "取消登录");
+            public void onLogoutSuccess() {
+                refreshUiByLoginStatus(false);
             }
         });
+        mLoginStatusDelegate.addToActivity(this,"loginDelegate");
     }
 
     private void refreshUiByLoginStatus(boolean isLogin){

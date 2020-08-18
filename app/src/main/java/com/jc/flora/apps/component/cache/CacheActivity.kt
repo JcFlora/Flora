@@ -65,7 +65,7 @@ class CacheActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "实体数据类型的sp缓存"
-            project.targetActivity = Spreader1Activity::class.java
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
@@ -73,7 +73,7 @@ class CacheActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "单例sp缓存"
-            project.targetActivity = Spreader1Activity::class.java
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 
@@ -81,7 +81,7 @@ class CacheActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "带版本号的sp缓存"
-            project.targetActivity = Spreader1Activity::class.java
+            project.targetActivity = NotFoundActivity::class.java
             return project
         }
 

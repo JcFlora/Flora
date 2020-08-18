@@ -1,4 +1,4 @@
-package com.jc.flora.apps.scene.login.lander;
+package com.jc.flora.apps.scene.identity.lander;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -75,6 +75,8 @@ public class LoginStatusSyncExecutor extends Fragment {
      * @param activity
      */
     static void loginSuccess(Activity activity) {
+        // 发送本地广播，通知所有页面登录成功
+        sendLoginBroadcast(activity, true);
         activity.setResult(LOGIN_SUCCESS_RESULT_CODE);
         activity.finish();
     }
@@ -85,8 +87,32 @@ public class LoginStatusSyncExecutor extends Fragment {
      * @param activity
      */
     static void loginCancel(Activity activity) {
+        // 发送本地广播，通知所有页面登出成功
+        sendLoginBroadcast(activity, false);
         activity.setResult(LOGIN_CANCEL_RESULT_CODE);
         activity.finish();
+    }
+
+    /**
+     * 发送登录成功的本地广播
+     * @param context
+     * @param isLoginSuccess
+     */
+    private static void sendLoginBroadcast(Context context, boolean isLoginSuccess) {
+        Intent intent = new Intent(LOGIN_FEEDBACK);
+        intent.putExtra(LOGIN_SUCCESS, isLoginSuccess);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+    }
+
+    /**
+     * 发送登出成功的本地广播
+     * @param context
+     * @param isLogoutSuccess
+     */
+    private static void sendLogoutBroadcast(Context context, boolean isLogoutSuccess) {
+        Intent intent = new Intent(LOGIN_FEEDBACK);
+        intent.putExtra(LOGOUT_SUCCESS, isLogoutSuccess);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     /**
@@ -217,8 +243,6 @@ public class LoginStatusSyncExecutor extends Fragment {
         if (requestCode != GOTO_LOGIN_REQUEST_CODE) {
             return;
         }
-        // 发送本地广播，通知所有页面登录成功
-        sendLoginBroadcast(getContext(), resultCode == LOGIN_SUCCESS_RESULT_CODE);
         // 触发登录动作响应，通知当前页面
         if(resultCode == LOGIN_SUCCESS_RESULT_CODE){
             mLoginActionCallback.onLoginSuccess();
@@ -235,28 +259,6 @@ public class LoginStatusSyncExecutor extends Fragment {
     private static final String LOGOUT_SUCCESS = "logoutSuccess";
     /** 登录状态广播的IntentFilter */
     private IntentFilter mIntentFilter;
-
-    /**
-     * 发送登录成功的本地广播
-     * @param context
-     * @param isLoginSuccess
-     */
-    private void sendLoginBroadcast(Context context, boolean isLoginSuccess) {
-        Intent intent = new Intent(LOGIN_FEEDBACK);
-        intent.putExtra(LOGIN_SUCCESS, isLoginSuccess);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-    }
-
-    /**
-     * 发送登出成功的本地广播
-     * @param context
-     * @param isLogoutSuccess
-     */
-    private void sendLogoutBroadcast(Context context, boolean isLogoutSuccess) {
-        Intent intent = new Intent(LOGIN_FEEDBACK);
-        intent.putExtra(LOGOUT_SUCCESS, isLogoutSuccess);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

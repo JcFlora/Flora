@@ -71,7 +71,7 @@ public class SingleUCropDelegate {
      */
     private void initOptions(){
         // 设置控制面板高亮颜色
-        mOptions.setActiveWidgetColor(mActivity.getResources().getColor(R.color.colorPrimary));
+        mOptions.setActiveControlsWidgetColor(mActivity.getResources().getColor(R.color.colorPrimary));
 //        // 使用圆形裁剪
 //        mOptions.setCircleDimmedLayer(true);
 //        // 圆形裁剪，隐藏矩形外边框

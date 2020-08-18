@@ -10,7 +10,7 @@ import com.jc.flora.apps.ui.captain.delegate.CaptainFragment;
 import com.jc.flora.apps.ui.captain.delegate.FragmentDelegate16;
 import com.jc.flora.apps.ui.captain.delegate.IndicatorDelegate18;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
-import com.jc.flora.apps.scene.login.delegate.LoginActionDelegate;
+import com.jc.flora.apps.scene.identity.delegate.LoginActionDelegate;
 
 /**
  * Created by shijincheng on 2017/5/2.

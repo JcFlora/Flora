@@ -1,4 +1,4 @@
-package com.jc.flora.apps.scene.login.delegate;
+package com.jc.flora.apps.scene.identity.delegate;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -6,12 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+
+import com.jc.flora.apps.scene.identity.projects.TestLogin2Activity;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import com.jc.flora.apps.scene.login.projects.Login4Activity;
 
 /**
  * 多页面登录状态监听器（实现多页面登录状态同步）
@@ -24,20 +25,12 @@ public class LoginStatusDelegate extends Fragment {
     /**
      * 登录目标页面的Class类型
      */
-    private static final Class LOGIN_ACTIVITY_CLASS = Login4Activity.class;
+    private static final Class LOGIN_ACTIVITY_CLASS = TestLogin2Activity.class;
 
     /**
      * 登录的发起标记
      */
     private static final int GOTO_LOGIN_REQUEST_CODE = 1;
-    /**
-     * 登录成功的响应标记
-     */
-    private static final int LOGIN_SUCCESS_RESULT_CODE = Login4Activity.LOGIN_SUCCESS_RESULT_CODE;
-    /**
-     * 登录取消的响应标记
-     */
-    private static final int LOGIN_CANCEL_RESULT_CODE = Login4Activity.LOGIN_CANCEL_RESULT_CODE;
     /**
      * 模拟全局登录状态
      */
@@ -83,7 +76,8 @@ public class LoginStatusDelegate extends Fragment {
      * @param activity
      */
     public static void loginSuccess(Activity activity) {
-        activity.setResult(LOGIN_SUCCESS_RESULT_CODE);
+        // 发送本地广播，通知所有页面登录成功
+        sendLoginBroadcast(activity, true);
         activity.finish();
     }
 
@@ -93,7 +87,8 @@ public class LoginStatusDelegate extends Fragment {
      * @param activity
      */
     public static void loginCancel(Activity activity) {
-        activity.setResult(LOGIN_CANCEL_RESULT_CODE);
+        // 发送本地广播，通知所有页面登录失败
+        sendLoginBroadcast(activity, false);
         activity.finish();
     }
 
@@ -145,16 +140,6 @@ public class LoginStatusDelegate extends Fragment {
         sendLogoutBroadcast(getContext(), true);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode != GOTO_LOGIN_REQUEST_CODE) {
-            return;
-        }
-        // 发送本地广播，通知所有页面登录成功
-        sendLoginBroadcast(getContext(), resultCode == LOGIN_SUCCESS_RESULT_CODE);
-    }
-
     /** 登录状态广播的Action */
     private static final String LOGIN_FEEDBACK = "LOGIN_FEEDBACK";
     /** 登录成功广播的携带参数 */
@@ -169,7 +154,7 @@ public class LoginStatusDelegate extends Fragment {
      * @param context
      * @param isLoginSuccess
      */
-    private void sendLoginBroadcast(Context context, boolean isLoginSuccess) {
+    private static void sendLoginBroadcast(Context context, boolean isLoginSuccess) {
         Intent intent = new Intent(LOGIN_FEEDBACK);
         intent.putExtra(LOGIN_SUCCESS, isLoginSuccess);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -180,7 +165,7 @@ public class LoginStatusDelegate extends Fragment {
      * @param context
      * @param isLogoutSuccess
      */
-    private void sendLogoutBroadcast(Context context, boolean isLogoutSuccess) {
+    private static void sendLogoutBroadcast(Context context, boolean isLogoutSuccess) {
         Intent intent = new Intent(LOGIN_FEEDBACK);
         intent.putExtra(LOGOUT_SUCCESS, isLogoutSuccess);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);

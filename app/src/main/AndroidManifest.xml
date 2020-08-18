@@ -576,15 +576,6 @@
             android:name=".apps.scene.login.projects.Login3Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.scene.login.projects.Login4Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".apps.scene.login.projects.Login4TestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".apps.scene.login.projects.Login5TestActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".apps.scene.login.projects.Login6Activity"
             android:screenOrientation="portrait" />
         <activity
@@ -600,19 +591,34 @@
             android:name=".apps.scene.login.projects.Login10Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".apps.scene.login.projects.Login11TestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".apps.scene.login.projects.Login11Test2Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".apps.scene.login.projects.Login12TestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".apps.scene.login.projects.Login12Test2Activity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".apps.scene.login.projects.Login13Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.IdentityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.TestLogin1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.TestLogin3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.Identity1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.Identity2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.Identity3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.Identity3TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.Identity4Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.identity.projects.Identity4TestActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.scene.guider.GuiderActivity"

@@ -11,6 +11,7 @@ import com.jc.flora.R
 import com.jc.flora.apps.scene.album.AlbumActivity
 import com.jc.flora.apps.scene.bluetooth.BluetoothActivity
 import com.jc.flora.apps.scene.guider.GuiderActivity
+import com.jc.flora.apps.scene.identity.IdentityActivity
 import com.jc.flora.apps.scene.login.LoginActivity
 import com.jc.flora.apps.scene.payment.PaymentActivity
 import com.jc.flora.apps.scene.preview.PreviewActivity
@@ -52,7 +53,7 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("闪屏界面", R.mipmap.ic_splash, SplashActivity::class.java),
                     LauncherApp("引导界面", R.mipmap.ic_guider, GuiderActivity::class.java),
                     LauncherApp("登录界面", R.mipmap.ic_login, LoginActivity::class.java),
-                    LauncherApp("账户体系", R.mipmap.ic_account, NotFoundActivity::class.java),
+                    LauncherApp("身份验证", R.mipmap.ic_identity, IdentityActivity::class.java),
 
                     LauncherApp("图片选择", R.mipmap.ic_album, AlbumActivity::class.java),
                     LauncherApp("大图预览", R.mipmap.ic_preview, PreviewActivity::class.java),
@@ -84,6 +85,7 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("直播技术", R.mipmap.ic_live, NotFoundActivity::class.java),
                     LauncherApp("有声电台", R.mipmap.ic_fm, NotFoundActivity::class.java),
 
+                    LauncherApp("账户体系", R.mipmap.ic_account, NotFoundActivity::class.java),
                     LauncherApp("会员互动", R.mipmap.ic_member, NotFoundActivity::class.java),
                     LauncherApp("设置界面", R.mipmap.ic_settings, NotFoundActivity::class.java),
                     LauncherApp("摇一摇", R.mipmap.ic_shake, NotFoundActivity::class.java)

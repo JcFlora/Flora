@@ -31,7 +31,7 @@ class ViActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8)
+                    project6, project7, project8, project9)
         }
 
     private val project1: Project
@@ -94,6 +94,14 @@ class ViActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "使用Fidelity组件适配"
+            project.targetActivity = ViFidelityActivity::class.java
+            return project
+        }
+
+    private val project9: Project
+        get() {
+            val project = Project()
+            project.projectName = "使用Fidelity适配横幅图和按列分配图"
             project.targetActivity = ViFidelityActivity::class.java
             return project
         }

@@ -2,17 +2,17 @@ package com.jc.flora.apps.component.distribute.delegate;
 
 import android.content.Intent;
 
+import com.jc.flora.apps.scene.identity.projects.TestLogin1Activity;
+
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.jc.flora.apps.scene.login.projects.Login4Activity;
 
 /**
  * Created by shijincheng on 2018/12/16.
  */
 public class Distribute7Delegate extends Fragment{
 
-    private static final Class LOGIN_ACTIVITY_CLASS = Login4Activity.class;
+    private static final Class LOGIN_ACTIVITY_CLASS = TestLogin1Activity.class;
     private static final int GOTO_LOGIN_REQUEST_CODE = 1;
     public static final int LOGIN_SUCCESS_RESULT_CODE = 1;
     public static final int LOGIN_CANCEL_RESULT_CODE = 2;

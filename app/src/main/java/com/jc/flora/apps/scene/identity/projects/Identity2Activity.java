@@ -1,41 +1,40 @@
-package com.jc.flora.apps.scene.login.projects;
+package com.jc.flora.apps.scene.identity.projects;
 
-import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.jc.flora.R;
-import com.jc.flora.apps.scene.login.delegate.LoginStatusDelegate;
+import com.jc.flora.apps.scene.identity.delegate.LoginActionDelegate;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
- * Created by shijincheng on 2020/6/28.
+ * Created by shijincheng on 2020/7/21.
  */
-public class Login11TestActivity extends AppCompatActivity {
+public class Identity2Activity extends AppCompatActivity {
 
     private TextView mTvLoginStatus;
     private Button mBtnCheckLogin;
-    private Button mBtnGotoNext;
     private Button mBtnLogout;
-    private LoginStatusDelegate mLoginStatusDelegate;
+    private LoginActionDelegate mLoginDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("使用登录状态监听器实现多页面登录状态同步");
-        setContentView(R.layout.activity_login11_test);
+        setTitle("单页面登录检测+使用登录动作拦截器");
+        setContentView(R.layout.activity_identity2);
         findViews();
         initViews();
         initDelegate();
+        loginIntercept();
     }
 
     private void findViews(){
         mTvLoginStatus = (TextView) findViewById(R.id.tv_login_status);
         mBtnCheckLogin = (Button) findViewById(R.id.btn_check_login);
-        mBtnGotoNext = (Button) findViewById(R.id.btn_goto_next);
         mBtnLogout = (Button) findViewById(R.id.btn_logout);
     }
 
@@ -43,39 +42,40 @@ public class Login11TestActivity extends AppCompatActivity {
         mBtnCheckLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mLoginStatusDelegate.loginIntercept();
-            }
-        });
-        mBtnGotoNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login11TestActivity.this, Login11Test2Activity.class));
+                loginIntercept();
             }
         });
         mBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLoginStatusDelegate.logout();
-                ToastDelegate.show(Login11TestActivity.this, "注销账号");
-            }
-        });
-        refreshUiByLoginStatus(LoginStatusDelegate.isLogin());
-    }
-
-    private void initDelegate(){
-        mLoginStatusDelegate = new LoginStatusDelegate();
-        mLoginStatusDelegate.setLoginStatusListener(new LoginStatusDelegate.LoginStatusListener() {
-            @Override
-            public void onLoginSuccess() {
-                refreshUiByLoginStatus(true);
-            }
-
-            @Override
-            public void onLogoutSuccess() {
+                mLoginDelegate.setLogin(false);
+                ToastDelegate.show(Identity2Activity.this, "注销账号");
                 refreshUiByLoginStatus(false);
             }
         });
-        mLoginStatusDelegate.addToActivity(this,"loginDelegate");
+    }
+
+    private void initDelegate(){
+        mLoginDelegate = new LoginActionDelegate();
+        mLoginDelegate.addToActivity(this,"loginDelegate");
+    }
+
+    private void loginIntercept(){
+        mLoginDelegate.loginIntercept(new LoginActionDelegate.LoginActionCallback() {
+            @Override
+            public void isLoggedIn() {
+                refreshUiByLoginStatus(true);
+            }
+            @Override
+            public void onLoginSuccess() {
+                ToastDelegate.show(Identity2Activity.this, "登录成功");
+                refreshUiByLoginStatus(true);
+            }
+            @Override
+            public void onLoginCancel() {
+                ToastDelegate.show(Identity2Activity.this, "取消登录");
+            }
+        });
     }
 
     private void refreshUiByLoginStatus(boolean isLogin){
