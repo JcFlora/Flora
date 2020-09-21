@@ -14,6 +14,7 @@ import com.jc.flora.apps.scene.guider.GuiderActivity
 import com.jc.flora.apps.scene.identity.IdentityActivity
 import com.jc.flora.apps.scene.login.LoginActivity
 import com.jc.flora.apps.scene.payment.PaymentActivity
+import com.jc.flora.apps.scene.pray.PrayActivity
 import com.jc.flora.apps.scene.preview.PreviewActivity
 import com.jc.flora.apps.scene.qrcode.QrcodeActivity
 import com.jc.flora.apps.scene.splash.SplashActivity
@@ -88,7 +89,9 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("账户体系", R.mipmap.ic_account, NotFoundActivity::class.java),
                     LauncherApp("会员互动", R.mipmap.ic_member, NotFoundActivity::class.java),
                     LauncherApp("设置界面", R.mipmap.ic_settings, NotFoundActivity::class.java),
-                    LauncherApp("摇一摇", R.mipmap.ic_shake, NotFoundActivity::class.java)
+                    LauncherApp("摇一摇", R.mipmap.ic_shake, NotFoundActivity::class.java),
+
+                    LauncherApp("公祭日置灰", R.mipmap.ic_pray, PrayActivity::class.java)
             )
         }
 

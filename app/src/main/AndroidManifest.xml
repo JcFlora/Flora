@@ -1276,6 +1276,30 @@
         <activity
             android:name=".apps.component.permit.projects.Permit4Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.PrayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray4Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray4TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray5TestActivity"
+            android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

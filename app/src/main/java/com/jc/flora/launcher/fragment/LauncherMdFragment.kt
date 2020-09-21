@@ -43,7 +43,8 @@ class LauncherMdFragment : CaptainFragment() {
             return arrayListOf(
                     LauncherApp("Toolbar", R.mipmap.ic_bow, ToolbarActivity::class.java),
                     LauncherApp("FloatActionButton", R.mipmap.ic_bow, NotFoundActivity::class.java),
-                    LauncherApp("ConstraintLayout", R.mipmap.ic_chain, NotFoundActivity::class.java)
+                    LauncherApp("ConstraintLayout", R.mipmap.ic_chain, NotFoundActivity::class.java),
+                    LauncherApp("MaterialButton", R.mipmap.ic_button, NotFoundActivity::class.java)
             )
         }
 

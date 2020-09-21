@@ -23,7 +23,10 @@ public class LoginStatusSyncExecutor extends Fragment {
      * 登录目标页面的Class类型
      */
     private static Class<? extends Activity> sLoginActivityClass;
-
+    /**
+     * 登录状态数据源
+     */
+    private static LoginInfoDataSource sLoginInfoDataSource;
     /**
      * 登录的发起标记
      */
@@ -48,10 +51,6 @@ public class LoginStatusSyncExecutor extends Fragment {
      * 登录动作响应
      */
     private LoginActionCallback mLoginActionCallback;
-    /**
-     * 登录状态数据源
-     */
-    private static LoginInfoDataSource sLoginInfoDataSource;
 
     /**
      * 设置登录页面的Activity
