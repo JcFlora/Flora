@@ -27,7 +27,7 @@
             app:civ_border_width="2dp"
             app:civ_border_color="#FF0000FF"/>
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 

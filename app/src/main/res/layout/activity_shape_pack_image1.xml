@@ -24,7 +24,7 @@
             android:contentDescription=""
             android:src="@drawable/shape_pack_map" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -42,7 +42,7 @@
             android:contentDescription=""
             android:src="@drawable/shape_pack_map" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -59,7 +59,7 @@
             android:contentDescription=""
             android:src="@drawable/shape_pack_map2" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -77,7 +77,7 @@
             android:contentDescription=""
             android:src="@drawable/shape_pack_map2" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -94,7 +94,7 @@
             android:contentDescription=""
             android:src="@drawable/shape_pack_map" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_divider_page_space_size" />
 

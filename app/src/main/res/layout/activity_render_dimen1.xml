@@ -21,7 +21,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <androidx.legacy.widget.Space
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -52,7 +52,7 @@
                     android:layout_height="@dimen/app_list_item_big_header_width"
                     android:src="@mipmap/ic_login" />
 
-                <androidx.legacy.widget.Space
+                <Space
                     android:layout_width="@dimen/app_divider_item_space_size"
                     android:layout_height="match_parent" />
 
@@ -61,7 +61,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="match_parent"
                         android:layout_height="0px"
                         android:layout_weight="3" />
@@ -73,7 +73,7 @@
                         android:textColor="@color/app_color_text_black"
                         android:textSize="@dimen/app_text_size_18dp" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="match_parent"
                         android:layout_height="0px"
                         android:layout_weight="2" />
@@ -85,7 +85,7 @@
                         android:textColor="@color/app_color_text_gray"
                         android:textSize="@dimen/app_text_size_14dp" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="match_parent"
                         android:layout_height="0px"
                         android:layout_weight="3" />
@@ -97,7 +97,7 @@
                 android:layout_height="@dimen/app_divider_line_size"
                 android:background="@color/app_color_divider_content" />
 
-            <androidx.legacy.widget.Space
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -133,7 +133,7 @@
                         android:layout_height="@dimen/app_list_item_small_header_width"
                         android:src="@mipmap/ic_login" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -166,7 +166,7 @@
                         android:layout_height="@dimen/app_list_item_small_header_width"
                         android:src="@mipmap/ic_login" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -187,7 +187,7 @@
                 android:layout_height="@dimen/app_divider_line_size"
                 android:background="@color/app_color_divider_content" />
 
-            <androidx.legacy.widget.Space
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -223,7 +223,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_jk" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -261,7 +261,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_shop" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -299,7 +299,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_jp" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -325,7 +325,7 @@
                 android:layout_height="@dimen/app_divider_line_size"
                 android:background="@color/app_color_divider_content" />
 
-            <androidx.legacy.widget.Space
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -353,7 +353,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_rj" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -372,7 +372,7 @@
                         android:textColor="@color/app_color_text_hint"
                         android:textSize="@dimen/app_text_size_14dp" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -402,7 +402,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_zd" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -421,7 +421,7 @@
                         android:textColor="@color/app_color_text_hint"
                         android:textSize="@dimen/app_text_size_14dp" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -451,7 +451,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_tx" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -471,7 +471,7 @@
                 android:layout_height="@dimen/app_divider_line_size"
                 android:background="@color/app_color_divider_content" />
 
-            <androidx.legacy.widget.Space
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -499,7 +499,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_xz" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -518,7 +518,7 @@
                         android:textColor="@color/app_color_text_hint"
                         android:textSize="@dimen/app_text_size_14dp" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -548,7 +548,7 @@
                         android:layout_height="@dimen/app_list_item_icon_width"
                         android:src="@mipmap/ic_render_tq" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -567,7 +567,7 @@
                         android:textColor="@color/app_color_text_hint"
                         android:textSize="@dimen/app_text_size_14dp" />
 
-                    <androidx.legacy.widget.Space
+                    <Space
                         android:layout_width="@dimen/app_divider_item_space_size"
                         android:layout_height="match_parent" />
 
@@ -591,7 +591,7 @@
                 android:layout_height="@dimen/app_divider_line_size"
                 android:background="@color/app_color_divider_content" />
 
-            <androidx.legacy.widget.Space
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -613,7 +613,7 @@
                 android:textColor="@color/app_color_text_white"
                 android:textSize="@dimen/app_text_size_20dp" />
 
-            <androidx.legacy.widget.Space
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_divider_page_space_size" />
 

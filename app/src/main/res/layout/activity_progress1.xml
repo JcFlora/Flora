@@ -13,7 +13,7 @@
         android:background="@drawable/clip_bg"
         android:contentDescription=""/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -23,7 +23,7 @@
         android:text="手动加载进度(xml实现的)"
         android:onClick="showClipImage"/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:contentDescription=""/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -43,7 +43,7 @@
         android:text="自动加载进度(代码实现的)"
         android:onClick="startClipImage"/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -53,7 +53,7 @@
         android:text="停止加载进度(代码实现的)"
         android:onClick="stopClipImage"/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 

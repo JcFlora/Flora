@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_light" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="20px"
             android:layout_height="1px" />
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_default" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="20px"
             android:layout_height="1px" />
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_default" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="20px"
             android:layout_height="1px" />
 
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/guider_star_default" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="20px"
             android:layout_height="1px" />
 

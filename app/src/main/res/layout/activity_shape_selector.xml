@@ -14,7 +14,7 @@
         android:textSize="@dimen/app_text_size_18dp"
         android:clickable="true"/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -27,7 +27,7 @@
         android:textSize="@dimen/app_text_size_18dp"
         android:clickable="true"/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -39,7 +39,7 @@
         android:textColor="@color/app_color_text_white"
         android:textSize="@dimen/app_text_size_18dp" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -51,7 +51,7 @@
         android:textColor="@color/app_color_text_white"
         android:textSize="@dimen/app_text_size_18dp" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 

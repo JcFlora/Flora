@@ -10,7 +10,7 @@
         android:text="切换电话信息"
         android:onClick="changeTelephoneInfo"/>
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"/>

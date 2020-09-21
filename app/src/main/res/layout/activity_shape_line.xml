@@ -17,7 +17,7 @@
         android:layout_height="1px"
         android:background="@color/app_color_divider_content" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -33,7 +33,7 @@
         android:layout_height="2px"
         android:background="@drawable/shape_bg_dash" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="2px" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -65,7 +65,7 @@
         android:layout_height="2px"
         android:background="@drawable/shape_bg_line2" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="2px" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
@@ -97,7 +97,7 @@
         android:layout_height="2px"
         android:background="@drawable/shape_bg_dash2" />
 
-    <androidx.legacy.widget.Space
+    <Space
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 

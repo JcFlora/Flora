@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="400px" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
