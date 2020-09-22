@@ -18,7 +18,7 @@ import java.io.File;
  *
  * implementation "androidx.media:media:1.1.0"
  *
- * 在低版本上，需要在manifest配置文件中添加
+ * 在低版本上(5.0以下)，需要在manifest配置文件中添加
  *  <receiver android:name="androidx.media.session.MediaButtonReceiver" >
  *      <intent-filter>
  *          <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -149,10 +149,7 @@ public class AudioSessionDelegate26 {
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ARTIST, "未知")
 //                .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, 5*60*1000)
                 .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            metaData.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, 5);
-        }
+        metaData.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, 5);
         mMediaSession.setMetadata(metaData.build());
     }
 

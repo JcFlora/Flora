@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jc.flora.R
+import com.jc.flora.apps.md.material_button.MaterialButtonActivity
 import com.jc.flora.apps.md.toolbar.ToolbarActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.launcher.LauncherApp
@@ -34,7 +35,7 @@ class LauncherMdFragment : CaptainFragment() {
     }
 
     private fun addApps() {
-        rvApps?.layoutManager = LinearLayoutManager(activity, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
+        rvApps?.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rvApps?.adapter = LauncherCardsAdapter(activity as AppCompatActivity?, mApps)
     }
 
@@ -44,7 +45,8 @@ class LauncherMdFragment : CaptainFragment() {
                     LauncherApp("Toolbar", R.mipmap.ic_bow, ToolbarActivity::class.java),
                     LauncherApp("FloatActionButton", R.mipmap.ic_bow, NotFoundActivity::class.java),
                     LauncherApp("ConstraintLayout", R.mipmap.ic_chain, NotFoundActivity::class.java),
-                    LauncherApp("MaterialButton", R.mipmap.ic_button, NotFoundActivity::class.java)
+                    LauncherApp("MaterialButton", R.mipmap.ic_button, MaterialButtonActivity::class.java),
+                    LauncherApp("ShapeableImageView", R.mipmap.ic_shapeable_image_view, NotFoundActivity::class.java)
             )
         }
 

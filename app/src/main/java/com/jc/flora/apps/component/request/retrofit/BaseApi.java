@@ -41,7 +41,7 @@ public class BaseApi {
 
     private static Retrofit initRetrofit() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder().addInterceptor(new GzipRequestInterceptor());
-        initSSLSocketFactory(builder);
+//        initSSLSocketFactory(builder);
         OkHttpClient httpClient = builder.build();
         //使用GsonBuilder创建Gson，统一日期请求格式
         Gson gson = new GsonBuilder()
@@ -58,7 +58,7 @@ public class BaseApi {
 
     private static Retrofit initSoapRetrofit() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        initSSLSocketFactory(builder);
+//        initSSLSocketFactory(builder);
         OkHttpClient httpClient = builder.build();
         return new Retrofit.Builder()
                 .baseUrl(SOAP_HOST)
@@ -76,32 +76,36 @@ public class BaseApi {
         return sSoapRetrofit;
     }
 
-    private static void initSSLSocketFactory(OkHttpClient.Builder builder) {
-        if (DeviceUtil.isSystemVersionAfterKitkatWatch()) {
-            return;
-        }
-        try {
-            // 自定义一个信任所有证书的TrustManager，添加SSLSocketFactory的时候要用到
-            X509TrustManager trustAllCert = new X509TrustManager() {
-                @Override
-                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                }
-
-                @Override
-                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                }
-
-                @Override
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                    return new java.security.cert.X509Certificate[]{};
-                }
-            };
-            SSLSocketFactory sslSocketFactory = new SSLSocketFactoryCompat(trustAllCert);
-            builder.sslSocketFactory(sslSocketFactory, trustAllCert);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    /**
+//     * 4.4W以下版本，需要适配证书处理
+//     * @param builder
+//     */
+//    private static void initSSLSocketFactory(OkHttpClient.Builder builder) {
+//        if (DeviceUtil.isSystemVersionAfterKitkatWatch()) {
+//            return;
+//        }
+//        try {
+//            // 自定义一个信任所有证书的TrustManager，添加SSLSocketFactory的时候要用到
+//            X509TrustManager trustAllCert = new X509TrustManager() {
+//                @Override
+//                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+//                }
+//
+//                @Override
+//                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+//                }
+//
+//                @Override
+//                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+//                    return new java.security.cert.X509Certificate[]{};
+//                }
+//            };
+//            SSLSocketFactory sslSocketFactory = new SSLSocketFactoryCompat(trustAllCert);
+//            builder.sslSocketFactory(sslSocketFactory, trustAllCert);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public static abstract class ObserverAdapter<T> implements Observer<T> {
         @Override

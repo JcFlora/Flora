@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/app_page_padding">
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:backgroundTint="@color/colorAccent"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="椭圆实心背景按钮"
+        android:textColor="@color/app_color_text_white"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cornerRadius="24dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="椭圆线框背景按钮"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/colorAccent"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:backgroundTint="@color/app_color_bg_unable"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="椭圆线框背景按钮"
+        android:textColor="@color/app_color_text_gray"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/app_color_text_gray"
+        app:strokeWidth="1dp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:backgroundTint="@color/colorAccent"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="圆形实心背景按钮"
+        android:textColor="@color/app_color_text_white"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cornerRadius="100dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_page_space_size" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/colorAccent"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="赞"
+        android:textColor="@color/app_color_text_white"
+        android:textSize="@dimen/app_text_size_20dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cornerRadius="100dp"
+        app:strokeColor="#FF00FF00"
+        app:strokeWidth="5dp"/>
+
+</LinearLayout>

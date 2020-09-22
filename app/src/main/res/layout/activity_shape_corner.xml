@@ -11,7 +11,7 @@
         android:background="@drawable/shape_bg_corner1"
         android:text="圆角实心背景(xml实现)"
         android:textColor="@color/app_color_text_white"
-        android:textSize="@dimen/app_text_size_18dp" />
+        android:textSize="@dimen/app_text_size_18dp"/>
 
     <Space
         android:layout_width="match_parent"

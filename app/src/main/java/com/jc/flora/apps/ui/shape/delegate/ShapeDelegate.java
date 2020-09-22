@@ -119,11 +119,8 @@ public class ShapeDelegate {
         if (v == null) {
             return true;
         }
-        if (DeviceUtil.isSystemVersionAfterLollipop()) {
-            v.setBackground(new RippleDrawable(ColorStateList.valueOf(color), content, null));
-            return true;
-        }
-        return false;
+        v.setBackground(new RippleDrawable(ColorStateList.valueOf(color), content, null));
+        return true;
     }
 
 }

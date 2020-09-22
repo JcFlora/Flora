@@ -42,27 +42,33 @@ public class StableDelegate {
         fitStatusBarOrNavigation(fitView, true);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setStatusBarColorResource(@ColorRes int resId){
-        if (!isSdkSupport()) {
-            return;
-        }
         mActivity.getWindow().setStatusBarColor(mActivity.getResources().getColor(resId));
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setStatusBarColor(int color){
-        if (!isSdkSupport()) {
-            return;
-        }
         mActivity.getWindow().setStatusBarColor(color);
     }
 
-    private void hideStatusBarOrNavigation(boolean isHideNavigation) {
+    @TargetApi(Build.VERSION_CODES.M)
+    public void setStatusBarTextColorGray(){
         if (!isSdkSupport()) {
-            hideActionBar();
             return;
         }
+        mActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void setStatusBarTextColorWhite(){
+        if (!isSdkSupport()) {
+            return;
+        }
+        mActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+    }
+
+    private void hideStatusBarOrNavigation(boolean isHideNavigation) {
         Window window = mActivity.getWindow();
         window.requestFeature(Window.FEATURE_NO_TITLE);
         if (isHideNavigation) {
@@ -79,9 +85,6 @@ public class StableDelegate {
      * @param isHideNavigation
      */
     private void fitStatusBarOrNavigation(View fitView, boolean isHideNavigation) {
-        if (!isSdkSupport()) {
-            return;
-        }
         int statusBarHeight = DeviceUtil.getStatusBarHeight(mActivity);
         int navigationHeight = DeviceUtil.getNavigationHeight(mActivity);
         ViewGroup.LayoutParams params = fitView.getLayoutParams();
@@ -108,8 +111,8 @@ public class StableDelegate {
         }
     }
 
-    private boolean isSdkSupport(){
-        return DeviceUtil.isSystemVersionAfterLollipop();
+    private static boolean isSdkSupport(){
+        return DeviceUtil.isSystemVersionAfterM();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -130,6 +133,17 @@ public class StableDelegate {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.TRANSPARENT);
         window.setNavigationBarColor(Color.TRANSPARENT);
+    }
+
+    /**
+     * 5.0 ~ 6.0之间的版本，要适配状态栏背景色
+     * （使用灰色处理，目前发现跑在已知型号手机上，状态栏字体均为白色，
+     * 如果有和灰色相近的，需要修改方法里的灰色）
+     */
+    public static void setStatusBarBgColorGrayBeforeM(View spaceStatusBar){
+        if (!isSdkSupport() && spaceStatusBar != null) {
+            spaceStatusBar.setBackgroundColor(Color.GRAY);
+        }
     }
 
 }

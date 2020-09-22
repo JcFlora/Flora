@@ -9,7 +9,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.jc.flora"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName optVersionName()
@@ -47,6 +47,7 @@ dependencies {
 
     // androidx 系列
     implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.media:media:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.fragment:fragment:1.2.5'
@@ -90,7 +91,7 @@ dependencies {
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     // 官方的so只支持http，不支持https，需要自己编译so才能支持https，这里不使用官方的so
 //    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
-    implementation 'com.zhihu.android:matisse:0.5.2-beta3'
+    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
     implementation 'top.zibin:Luban:1.1.8'
     implementation 'com.github.yalantis:ucrop:2.2.5'
 

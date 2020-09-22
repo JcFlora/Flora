@@ -31,11 +31,7 @@ public class GalleryDelegate extends Fragment {
     }
 
     public void init(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mFileChooserIntent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        }else{
-            mFileChooserIntent.setAction(Intent.ACTION_GET_CONTENT);
-        }
+        mFileChooserIntent.setAction(Intent.ACTION_OPEN_DOCUMENT);
         mFileChooserIntent.addCategory(Intent.CATEGORY_OPENABLE);
         mFileChooserIntent.setType("image/*");
 
@@ -64,14 +60,15 @@ public class GalleryDelegate extends Fragment {
     }
 
     private void handlePickImage(Uri uri){
-        //判断手机系统版本号
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //4.4及以上系统使用这个方法处理图片
-            mPickImage.imagePath = AlbumUtils.handleImagePathOnKitKat(getContext(), uri);
-        } else {
-            //4.4以下系统使用这个方法处理图片
-            mPickImage.imagePath = AlbumUtils.handleImagePathBeforeKitKat(getContext(), uri);
-        }
+//        //判断手机系统版本号
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            //4.4及以上系统使用这个方法处理图片
+//            mPickImage.imagePath = AlbumUtils.handleImagePathOnKitKat(getContext(), uri);
+//        } else {
+//            //4.4以下系统使用这个方法处理图片
+//            mPickImage.imagePath = AlbumUtils.handleImagePathBeforeKitKat(getContext(), uri);
+//        }
+        mPickImage.imagePath = AlbumUtils.handleImagePathOnKitKat(getContext(), uri);
         mPickImage.uri = uri;
         if(mOnImagePickedCallback != null){
             mOnImagePickedCallback.onImagePicked(mPickImage);

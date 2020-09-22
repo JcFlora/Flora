@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jc.flora.R
 import com.jc.flora.apps.Project
 import com.jc.flora.apps.ProjectsAdapter
+import com.jc.flora.apps.md.material_button.projects.MaterialButtonCornerActivity
+import com.jc.flora.apps.md.material_button.projects.MaterialButtonIconActivity
+import com.jc.flora.apps.md.material_button.projects.MaterialButtonOvalActivity
+import com.jc.flora.apps.md.material_button.projects.MaterialButtonRippleActivity
 import com.jc.flora.apps.md.toolbar.projects.*
 import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
@@ -25,21 +29,20 @@ class MaterialButtonActivity : AppCompatActivity() {
 
     private fun addProjects() {
         val rvProjects: RecyclerView = findViewById(R.id.rv_projects)
-        rvProjects.layoutManager = LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
+        rvProjects.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvProjects.adapter = ProjectsAdapter(this, projects)
     }
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8, project9, project10, project11)
+            return arrayListOf(project1, project2, project3, project4)
         }
 
     private val project1: Project
         get() {
             val project = Project()
             project.projectName = "圆角按钮"
-            project.targetActivity = Toolbar1Activity::class.java
+            project.targetActivity = MaterialButtonCornerActivity::class.java
             return project
         }
 
@@ -47,79 +50,23 @@ class MaterialButtonActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "椭圆/圆形按钮"
-            project.targetActivity = Toolbar2Activity::class.java
+            project.targetActivity = MaterialButtonOvalActivity::class.java
             return project
         }
 
     private val project3: Project
         get() {
             val project = Project()
-            project.projectName = "渐变背景按钮"
-            project.targetActivity = Toolbar3Activity::class.java
+            project.projectName = "修改水波纹反馈"
+            project.targetActivity = MaterialButtonRippleActivity::class.java
             return project
         }
 
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "高亮反馈、水波纹反馈"
-            project.targetActivity = Toolbar4Activity::class.java
-            return project
-        }
-
-    private val project5: Project
-        get() {
-            val project = Project()
             project.projectName = "带图标的按钮"
-            project.targetActivity = Toolbar5Activity::class.java
-            return project
-        }
-
-    private val project6: Project
-        get() {
-            val project = Project()
-            project.projectName = ""
-            project.targetActivity = NotFoundActivity::class.java
-            return project
-        }
-
-    private val project7: Project
-        get() {
-            val project = Project()
-            project.projectName = ""
-            project.targetActivity = NotFoundActivity::class.java
-            return project
-        }
-
-    private val project8: Project
-        get() {
-            val project = Project()
-            project.projectName = ""
-            project.targetActivity = NotFoundActivity::class.java
-            return project
-        }
-
-    private val project9: Project
-        get() {
-            val project = Project()
-            project.projectName = ""
-            project.targetActivity = NotFoundActivity::class.java
-            return project
-        }
-
-    private val project10: Project
-        get() {
-            val project = Project()
-            project.projectName = ""
-            project.targetActivity = NotFoundActivity::class.java
-            return project
-        }
-
-    private val project11: Project
-        get() {
-            val project = Project()
-            project.projectName = ""
-            project.targetActivity = NotFoundActivity::class.java
+            project.targetActivity = MaterialButtonIconActivity::class.java
             return project
         }
 

@@ -12,22 +12,6 @@ import android.os.Build;
 public class DeviceUtil {
 
     /**
-     * 当前系统是否是4.4W 以上
-     * @return
-     */
-    public static boolean isSystemVersionAfterKitkatWatch(){
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH;
-    }
-
-    /**
-     * 当前系统是否是5.0以上
-     * @return
-     */
-    public static boolean isSystemVersionAfterLollipop(){
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    }
-
-    /**
      * 当前系统是否是6.0以上
      * @return
      */

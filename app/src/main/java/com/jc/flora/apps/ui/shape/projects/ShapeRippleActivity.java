@@ -38,44 +38,24 @@ public class ShapeRippleActivity extends AppCompatActivity {
     private void initViews() {
         // 代码实现水波纹反馈
         Drawable colorDrawable = new ColorDrawable(0xff33b5e5);
-        if(!ShapeDelegate.setRippleDrawable(mBtnRipple1, 0xff0099cc, colorDrawable)){
-            // 使用兼容模式高亮反馈
-            Drawable pressedDrawable = new ColorDrawable(0xff0099cc);
-            mBtnRipple1.setBackground(ShapeDelegate.getPressedSelectorDrawable(colorDrawable, pressedDrawable));
-        }
+        ShapeDelegate.setRippleDrawable(mBtnRipple1, 0xff0099cc, colorDrawable);
 
         // 代码实现圆角水波纹反馈
         Drawable cornerDrawable = ShapeDelegate.getSolidCornerDrawable(20, 0xff33b5e5);
-        if(!ShapeDelegate.setRippleDrawable(mBtnRipple2, 0xff0099cc, cornerDrawable)){
-            // 使用兼容模式高亮反馈
-            Drawable pressedDrawable = ShapeDelegate.getSolidCornerDrawable(20, 0xff0099cc);
-            mBtnRipple2.setBackground(ShapeDelegate.getPressedSelectorDrawable(cornerDrawable, pressedDrawable));
-        }
+        ShapeDelegate.setRippleDrawable(mBtnRipple2, 0xff0099cc, cornerDrawable);
 
         // 代码实现渐变水波纹反馈
         int[] colors = {0xfffdc901, 0xfffd9803, 0xfffd7601, 0xfffd4b02};
         Drawable gradientDrawable = ShapeDelegate.getGradientDrawable(colors);
-        if(!ShapeDelegate.setRippleDrawable(mBtnRipple3, 0xfffdc901, gradientDrawable)){
-            // 使用兼容模式高亮反馈
-            Drawable pressedDrawable = new ColorDrawable(0xfffd7601);
-            mBtnRipple3.setBackground(ShapeDelegate.getPressedSelectorDrawable(gradientDrawable, pressedDrawable));
-        }
+        ShapeDelegate.setRippleDrawable(mBtnRipple3, 0xfffdc901, gradientDrawable);
 
         //todo 这种方式有个bug，水波纹的边界没有圆角，还是用xml写吧
         // 代码实现圆角渐变水波纹反馈
         Drawable gradientCornerDrawable = ShapeDelegate.getGradientCornerDrawable(60, colors);
-        if(!ShapeDelegate.setRippleDrawable(mBtnRipple4, 0xfffdc901, gradientCornerDrawable)){
-            // 使用兼容模式高亮反馈
-            Drawable pressedDrawable = ShapeDelegate.getSolidCornerDrawable(60, 0xfffd7601);
-            mBtnRipple4.setBackground(ShapeDelegate.getPressedSelectorDrawable(gradientCornerDrawable, pressedDrawable));
-        }
+        ShapeDelegate.setRippleDrawable(mBtnRipple4, 0xfffdc901, gradientCornerDrawable);
 
         // 代码实现无边界水波纹反馈
-        if(!ShapeDelegate.setRippleDrawable(mTvRipple5, 0xff0099cc, null)){
-            // 使用兼容模式高亮反馈
-            Drawable pressedDrawable = new ColorDrawable(0xff0099cc);
-            mTvRipple5.setBackground(ShapeDelegate.getPressedSelectorDrawable(null, pressedDrawable));
-        }
+        ShapeDelegate.setRippleDrawable(mTvRipple5, 0xff0099cc, null);
     }
 
 }

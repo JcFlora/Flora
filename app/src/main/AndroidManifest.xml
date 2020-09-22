@@ -699,6 +699,21 @@
             android:name=".apps.md.toolbar.projects.Toolbar8Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.md.material_button.MaterialButtonActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.md.material_button.projects.MaterialButtonCornerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.md.material_button.projects.MaterialButtonOvalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.md.material_button.projects.MaterialButtonRippleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.md.material_button.projects.MaterialButtonIconActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.render.RenderActivity"
             android:screenOrientation="portrait" />
         <activity
