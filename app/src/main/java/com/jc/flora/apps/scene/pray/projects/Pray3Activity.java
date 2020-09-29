@@ -47,6 +47,7 @@ public class Pray3Activity extends AppCompatActivity {
 
     private void initPrayDelegate(){
         mPrayDelegate = new PrayDelegate(this);
+        mPrayDelegate.registerCurrentActivity();
         mPrayDelegate.registerDialogContentView(mPrayDialogDelegate.getContentView());
         mPrayDelegate.registerDialogContentView(mPrayBottomSheetDialogDelegate.getContentView());
     }

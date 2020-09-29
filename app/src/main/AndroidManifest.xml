@@ -714,6 +714,12 @@
             android:name=".apps.md.material_button.projects.MaterialButtonIconActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.md.shapeable_image_view.ShapeableImageViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.md.shapeable_image_view.projects.ShapeableImageView1Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.render.RenderActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -1308,6 +1314,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.scene.pray.projects.Pray5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.pray.projects.Pray6Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.scene.pray.projects.Pray4TestActivity"

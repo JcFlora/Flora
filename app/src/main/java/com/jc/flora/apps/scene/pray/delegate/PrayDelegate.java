@@ -8,6 +8,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by Samurai on 2020/9/17.
@@ -15,12 +16,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PrayDelegate {
 
     private AppCompatActivity mActivity;
+    private Fragment mFragment;
     private ArrayList<View> mPrayViews = new ArrayList<>();
     private Paint mPrayPaint;
 
     public PrayDelegate(AppCompatActivity activity) {
         mActivity = activity;
-        mPrayViews.add(activity.getWindow().getDecorView());
+        initPrayPaint();
+    }
+
+    public PrayDelegate(Fragment fragment) {
+        mFragment = fragment;
         initPrayPaint();
     }
 
@@ -31,7 +37,23 @@ public class PrayDelegate {
         mPrayPaint.setColorFilter(new ColorMatrixColorFilter(cm));
     }
 
+    public void registerCurrentActivity(){
+        if(mActivity != null){
+            mPrayViews.add(mActivity.getWindow().getDecorView());
+        }
+    }
+
+    public void registerCurrentFragment(){
+        if(mFragment != null){
+            mPrayViews.add(mFragment.getView());
+        }
+    }
+
     public void registerDialogContentView(View v){
+        registerView(v);
+    }
+
+    public void registerView(View v){
         if(v != null){
             mPrayViews.add(v);
         }

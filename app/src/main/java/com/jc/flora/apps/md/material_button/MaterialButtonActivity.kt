@@ -11,8 +11,6 @@ import com.jc.flora.apps.md.material_button.projects.MaterialButtonCornerActivit
 import com.jc.flora.apps.md.material_button.projects.MaterialButtonIconActivity
 import com.jc.flora.apps.md.material_button.projects.MaterialButtonOvalActivity
 import com.jc.flora.apps.md.material_button.projects.MaterialButtonRippleActivity
-import com.jc.flora.apps.md.toolbar.projects.*
-import com.jc.flora.launcher.NotFoundActivity
 import java.util.*
 
 /**

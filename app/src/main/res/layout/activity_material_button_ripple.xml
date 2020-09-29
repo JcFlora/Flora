@@ -60,4 +60,17 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_divider_page_space_size" />
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_accent_button_height"
+        android:backgroundTint="@color/colorAccent"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="无反馈"
+        android:textColor="@color/app_color_text_white"
+        android:textSize="@dimen/app_text_size_18dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        android:clickable="false"
+        app:cornerRadius="8dp"/>
+
 </LinearLayout>

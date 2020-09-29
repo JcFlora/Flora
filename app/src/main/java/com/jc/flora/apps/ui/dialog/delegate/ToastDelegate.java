@@ -16,6 +16,9 @@ public class ToastDelegate {
     private static Toast sCenterToast;
 
     public static void show(Context context, CharSequence text) {
+        if(context == null){
+            return;
+        }
         if (sToast != null) {
             sToast.cancel();
         }
@@ -24,6 +27,9 @@ public class ToastDelegate {
     }
 
     public static void show(Context context, int resId) {
+        if(context == null){
+            return;
+        }
         if (sToast != null) {
             sToast.cancel();
         }
@@ -32,6 +38,9 @@ public class ToastDelegate {
     }
 
     public static void showIfInForeground(Activity activity, int resId) {
+        if(activity == null){
+            return;
+        }
         //todo 有问题，特殊情况下hasWindowFocus不能作为前台的判断标准，比如正在弹出对话框
         if(!activity.hasWindowFocus()){
             return;
@@ -44,6 +53,9 @@ public class ToastDelegate {
     }
 
     public static void showInScreenCenter(Context context, CharSequence text) {
+        if(context == null){
+            return;
+        }
         if(sCenterToast != null){
             sCenterToast.cancel();
         }

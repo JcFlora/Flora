@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.jc.flora.R
 import com.jc.flora.apps.md.material_button.MaterialButtonActivity
+import com.jc.flora.apps.md.shapeable_image_view.ShapeableImageViewActivity
 import com.jc.flora.apps.md.toolbar.ToolbarActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
 import com.jc.flora.launcher.LauncherApp
@@ -46,7 +47,8 @@ class LauncherMdFragment : CaptainFragment() {
                     LauncherApp("FloatActionButton", R.mipmap.ic_bow, NotFoundActivity::class.java),
                     LauncherApp("ConstraintLayout", R.mipmap.ic_chain, NotFoundActivity::class.java),
                     LauncherApp("MaterialButton", R.mipmap.ic_button, MaterialButtonActivity::class.java),
-                    LauncherApp("ShapeableImageView", R.mipmap.ic_shapeable_image_view, NotFoundActivity::class.java)
+                    LauncherApp("ShapeableImageView", R.mipmap.ic_shapeable_image_view, ShapeableImageViewActivity::class.java),
+                    LauncherApp("Slider", R.mipmap.ic_slider, NotFoundActivity::class.java)
             )
         }
 

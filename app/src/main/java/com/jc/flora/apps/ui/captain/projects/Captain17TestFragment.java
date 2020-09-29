@@ -101,7 +101,9 @@ public class Captain17TestFragment extends CaptainFragment{
             public void run() {
                 // 关闭下拉刷新的加载动画，防止接口超时时加载动画一直进行
                 mSrlContent.setRefreshing(false);
-                ToastDelegate.show(getActivity(),"刷新数据");
+                if(getActivity() != null){
+                    ToastDelegate.show(getActivity(),"刷新数据");
+                }
                 setData();
                 mAdapter.notifyDataSetChanged();
             }

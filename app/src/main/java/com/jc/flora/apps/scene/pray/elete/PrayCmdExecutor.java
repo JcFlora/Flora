@@ -48,7 +48,7 @@ public class PrayCmdExecutor extends Fragment {
      */
     static void pray(Activity activity) {
         // 发送本地广播，通知所有页面置灰
-        sendLoginBroadcast(activity, true);
+        sendPrayBroadcast(activity, true);
     }
 
     /**
@@ -58,7 +58,7 @@ public class PrayCmdExecutor extends Fragment {
      */
     static void clear(Activity activity) {
         // 发送本地广播，通知所有页面还原
-        sendLoginBroadcast(activity, false);
+        sendPrayBroadcast(activity, false);
     }
 
     /**
@@ -66,7 +66,7 @@ public class PrayCmdExecutor extends Fragment {
      * @param context
      * @param isPrayOn
      */
-    private static void sendLoginBroadcast(Context context, boolean isPrayOn) {
+    private static void sendPrayBroadcast(Context context, boolean isPrayOn) {
         Intent intent = new Intent(PRAY_CMD_FEEDBACK);
         intent.putExtra(PRAY_ON, isPrayOn);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -123,7 +123,6 @@ public class PrayCmdExecutor extends Fragment {
         if (activity != null) {
             mActivity = activity;
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitNowAllowingStateLoss();
-            mPrayViews.add(activity.getWindow().getDecorView());
         }
     }
 
@@ -137,11 +136,26 @@ public class PrayCmdExecutor extends Fragment {
         if (fragment != null) {
             mFragment = fragment;
             fragment.getChildFragmentManager().beginTransaction().add(this, tag).commitNowAllowingStateLoss();
-            mPrayViews.add(fragment.getView());
+        }
+    }
+
+    public void registerCurrentActivity(){
+        if(mActivity != null){
+            mPrayViews.add(mActivity.getWindow().getDecorView());
+        }
+    }
+
+    public void registerCurrentFragment(){
+        if(mFragment != null){
+            mPrayViews.add(mFragment.getView());
         }
     }
 
     public void registerDialogContentView(View v){
+        registerView(v);
+    }
+
+    public void registerView(View v){
         if(v != null){
             mPrayViews.add(v);
         }

@@ -30,7 +30,8 @@ class PrayActivity : AppCompatActivity() {
 
     private val projects: ArrayList<Project>
         get() {
-            return arrayListOf(project1, project2, project3, project4, project5)
+            return arrayListOf(project1, project2, project3, project4, project5,
+                    project6)
         }
 
     private val project1: Project
@@ -70,6 +71,14 @@ class PrayActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "模拟接口控制"
             project.targetActivity = Pray5Activity::class.java
+            return project
+        }
+
+    private val project6: Project
+        get() {
+            val project = Project()
+            project.projectName = "仅首页Fragment和底部Tab置灰"
+            project.targetActivity = Pray6Activity::class.java
             return project
         }
 

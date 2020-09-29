@@ -63,6 +63,7 @@ public class Pray4Activity extends AppCompatActivity {
             }
         });
         mPrayCmdExecutor = Elete.createExecutor(this, "pray");
+        mPrayCmdExecutor.registerCurrentActivity();
         mPrayCmdExecutor.registerDialogContentView(mPrayDialogDelegate.getContentView());
         mPrayCmdExecutor.registerDialogContentView(mPrayBottomSheetDialogDelegate.getContentView());
         mPrayCmdExecutor.syncPrayStatus();

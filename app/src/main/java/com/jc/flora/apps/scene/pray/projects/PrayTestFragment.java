@@ -1,7 +1,6 @@
-package com.jc.flora.apps.ui.captain.projects;
+package com.jc.flora.apps.scene.pray.projects;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +8,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jc.flora.R;
+import com.jc.flora.apps.scene.pray.elete.Elete;
+import com.jc.flora.apps.scene.pray.elete.PrayCmdExecutor;
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
 import com.jc.flora.apps.ui.reload.widget.AutoSwipeRefreshLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
- * Created by shijincheng on 2017/3/6.
+ * Created by shijincheng on 2020/9/25.
  */
-public class Captain16TestFragment extends CaptainFragment{
+public class PrayTestFragment extends CaptainFragment{
 
     private String mTitle;
     private TextView mTvTitle;
@@ -59,6 +63,12 @@ public class Captain16TestFragment extends CaptainFragment{
         mSrlContent.autoRefresh();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initPrayIfIsHome();
+    }
+
     private void refreshDataAndUi() {
         mSrlContent.postDelayed(new Runnable() {
             @Override
@@ -70,6 +80,14 @@ public class Captain16TestFragment extends CaptainFragment{
                 }
             }
         },1500);
+    }
+
+    private void initPrayIfIsHome(){
+        if(mTitle.equals("微信")){
+            PrayCmdExecutor prayCmdExecutor = Elete.createExecutor(this, "pray");
+            prayCmdExecutor.registerCurrentFragment();
+            prayCmdExecutor.syncPrayStatus();
+        }
     }
 
     @Override

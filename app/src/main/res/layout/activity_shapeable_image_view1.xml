@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:columnCount="3">
+
+    <!-- 圆角图片 -->
+    <!-- shapeAppearanceOverlay或shapeAppearance 加载style -->
+    <!-- strokeColo描边颜色 -->
+    <!-- strokeWidth描边宽度 -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/roundedCornerImageStyle"
+        app:strokeColor="#F44336"
+        app:strokeWidth="2dp"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/circleImageStyle"
+        app:strokeColor="#F44336"
+        app:strokeWidth="2dp"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/cutImageStyle"
+        app:strokeColor="#F44336"
+        app:strokeWidth="2dp"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/diamondImageStyle"
+        app:strokeColor="#F44336"
+        app:strokeWidth="2dp"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/topLeftRoundImageStyle"
+        app:strokeColor="#F44336"
+        app:strokeWidth="2dp"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/rocketImageStyle"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/waterImageStyle"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        app:shapeAppearanceOverlay="@style/leafImageStyle"
+        app:strokeColor="#F44336"
+        app:strokeWidth="2dp"
+        android:layout_margin="20dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="34dp"
+        android:padding="1dp"
+        android:src="@drawable/audio_kawaii"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/tipImageStyle"
+        app:strokeColor="#F44336"
+        app:strokeWidth="2dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="53dp"/>
+
+</GridLayout>
