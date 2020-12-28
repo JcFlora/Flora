@@ -102,7 +102,7 @@ public class Matisse3Activity extends AppCompatActivity {
                 @Override
                 public void run() {
                     mProgressDialogDelegate.hideLoadingDialog();
-                    FolderUtils.delete(FolderUtils.getAppFolderPath() + "album/");
+                    FolderUtils.delete(FolderUtils.getAppFolderPath(Matisse3Activity.this) + "album/");
                     finish();
                 }
             },1500);

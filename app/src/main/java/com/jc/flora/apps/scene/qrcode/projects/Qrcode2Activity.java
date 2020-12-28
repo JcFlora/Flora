@@ -100,7 +100,7 @@ public class Qrcode2Activity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        FolderUtils.delete(FolderUtils.getAppFolderPath() + "album/");
+        FolderUtils.delete(FolderUtils.getAppFolderPath(this) + "album/");
         super.onDestroy();
     }
 

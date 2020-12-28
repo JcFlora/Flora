@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import android.text.TextUtils;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 
 import com.jc.flora.apps.component.deviceinfo.DeviceUtil;
 import com.jc.flora.apps.ui.dialog.delegate.ToastDelegate;
@@ -98,7 +99,7 @@ public class VersionCheckDelegate {
         if (isNeedUpdate(response)) {
             if(!response.isForceUpgrade() && Renovate.sIsUserRefuseUpgrade && mIsAutoCheck){
                 onNotNeedUpgradeResponse();
-            }else if(response.isFileExists()){
+            }else if(response.isFileExists(mActivity)){
                 showAppInstallDialog(response);
             }else{
                 showAppUpgradeDialog(response);
@@ -206,7 +207,7 @@ public class VersionCheckDelegate {
     private void installApk(final AppUpgradeInfo response) {
         Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        File file = new File(response.getFilePathName());
+        File file = new File(response.getFilePathName(mActivity));
         String type = "application/vnd.android.package-archive";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setDataAndType(FileProvider.getUriForFile(mActivity, mActivity.getPackageName() + ".fileProvider", file), type);

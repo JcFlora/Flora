@@ -3,7 +3,6 @@ package com.jc.flora.apps.scene.album.delegate;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;

@@ -244,6 +244,9 @@
             android:name=".apps.ui.dialog.projects.PickerActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".apps.ui.dialog.projects.MultiDialogActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".apps.component.hybrid.HybridActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -1323,6 +1326,42 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".apps.scene.pray.projects.Pray5TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.conduct.ConductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.component.conduct.projects.RxJava2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search2EntryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search3EntryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search3ResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search4Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search4EntryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".apps.scene.search.projects.Search5EntryActivity"
             android:screenOrientation="portrait" />
         <!-- alipay sdk begin -->
         <activity

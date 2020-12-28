@@ -1,0 +1,81 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/inc_search_bar_light"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_history_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_search_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:text="搜索历史"
+            android:textColor="@color/app_color_text_black"
+            android:textSize="17dp" />
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/search_history_delete" />
+
+        <com.jc.flora.apps.scene.search.widget.TagFlowLayout
+            android:id="@+id/flow_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_search_history"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp" />
+
+<!--        <com.google.android.flexbox.FlexboxLayout-->
+<!--            android:id="@+id/flow_history"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/tv_search_history"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:flexWrap="wrap" />-->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_hot_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_search_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:text="热门搜索"
+            android:textColor="@color/app_color_text_black"
+            android:textSize="17dp" />
+
+        <com.jc.flora.apps.scene.search.widget.TagFlowLayout
+            android:id="@+id/flow_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_search_hot"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp" />
+    </RelativeLayout>
+
+</LinearLayout>

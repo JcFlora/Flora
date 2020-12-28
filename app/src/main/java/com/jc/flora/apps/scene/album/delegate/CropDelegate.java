@@ -1,6 +1,7 @@
 package com.jc.flora.apps.scene.album.delegate;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -22,15 +23,19 @@ public class CropDelegate extends Fragment {
 
     private static final int CROP_IMAGE = 103;
 
-    private static final String CROP_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
+//    private static final String CROP_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
     private static final String CROP_FILE_PRE = "crop_";
 
+    private Context mContext;
+    private String mSavePath = "";
     private PickImage mPickImage;
     private OnImageCroppedCallback mOnImageCroppedCallback;
     private Intent mIntent = new Intent("com.android.camera.action.CROP");
 
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
+            mContext = activity;
+            mSavePath = FolderUtils.getAppFolderPath(mContext) + "album/";
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
         }
     }
@@ -54,12 +59,12 @@ public class CropDelegate extends Fragment {
     public void cropImage(PickImage image, OnImageCroppedCallback callback) {
         mOnImageCroppedCallback = callback;
         String fileName =  CROP_FILE_PRE + System.currentTimeMillis() +".jpg";
-        FolderUtils.createFile(CROP_SAVE_PATH, fileName);
+        FolderUtils.createFile(mSavePath, fileName);
         mPickImage = new PickImage();
-        mPickImage.imagePath = CROP_SAVE_PATH + fileName;
-        mPickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(CROP_SAVE_PATH, fileName));
+        mPickImage.imagePath = mSavePath + fileName;
+        mPickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(mSavePath, fileName));
         mIntent.setDataAndType(image.uri, "image/*");
-        mIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(CROP_SAVE_PATH + fileName)));
+        mIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mSavePath + fileName)));
         startActivityForResult(mIntent, CROP_IMAGE);
     }
 

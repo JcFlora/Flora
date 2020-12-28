@@ -19,13 +19,13 @@ import java.util.List;
 
 public class NotifierUtil {
 
-    public static boolean isLightNotificationTheme(Context context) {
-        int notificationTextColor = getNotificationTextColor(context);
+    public static boolean isLightNotificationTheme(Context context, String channelId) {
+        int notificationTextColor = getNotificationTextColor(context, channelId);
         return isSimilarColor(Color.BLACK, notificationTextColor);
     }
 
-    private static int getNotificationTextColor(Context context) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+    private static int getNotificationTextColor(Context context, String channelId) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId);
         Notification notification = builder.build();
         RemoteViews remoteViews = notification.contentView;
         if (remoteViews == null) {

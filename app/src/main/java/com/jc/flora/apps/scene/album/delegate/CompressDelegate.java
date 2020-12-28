@@ -1,6 +1,7 @@
 package com.jc.flora.apps.scene.album.delegate;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.AsyncTask;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +17,18 @@ import java.io.File;
 
 public class CompressDelegate extends Fragment {
 
-    private static final String COMPRESS_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
+    //private static final String COMPRESS_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
     private static final String COMPRESS_FILE_PRE = "compress_";
 
+    private Context mContext;
+    private String mSavePath = "";
     private OnImageCompressedCallback mOnImageCompressedCallback;
     private CompressImageTask mCompressImageTask;
 
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
+            mContext = activity;
+            mSavePath = FolderUtils.getAppFolderPath(mContext) + "album/";
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
         }
     }
@@ -40,11 +45,11 @@ public class CompressDelegate extends Fragment {
         @Override
         protected PickImage doInBackground(PickImage... pickImages) {
             String fileName =  COMPRESS_FILE_PRE + System.currentTimeMillis() +".jpg";
-            FolderUtils.createFile(COMPRESS_SAVE_PATH, fileName);
+            FolderUtils.createFile(mSavePath, fileName);
             PickImage pickImage = new PickImage();
-            pickImage.imagePath = COMPRESS_SAVE_PATH + fileName;
+            pickImage.imagePath = mSavePath + fileName;
             pickImage.bitmap = AlbumUtils.getCompressImage(pickImages[0].imagePath, pickImage.imagePath);
-            pickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(COMPRESS_SAVE_PATH, fileName));
+            pickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(mSavePath, fileName));
             return pickImage;
         }
 

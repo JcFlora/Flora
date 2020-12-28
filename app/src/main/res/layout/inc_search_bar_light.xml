@@ -1,0 +1,86 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_color_bg_bar"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/v_space_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/search_back"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/bg_search_input"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/search_tag"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:gravity="center_vertical"
+                android:hint="请输入搜索关键字"
+                android:paddingStart="10dp"
+                android:paddingEnd="30dp"
+                android:textColor="@color/app_color_text_black"
+                android:textColorHint="#BABABA"
+                android:textSize="@dimen/app_text_size_14dp"/>
+
+            <ImageView
+                android:id="@+id/btn_search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="7dp"
+                android:src="@drawable/search_et_clear"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:enabled="false"
+            android:gravity="center_vertical"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:text="搜索"
+            android:textColor="#BABABA"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_toolbar_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_divider_line_size"
+        android:background="#BEBEBE"/>
+
+</LinearLayout>

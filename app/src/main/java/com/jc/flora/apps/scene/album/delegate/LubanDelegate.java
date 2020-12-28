@@ -2,6 +2,8 @@ package com.jc.flora.apps.scene.album.delegate;
 
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.jc.flora.apps.component.folder.FolderUtils;
@@ -22,11 +24,14 @@ import top.zibin.luban.OnRenameListener;
  */
 public class LubanDelegate extends Fragment {
 
-    /** 图片保存路径 */
-    private static final String COMPRESS_SAVE_PATH = FolderUtils.getAppFolderPath() + "album";
+//    /** 图片保存路径 */
+//    private static final String COMPRESS_SAVE_PATH = FolderUtils.getAppFolderPath() + "album";
     /** 图片保存名称前缀 */
     private static final String COMPRESS_FILE_PRE = "compress_";
 
+    private Context mContext;
+    /** 图片保存路径 */
+    private String mSavePath = "";
     /** 所有图片压缩完的回调 */
     private OnLubanCompressedCallback mOnLubanCompressedCallback;
     /** 图片列表 */
@@ -42,11 +47,14 @@ public class LubanDelegate extends Fragment {
      * 初始化图片保存路径
      */
     public void init(){
-        new File(COMPRESS_SAVE_PATH+"/").mkdirs();
+//        new File(COMPRESS_SAVE_PATH + "/").mkdirs();
     }
 
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
+            mContext = activity;
+            mSavePath = FolderUtils.getAppFolderPath(mContext) + "album";
+            new File(mSavePath + "/").mkdirs();
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
         }
     }
@@ -79,7 +87,7 @@ public class LubanDelegate extends Fragment {
         Luban.with(getContext())
                 .load(pathList)
                 .ignoreBy(100)
-                .setTargetDir(COMPRESS_SAVE_PATH)
+                .setTargetDir(mSavePath)
                 .setRenameListener(new OnRenameListener() {
                     @Override
                     public String rename(String filePath) {

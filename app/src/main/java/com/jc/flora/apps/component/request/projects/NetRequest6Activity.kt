@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import com.jc.flora.apps.component.request.NetResponse
-import com.jc.flora.apps.component.request.nao.GetArticleListApi
-import com.jc.flora.apps.component.request.nao.GetMobileInfoApi
-import com.jc.flora.apps.component.request.nao.RequestCallback
-import com.jc.flora.apps.component.request.nao.RequestManager
+import com.jc.flora.apps.component.request.nao.*
 import com.jc.flora.apps.ui.dialog.delegate.ProgressDialogDelegate
 
 /**
@@ -32,6 +29,7 @@ class NetRequest6Activity : AppCompatActivity() {
     }
 
     private fun loadData() {
+        CacheManager.init(this)
         mProgressDialogDelegate = ProgressDialogDelegate(this)
         GetArticleListApi(object : RequestCallback<NetResponse> {
             override fun onSuccess(content: NetResponse?) {

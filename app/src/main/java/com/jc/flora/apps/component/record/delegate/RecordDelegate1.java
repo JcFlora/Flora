@@ -16,22 +16,24 @@ import java.io.IOException;
 
 public class RecordDelegate1 {
 
-    private static final String SAVE_PATH = FolderUtils.getAppFolderPath();
+    //private static final String SAVE_PATH = FolderUtils.getAppFolderPath();
 
     private static final String SAVE_NAME = "test1.acc";
 
     // 上下文
     private Context mContext;
+    private String mSavePath = "";
     private MediaRecorder mRecorder;
     // 播放音频的核心组件MediaPlayer
     private MediaPlayer mMediaPlayer;
 
     public RecordDelegate1(Context ctx) {
         mContext = ctx;
+        mSavePath = FolderUtils.getAppFolderPath(mContext);
     }
 
     public void init(){
-        FolderUtils.createFile(SAVE_PATH, SAVE_NAME);
+        FolderUtils.createFile(mSavePath, SAVE_NAME);
     }
 
     public void startRecord() {
@@ -41,7 +43,7 @@ public class RecordDelegate1 {
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        mRecorder.setOutputFile(SAVE_PATH + SAVE_NAME);
+        mRecorder.setOutputFile(mSavePath + SAVE_NAME);
         try {
             mRecorder.prepare();
             mRecorder.start();
@@ -86,7 +88,7 @@ public class RecordDelegate1 {
     public void recreateAudio(){
         if(mMediaPlayer == null){
             // 播放声音
-            mMediaPlayer = MediaPlayer.create(mContext, FolderUtils.getUriByFilePath(SAVE_PATH, SAVE_NAME));
+            mMediaPlayer = MediaPlayer.create(mContext, FolderUtils.getUriByFilePath(mSavePath, SAVE_NAME));
             if(mMediaPlayer != null){
                 // 不循环
                 mMediaPlayer.setLooping(false);

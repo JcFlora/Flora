@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.jc.flora.R
 import com.jc.flora.apps.component.audio.AudioActivity
 import com.jc.flora.apps.component.cache.CacheActivity
+import com.jc.flora.apps.component.conduct.ConductActivity
 import com.jc.flora.apps.component.distribute.DistributeActivity
 import com.jc.flora.apps.component.exit.ExitActivity
 import com.jc.flora.apps.component.folder.FolderActivity
@@ -61,7 +62,7 @@ class LauncherComponentFragment : CaptainFragment() {
                     LauncherApp("分发代理", R.mipmap.ic_distribute, DistributeActivity::class.java),
                     LauncherApp("页面路由", R.mipmap.ic_router, RouterActivity::class.java),
                     LauncherApp("组件通信", R.mipmap.ic_signal, SignalActivity::class.java),
-                    LauncherApp("线程调度", R.mipmap.ic_conduct, NotFoundActivity::class.java),
+                    LauncherApp("线程调度", R.mipmap.ic_conduct, ConductActivity::class.java),
 
                     LauncherApp("屏幕适配", R.mipmap.ic_vi, ViActivity::class.java),
                     LauncherApp("设计规范", R.mipmap.ic_render, RenderActivity::class.java),

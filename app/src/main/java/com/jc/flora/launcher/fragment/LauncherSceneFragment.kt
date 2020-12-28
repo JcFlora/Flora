@@ -17,6 +17,7 @@ import com.jc.flora.apps.scene.payment.PaymentActivity
 import com.jc.flora.apps.scene.pray.PrayActivity
 import com.jc.flora.apps.scene.preview.PreviewActivity
 import com.jc.flora.apps.scene.qrcode.QrcodeActivity
+import com.jc.flora.apps.scene.search.SearchActivity
 import com.jc.flora.apps.scene.splash.SplashActivity
 import com.jc.flora.apps.scene.telephone.TelephoneActivity
 import com.jc.flora.apps.ui.captain.delegate.CaptainFragment
@@ -67,7 +68,7 @@ class LauncherSceneFragment : CaptainFragment() {
                     LauncherApp("个人中心", R.mipmap.ic_my, NotFoundActivity::class.java),
 
                     LauncherApp("热门推荐", R.mipmap.ic_hot, NotFoundActivity::class.java),
-                    LauncherApp("搜索商品", R.mipmap.ic_search, NotFoundActivity::class.java),
+                    LauncherApp("搜索商品", R.mipmap.ic_search, SearchActivity::class.java),
                     LauncherApp("商品详情", R.mipmap.ic_product, NotFoundActivity::class.java),
                     LauncherApp("订单管理", R.mipmap.ic_order, NotFoundActivity::class.java),
 

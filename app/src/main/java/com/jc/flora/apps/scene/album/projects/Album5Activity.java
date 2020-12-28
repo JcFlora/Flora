@@ -176,7 +176,7 @@ public class Album5Activity extends AppCompatActivity {
                 @Override
                 public void run() {
                     mProgressDialogDelegate.hideLoadingDialog();
-                    FolderUtils.delete(FolderUtils.getAppFolderPath() + "album/");
+                    FolderUtils.delete(FolderUtils.getAppFolderPath(Album5Activity.this) + "album/");
                     finish();
                 }
             },1500);

@@ -137,7 +137,7 @@ public class AudioNotifierDelegate26 {
             mNotificationManager.createNotificationChannel(channel);
         }
 
-        mIsLightNotificationTheme = NotifierUtil.isLightNotificationTheme(mService);
+        mIsLightNotificationTheme = NotifierUtil.isLightNotificationTheme(mService, channelId);
         Intent intent = new Intent(mService, mActivityClass);
         intent.putExtra("notification", true);
         intent.setAction(Intent.ACTION_VIEW);

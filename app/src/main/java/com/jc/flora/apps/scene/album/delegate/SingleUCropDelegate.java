@@ -20,13 +20,15 @@ import java.io.File;
  */
 public class SingleUCropDelegate {
 
-    /** 图片保存路径 */
-    private static final String CROP_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
+//    /** 图片保存路径 */
+//    private static final String CROP_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
     /** 图片保存名称前缀 */
     private static final String CROP_FILE_PRE = "crop_";
 
     /** 当前界面 */
     private AppCompatActivity mActivity;
+    /** 图片保存路径 */
+    private String mSavePath = "";
     /** UCrop配置参数 */
     private UCrop.Options mOptions = new UCrop.Options();
     /** UCropFragment，展示裁剪布局 */
@@ -34,6 +36,7 @@ public class SingleUCropDelegate {
 
     public SingleUCropDelegate(AppCompatActivity activity) {
         mActivity = activity;
+        mSavePath = FolderUtils.getAppFolderPath(mActivity) + "album";
         initOptions();
     }
 
@@ -92,9 +95,9 @@ public class SingleUCropDelegate {
     private void cropImage(String imagePath, boolean withAspectRatio) {
         // 配置图片路径信息
         String fileName =  CROP_FILE_PRE + System.currentTimeMillis() +".jpg";
-        FolderUtils.createFile(CROP_SAVE_PATH, fileName);
+        FolderUtils.createFile(mSavePath, fileName);
         Uri source = Uri.fromFile(new File(imagePath));
-        Uri destination = Uri.fromFile(new File(CROP_SAVE_PATH + fileName));
+        Uri destination = Uri.fromFile(new File(mSavePath + fileName));
         // 配置UCrop
         UCrop uCrop = UCrop.of(source, destination)
                 .withOptions(mOptions);

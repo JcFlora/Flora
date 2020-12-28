@@ -39,7 +39,7 @@ public class VersionDownloadUtil {
 		mContext = context ;
 		mApkUrl = apkUrl;
 		mListener = listener;
-		mFilePathName = AppUpgradeInfo.getFilePathName(apkUrl);
+		mFilePathName = AppUpgradeInfo.getFilePathName(context, apkUrl);
 	}
 	
 	public void startUpgrade(){

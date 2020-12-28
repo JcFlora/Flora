@@ -1,5 +1,6 @@
 package com.jc.flora.apps.component.upgrade.renovate;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.jc.flora.apps.component.folder.FolderUtils;
@@ -18,7 +19,6 @@ public class AppUpgradeInfo {
     private static final int TYPE_RECOMMEND_UPGRADE = 0;
 
     private static final String DISPLAY_MESSAGE_PATTERN = "更新版本：{0}\n更新日期：{1}\n更新内容：{2}\n";
-    private static final String SAVE_PATH = FolderUtils.getAppFolderPath();
 
     /** 包名 */
     public String packageName;
@@ -41,17 +41,17 @@ public class AppUpgradeInfo {
         return MessageFormat.format(DISPLAY_MESSAGE_PATTERN, versionName, modifyDate, memo);
     }
 
-    public String getFilePathName(){
-        return getFilePathName(url);
+    public String getFilePathName(Context context){
+        return getFilePathName(context, url);
     }
 
-    public boolean isFileExists(){
-        File file = new File(getFilePathName());
+    public boolean isFileExists(Context context){
+        File file = new File(getFilePathName(context));
         return file.isFile() && file.exists();
     }
 
-    public boolean deleteFile(){
-        File file = new File(getFilePathName());
+    public boolean deleteFile(Context context){
+        File file = new File(getFilePathName(context));
         return file.isFile() && file.exists() && file.delete();
     }
 
@@ -59,12 +59,13 @@ public class AppUpgradeInfo {
         return type == TYPE_FORCE_UPGRADE;
     }
 
-    public static String getFilePathName(String url){
+    public static String getFilePathName(Context context, String url){
         if(TextUtils.isEmpty(url)){
             return null;
         }
+        String savePath = FolderUtils.getAppFolderPath(context) + "upgrade/";
         String fileName = url.substring(url.lastIndexOf("/") + 1);
-        return SAVE_PATH + fileName;
+        return savePath + fileName;
     }
 
     public static AppUpgradeInfo createTestInfo(){

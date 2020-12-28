@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import com.jc.flora.apps.component.request.NetResponse
+import com.jc.flora.apps.component.request.trh.CacheManager
 import com.jc.flora.apps.component.request.trh.GetArticleListApi
 import com.jc.flora.apps.component.request.trh.RequestCallback
 import com.jc.flora.apps.component.request.trh.RequestManager
@@ -31,6 +32,7 @@ class NetRequest4Activity : AppCompatActivity() {
     }
 
     private fun loadData() {
+        CacheManager.init(this)
         mProgressDialogDelegate = ProgressDialogDelegate(this)
         GetArticleListApi(object : RequestCallback<NetResponse> {
             override fun onSuccess(content: NetResponse?) {

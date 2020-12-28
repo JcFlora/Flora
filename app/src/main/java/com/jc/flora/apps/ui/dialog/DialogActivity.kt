@@ -31,7 +31,7 @@ class DialogActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8)
+                    project6, project7, project8, project9)
         }
 
     private val project1: Project
@@ -95,6 +95,14 @@ class DialogActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "Picker"
             project.targetActivity = PickerActivity::class.java
+            return project
+        }
+
+    private val project9: Project
+        get() {
+            val project = Project()
+            project.projectName = "多弹窗管理"
+            project.targetActivity = MultiDialogActivity::class.java
             return project
         }
 

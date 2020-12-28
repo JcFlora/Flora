@@ -44,33 +44,12 @@ public class FolderUtils {
 /*---------------------------------------------SD卡相关----------------------------------------------*/
 
     /**
-     * 获取SD卡根路径
-     * @return
-     */
-    public static String getSdcardPath() {
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
-    }
-
-    /**
-     * 获取安装在用户手机上的应用的沙盒cache路径
-     * 该路径的数据会随应用卸载一并删除？todo
-     * 4.4以前的手机，没装sd卡的话，该路径返回空
-     * @return cache path
-     */
-    public static String getAppExternalCacheFolderPath(Context context) {
-        File cacheDir = context.getExternalCacheDir();
-        if(cacheDir == null){
-            return "";
-        }
-        return cacheDir.getAbsolutePath() + "/";
-    }
-
-    /**
      * 获取当前应用总文件夹的路径
+     * @param context
      * @return
      */
-    public static String getAppFolderPath() {
-        return getSdcardPath() + APP_FOLDER_SDCARD_PATH_NAME;
+    public static String getAppFolderPath(Context context) {
+        return getAppExternalFolderPath(context) + APP_FOLDER_SDCARD_PATH_NAME;
     }
 
     /**
@@ -82,11 +61,48 @@ public class FolderUtils {
     }
 
     /**
-     * 创建应用总文件夹
+     * 获取SD卡根路径
      * @return
      */
-    public static boolean createAppFolder(){
-        File dir = new File(getAppFolderPath());
+    private static String getSdcardPath() {
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
+    }
+
+    /**
+     * 获取安装在用户手机上的应用的沙盒路径
+     * 该路径的数据会随应用卸载一并删除
+     * 4.4以前的手机，没装sd卡的话，该路径返回空
+     * @return path
+     */
+    private static String getAppExternalFolderPath(Context context) {
+        File cacheDir = context.getExternalFilesDir(null);
+        if(cacheDir == null){
+            cacheDir = context.getFilesDir();
+        }
+        return cacheDir.getAbsolutePath() + "/";
+    }
+
+    /**
+     * 获取安装在用户手机上的应用的沙盒cache路径
+     * 该路径的数据会随应用卸载一并删除
+     * 4.4以前的手机，没装sd卡的话，该路径返回空
+     * @return cache path
+     */
+    private static String getAppExternalCacheFolderPath(Context context) {
+        File cacheDir = context.getExternalCacheDir();
+        if(cacheDir == null){
+            cacheDir = context.getCacheDir();
+        }
+        return cacheDir.getAbsolutePath() + "/";
+    }
+
+    /**
+     * 创建应用总文件夹
+     * @param context
+     * @return
+     */
+    public static boolean createAppFolder(Context context){
+        File dir = new File(getAppFolderPath(context));
         return dir.exists() || dir.mkdirs();
     }
 
@@ -97,7 +113,7 @@ public class FolderUtils {
      * @param context
      * @return
      */
-    public static String getFormatedSdcardTotalSize(@Nullable Context context){
+    public static String getFormattedSdcardTotalSize(@Nullable Context context){
         return formatFileSize(context, getSdcardTotalSize());
     }
 
@@ -106,7 +122,7 @@ public class FolderUtils {
      * @param context
      * @return
      */
-    public static String getFormatedSdcardAvailableSize(@Nullable Context context){
+    public static String getFormattedSdcardAvailableSize(@Nullable Context context){
         return formatFileSize(context, getSdcardAvailableSize());
     }
 
@@ -545,7 +561,7 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    public static String getFormatedFileSize(@Nullable Context context, String path){
+    public static String getFormattedFileSize(@Nullable Context context, String path){
         long fileSize = getFileSize(path);
         return formatFileSize(context, fileSize);
     }
@@ -556,7 +572,7 @@ public class FolderUtils {
      * @param path
      * @return
      */
-    public static String getFormatedDirSize(@Nullable Context context, String path){
+    public static String getFormattedDirSize(@Nullable Context context, String path){
         long dirSize = getDirSize(path);
         return formatFileSize(context, dirSize);
     }

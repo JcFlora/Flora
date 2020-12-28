@@ -64,7 +64,7 @@ class CacheActivity : AppCompatActivity() {
     private val project4: Project
         get() {
             val project = Project()
-            project.projectName = "实体数据类型的sp缓存"
+            project.projectName = "实体数据类型的sp双缓存"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

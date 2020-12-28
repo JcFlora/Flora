@@ -2,13 +2,7 @@ package com.jc.flora.apps.component.request.retrofit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jc.flora.apps.component.deviceinfo.DeviceUtil;
 import com.jc.flora.apps.component.request.retrofit.soap.convert.SoapConverterFactory;
-
-import java.security.cert.CertificateException;
-
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.X509TrustManager;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;

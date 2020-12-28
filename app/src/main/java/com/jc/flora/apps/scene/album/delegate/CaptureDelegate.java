@@ -1,6 +1,7 @@
 package com.jc.flora.apps.scene.album.delegate;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.provider.MediaStore;
 import androidx.fragment.app.Fragment;
@@ -19,15 +20,18 @@ import java.io.File;
 public class CaptureDelegate extends Fragment {
 
     private static final int CAPTURE_PHOTO = 102;
-    private static final String CAPTURE_SAVE_PATH = FolderUtils.getAppFolderPath() + "album/";
     private static final String CAPTURE_FILE_PRE = "capture_";
 
+    private Context mContext;
+    private String mSavePath = "";
     private PickImage mPickImage;
     private OnCapturedCallback mOnCapturedCallback;
     private Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
     public void addToActivity(AppCompatActivity activity, String tag) {
         if(activity != null){
+            mContext = activity;
+            mSavePath = FolderUtils.getAppFolderPath(mContext) + "album/";
             activity.getSupportFragmentManager().beginTransaction().add(this, tag).commitAllowingStateLoss();
         }
     }
@@ -35,10 +39,10 @@ public class CaptureDelegate extends Fragment {
     public void openCamera(OnCapturedCallback callback){
         mOnCapturedCallback = callback;
         String fileName =  CAPTURE_FILE_PRE + System.currentTimeMillis() +".jpg";
-        FolderUtils.createFile(CAPTURE_SAVE_PATH, fileName);
+        FolderUtils.createFile(mSavePath, fileName);
         mPickImage = new PickImage();
-        mPickImage.imagePath = CAPTURE_SAVE_PATH + fileName;
-        mPickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(CAPTURE_SAVE_PATH, fileName));
+        mPickImage.imagePath = mSavePath + fileName;
+        mPickImage.uri = AlbumUtils.getUriFromFile(getContext(), new File(mSavePath, fileName));
         mIntent.putExtra(MediaStore.EXTRA_OUTPUT, mPickImage.uri);
         startActivityForResult(mIntent, CAPTURE_PHOTO);
     }

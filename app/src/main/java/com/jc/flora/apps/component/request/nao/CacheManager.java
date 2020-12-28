@@ -1,5 +1,7 @@
 package com.jc.flora.apps.component.request.nao;
 
+import android.content.Context;
+
 import com.jc.flora.apps.component.folder.FolderUtils;
 
 import java.io.File;
@@ -8,13 +10,17 @@ import java.io.File;
  * 缓存管理器
  */
 public class CacheManager {
-	/** 缓存文件路径 */
-	private static final String APP_CACHE_PATH = FolderUtils.getAppFolderPath() + "apiCache/";
 
 	/** sdcard 最小空间，如果小于10M，不会再向sdcard里面写入任何数据 */
 	private static final long SDCARD_MIN_SPACE = 1024 * 1024 * 10;
 
 	private static CacheManager sCacheManager;
+	/** 缓存文件路径 */
+	private static String sAppCachePath = "";
+
+	public static synchronized void init(Context context){
+		sAppCachePath = FolderUtils.getAppFolderPath(context) + "apiCache/";
+	}
 
 	/**
 	 * 获取CacheManager实例
@@ -38,7 +44,7 @@ public class CacheManager {
 			if (BaseUtils.getSDSize() < SDCARD_MIN_SPACE) {
 				clearAllData();
 			} else {
-				final File dir = new File(APP_CACHE_PATH);
+				final File dir = new File(sAppCachePath);
 				if (!dir.exists()) {
 					dir.mkdirs();
 				}
@@ -85,7 +91,7 @@ public class CacheManager {
 	 * @return
 	 */
 	private boolean contains(String key) {
-		File file = new File(APP_CACHE_PATH + key);
+		File file = new File(sAppCachePath + key);
 		return file.exists();
 	}
 
@@ -97,7 +103,7 @@ public class CacheManager {
 	 */
 	private synchronized CacheItem getFromCache(final String key) {
 		CacheItem cacheItem = null;
-		Object findItem = BaseUtils.restoreObject(APP_CACHE_PATH + key);
+		Object findItem = BaseUtils.restoreObject(sAppCachePath + key);
 		if (findItem != null) {
 			cacheItem = (CacheItem) findItem;
 		}
@@ -124,7 +130,7 @@ public class CacheManager {
 
 	private synchronized boolean putIntoCache(final CacheItem item) {
 		if (BaseUtils.getSDSize() > SDCARD_MIN_SPACE) {
-			BaseUtils.saveObject(APP_CACHE_PATH + item.key, item);
+			BaseUtils.saveObject(sAppCachePath + item.key, item);
 			return true;
 		}
 
@@ -138,7 +144,7 @@ public class CacheManager {
 		File file;
 		File[] files;
 		if (BaseUtils.sdcardMounted()) {
-			file = new File(APP_CACHE_PATH);
+			file = new File(sAppCachePath);
 			files = file.listFiles();
 			if (files != null) {
 				for (final File file2 : files) {
