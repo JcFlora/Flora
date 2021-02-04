@@ -30,7 +30,8 @@ class LoginActivity : AppCompatActivity() {
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
                     project6, project7, project8, project9, project10,
-                    project11, project12, project13)
+                    project11, project12, project13, project14, project15,
+                    project16)
         }
 
     private val project1: Project
@@ -133,6 +134,30 @@ class LoginActivity : AppCompatActivity() {
         get() {
             val project = Project()
             project.projectName = "登录1.3：隔离出LoginUiDelegate"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project14: Project
+        get() {
+            val project = Project()
+            project.projectName = "登录1.4：实现QQ登录"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project15: Project
+        get() {
+            val project = Project()
+            project.projectName = "登录1.5：实现微信登录"
+            project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project16: Project
+        get() {
+            val project = Project()
+            project.projectName = "登录1.6：实现手机号一键认证登录"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

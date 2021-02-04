@@ -22,6 +22,11 @@ class RetrofitRequest1Activity : AppCompatActivity() {
         loadData()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mObserver.dispose()
+    }
+
     private fun initViews() {
         title = "使用Retrofit+RxJava，String接收"
         mTvContent = TextView(this)
@@ -30,14 +35,18 @@ class RetrofitRequest1Activity : AppCompatActivity() {
 
     private fun loadData() {
         mProgressDialogDelegate = ProgressDialogDelegate(this)
-        GetArticleListApi().getArticleList("Android", 2, 1)
-                .subscribe(object : BaseApi.ObserverAdapter<String>() {
-                    override fun onNext(netResponse: String) {
-                        mProgressDialogDelegate?.hideLoadingDialog()
-                        mTvContent?.text = netResponse
-                    }
-                })
+        GetArticleListApi().getArticleList("Android", 2, 1).subscribe(mObserver)
         mProgressDialogDelegate?.showLoadingDialog()
+    }
+
+    private val mObserver : BaseApi.ObserverAdapter<String> = object : BaseApi.ObserverAdapter<String>() {
+        override fun onNext(netResponse: String) {
+            if(isDisposed){
+                return
+            }
+            mProgressDialogDelegate?.hideLoadingDialog()
+            mTvContent?.text = netResponse
+        }
     }
 
 }

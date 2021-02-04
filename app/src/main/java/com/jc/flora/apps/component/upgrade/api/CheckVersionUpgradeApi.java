@@ -1,4 +1,4 @@
-package com.jc.flora.apps.component.upgrade.renovate;
+package com.jc.flora.apps.component.upgrade.api;
 
 /**
  * Created by shijincheng on 2017/3/10.

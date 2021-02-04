@@ -32,7 +32,7 @@ class DistributeActivity : AppCompatActivity() {
     private val projects: ArrayList<Project>
         get() {
             return arrayListOf(project1, project2, project3, project4, project5,
-                    project6, project7, project8, project9, project10)
+                    project6, project7, project8, project9, project10, project11)
         }
 
     private val project1: Project
@@ -112,6 +112,14 @@ class DistributeActivity : AppCompatActivity() {
             val project = Project()
             project.projectName = "抽取父类"
             project.targetActivity = NotFoundActivity::class.java
+            return project
+        }
+
+    private val project11: Project
+        get() {
+            val project = Project()
+            project.projectName = "分发一个需要感知前后台生命周期的业务功能"
+            project.targetActivity = Distribute11Activity::class.java
             return project
         }
 

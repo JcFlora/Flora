@@ -75,7 +75,7 @@ class IdentityActivity : AppCompatActivity() {
     private val project5: Project
         get() {
             val project = Project()
-            project.projectName = "身份验证0.5：各种第三方登录"
+            project.projectName = "身份验证0.5：集成各种第三方登录"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -83,7 +83,7 @@ class IdentityActivity : AppCompatActivity() {
     private val project6: Project
         get() {
             val project = Project()
-            project.projectName = "身份验证0.6：VIP身份拦截"
+            project.projectName = "身份验证0.6：集成VIP身份拦截"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -91,7 +91,7 @@ class IdentityActivity : AppCompatActivity() {
     private val project7: Project
         get() {
             val project = Project()
-            project.projectName = "身份验证0.7：VIP和普通会员合并为Identifier框架"
+            project.projectName = "身份验证0.7：集成支付拦截"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }
@@ -99,7 +99,7 @@ class IdentityActivity : AppCompatActivity() {
     private val project8: Project
         get() {
             val project = Project()
-            project.projectName = ""
+            project.projectName = "身份验证0.8：VIP和普通会员合并为Identifier框架"
             project.targetActivity = NotFoundActivity::class.java
             return project
         }

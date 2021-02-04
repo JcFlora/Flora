@@ -1,18 +1,11 @@
 package com.jc.flora.apps.component.upgrade.renovate;
 
-import android.app.Activity;
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
-import androidx.core.content.FileProvider;
 import android.text.TextUtils;
 
 import com.jc.flora.apps.component.folder.FolderUtils;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,20 +19,19 @@ public class VersionDownloadUtil {
 	private static final int MSG_DOWNLOAD_FINISH = 0x10004;
 	private static final int MSG_DOWNLOAD_ERROR = 0x10005;
 	private static final int MSG_DOWNLOAD_CANCEL = 0x10006;
-	private static final String INSTALL_TYPE = "application/vnd.android.package-archive";
 	private Context mContext;
 	
-	private String mFilePathName;
-	private String mApkUrl;
+	private final String mApkUrl;
+	private final String mFilePathName;
 	private boolean mCancelUpgrade;
 	private onDownloadProgressChangedListener mListener;
 	private DownloadThread mDownloadThread ;
 	
-	public VersionDownloadUtil(Context context, String apkUrl, onDownloadProgressChangedListener listener){
+	public VersionDownloadUtil(Context context, String apkUrl, String filePathName, onDownloadProgressChangedListener listener){
 		mContext = context ;
 		mApkUrl = apkUrl;
 		mListener = listener;
-		mFilePathName = AppUpgradeInfo.getFilePathName(context, apkUrl);
+		mFilePathName = filePathName;
 	}
 	
 	public void startUpgrade(){
@@ -60,6 +52,7 @@ public class VersionDownloadUtil {
 		}
 		mCancelUpgrade = true;
 		FolderUtils.delete(mFilePathName);
+		mHandler.removeCallbacksAndMessages(null);
 	}
 	
 	/* 用于更新界面的Handler */
@@ -85,21 +78,7 @@ public class VersionDownloadUtil {
 	};
 
 	private void installApk() {
-		Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		File file = new File(mFilePathName);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-			intent.setDataAndType(FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileProvider", file), INSTALL_TYPE);
-			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-		} else {
-			intent.setDataAndType(Uri.fromFile(file), INSTALL_TYPE);
-		}
-		mContext.startActivity(intent);
-		if(mContext instanceof Activity){
-			((Activity)mContext).finish();
-		}else if(mContext instanceof Service){
-			((Service)mContext).stopSelf();
-		}
+		Utils.installApk(mContext, mFilePathName);
 	}
 
 	public interface onDownloadProgressChangedListener{

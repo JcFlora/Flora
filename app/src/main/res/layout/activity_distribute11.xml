@@ -5,16 +5,18 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_check_upgrade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="检测升级"
-        android:onClick="checkUpgrade"/>
+        android:text="跳转到后面页面"
+        android:onClick="gotoNextPage"
+        android:textAllCaps="false"/>
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/s_auto_check_upgrade"
+    <TextView
+        android:id="@+id/tv_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自动检测升级"/>
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="此处更新业务日志"/>
 
 </LinearLayout>

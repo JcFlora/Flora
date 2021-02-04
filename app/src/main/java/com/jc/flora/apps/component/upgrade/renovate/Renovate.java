@@ -8,14 +8,20 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class Renovate {
 
-    public static boolean sIsUserRefuseUpgrade = false;
-
     /** 当前界面 */
     private AppCompatActivity mActivity;
     /** 升级检测业务管理 */
     private VersionCheckDelegate mVersionCheckDelegate;
     /** 升级业务管理 */
     private VersionUpgradeDelegate mVersionUpgradeDelegate;
+
+    /**
+     * 设置用户跳过升级的记录数据源，一般用在启动页
+     * @param skipRecordDataSource
+     */
+    public static void init(SkipRecordDataSource skipRecordDataSource) {
+        VersionCheckDelegate.setSkipRecordDataSource(skipRecordDataSource);
+    }
 
     public static Renovate create(AppCompatActivity activity){
         return new Renovate(activity);
@@ -26,6 +32,9 @@ public class Renovate {
         ready();
     }
 
+    /**
+     * 准备工作
+     */
     private void ready(){
         // 创建升级检测业务管理
         mVersionCheckDelegate = new VersionCheckDelegate(mActivity);
@@ -34,28 +43,69 @@ public class Renovate {
         // 设置更新按钮的监听
         mVersionCheckDelegate.setOnUpgradeClickListener(new VersionCheckDelegate.OnUpgradeClickListener() {
             @Override
-            public void onUpgradeClick(String apkUrl, boolean isForceUpgrade) {
+            public void onUpgradeClick(UpgradeInfoDataSource upgradeInfo) {
                 // 开始更新
-                mVersionUpgradeDelegate.startUpgrade(apkUrl, isForceUpgrade);
+                mVersionUpgradeDelegate.startUpgrade(upgradeInfo);
             }
         });
     }
 
+    /**
+     * 设置跳过升级后的回调，一般用在启动页
+     * @param onPassUpgradeCallback
+     * @return
+     */
     public Renovate setOnPassUpgradeCallback(Runnable onPassUpgradeCallback){
         mVersionCheckDelegate.setOnPassUpgradeCallback(onPassUpgradeCallback);
         mVersionUpgradeDelegate.setOnPassUpgradeCallback(onPassUpgradeCallback);
         return this;
     }
 
-    public void autoCheck(){
-        mVersionCheckDelegate.setAutoCheck(true);
-        mVersionUpgradeDelegate.setAutoCheck(true);
-        // 开始升级检测的业务
-        mVersionCheckDelegate.startCheckAppUpgrade();
+    /**
+     * 设置检测升级的桥接接口
+     * @param bridge
+     * @return
+     */
+    public Renovate setRequestCheckVersionNetBridge(RequestCheckVersionNetBridge bridge) {
+        mVersionCheckDelegate.setRequestCheckVersionNetBridge(bridge);
+        return this;
     }
 
-    public void manualCheck(){
-        // 开始升级检测的业务
+    /**
+     * 设置升级器对话框的桥接接口
+     * @param bridge
+     * @return
+     */
+    public Renovate setDialogBridge(DialogBridge bridge){
+        mVersionCheckDelegate.setDialogBridge(bridge);
+        mVersionUpgradeDelegate.setDialogBridge(bridge);
+        return this;
+    }
+
+    /**
+     * 设置自动检测模式，一般用在启动页
+     * @return
+     */
+    public Renovate setAutoCheck(){
+        mVersionCheckDelegate.setAutoCheck(true);
+        mVersionUpgradeDelegate.setAutoCheck(true);
+        return this;
+    }
+
+    /**
+     * 设置手动检测模式，一般用在设置页面
+     * @return
+     */
+    public Renovate setManualCheck(){
+        mVersionCheckDelegate.setAutoCheck(false);
+        mVersionUpgradeDelegate.setAutoCheck(false);
+        return this;
+    }
+
+    /**
+     * 开始升级检测的业务
+     */
+    public void start(){
         mVersionCheckDelegate.startCheckAppUpgrade();
     }
 

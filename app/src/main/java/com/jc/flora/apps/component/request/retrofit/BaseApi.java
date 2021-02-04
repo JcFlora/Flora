@@ -101,9 +101,12 @@ public class BaseApi {
 //        }
 //    }
 
-    public static abstract class ObserverAdapter<T> implements Observer<T> {
+    public static abstract class ObserverAdapter<T> implements Observer<T>, Disposable{
+        private Disposable mDisposable;
+
         @Override
         public void onSubscribe(@NonNull Disposable d) {
+            mDisposable = d;
         }
 
         @Override
@@ -112,6 +115,18 @@ public class BaseApi {
 
         @Override
         public void onError(Throwable e) {
+        }
+
+        @Override
+        public void dispose(){
+            if (mDisposable != null) {
+                mDisposable.dispose();
+            }
+        }
+
+        @Override
+        public boolean isDisposed(){
+            return mDisposable == null || mDisposable.isDisposed();
         }
     }
 

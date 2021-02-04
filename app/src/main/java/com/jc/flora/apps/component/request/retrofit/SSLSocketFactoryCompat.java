@@ -152,5 +152,5 @@ public class SSLSocketFactoryCompat extends SSLSocketFactory {
             upgradeTLS((SSLSocket) ssl);
         return ssl;
     }
-}
 
+}
